@@ -1,0 +1,27 @@
+{% load static %}
+{% load i18n %}
+<link rel="stylesheet" href="{% static 'css/process_monitor/connection_search.css' %}">
+<link rel="stylesheet" href="{% static 'css/process_monitor/search_results_popup.css' %}">
+
+<!-- Connection Search Modal -->
+<div class="modal" id="searchResultsModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-search"></i>
+                    <span id="searchResultsTitle">{% trans "Search Results" %}</span>
+                </h3>
+                <button class="modal-close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="searchResultsBody">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>{% trans "Searching..." %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

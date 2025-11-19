@@ -1,0 +1,113 @@
+/* User Card Styles - Minimal Badge Design */
+.user-card {
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    width: 100%;
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.user-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: #333333;
+}
+
+.user-avatar {
+    margin-bottom: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-avatar-img {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: none;
+    transition: all 0.2s ease;
+    display: block;
+}
+
+.user-avatar-img:hover {
+    transform: scale(1.02);
+}
+
+.user-info {
+    text-align: center;
+}
+
+.user-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+    letter-spacing: 0.3px;
+}
+
+.user-role {
+    font-size: 16px;
+    color: #333333;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.user-role i {
+    font-size: 14px;
+    color: #000000;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .user-card {
+        padding: 30px 16px;
+        max-width: 100%;
+    }
+    
+    .user-avatar-img {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .user-name {
+        font-size: 18px;
+    }
+    
+    .user-role {
+        font-size: 14px;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .user-card {
+        background: #000000;
+        border-color: #ffffff;
+    }
+    
+    .user-name {
+        color: #ffffff;
+    }
+    
+    .user-role {
+        color: #cccccc;
+    }
+    
+    .user-role i {
+        color: #ffffff;
+    }
+}

@@ -1,0 +1,561 @@
+{% extends 'plugins/base.html' %}
+{% load i18n %}
+{% load plugin_i18n %}
+
+{% block plugin_title %}{% trans "Plugin Management" %}{% endblock %}
+
+{% block plugin_content %}
+<div class="plugin-list-container">
+    <div class="plugin-list-header">
+        <div class="plugin-list-title-row">
+            <h1 class="plugin-list-title">
+                <i class="fas fa-puzzle-piece"></i>
+                {% trans "Plugin Management" %}
+            </h1>
+            <span class="selected-category-chip">
+                <i class="fas fa-tag"></i>
+                {{ selected_category_name|default:"All" }}
+            </span>
+        </div>
+        <p class="plugin-list-subtitle">
+            {% trans "Manage and configure your installed plugins" %}
+        </p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="plugin-category-filter">
+        {% for category in categories %}
+        <a href="{% url 'plugins:list' %}?category={{ category.key }}" 
+           class="category-filter-btn {% if category.active %}active{% endif %}">
+            <i class="{{ category.icon }}"></i>
+            <span>{{ category.name }}</span>
+            {% if category.count > 0 %}
+            <span class="category-badge">{{ category.count }}</span>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+
+    {% if selected_category != 'all' %}
+    <div class="plugin-filter-info">
+        <i class="fas fa-filter"></i>
+        <span>{% trans "Showing" %} {{ plugins|length }} {% trans "plugin(s) in" %} 
+        {% for cat in categories %}{% if cat.key == selected_category %}{{ cat.name }}{% endif %}{% endfor %} {% trans "category" %}</span>
+        <a href="{% url 'plugins:list' %}" class="clear-filter-link">
+            <i class="fas fa-times"></i> {% trans "Clear filter" %}
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="plugin-list-grid">
+        {% for plugin in plugins %}
+        <div class="plugin-card" data-plugin-name="{{ plugin.name }}">
+            <div class="plugin-card-header">
+                <div class="plugin-icon">
+                    <i class="{{ plugin.icon }}"></i>
+                </div>
+                <div class="plugin-info">
+                    <h3 class="plugin-name">
+                        {% plugin_i18n plugin.name "display_name" plugin.name %}
+                    </h3>
+                    <p class="plugin-version">v{{ plugin.version }}</p>
+                </div>
+                <div class="plugin-status">
+                    {% if plugin.enabled %}
+                        <span class="plugin-badge plugin-badge-enabled">
+                            <i class="fas fa-check-circle"></i>
+                            {% trans "Enabled" %}
+                        </span>
+                    {% else %}
+                        <span class="plugin-badge plugin-badge-disabled">
+                            <i class="fas fa-times-circle"></i>
+                            {% trans "Disabled" %}
+                        </span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="plugin-card-body">
+                <p class="plugin-description">
+                    {% plugin_i18n plugin.name "description" "No description available." %}
+                </p>
+                
+                <div class="plugin-meta">
+                    <span class="plugin-category">
+                        <i class="fas fa-tag"></i>
+                        {{ plugin.category|default:"general" }}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="plugin-card-footer">
+                {% if plugin.has_settings %}
+                    <a href="{% url 'plugins:settings' plugin.name %}" class="btn-secondary">
+                        <i class="fas fa-cog"></i>
+                        {% trans "Settings" %}
+                    </a>
+                {% endif %}
+                {% if plugin.route %}
+                    <a href="/{{ plugin.route }}/" class="btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        {% trans "Open" %}
+                    </a>
+                {% endif %}
+                <button type="button" class="btn-delete" onclick="deletePlugin('{{ plugin.name }}', '{% plugin_i18n plugin.name "display_name" plugin.name %}')">
+                    <i class="fas fa-trash"></i>
+                    {% trans "Delete" %}
+                </button>
+            </div>
+        </div>
+        {% empty %}
+        <div class="plugin-empty">
+            <i class="fas fa-puzzle-piece"></i>
+            <p>{% trans "No plugins installed." %}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+.plugin-list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Category Filter */
+.plugin-category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.category-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #f7fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.category-filter-btn:hover {
+    background: #edf2f7;
+    border-color: #cbd5e0;
+    transform: translateY(-1px);
+}
+
+.category-filter-btn.active {
+    background: #667eea;
+    border-color: #667eea;
+    color: #ffffff;
+}
+
+.category-filter-btn.active:hover {
+    background: #5568d3;
+    border-color: #5568d3;
+}
+
+.category-filter-btn i {
+    font-size: 16px;
+}
+
+.category-badge {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.category-filter-btn.active .category-badge {
+    background: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+.plugin-filter-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #edf2f7;
+    border-left: 4px solid #667eea;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+.plugin-filter-info i {
+    color: #667eea;
+}
+
+.clear-filter-link {
+    margin-left: auto;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+}
+
+.clear-filter-link:hover {
+    color: #5568d3;
+}
+
+/* Category Dropdown Styles */
+.plugins-category-dropdown .dropdown-category {
+    position: relative;
+}
+
+.plugins-category-dropdown .dropdown-category-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    color: #4a5568;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-weight: 500;
+}
+
+.plugins-category-dropdown .dropdown-category-link:hover {
+    background: #f7fafc;
+}
+
+.category-count {
+    background: #e2e8f0;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.plugins-category-dropdown .dropdown-submenu {
+    display: none;
+    padding-left: 24px;
+    background: #f7fafc;
+}
+
+.plugins-category-dropdown .dropdown-category:hover .dropdown-submenu {
+    display: block;
+}
+
+.plugins-category-dropdown .dropdown-submenu .dropdown-link {
+    padding-left: 32px;
+    font-size: 13px;
+    color: #718096;
+}
+
+.plugins-category-dropdown .dropdown-submenu .dropdown-link:hover {
+    background: #edf2f7;
+    color: #4a5568;
+}
+
+.plugin-list-header {
+    margin-bottom: 40px;
+}
+
+.plugin-list-title-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.plugin-list-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 8px;
+}
+
+.selected-category-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #edf2f7;
+    color: #2d3748;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.selected-category-chip i {
+    color: #667eea;
+}
+
+.plugin-list-subtitle {
+    font-size: 16px;
+    color: #718096;
+}
+
+.plugin-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.plugin-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.plugin-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.plugin-card-header {
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.plugin-icon {
+    width: 48px;
+    height: 48px;
+    background: #f7fafc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #4299e1;
+}
+
+.plugin-info {
+    flex: 1;
+}
+
+.plugin-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0 0 4px 0;
+}
+
+.plugin-version {
+    font-size: 12px;
+    color: #718096;
+    margin: 0;
+}
+
+.plugin-status {
+    display: flex;
+    align-items: center;
+}
+
+.plugin-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.plugin-badge-enabled {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.plugin-badge-disabled {
+    background: #fed7d7;
+    color: #742a2a;
+}
+
+.plugin-card-body {
+    padding: 20px;
+}
+
+.plugin-description {
+    font-size: 14px;
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+}
+
+.plugin-meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.plugin-category {
+    font-size: 12px;
+    color: #718096;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.plugin-card-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #e2e8f0;
+    display: flex;
+    gap: 12px;
+}
+
+.plugin-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: #718096;
+}
+
+.plugin-empty i {
+    font-size: 64px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #4299e1;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #3182ce;
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e0;
+}
+
+.btn-delete {
+    background: #e53e3e;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background: #c53030;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(229, 62, 62, 0.3);
+}
+</style>
+
+<script>
+function deletePlugin(pluginName, pluginDisplayName) {
+    if (!confirm(`{% trans "Are you sure you want to delete" %} "${pluginDisplayName}"? {% trans "This will also delete all settings and scheduled tasks for this plugin." %}\n\n{% trans "This action cannot be undone." %}`)) {
+        return;
+    }
+    
+    // Show loading state
+    const card = document.querySelector(`[data-plugin-name="${pluginName}"]`);
+    if (card) {
+        card.style.opacity = '0.5';
+        card.style.pointerEvents = 'none';
+    }
+    
+    fetch(`/plugins/api/${pluginName}/delete/`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]')?.value || getCookie('csrftoken'),
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'ok') {
+            // Remove card with animation
+            if (card) {
+                card.style.transition = 'all 0.3s ease';
+                card.style.transform = 'scale(0.8)';
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.remove();
+                    // Check if list is empty
+                    const grid = document.querySelector('.plugin-list-grid');
+                    if (grid && grid.children.length === 0) {
+                        location.reload();
+                    }
+                }, 300);
+            } else {
+                location.reload();
+            }
+        } else {
+            alert('{% trans "Error deleting plugin:" %} ' + data.message);
+            if (card) {
+                card.style.opacity = '1';
+                card.style.pointerEvents = 'auto';
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('{% trans "Error deleting plugin." %}');
+        if (card) {
+            card.style.opacity = '1';
+            card.style.pointerEvents = 'auto';
+        }
+    });
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
+{% endblock plugin_content %}
+

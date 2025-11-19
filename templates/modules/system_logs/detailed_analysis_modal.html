@@ -1,0 +1,215 @@
+{% load static %}
+{% load i18n %}
+<link rel="stylesheet" href="{% static 'css/system_logs/detailed_analysis.css' %}">
+
+<div class="modal fade" id="detailedAnalysisModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-search-plus"></i> {% trans "Detailed Log Analysis" %}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Close' %}"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Filter Tabs -->
+                <div class="analysis-tabs mb-4">
+                    <div class="nav nav-pills" id="analysisTab" role="tablist">
+                        <button class="nav-link active" id="errors-tab" data-bs-toggle="pill" data-bs-target="#errors" type="button" role="tab">
+                            <i class="fas fa-exclamation-triangle"></i> {% trans "Errors" %}
+                        </button>
+                        <button class="nav-link" id="warnings-tab" data-bs-toggle="pill" data-bs-target="#warnings" type="button" role="tab">
+                            <i class="fas fa-exclamation-circle"></i> {% trans "Warnings" %}
+                        </button>
+                        <button class="nav-link" id="security-tab" data-bs-toggle="pill" data-bs-target="#security" type="button" role="tab">
+                            <i class="fas fa-shield-alt"></i> {% trans "Security" %}
+                        </button>
+                        <button class="nav-link" id="system-tab" data-bs-toggle="pill" data-bs-target="#system" type="button" role="tab">
+                            <i class="fas fa-desktop"></i> {% trans "System" %}
+                        </button>
+                        <button class="nav-link" id="network-tab" data-bs-toggle="pill" data-bs-target="#network" type="button" role="tab">
+                            <i class="fas fa-network-wired"></i> {% trans "Network" %}
+                        </button>
+                        <button class="nav-link" id="database-tab" data-bs-toggle="pill" data-bs-target="#database" type="button" role="tab">
+                            <i class="fas fa-database"></i> {% trans "Database" %}
+                        </button>
+                        <button class="nav-link" id="services-tab" data-bs-toggle="pill" data-bs-target="#services" type="button" role="tab">
+                            <i class="fas fa-cogs"></i> {% trans "Services" %}
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="analysisTabContent">
+                    <!-- Errors Tab -->
+                    <div class="tab-pane fade show active" id="errors" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="mb-3">{% trans "Error Details" %}</h6>
+                                <div id="errorDetails" class="log-details-container">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-spinner fa-spin"></i> {% trans "Loading error details..." %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="mb-3">{% trans "Error Categories" %}</h6>
+                                <div id="errorCategories" class="category-stats">
+                                    <!-- Categories will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Warnings Tab -->
+                    <div class="tab-pane fade" id="warnings" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="mb-3">{% trans "Warning Details" %}</h6>
+                                <div id="warningDetails" class="log-details-container">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-spinner fa-spin"></i> {% trans "Loading warning details..." %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="mb-3">{% trans "Warning Statistics" %}</h6>
+                                <div id="warningStats" class="category-stats">
+                                    <!-- Stats will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Tab -->
+                    <div class="tab-pane fade" id="security" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="mb-3">{% trans "Security Events" %}</h6>
+                                <div id="securityDetails" class="log-details-container">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-spinner fa-spin"></i> {% trans "Loading security events..." %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="mb-3">{% trans "Security Categories" %}</h6>
+                                <div id="securityCategories" class="category-stats">
+                                    <!-- Security categories will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Debug Tab -->
+                    <div class="tab-pane fade" id="debug" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="mb-3">{% trans "Debug Information" %}</h6>
+                                <div id="debugDetails" class="log-details-container">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-spinner fa-spin"></i> {% trans "Loading debug information..." %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="mb-3">{% trans "Debug Statistics" %}</h6>
+                                <div id="debugStats" class="category-stats">
+                                    <!-- Debug stats will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Tab -->
+                    <div class="tab-pane fade" id="system" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="mb-3">{% trans "System Errors" %}</h6>
+                                <div id="systemDetails" class="log-details-container">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-spinner fa-spin"></i> {% trans "Loading system errors..." %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="mb-3">{% trans "System Statistics" %}</h6>
+                                <div id="systemStats" class="category-stats">
+                                    <!-- System stats will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network Tab -->
+                    <div class="tab-pane fade" id="network" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="mb-3">{% trans "Network Errors" %}</h6>
+                                <div id="networkDetails" class="log-details-container">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-spinner fa-spin"></i> {% trans "Loading network errors..." %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="mb-3">{% trans "Network Statistics" %}</h6>
+                                <div id="networkStats" class="category-stats">
+                                    <!-- Network stats will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Database Tab -->
+                    <div class="tab-pane fade" id="database" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="mb-3">{% trans "Database Errors" %}</h6>
+                                <div id="databaseDetails" class="log-details-container">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-spinner fa-spin"></i> {% trans "Loading database errors..." %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="mb-3">{% trans "Database Statistics" %}</h6>
+                                <div id="databaseStats" class="category-stats">
+                                    <!-- Database stats will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Services Tab -->
+                    <div class="tab-pane fade" id="services" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="mb-3">{% trans "Service Status" %}</h6>
+                                <div id="serviceDetails" class="log-details-container">
+                                    <div class="text-center text-muted">
+                                        <i class="fas fa-spinner fa-spin"></i> {% trans "Loading service status..." %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="mb-3">{% trans "Service Statistics" %}</h6>
+                                <div id="serviceStats" class="category-stats">
+                                    <!-- Service stats will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+                <button type="button" class="btn btn-primary" id="refreshDetailedAnalysis">
+                    <i class="fas fa-sync-alt"></i> {% trans "Refresh" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script defer src="{% static 'js/system_logs/detailed_analysis.js' %}"></script>

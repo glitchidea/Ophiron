@@ -1,0 +1,34 @@
+{% load i18n %}
+<!-- Delete Container Modal -->
+<div id="deleteModal" class="action-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-icon delete">
+                <i class="fas fa-trash"></i>
+            </div>
+            <h3 id="deleteModalTitle">{% trans "Delete Container" %}</h3>
+            <span class="close" onclick="closeDeleteModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p id="deleteModalMessage">{% trans "Are you sure you want to delete this container? This action cannot be undone." %}</p>
+            <div class="container-info">
+                <div class="info-item">
+                    <strong id="deleteContainerIdLabel">{% trans "Container ID" %}:</strong>
+                    <span id="deleteContainerId"></span>
+                </div>
+                <div class="info-item">
+                    <strong id="deleteContainerNameLabel">{% trans "Container Name" %}:</strong>
+                    <span id="deleteContainerName"></span>
+                </div>
+            </div>
+            <div class="warning-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="deleteWarningText">{% trans "This will permanently remove the container and all its data." %}</span>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeDeleteModal()" id="deleteCancelBtn">{% trans "Cancel" %}</button>
+            <button class="btn btn-danger" onclick="confirmDeleteContainer()" id="deleteConfirmBtn">{% trans "Delete Container" %}</button>
+        </div>
+    </div>
+</div>

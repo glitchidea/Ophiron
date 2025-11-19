@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <!-- Ophiron mark v5 — minimal, memorable: a near-closed O made by a single serpent stroke -->
+
+  <!-- Serpent body: single monoline stroke forming most of an O, with a gap for the head -->
+  <path
+    d="M200 120c0 39.8-32.2 72-72 72s-72-32.2-72-72 32.2-72 72-72c20 0 35 6 48 16"
+    stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Head: simple angled wedge intruding into the ring (at ~1:30) -->
+  <path d="M205 63l22 12-12 22-22-12z" fill="currentColor"/>
+  <circle cx="220" cy="74" r="3" fill="#0b0d0f"/>
+  <path d="M228 78l10 4m-10-4l10-4" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+</svg>
+
+

@@ -1,0 +1,8 @@
+services:
+  app:
+    network_mode: host
+
+  nginx:
+    network_mode: host
+    volumes:
+      - ./nginx.linux.conf:/etc/nginx/nginx.conf:ro

@@ -1,0 +1,30 @@
+{% load i18n %}
+<!-- Stop Container Modal -->
+<div id="stopModal" class="action-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-icon stop">
+                <i class="fas fa-stop-circle"></i>
+            </div>
+            <h3 id="stopModalTitle">{% trans "Stop Container" %}</h3>
+            <span class="close" onclick="closeStopModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p id="stopModalMessage">{% trans "Are you sure you want to stop this container?" %}</p>
+            <div class="container-info">
+                <div class="info-item">
+                    <strong id="stopContainerIdLabel">{% trans "Container ID" %}:</strong>
+                    <span id="stopContainerId"></span>
+                </div>
+                <div class="info-item">
+                    <strong id="stopContainerNameLabel">{% trans "Container Name" %}:</strong>
+                    <span id="stopContainerName"></span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeStopModal()" id="stopCancelBtn">{% trans "Cancel" %}</button>
+            <button class="btn btn-warning" onclick="confirmStopContainer()" id="stopConfirmBtn">{% trans "Stop Container" %}</button>
+        </div>
+    </div>
+</div>

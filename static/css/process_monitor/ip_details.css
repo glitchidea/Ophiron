@@ -1,0 +1,278 @@
+/* IP Details Modal Styles */
+.modal-xl {
+    max-width: 95%;
+}
+
+.info-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+    border: 1px solid #e2e8f0;
+}
+
+.info-card-header {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    font-weight: 600;
+    color: #2d3748;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-card-header i {
+    color: #4299e1;
+}
+
+.info-card-body {
+    padding: 1rem;
+}
+
+/* Status Indicator */
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #48bb78;
+}
+
+.status-dot.inactive {
+    background-color: #f56565;
+}
+
+.status-text {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+/* Details List */
+.details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+.detail-item .label {
+    color: #718096;
+}
+
+.detail-item .value {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+/* Risk Level */
+.risk-level {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.risk-indicator {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.risk-indicator.low {
+    background-color: #c6f6d5;
+    color: #22543d;
+}
+
+.risk-indicator.medium {
+    background-color: #feebc8;
+    color: #744210;
+}
+
+.risk-indicator.high {
+    background-color: #fed7d7;
+    color: #742a2a;
+}
+
+/* Performance Score */
+.performance-score {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.performance-score .score {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d3748;
+    line-height: 1;
+}
+
+.performance-score .score-label {
+    font-size: 0.875rem;
+    color: #718096;
+    margin-top: 0.25rem;
+}
+
+/* Charts Section */
+.charts-section {
+    margin: 2rem 0;
+}
+
+.chart-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    height: 100%;
+}
+
+.chart-card h6 {
+    margin-bottom: 1rem;
+    color: #2d3748;
+    font-weight: 600;
+    text-align: center;
+}
+
+.charts-row {
+    margin-bottom: 1.5rem;
+}
+
+/* Tables */
+.table-responsive {
+    margin-top: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: #fff;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table thead th {
+    background: #f7fafc;
+    border-bottom: 2px solid #e2e8f0;
+    color: #4a5568;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+.table tbody tr:hover {
+    background-color: #f7fafc;
+}
+
+.table td {
+    vertical-align: middle;
+    color: #2d3748;
+    font-size: 0.875rem;
+}
+
+/* Section Titles */
+.section-title {
+    color: #2d3748;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-title i {
+    color: #4299e1;
+    font-size: 1rem;
+}
+
+/* Status Badge */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-badge.active {
+    background-color: #c6f6d5;
+    color: #22543d;
+}
+
+.status-badge.inactive {
+    background-color: #fed7d7;
+    color: #742a2a;
+}
+
+/* Action Buttons */
+.btn-action {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    border: none;
+    background: #edf2f7;
+    color: #4a5568;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-action:hover {
+    background: #e2e8f0;
+    color: #2d3748;
+}
+
+/* Progress Bars */
+.progress {
+    height: 0.5rem;
+    background-color: #edf2f7;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #4299e1;
+    transition: width 0.2s ease;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .info-card {
+        margin-bottom: 1rem;
+    }
+
+    .charts-row {
+        margin-bottom: 1rem;
+    }
+
+    .chart-card {
+        margin-bottom: 1rem;
+    }
+
+    .table-responsive {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Chart Container Heights */
+.chart-container {
+    position: relative;
+    height: 200px;
+}
+
+.chart-container.half-height {
+    height: 150px;
+}

@@ -1,0 +1,25 @@
+services:
+  app:
+    build: .
+    container_name: ophiron_app
+    environment:
+      DJANGO_SETTINGS_MODULE: core.settings
+      DEBUG: 'False'
+      CSRF_TRUSTED_ORIGINS: http://localhost:8085,http://127.0.0.1:8085,http://192.168.31.50:8085
+    volumes:
+      - .:/app
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: ophiron_nginx
+    depends_on:
+      - app
+    ports:
+      - "8085:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - .:/app:ro
+    restart: unless-stopped

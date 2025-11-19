@@ -1,0 +1,445 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Create Service" %} - {% trans "Service Builder" %}{% endblock %}
+
+{% block extra_css %}
+    <!-- Service Builder CSS -->
+    <link href="{% static 'css/service_builder/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/forms.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/validation.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/modals.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="service-builder-container">
+    <!-- Header Section -->
+    <div class="service-builder-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="service-builder-title">
+                    <i class="fas fa-plus"></i>
+                    {% trans "Create New Service" %}
+                </h1>
+                <p class="service-builder-subtitle">
+                    {% trans "Configure and deploy a new Linux systemd service for your application." %}
+                </p>
+            </div>
+            <div class="header-actions">
+                <a href="{% url 'service_builder:index' %}" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    {% trans "Back to Dashboard" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Creation Form -->
+    <div class="service-builder-content">
+        <div class="form-container">
+            <form id="serviceForm" class="service-form">
+                {% csrf_token %}
+                
+                <!-- Service Type Selection -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-cogs"></i>
+                            {% trans "Service Type" %}
+                        </h3>
+                        <p class="section-description">{% trans "Choose the type of service you want to create" %}</p>
+                    </div>
+                    <div class="form-group">
+                        <div class="radio-group">
+                            <label class="radio-item">
+                                <input type="radio" name="service_type" value="normal" checked>
+                                <div class="radio-content">
+                                    <div class="radio-icon">
+                                        <i class="fas fa-terminal"></i>
+                                    </div>
+                                    <div class="radio-text">
+                                        <h4>{% trans "Normal Application" %}</h4>
+                                        <p>{% trans "Standard application or script" %}</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="service_type" value="web">
+                                <div class="radio-content">
+                                    <div class="radio-icon">
+                                        <i class="fas fa-globe"></i>
+                                    </div>
+                                    <div class="radio-text">
+                                        <h4>{% trans "Web Application" %}</h4>
+                                        <p>{% trans "HTTP server or web service" %}</p>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="radio-item">
+                                <input type="radio" name="service_type" value="background">
+                                <div class="radio-content">
+                                    <div class="radio-icon">
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                    <div class="radio-text">
+                                        <h4>{% trans "Background Service" %}</h4>
+                                        <p>{% trans "Background daemon or worker" %}</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Configuration -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-file-code"></i>
+                            {% trans "Application Configuration" %}
+                        </h3>
+                        <p class="section-description">{% trans "Configure your application details" %}</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="application_path" class="form-label required">
+                                <i class="fas fa-folder-open"></i>
+                                {% trans "Application Path" %}
+                            </label>
+                            <input type="text" id="application_path" name="application_path" class="form-control" 
+                                   placeholder="/path/to/your/application" required>
+                            <div class="form-help">
+                                {% trans "Full path to your application file or script" %}
+                            </div>
+                            <div id="pathValidation" class="validation-message"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="interpreter" class="form-label">
+                                <i class="fas fa-code"></i>
+                                {% trans "Interpreter (Optional)" %}
+                            </label>
+                            <input type="text" id="interpreter" name="interpreter" class="form-control" 
+                                   placeholder="/usr/bin/python3">
+                            <div class="form-help">
+                                {% trans "Interpreter for scripted languages (Python, PHP, etc.)" %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="working_directory" class="form-label">
+                                <i class="fas fa-folder"></i>
+                                {% trans "Working Directory" %}
+                            </label>
+                            <input type="text" id="working_directory" name="working_directory" class="form-control" 
+                                   placeholder="/path/to/working/directory">
+                            <div class="form-help">
+                                {% trans "Working directory for the service" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Details -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-info-circle"></i>
+                            {% trans "Service Details" %}
+                        </h3>
+                        <p class="section-description">{% trans "Basic service information" %}</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name" class="form-label required">
+                                <i class="fas fa-tag"></i>
+                                {% trans "Service Name" %}
+                            </label>
+                            <input type="text" id="name" name="name" class="form-control" 
+                                   placeholder="my-service" required>
+                            <div class="form-help">
+                                {% trans "Unique name for your service (lowercase, no spaces)" %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user" class="form-label required">
+                                <i class="fas fa-user"></i>
+                                {% trans "Run As User" %}
+                            </label>
+                            <select id="user" name="user" class="form-control" required>
+                                {% for user in system_users %}
+                                <option value="{{ user }}">{{ user }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="form-help">
+                                {% trans "System user to run the service" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description" class="form-label">
+                            <i class="fas fa-align-left"></i>
+                            {% trans "Description" %}
+                        </label>
+                        <textarea id="description" name="description" class="form-control" rows="3" 
+                                  placeholder="Brief description of your service"></textarea>
+                        <div class="form-help">
+                            {% trans "Optional description for your service" %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Application Settings -->
+                <div id="webSettings" class="form-section" style="display: none;">
+                    <div class="form-section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-globe"></i>
+                            {% trans "Web Application Settings" %}
+                        </h3>
+                        <p class="section-description">{% trans "Configure web server settings" %}</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="port" class="form-label">
+                                <i class="fas fa-network-wired"></i>
+                                {% trans "Port" %}
+                            </label>
+                            <input type="number" id="port" name="port" class="form-control" 
+                                   placeholder="8080" min="1" max="65535">
+                            <div class="form-help">
+                                {% trans "Port number for your web application" %}
+                            </div>
+                            <div id="portValidation" class="validation-message"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="host" class="form-label">
+                                <i class="fas fa-server"></i>
+                                {% trans "Host Address" %}
+                            </label>
+                            <select id="host" name="host" class="form-control">
+                                <option value="0.0.0.0">0.0.0.0 (All interfaces)</option>
+                                <option value="127.0.0.1">127.0.0.1 (Localhost only)</option>
+                                {% for interface in network_interfaces %}
+                                <option value="{{ interface.ip }}">{{ interface.ip }} ({{ interface.name }})</option>
+                                {% endfor %}
+                            </select>
+                            <div class="form-help">
+                                {% trans "Network interface to bind to" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Normal Application Settings -->
+                <div id="normalSettings" class="form-section" style="display: none;">
+                    <div class="form-section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-terminal"></i>
+                            {% trans "Application Settings" %}
+                        </h3>
+                        <p class="section-description">{% trans "Configure standard application settings" %}</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="execution_mode" class="form-label">
+                                <i class="fas fa-play"></i>
+                                {% trans "Execution Mode" %}
+                            </label>
+                            <select id="execution_mode" name="execution_mode" class="form-control">
+                                <option value="continuous">Continuous (Default)</option>
+                                <option value="oneshot">One-time execution</option>
+                                <option value="scheduled">Scheduled execution</option>
+                            </select>
+                            <div class="form-help">
+                                {% trans "How the application should run" %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="timeout" class="form-label">
+                                <i class="fas fa-clock"></i>
+                                {% trans "Startup Timeout (seconds)" %}
+                            </label>
+                            <input type="number" id="timeout" name="timeout" class="form-control" 
+                                   placeholder="30" min="1" max="300">
+                            <div class="form-help">
+                                {% trans "Maximum time to wait for startup" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="arguments" class="form-label">
+                            <i class="fas fa-list"></i>
+                            {% trans "Command Line Arguments" %}
+                        </label>
+                        <input type="text" id="arguments" name="arguments" class="form-control" 
+                               placeholder="--config /etc/myapp.conf --verbose">
+                        <div class="form-help">
+                            {% trans "Additional arguments to pass to the application" %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Background Service Settings -->
+                <div id="backgroundSettings" class="form-section" style="display: none;">
+                    <div class="form-section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-tasks"></i>
+                            {% trans "Background Service Settings" %}
+                        </h3>
+                        <p class="section-description">{% trans "Configure background daemon settings" %}</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="daemon_type" class="form-label">
+                                <i class="fas fa-cog"></i>
+                                {% trans "Daemon Type" %}
+                            </label>
+                            <select id="daemon_type" name="daemon_type" class="form-control">
+                                <option value="simple">Simple (Default)</option>
+                                <option value="forking">Forking</option>
+                                <option value="oneshot">One-shot</option>
+                                <option value="notify">Notify</option>
+                            </select>
+                            <div class="form-help">
+                                {% trans "Type of daemon process" %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority" class="form-label">
+                                <i class="fas fa-sort-numeric-up"></i>
+                                {% trans "Process Priority" %}
+                            </label>
+                            <select id="priority" name="priority" class="form-control">
+                                <option value="normal">Normal</option>
+                                <option value="high">High</option>
+                                <option value="low">Low</option>
+                            </select>
+                            <div class="form-help">
+                                {% trans "Process priority level" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="log_file" class="form-label">
+                            <i class="fas fa-file-alt"></i>
+                            {% trans "Log File Path" %}
+                        </label>
+                        <input type="text" id="log_file" name="log_file" class="form-control" 
+                               placeholder="/var/log/my-service.log">
+                        <div class="form-help">
+                            {% trans "Optional custom log file path" %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Settings -->
+                <div class="form-section">
+                    <div class="form-section-header">
+                        <h3 class="section-title">
+                            <i class="fas fa-cog"></i>
+                            {% trans "Advanced Settings" %}
+                        </h3>
+                        <p class="section-description">{% trans "Optional advanced configuration" %}</p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="restart_policy" class="form-label">
+                                <i class="fas fa-redo"></i>
+                                {% trans "Restart Policy" %}
+                            </label>
+                            <select id="restart_policy" name="restart_policy" class="form-control">
+                                <option value="always">Always restart</option>
+                                <option value="on-failure">Restart on failure</option>
+                                <option value="no">Never restart</option>
+                            </select>
+                            <div class="form-help">
+                                {% trans "When to restart the service" %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="environment_vars" class="form-label">
+                            <i class="fas fa-list"></i>
+                            {% trans "Environment Variables" %}
+                        </label>
+                        <textarea id="environment_vars" name="environment_vars" class="form-control" rows="4" 
+                                  placeholder="PATH=/usr/local/bin:/usr/bin&#10;DATABASE_URL=postgresql://localhost/db&#10;DEBUG=false"></textarea>
+                        <div class="form-help">
+                            {% trans "Environment variables (one per line, format: KEY=value)" %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" id="validateBtn" class="btn btn-outline">
+                        <i class="fas fa-check"></i>
+                        {% trans "Validate Configuration" %}
+                    </button>
+                    <button type="submit" id="createBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        {% trans "Create Service" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Service Creation Modal -->
+<div class="modal fade" id="serviceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans "Service Creation Status" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="modalContent">
+                    <div class="text-center">
+                        <div class="spinner-border text-primary mb-3" role="status">
+                            <span class="visually-hidden">Creating service...</span>
+                        </div>
+                        <p>{% trans "Creating your service, please wait..." %}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Validation Results Modal -->
+<div class="modal fade" id="validationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans "Configuration Validation" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="validationContent">
+                    <!-- Validation results will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Service Builder JavaScript -->
+    <script src="{% static 'js/service_builder/main.js' %}"></script>
+    <script src="{% static 'js/service_builder/create_service.js' %}"></script>
+{% endblock %}

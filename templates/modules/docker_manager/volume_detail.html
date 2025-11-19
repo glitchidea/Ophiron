@@ -1,0 +1,160 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Docker Volume Detail" %} - {{ volume.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/docker_manager/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/docker_manager/volume_detail.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        {% include 'components/header.html' %}
+        
+        <main class="main-content">
+            <div class="docker-manager-container">
+                <h1 class="docker-title">{% trans "Docker Manager" %}</h1>
+                
+                <nav class="docker-nav">
+                    
+                </nav>
+                
+                <div class="content-area">
+                    {% if volume %}
+                    <div class="detail-header">
+                        <div class="detail-header-top">
+                            <button class="nav-btn" onclick="window.location.href='{% url 'docker_manager:volumes' %}'">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <div class="detail-actions">
+                                <button class="action-btn delete" onclick="deleteVolume('{{ volume.name }}')" title="{% trans 'Delete' %}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="detail-header-bottom">
+                            <h2>{{ volume.name }}</h2>
+                            <div class="volume-meta">
+                                <span class="volume-driver">{% trans "Driver" %}: {{ volume.driver }}</span>
+                                <span class="volume-size">{% trans "Size" %}: {{ volume.size }}</span>
+                                <span class="volume-created">{% trans "Created" %}: {{ volume.created }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-tabs">
+                        <nav class="nav-tabs">
+                            <button class="nav-tab active" data-tab="overview">
+                                <i class="fas fa-info-circle"></i>
+                                {% trans "Overview" %}
+                            </button>
+                            <button class="nav-tab" data-tab="inspect">
+                                <i class="fas fa-search"></i>
+                                {% trans "Inspect" %}
+                            </button>
+                        </nav>
+                        
+                        <div class="tab-content-wrapper">
+                            <!-- Overview Tab -->
+                            <div class="tab-content active" id="overview-content">
+                                <div class="overview-grid">
+                                    <div class="info-card">
+                                        <h3>{% trans "Basic Information" %}</h3>
+                                        <div class="info-list">
+                                            <div class="info-item">
+                                                <span class="info-label">{% trans "Name" %}:</span>
+                                                <span class="info-value">{{ volume.name }}</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">{% trans "Driver" %}:</span>
+                                                <span class="info-value">{{ volume.driver }}</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">{% trans "Size" %}:</span>
+                                                <span class="info-value">{{ volume.size }}</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">{% trans "Created" %}:</span>
+                                                <span class="info-value">{{ volume.created }}</span>
+                                            </div>
+                                            <div class="info-item">
+                                                <span class="info-label">{% trans "Mountpoint" %}:</span>
+                                                <span class="info-value">{{ volume.mountpoint }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="info-card">
+                                        <h3>{% trans "Labels" %}</h3>
+                                        <div class="labels-list">
+                                            {% if volume.labels %}
+                                                {% for key, value in volume.labels.items %}
+                                                    <div class="label-item">
+                                                        <span class="label-key">{{ key }}:</span>
+                                                        <span class="label-value">{{ value }}</span>
+                                                    </div>
+                                                {% endfor %}
+                                            {% else %}
+                                                <div class="no-data">{% trans "No labels found." %}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="info-card">
+                                        <h3>{% trans "Options" %}</h3>
+                                        <div class="options-list">
+                                            {% if volume.options %}
+                                                {% for key, value in volume.options.items %}
+                                                    <div class="option-item">
+                                                        <span class="option-key">{{ key }}:</span>
+                                                        <span class="option-value">{{ value }}</span>
+                                                    </div>
+                                                {% endfor %}
+                                            {% else %}
+                                                <div class="no-data">{% trans "No options found." %}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Inspect Tab -->
+                            <div class="tab-content" id="inspect-content">
+                                <div class="history-header">
+                                    <h3>{% trans "Full Inspect Data" %}</h3>
+                                </div>
+                                <pre id="inspectOutput" class="code-block">{{ volume.attrs|pprint }}</pre>
+                                <button class="copy-json-btn" onclick="copyInspectJson()">{% trans "Copy JSON" %}</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-database"></i>
+                        <h3>{% trans "Volume Not Found" %}</h3>
+                        <p>{% trans "The volume you are looking for could not be found or Docker is not running." %}</p>
+                        {% if error %}
+                            <p class="error-message">{% trans "Error" %}: {{ error }}</p>
+                        {% endif %}
+                        <a href="{% url 'docker_manager:volumes' %}" class="btn btn-primary">{% trans "Back to Volumes" %}</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- CSRF Token -->
+    {% csrf_token %}
+
+    <!-- JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+    <script src="{% static 'js/docker_manager/main.js' %}"></script>
+    <script src="{% static 'js/docker_manager/volume_detail.js' %}"></script>
+</body>
+</html>

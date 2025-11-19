@@ -1,0 +1,180 @@
+{% load static %}
+
+<!-- IP Details Modal -->
+<div class="modal fade" id="ipDetailsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-globe"></i>
+                    IP Analysis: <span id="currentIpAddress"></span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- IP Overview -->
+                <div class="ip-overview mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="fas fa-network-wired"></i>
+                                    Connection Status
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="status-indicator" id="connectionStatus">
+                                        <span class="status-dot"></span>
+                                        <span class="status-text">Active</span>
+                                    </div>
+                                    <div class="details-list">
+                                        <div class="detail-item">
+                                            <span class="label">Total Connections:</span>
+                                            <span class="value" id="totalConnections">0</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="label">Active Since:</span>
+                                            <span class="value" id="activeSince">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="fas fa-shield-alt"></i>
+                                    Security Status
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="risk-level" id="riskLevel">
+                                        <div class="risk-indicator low">Low Risk</div>
+                                    </div>
+                                    <div class="details-list">
+                                        <div class="detail-item">
+                                            <span class="label">Suspicious Activity:</span>
+                                            <span class="value" id="suspiciousCount">0</span>
+                                        </div>
+                                        <div class="detail-item">
+                                            <span class="label">Last Check:</span>
+                                            <span class="value" id="lastSecurityCheck">-</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="fas fa-chart-line"></i>
+                                    Performance
+                                </div>
+                                <div class="info-card-body">
+                                    <div class="performance-score" id="performanceScore">
+                                        <div class="score">95</div>
+                                        <div class="score-label">Health Score</div>
+                                    </div>
+                                    <div class="details-list">
+                                        <div class="detail-item">
+                                            <span class="label">Response Time:</span>
+                                            <span class="value" id="avgResponseTime">0ms</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-section mb-4">
+                    <div class="row charts-row">
+                        <div class="col-md-4">
+                            <div class="chart-card">
+                                <h6>Connection Types</h6>
+                                <canvas id="connectionTypesChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="chart-card">
+                                <h6>Process Distribution</h6>
+                                <canvas id="processDistributionChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="chart-card">
+                                <h6>System Health</h6>
+                                <canvas id="systemHealthChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row charts-row mt-4">
+                        <div class="col-md-6">
+                            <div class="chart-card">
+                                <h6>Resource Usage</h6>
+                                <canvas id="resourceUsageChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="chart-card">
+                                <h6>Port Usage</h6>
+                                <canvas id="portUsageChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connection Details -->
+                <div class="connection-details mb-4">
+                    <h5 class="section-title">
+                        <i class="fas fa-plug"></i>
+                        Active Connections
+                    </h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="connectionsTable">
+                            <thead>
+                                <tr>
+                                    <th>Process</th>
+                                    <th>Local Port</th>
+                                    <th>Remote Port</th>
+                                    <th>Status</th>
+                                    <th>Duration</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="connectionsTableBody">
+                                <!-- Connections will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Process List -->
+                <div class="process-details">
+                    <h5 class="section-title">
+                        <i class="fas fa-microchip"></i>
+                        Associated Processes
+                    </h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="processesTable">
+                            <thead>
+                                <tr>
+                                    <th>Process Name</th>
+                                    <th>PID</th>
+                                    <th>CPU Usage</th>
+                                    <th>Memory Usage</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="processesTableBody">
+                                <!-- Processes will be dynamically added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

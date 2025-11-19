@@ -1,0 +1,84 @@
+{% load static %}
+{% load i18n %}
+<link rel="stylesheet" href="{% static 'css/system_logs/analysis.css' %}">
+
+<div class="modal fade" id="analysisModal" tabindex="-1">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-chart-pie"></i> {% trans "Log Analysis" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Close' %}"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Summary Cards -->
+                <div class="row mb-3">
+                    <div class="col-md-3 mb-2">
+                        <div class="card bg-danger text-white">
+                            <div class="card-body py-3">
+                                <h6 class="card-title mb-1">{% trans "Critical Errors" %}</h6>
+                                <h3 id="modalErrorCount" class="mb-0">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <div class="card bg-warning">
+                            <div class="card-body py-3">
+                                <h6 class="card-title mb-1">{% trans "Warnings" %}</h6>
+                                <h3 id="modalWarningCount" class="mb-0">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <div class="card bg-info text-white">
+                            <div class="card-body py-3">
+                                <h6 class="card-title mb-1">{% trans "Info" %}</h6>
+                                <h3 id="modalInfoCount" class="mb-0">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <div class="card bg-secondary text-white">
+                            <div class="card-body py-3">
+                                <h6 class="card-title mb-1">{% trans "Debug" %}</h6>
+                                <h3 id="modalDebugCount" class="mb-0">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-12 col-md-6 analysis-chart">
+                        <h6 class="mb-2">{% trans "Log Level Distribution" %}</h6>
+                        <canvas id="errorChart"></canvas>
+                    </div>
+                    <div class="col-12 col-md-6 analysis-chart">
+                        <h6 class="mb-2">{% trans "Log Distribution Over Time" %}</h6>
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                    <div class="col-12 col-md-6 analysis-chart">
+                        <h6 class="mb-2">{% trans "Error Categories" %}</h6>
+                        <canvas id="errorCategoriesChart"></canvas>
+                    </div>
+                    <div class="col-12 col-md-6 analysis-chart">
+                        <h6 class="mb-2">{% trans "Hourly Log Distribution" %}</h6>
+                        <canvas id="hourlyDistributionChart"></canvas>
+                    </div>
+                    <div class="col-12 analysis-chart">
+                        <h6 class="mb-2">{% trans "Service-Based Error Distribution" %}</h6>
+                        <canvas id="serviceErrorsChart"></canvas>
+                    </div>
+                    <div class="col-12">
+                        <h6 class="mb-2">{% trans "Common Errors" %}</h6>
+                        <div id="commonErrors" class="text-muted">{% trans "No common error patterns found." %}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script defer src="{% static 'js/system_logs/analysis.js' %}"></script>
+

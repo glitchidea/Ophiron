@@ -1,0 +1,176 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Edit Service: {{ service.name }} - Service Builder{% endblock %}
+
+{% block extra_css %}
+    <!-- Service Builder CSS -->
+    <link href="{% static 'css/service_builder/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/cards.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/forms.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="service-builder-container">
+    <!-- Header Section -->
+    <div class="service-builder-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="service-builder-title">
+                    <i class="fas fa-edit"></i>
+                    Edit Service: {{ service.name }}
+                </h1>
+                <p class="service-builder-subtitle">
+                    Update service configuration and settings
+                </p>
+            </div>
+            <div class="header-actions">
+                <a href="{% url 'service_builder:service_detail' service.name %}" class="btn btn-outline">
+                    <i class="fas fa-eye"></i>
+                    View Service
+                </a>
+                <a href="{% url 'service_builder:services' %}" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Services
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Service Form -->
+    <div class="service-builder-content">
+        <div class="edit-service-form">
+            <form id="editServiceForm" class="service-form">
+                <!-- Basic Information -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-info-circle"></i>
+                        Basic Information
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label for="serviceName">Service Name</label>
+                        <input type="text" class="form-control" id="serviceName" value="{{ service.name }}" readonly>
+                        <small class="form-text text-muted">Service name cannot be changed</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" rows="2" placeholder="Service description">{{ service.description }}</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="serviceType">Service Type</label>
+                        <select class="form-control" id="serviceType">
+                            <option value="normal" {% if service.service_type == 'normal' %}selected{% endif %}>Normal</option>
+                            <option value="web" {% if service.service_type == 'web' %}selected{% endif %}>Web Application</option>
+                            <option value="api" {% if service.service_type == 'api' %}selected{% endif %}>API Service</option>
+                            <option value="worker" {% if service.service_type == 'worker' %}selected{% endif %}>Background Worker</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Application Configuration -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-cog"></i>
+                        Application Configuration
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label for="applicationPath">Application Path *</label>
+                        <input type="text" class="form-control" id="applicationPath" value="{{ service.application_path }}" placeholder="/path/to/your/application" required>
+                        <small class="form-text text-muted">Full path to your application executable</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interpreter">Interpreter (Optional)</label>
+                        <input type="text" class="form-control" id="interpreter" value="{{ service.interpreter }}" placeholder="python3, node, java, etc.">
+                        <small class="form-text text-muted">Leave empty if application is executable</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user">User *</label>
+                        <select class="form-control" id="user" required>
+                            <option value="">Select user...</option>
+                            {% for user in system_users %}
+                                <option value="{{ user }}" {% if service.user == user %}selected{% endif %}>{{ user }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="workingDirectory">Working Directory</label>
+                        <input type="text" class="form-control" id="workingDirectory" value="{{ service.working_directory }}" placeholder="/path/to/working/directory">
+                        <small class="form-text text-muted">Directory where the service will run</small>
+                    </div>
+                </div>
+
+                <!-- Network Configuration -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-network-wired"></i>
+                        Network Configuration
+                    </h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="port">Port (Optional)</label>
+                                <input type="number" class="form-control" id="port" value="{{ service.port|default:'' }}" placeholder="8080">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="host">Host</label>
+                                <input type="text" class="form-control" id="host" value="{{ service.host|default:'0.0.0.0' }}" placeholder="0.0.0.0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Settings -->
+                <div class="form-section">
+                    <h3 class="form-section-title">
+                        <i class="fas fa-sliders-h"></i>
+                        Service Settings
+                    </h3>
+                    
+                    <div class="form-group">
+                        <label for="restartPolicy">Restart Policy</label>
+                        <select class="form-control" id="restartPolicy">
+                            <option value="always" {% if service.restart_policy == 'always' %}selected{% endif %}>Always</option>
+                            <option value="on-failure" {% if service.restart_policy == 'on-failure' %}selected{% endif %}>On Failure</option>
+                            <option value="no" {% if service.restart_policy == 'no' %}selected{% endif %}>No</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="environmentVars">Environment Variables</label>
+                        <textarea class="form-control" id="environmentVars" rows="4" placeholder="PORT=8080&#10;HOST=0.0.0.0&#10;DEBUG=true">{{ service.environment_vars }}</textarea>
+                        <small class="form-text text-muted">One variable per line, format: KEY=VALUE</small>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline" onclick="cancelEdit()">
+                        <i class="fas fa-times"></i>
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Service Builder JavaScript -->
+    <script src="{% static 'js/service_builder/main.js' %}"></script>
+    <script src="{% static 'js/service_builder/edit_service.js' %}"></script>
+{% endblock %}

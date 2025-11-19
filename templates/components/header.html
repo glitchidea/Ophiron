@@ -1,0 +1,78 @@
+<!-- Header Component -->
+{% load static %}
+{% load i18n %}
+<header class="dashboard-header">
+    <div class="dashboard-header-left">
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="{% trans 'Toggle menu' %}">
+            <i class="fas fa-bars"></i>
+        </button>
+        <a href="{% url 'dashboard' %}" class="dashboard-logo">
+            <img src="{% static 'images/ophiron.svg' %}" alt="Ophiron" class="logo-svg">
+            Ophiron
+        </a>
+        
+        <!-- Navigation Menu -->
+        {% include 'components/nav.html' %}
+    </div>
+    
+    <div class="dashboard-user-info">
+        <div class="dashboard-user-dropdown">
+            <button class="dashboard-user-trigger" id="userDropdownTrigger">
+                <div class="dashboard-user-avatar" id="headerUserAvatar">
+                    <img id="headerProfileImage" src="{% if user.profile.has_profile_image %}{{ user.profile.profile_image_url }}{% else %}{% static 'images/demo-avatar.svg' %}{% endif %}" alt="{{ user.username }}" style="display: none;">
+                    <i class="fas fa-user" id="headerUserIcon"></i>
+                </div>
+                <div class="dashboard-user-details">
+                    <span class="dashboard-username">{{ user.username }}</span>
+                    <span class="dashboard-user-role">{% trans "Admin" %}</span>
+                </div>
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+            </button>
+            
+            <div class="dashboard-user-dropdown-menu" id="userDropdownMenu">
+                <a href="{% url 'settings' %}" class="dropdown-item">
+                    <i class="fas fa-cog"></i>
+                    <span>{% trans "General Settings" %}</span>
+                </a>
+                <a href="{% url 'settings' %}?tab=password" class="dropdown-item">
+                    <i class="fas fa-key"></i>
+                    <span>{% trans "Change Password" %}</span>
+                </a>
+                <a href="{% url 'settings' %}?tab=security" class="dropdown-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>{% trans "Security" %}</span>
+                </a>
+                <a href="{% url 'settings' %}?tab=modules" class="dropdown-item">
+                    <i class="fas fa-cubes"></i>
+                    <span>{% trans "Modular Settings" %}</span>
+                </a>
+                <a href="{% url 'settings' %}?tab=logs" class="dropdown-item">
+                    <i class="fas fa-file-alt"></i>
+                    <span>{% trans "Logs" %}</span>
+                </a>
+                <a href="{% url 'settings' %}?tab=smtp" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>{% trans "SMTP" %}</span>
+                </a>
+                <a href="{% url 'settings' %}?tab=plugins" class="dropdown-item">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <span>{% trans "Plugins" %}</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="/security/activity-history/" class="dropdown-item">
+                    <i class="fas fa-history"></i>
+                    <span>{% trans "Activity History" %}</span>
+                </a>
+                <a href="/security/alert-management/" class="dropdown-item">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>{% trans "Alert Management" %}</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="{% url 'logout' %}" class="dropdown-item logout-item">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>{% trans "Log Out" %}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>

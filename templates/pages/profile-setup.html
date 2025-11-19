@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ophiron - Complete Your Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/login/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login/snake-animations.css' %}">
+</head>
+<body>
+    <!-- Left Panel - Advanced Design -->
+    <div class="left-panel">
+        <div class="floating-snake">
+            <div class="snake">
+                <div class="snake-head">
+                    <div class="snake-eyes"></div>
+                    <div class="snake-tongue"></div>
+                </div>
+                <div class="snake-body body-1"></div>
+                <div class="snake-body body-2"></div>
+                <div class="snake-body body-3"></div>
+                <div class="snake-body body-4"></div>
+                <div class="snake-body body-5"></div>
+                <div class="snake-body body-6"></div>
+                <div class="snake-body body-7"></div>
+                <div class="snake-tail"></div>
+            </div>
+        </div>
+        <div class="left-content">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <div class="rotating-snake">
+                        <img src="{% static 'images/ophiron.svg' %}" alt="Ophiron Logo" style="width: 100%; height: 100%;">
+                    </div>
+                </div>
+
+                <h1 class="system-title">Ophiron</h1>
+                <p class="system-desc">
+                    Complete your profile setup
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel - Profile Setup -->
+    <div class="right-panel">
+        <div class="login-container">
+            <div class="login-header">
+                <h2 class="login-title">Complete Profile</h2>
+                <p class="login-subtitle">Fill in your details</p>
+            </div>
+
+            <div class="form-container">
+                <div class="alert" id="alert" style="display: none;">
+                    <i class="fas fa-exclamation-triangle alert-icon"></i>
+                    <span class="alert-text" id="alertText">Please fill in all required fields</span>
+                </div>
+
+                <form id="profileSetupForm" method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Profile Image Section -->
+                    <div class="field">
+                        <div class="profile-image-section">
+                            <div class="profile-image-preview" id="profileImagePreview" onclick="document.getElementById('profileImageInput').click()">
+                                <img id="profileImage" src="{% static 'images/demo-avatar.svg' %}" alt="Profile Image">
+                                <div class="profile-image-overlay">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                            </div>
+                            <input type="file" id="profileImageInput" accept="image/*" style="display: none;" onchange="handleProfileImageUpload(this)">
+                        </div>
+                    </div>
+
+                    <!-- Full Name -->
+                    <div class="field">
+                        <div class="input-box">
+                            <input 
+                                type="text" 
+                                id="fullName"
+                                name="full_name"
+                                class="input-field" 
+                                placeholder="Full Name *"
+                                required
+                            >
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="field">
+                        <div class="input-box">
+                            <input 
+                                type="email" 
+                                id="email"
+                                name="email"
+                                class="input-field" 
+                                placeholder="Email Address *"
+                                required
+                            >
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+
+                    <!-- Timezone -->
+                    <div class="field">
+                        <div class="input-box">
+                            <select id="timezone" name="timezone" class="input-field" required>
+                                <option>Loading…</option>
+                            </select>
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+
+                    <!-- Language -->
+                    <div class="field">
+                        <div class="input-box">
+                            <select id="language" name="language" class="input-field">
+                                <option value="en" selected>English</option>
+                            </select>
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-content">Complete Setup</span>
+                        <div class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                </form>
+            </div>
+
+            <div class="footer-info">
+                <div class="footer-links">
+                    <a href="/logout/" class="footer-link">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Minimal Profile Setup Styles */
+        .profile-image-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .profile-image-preview {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .profile-image-preview:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .profile-image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .profile-image-preview:hover .profile-image-overlay {
+            opacity: 1;
+        }
+        
+        .input-box select {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 14px;
+            padding: 12px 0;
+            width: 100%;
+            outline: none;
+        }
+        
+        .input-box select option {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        /* Minimal form styling */
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            font-size: 14px;
+            padding: 12px 0;
+        }
+
+        .submit-btn {
+            margin-top: 25px;
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+
+        /* Layout adjustments */
+        .right-panel {
+            padding: 30px;
+        }
+
+        .login-container {
+            max-width: 100%;
+            padding: 30px;
+        }
+
+        .form-container {
+            margin-top: 20px;
+        }
+
+        /* Alert styling */
+        .alert {
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        /* Footer adjustments */
+        .footer-info {
+            margin-top: 25px;
+            padding-top: 20px;
+        }
+
+        .footer-links {
+            margin-top: 10px;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            margin: 0 10px;
+        }
+
+        /* Login header adjustments */
+        .login-header {
+            margin-bottom: 20px;
+        }
+
+        .login-title {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .profile-image-preview {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .field {
+                margin-bottom: 15px;
+            }
+            
+            .input-field {
+                font-size: 13px;
+                padding: 10px 0;
+            }
+
+            .right-panel {
+                padding: 20px;
+            }
+
+            .login-container {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-image-preview {
+                width: 40px;
+                height: 40px;
+            }
+
+            .field {
+                margin-bottom: 12px;
+            }
+
+            .input-field {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+
+            .submit-btn {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+
+            .right-panel {
+                padding: 15px;
+            }
+
+            .login-container {
+                padding: 15px;
+            }
+
+            .login-title {
+                font-size: 24px;
+            }
+
+            .login-subtitle {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <script>
+        // Load timezones on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTimezoneOptions();
+        });
+
+        function showAlert(message, type = 'error') {
+            const alert = document.getElementById('alert');
+            const alertText = document.getElementById('alertText');
+            const alertIcon = alert.querySelector('.alert-icon');
+            
+            alertText.textContent = message;
+            alert.style.display = 'block';
+            
+            if (type === 'success') {
+                alert.style.background = 'rgba(34, 197, 94, 0.1)';
+                alert.style.borderColor = 'rgba(34, 197, 94, 0.3)';
+                alertText.style.color = '#22c55e';
+                alertIcon.className = 'fas fa-check-circle alert-icon';
+            } else {
+                alert.style.background = 'rgba(239, 68, 68, 0.1)';
+                alert.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                alertText.style.color = '#ef4444';
+                alertIcon.className = 'fas fa-exclamation-triangle alert-icon';
+            }
+            
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 5000);
+        }
+        
+        function handleProfileImageUpload(input) {
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+                
+                // File validation
+                const maxSize = 5 * 1024 * 1024; // 5MB
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                
+                if (file.size > maxSize) {
+                    showAlert('File size cannot exceed 5MB', 'error');
+                    return;
+                }
+                
+                if (!allowedTypes.includes(file.type)) {
+                    showAlert('Unsupported file format. Use JPG, PNG, GIF, WebP', 'error');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Load timezone options from API (same as settings page)
+        function loadTimezoneOptions() {
+            const tzSelect = document.getElementById('timezone');
+            if (!tzSelect) return;
+            // Show loading state
+            const original = tzSelect.innerHTML;
+            tzSelect.innerHTML = '<option>Loading…</option>';
+
+            fetch('/api/timezone/list/')
+                .then(resp => resp.json())
+                .then(data => {
+                    if (!data.success || !Array.isArray(data.timezones)) {
+                        throw new Error(data.error || 'Failed to load timezones');
+                    }
+                    const current = data.current || 'UTC';
+                    // Rebuild options
+                    tzSelect.innerHTML = '';
+                    data.timezones.forEach(tz => {
+                        const opt = document.createElement('option');
+                        opt.value = tz;
+                        opt.textContent = tz;
+                        if (tz === current) opt.selected = true;
+                        tzSelect.appendChild(opt);
+                    });
+                    // Ensure the timezone select initial is synced with current value
+                    tzSelect.dataset.initial = current;
+                })
+                .catch(err => {
+                    console.error('Timezone list load error:', err);
+                    // Fallback back to original options
+                    tzSelect.innerHTML = original;
+                });
+        }
+
+        // Profile image upload handler (same as settings page)
+        function handleProfileImageUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            // File validation
+            const maxSize = 5 * 1024 * 1024; // 5MB
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+            
+            if (file.size > maxSize) {
+                showAlert('File size cannot exceed 5MB', 'error');
+                return;
+            }
+            
+            if (!allowedTypes.includes(file.type)) {
+                showAlert('Unsupported file format. Use JPG, PNG, GIF, WebP', 'error');
+                return;
+            }
+            
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profileImage').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        document.getElementById('profileSetupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const btnContent = submitBtn.querySelector('.btn-content');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            
+            // Show loading
+            submitBtn.disabled = true;
+            btnContent.style.display = 'none';
+            btnLoading.style.display = 'block';
+            
+            try {
+                // Use the same API as settings page - update profile data
+                const profileData = {
+                    full_name: document.getElementById('fullName').value,
+                    email: document.getElementById('email').value,
+                    timezone: document.getElementById('timezone').value,
+                    language: document.getElementById('language').value
+                };
+                
+                // Update profile using settings API
+                const response = await fetch('/api/profile/update/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: JSON.stringify(profileData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Handle profile image upload separately if provided (same as settings page)
+                    if (document.getElementById('profileImageInput').files[0]) {
+                        const formData = new FormData();
+                        formData.append('profile_image', document.getElementById('profileImageInput').files[0]);
+                        
+                        const imageResponse = await fetch('/api/profile/upload/', {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                            }
+                        });
+                        
+                        const imageData = await imageResponse.json();
+                        if (!imageData.success) {
+                            showAlert('Profile updated but image upload failed: ' + (imageData.errors ? imageData.errors.join(', ') : 'Unknown error'), 'error');
+                        }
+                    }
+                    
+                    // Mark profile as complete
+                    const completeResponse = await fetch('/api/profile/complete/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                        }
+                    });
+                    
+                    showAlert('Profile setup completed successfully!', 'success');
+                    setTimeout(() => {
+                        window.location.href = '/dashboard/';
+                    }, 1000);
+                } else {
+                    showAlert(data.error || 'An error occurred', 'error');
+                    submitBtn.disabled = false;
+                    btnContent.style.display = 'block';
+                    btnLoading.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Profile setup error:', error);
+                showAlert('Network error. Please try again.', 'error');
+                submitBtn.disabled = false;
+                btnContent.style.display = 'block';
+                btnLoading.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
+

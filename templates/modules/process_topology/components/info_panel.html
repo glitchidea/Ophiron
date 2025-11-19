@@ -1,0 +1,67 @@
+<!-- Info Panel Component -->
+{% load i18n %}
+<div id="info-panel" class="info-panel" style="display: none;">
+    <div class="panel-header">
+        <div class="panel-title">
+            <i class="fas fa-info-circle"></i>
+            <span>{% trans "Process Information" %}</span>
+        </div>
+        <button type="button" class="panel-close" id="close-info-panel">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="panel-body">
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-label">{% trans "Process Name" %}:</span>
+                <span class="info-value" id="process-name">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">{% trans "PID" %}:</span>
+                <span class="info-value" id="process-pid">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">{% trans "Status" %}:</span>
+                <span class="info-value">
+                    <span id="process-status" class="status-badge">-</span>
+                </span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">{% trans "User" %}:</span>
+                <span class="info-value" id="process-user">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">{% trans "CPU" %}:</span>
+                <span class="info-value" id="process-cpu">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">{% trans "Memory" %}:</span>
+                <span class="info-value" id="process-memory">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">{% trans "Thread Count" %}:</span>
+                <span class="info-value" id="process-threads">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">{% trans "Started" %}:</span>
+                <span class="info-value" id="process-started">-</span>
+            </div>
+        </div>
+        
+        <div class="info-actions">
+            <button type="button" class="action-btn danger" id="terminate-process">
+                <i class="fas fa-stop"></i>
+                <span>{% trans "Terminate" %}</span>
+            </button>
+            <button type="button" class="action-btn info" id="show-connections">
+                <i class="fas fa-network-wired"></i>
+                <span>{% trans "Connections" %}</span>
+            </button>
+            <button type="button" class="action-btn warning" id="suspend-process">
+                <i class="fas fa-pause"></i>
+                <span>{% trans "Suspend" %}</span>
+            </button>
+        </div>
+    </div>
+</div>

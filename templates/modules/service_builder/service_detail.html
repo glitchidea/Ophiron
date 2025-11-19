@@ -1,0 +1,263 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ service.name }} - {% trans 'Service Builder' %}{% endblock %}
+
+{% block extra_css %}
+    <!-- Service Builder CSS -->
+    <link href="{% static 'css/service_builder/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/cards.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/tabs.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="service-builder-container">
+    <!-- Header Section -->
+    <div class="service-builder-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="service-builder-title">
+                    <i class="fas fa-cog"></i>
+                    {{ service.name }}
+                </h1>
+                <p class="service-builder-subtitle">
+                    {{ service.description|default:"Service details and management" }}
+                </p>
+            </div>
+            <div class="header-actions">
+                <a href="{% url 'service_builder:edit_service' service.name %}" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                    {% trans "Edit Service" %}
+                </a>
+                <button class="btn btn-outline" onclick="controlService('{{ service.name }}', 'restart')">
+                    <i class="fas fa-redo"></i>
+                    {% trans "Restart" %}
+                </button>
+                <a href="{% url 'service_builder:services' %}" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    {% trans "Back to Services" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Status -->
+    <div class="service-status-section">
+        <div class="status-card">
+            <div class="status-icon">
+                <i class="fas fa-server"></i>
+            </div>
+            <div class="status-content">
+                <h3 id="serviceStatus">{% trans "Checking..." %}</h3>
+                <p id="serviceStatusMessage">{% trans "Service status is being checked" %}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Details -->
+    <div class="service-builder-content">
+        <div class="service-details-tabs">
+            <div class="tab-navigation">
+                <button class="tab-button active" data-tab="overview">
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "Overview" %}
+                </button>
+                <button class="tab-button" data-tab="configuration">
+                    <i class="fas fa-cog"></i>
+                    {% trans "Configuration" %}
+                </button>
+                <button class="tab-button" data-tab="logs">
+                    <i class="fas fa-file-alt"></i>
+                    {% trans "Logs" %}
+                </button>
+                <button class="tab-button" data-tab="control">
+                    <i class="fas fa-play"></i>
+                    {% trans "Control" %}
+                </button>
+            </div>
+
+            <div class="tab-content">
+                <!-- Overview Tab -->
+                <div class="tab-pane active" id="overview">
+                    <div class="overview-grid">
+                        <div class="overview-card">
+                            <h4>{% trans "Service Information" %}</h4>
+                            <div class="info-item">
+                                <label>{% trans "Name" %}:</label>
+                                <span>{{ service.name }}</span>
+                            </div>
+                            <div class="info-item">
+                                <label>{% trans "Type" %}:</label>
+                                <span class="service-type-badge service-type-{{ service.service_type }}">
+                                    {{ service.service_type|title }}
+                                </span>
+                            </div>
+                            <div class="info-item">
+                                <label>{% trans "User" %}:</label>
+                                <span>{{ service.user }}</span>
+                            </div>
+                            <div class="info-item">
+                                <label>{% trans "Created" %}:</label>
+                                <span>{{ service.created_at|date:"M d, Y H:i" }}</span>
+                            </div>
+                        </div>
+
+                        <div class="overview-card">
+                            <h4>{% trans "Application Details" %}</h4>
+                            <div class="info-item">
+                                <label>{% trans "Path" %}:</label>
+                                <span class="code">{{ service.application_path }}</span>
+                            </div>
+                            {% if service.interpreter %}
+                            <div class="info-item">
+                                <label>{% trans "Interpreter" %}:</label>
+                                <span class="code">{{ service.interpreter }}</span>
+                            </div>
+                            {% endif %}
+                            {% if service.working_directory %}
+                            <div class="info-item">
+                                <label>{% trans "Working Directory" %}:</label>
+                                <span class="code">{{ service.working_directory }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        {% if service.port %}
+                        <div class="overview-card">
+                            <h4>{% trans "Network Configuration" %}</h4>
+                            <div class="info-item">
+                                <label>{% trans "Port" %}:</label>
+                                <span>{{ service.port }}</span>
+                            </div>
+                            <div class="info-item">
+                                <label>{% trans "Host" %}:</label>
+                                <span>{{ service.host }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Configuration Tab -->
+                <div class="tab-pane" id="configuration">
+                    <div class="configuration-content">
+                        <h4>{% trans "Service Configuration" %}</h4>
+                        <div class="config-section">
+                            <h5>{% trans "Basic Settings" %}</h5>
+                            <div class="config-item">
+                                <label>{% trans "Service Name" %}:</label>
+                                <span>{{ service.name }}</span>
+                            </div>
+                            <div class="config-item">
+                                <label>{% trans "Description" %}:</label>
+                                <span>{{ service.description|default:"No description" }}</span>
+                            </div>
+                            <div class="config-item">
+                                <label>{% trans "User" %}:</label>
+                                <span>{{ service.user }}</span>
+                            </div>
+                            <div class="config-item">
+                                <label>{% trans "Restart Policy" %}:</label>
+                                <span>{{ service.restart_policy }}</span>
+                            </div>
+                        </div>
+
+                        <div class="config-section">
+                            <h5>{% trans "Application Settings" %}</h5>
+                            <div class="config-item">
+                                <label>{% trans "Application Path" %}:</label>
+                                <span class="code">{{ service.application_path }}</span>
+                            </div>
+                            {% if service.interpreter %}
+                            <div class="config-item">
+                                <label>{% trans "Interpreter" %}:</label>
+                                <span class="code">{{ service.interpreter }}</span>
+                            </div>
+                            {% endif %}
+                            {% if service.working_directory %}
+                            <div class="config-item">
+                                <label>{% trans "Working Directory" %}:</label>
+                                <span class="code">{{ service.working_directory }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        {% if service.environment_vars %}
+                        <div class="config-section">
+                            <h5>{% trans "Environment Variables" %}</h5>
+                            <div class="environment-vars">
+                                <pre>{{ service.environment_vars }}</pre>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Logs Tab -->
+                <div class="tab-pane" id="logs">
+                    <div class="logs-content">
+                        <div class="logs-header">
+                            <h4>{% trans "Service Logs" %}</h4>
+                            <button class="btn btn-sm btn-outline" onclick="refreshLogs()">
+                                <i class="fas fa-refresh"></i>
+                                {% trans "Refresh" %}
+                            </button>
+                        </div>
+                        <div class="logs-container" id="logsContainer">
+                            <div class="loading-spinner">
+                                <div class="spinner-border text-primary"></div>
+                                <p>{% trans "Loading logs..." %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Control Tab -->
+                <div class="tab-pane" id="control">
+                    <div class="control-content">
+                        <h4>{% trans "Service Control" %}</h4>
+                        <div class="control-actions">
+                            <button class="btn btn-success" onclick="controlService('{{ service.name }}', 'start')">
+                                <i class="fas fa-play"></i>
+                                {% trans "Start Service" %}
+                            </button>
+                            <button class="btn btn-warning" onclick="controlService('{{ service.name }}', 'stop')">
+                                <i class="fas fa-stop"></i>
+                                {% trans "Stop Service" %}
+                            </button>
+                            <button class="btn btn-info" onclick="controlService('{{ service.name }}', 'restart')">
+                                <i class="fas fa-redo"></i>
+                                {% trans "Restart Service" %}
+                            </button>
+                            <button class="btn btn-primary" onclick="controlService('{{ service.name }}', 'enable')">
+                                <i class="fas fa-check"></i>
+                                {% trans "Enable Service" %}
+                            </button>
+                            <button class="btn btn-outline" onclick="controlService('{{ service.name }}', 'disable')">
+                                <i class="fas fa-times"></i>
+                                {% trans "Disable Service" %}
+                            </button>
+                        </div>
+                        
+                        <div class="danger-zone">
+                            <h5>{% trans "Danger Zone" %}</h5>
+                            <p>{% trans "These actions are permanent and cannot be undone." %}</p>
+                            <button class="btn btn-danger" onclick="deleteService('{{ service.name }}')">
+                                <i class="fas fa-trash"></i>
+                                {% trans "Delete Service" %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Service Builder JavaScript -->
+    <script src="{% static 'js/service_builder/main.js' %}"></script>
+    <script src="{% static 'js/service_builder/service_detail.js' %}"></script>
+{% endblock %}

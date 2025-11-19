@@ -1,0 +1,5919 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ophiron\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-05 22:12+0000\n"
+"PO-Revision-Date: 2025-11-02 12:00+0000\n"
+"Last-Translator: Ophiron Team <team@ophiron.com>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Logs
+#: modul/SystemLogs/views.py:29 templates/components/nav.html:33
+#: templates/modules/system_logs/export_modal.html:34
+#: templates/modules/system_logs/index.html:8
+#: templates/modules/system_logs/index.html:54
+#: templates/pages/settings/settings.html:874
+msgid "System Logs"
+msgstr "Systemprotokolle"
+
+# Application Logs
+#: modul/SystemLogs/views.py:401 templates/modules/system_logs/own_logs.html:8
+#: templates/modules/system_logs/own_logs.html:75
+#: templates/modules/system_logs/own_logs.html:114
+#: templates/pages/dashboard.html:195
+#: templates/pages/settings/settings.html:711
+msgid "Application Logs"
+msgstr "Anwendungsprotokolle"
+
+#: modul/docker_manager/views.py:126
+msgid "Container ID copied to clipboard"
+msgstr "Container-ID in Zwischenablage kopiert"
+
+#: modul/docker_manager/views.py:127
+msgid "Container"
+msgstr "Container"
+
+#: modul/docker_manager/views.py:128
+msgid "durdurulsun mu?"
+msgstr "Soll der Container gestoppt werden?"
+
+#: modul/docker_manager/views.py:129
+msgid "durduruluyor..."
+msgstr "Wird gestoppt..."
+
+#: modul/docker_manager/views.py:130
+msgid "durduruldu"
+msgstr "Gestoppt"
+
+#: modul/docker_manager/views.py:131
+msgid "başlatılıyor..."
+msgstr "Wird gestartet..."
+
+#: modul/docker_manager/views.py:132
+msgid "başlatıldı"
+msgstr "Gestartet"
+
+#: modul/docker_manager/views.py:133
+msgid "silinsin mi? Bu işlem geri alınamaz."
+msgstr ""
+"Soll der Container gelöscht werden? Diese Aktion kann nicht rückgängig "
+"gemacht werden."
+
+#: modul/docker_manager/views.py:134
+msgid "siliniyor..."
+msgstr "Wird gelöscht..."
+
+#: modul/docker_manager/views.py:135
+msgid "silindi"
+msgstr "Gelöscht"
+
+#: modul/docker_manager/views.py:136
+msgid "yeniden başlatılsın mı?"
+msgstr "Soll der Container neu gestartet werden?"
+
+#: modul/docker_manager/views.py:137
+msgid "yeniden başlatılıyor..."
+msgstr "Wird neu gestartet..."
+
+#: modul/docker_manager/views.py:138
+msgid "yeniden başlatıldı"
+msgstr "Neu gestartet"
+
+#: modul/docker_manager/views.py:139
+msgid "Hata:"
+msgstr "Fehler:"
+
+#: modul/docker_manager/views.py:140
+msgid "More options for"
+msgstr "Weitere Optionen für"
+
+#: modul/docker_manager/views.py:141
+msgid "Opening terminal..."
+msgstr "Terminal wird geöffnet..."
+
+#: modul/docker_manager/views.py:142
+msgid ""
+"Are you sure you want to restart Docker? This will stop all running "
+"containers."
+msgstr ""
+"Sind Sie sicher, dass Sie Docker neu starten möchten? Dies stoppt alle "
+"laufenden Container."
+
+#: modul/docker_manager/views.py:143
+msgid "Restarting Docker..."
+msgstr "Docker wird neu gestartet..."
+
+#: modul/docker_manager/views.py:144
+#, fuzzy
+#| msgid "User created successfully!"
+msgid "Docker service restarted successfully"
+msgstr "Benutzer erfolgreich erstellt!"
+
+#: modul/docker_manager/views.py:145
+#: templates/modules/docker_manager/images.html:83
+#: templates/modules/docker_manager/index.html:164
+#: templates/modules/docker_manager/volumes.html:87
+#: templates/modules/process_topology/index.html:199
+#: templates/modules/system_logs/own_logs.html:31
+msgid "Showing"
+msgstr "Anzeigen"
+
+#: modul/docker_manager/views.py:146
+#: templates/modules/docker_manager/images.html:83
+#: templates/modules/docker_manager/index.html:164
+#: templates/modules/docker_manager/volumes.html:87
+msgid "items"
+msgstr "Elemente"
+
+# Process Topology translations
+#: modul/process_topology/views.py:14 templates/components/nav.html:32
+#: templates/modules/process_topology/index.html:5
+#: templates/modules/process_topology/index.html:137
+msgid "Process Topology"
+msgstr "Prozesstopologie"
+
+#: modul/service_builder/views.py:51 templates/components/nav.html:23
+#: templates/modules/service_builder/create_service.html:5
+#: templates/modules/service_builder/index.html:5
+#: templates/modules/service_builder/index.html:23
+#: templates/modules/service_builder/logs.html:5
+#: templates/modules/service_builder/service_detail.html:5
+#: templates/modules/service_builder/services.html:5
+#: templates/modules/service_builder/templates.html:5
+#: templates/pages/dashboard.html:116
+msgid "Service Builder"
+msgstr "Dienst-Ersteller"
+
+# Service Builder views.py translations
+#: modul/service_builder/views.py:80
+#: templates/modules/service_builder/create_service.html:5
+#: templates/modules/service_builder/create_service.html:393
+#: templates/modules/service_builder/index.html:32
+#: templates/modules/service_builder/index.html:145
+#: templates/modules/service_builder/logs.html:105
+#: templates/modules/service_builder/services.html:31
+msgid "Create Service"
+msgstr "Dienst erstellen"
+
+#: modul/service_builder/views.py:102
+#: templates/modules/service_builder/index.html:185
+#: templates/modules/service_builder/templates.html:21
+msgid "Service Templates"
+msgstr "Dienstvorlagen"
+
+#: modul/service_builder/views.py:122
+#: templates/modules/service_builder/services.html:5
+#: templates/modules/service_builder/services.html:22
+#: templates/modules/system_logs/detailed_analysis_modal.html:37
+msgid "Services"
+msgstr "Dienste"
+
+#: modul/service_builder/views.py:142
+#: templates/modules/service_builder/logs.html:5
+#: templates/modules/service_builder/logs.html:21
+#: templates/modules/service_builder/service_detail.html:201
+#: templates/modules/service_monitoring/index.html:151
+#: templates/modules/service_monitoring/index.html:190
+msgid "Service Logs"
+msgstr "Dienstprotokolle"
+
+#: modul/service_builder/views.py:168
+#, python-format
+msgid "Service: %(service_name)s"
+msgstr "Dienst: %(service_name)s"
+
+#: modul/service_builder/views.py:196
+#, python-format
+msgid "Edit Service: %(service_name)s"
+msgstr "Dienst bearbeiten: %(service_name)s"
+
+#: modul/user_management/views.py:38 modul/user_management/views.py:49
+#: templates/components/nav.html:34
+#: templates/modules/user_management/index.html:8
+#: templates/modules/user_management/index.html:40
+#: templates/pages/dashboard.html:132
+#: templates/pages/settings/settings.html:862
+msgid "User Management"
+msgstr "Benutzerverwaltung"
+
+# Header and Navigation
+#: templates/components/header.html:24
+msgid "Admin"
+msgstr "Administrator"
+
+#: templates/components/header.html:32
+#: templates/pages/settings/settings.html:82
+msgid "General Settings"
+msgstr "Allgemeine Einstellungen"
+
+#: templates/components/header.html:36
+#: templates/pages/settings/settings.html:86
+#: templates/pages/settings/settings.html:211
+msgid "Change Password"
+msgstr "Passwort ändern"
+
+#: templates/components/header.html:40 templates/components/nav.html:6
+#: templates/components/nav.html:7
+#: templates/modules/system_logs/detailed_analysis_modal.html:25
+#: templates/pages/settings/settings.html:90
+msgid "Security"
+msgstr "Sicherheit"
+
+#: templates/components/header.html:44
+#: templates/pages/settings/settings.html:94
+msgid "Modular Settings"
+msgstr "Modulare Einstellungen"
+
+#: templates/components/header.html:48
+#: templates/pages/settings/settings.html:98
+msgid "API Settings"
+msgstr "API-Einstellungen"
+
+#: templates/components/header.html:52
+#: templates/modules/docker_manager/container_detail.html:84
+#: templates/modules/docker_manager/image_detail.html:86
+#: templates/modules/service_builder/service_detail.html:72
+#: templates/modules/service_monitoring/index.html:222
+#: templates/pages/settings/settings.html:102
+msgid "Logs"
+msgstr "Protokolle"
+
+#: templates/components/header.html:57
+msgid "Activity History"
+msgstr "Aktivitätsverlauf"
+
+#: templates/components/header.html:61
+#: templates/pages/security/alert-management.html:7
+#: templates/pages/security/alert-management.html:37
+#: templates/pages/settings/settings.html:455
+#, fuzzy
+#| msgid "User Management"
+msgid "Alert Management"
+msgstr "Warnungsverwaltung"
+
+#: templates/components/header.html:66
+msgid "Log Out"
+msgstr "Abmelden"
+
+#: templates/components/nav.html:10
+#: templates/modules/package_manager/index.html:7
+#: templates/modules/package_manager/index.html:38
+#: templates/modules/system_information/index.html:182
+#: templates/pages/dashboard.html:148
+#, fuzzy
+#| msgid "Docker Manager"
+msgid "Package Manager"
+msgstr "Paketverwaltung"
+
+#: templates/components/nav.html:11 templates/modules/dev_packages/index.html:7
+#: templates/modules/dev_packages/index.html:21
+#: templates/pages/dashboard.html:152
+msgid "Developer Packages"
+msgstr "Entwickler-Pakete"
+
+#: templates/components/nav.html:12 templates/modules/cve_scanner/index.html:7
+#: templates/modules/cve_scanner/index.html:31
+#: templates/pages/dashboard.html:156
+msgid "CVE Scanner"
+msgstr ""
+
+#: templates/components/nav.html:17 templates/components/nav.html:18
+#: templates/modules/system_information/index.html:105
+#: templates/modules/system_logs/detailed_analysis_modal.html:31
+msgid "Network"
+msgstr "Netzwerk"
+
+# Process Monitor
+#: templates/components/nav.html:21
+#: templates/modules/process_monitor/index.html:7
+#: templates/modules/process_monitor/index.html:43
+#: templates/pages/dashboard.html:140 templates/pages/dashboard.html:187
+#: templates/pages/settings/settings.html:485
+msgid "Process Monitor"
+msgstr "Prozessüberwachung"
+
+#: templates/components/nav.html:22 templates/pages/dashboard.html:136
+msgid "Service Monitor"
+msgstr "Dienstüberwachung"
+
+#: templates/components/nav.html:28 templates/components/nav.html:29
+#: templates/modules/system_logs/detailed_analysis_modal.html:28
+#: templates/modules/user_management/index.html:131
+#: templates/modules/user_management/index.html:220
+msgid "System"
+msgstr "System"
+
+#: templates/components/nav.html:35 templates/pages/dashboard.html:128
+#, fuzzy
+#| msgid "UFW Firewall"
+msgid "Firewall"
+msgstr "Firewall"
+
+#: templates/components/nav.html:36
+#: templates/modules/process_topology/components/snapshot_loader.html:130
+#: templates/modules/system_information/index.html:7
+#: templates/modules/system_information/index.html:41
+#: templates/modules/system_information/index.html:160
+#: templates/pages/dashboard.html:191
+#: templates/pages/settings/settings.html:598
+msgid "System Information"
+msgstr "Systeminformationen"
+
+# System Information
+#: templates/components/nav.html:37
+#: templates/modules/docker_manager/hubs.html:39
+#: templates/modules/docker_manager/images.html:7
+#: templates/modules/docker_manager/images.html:36
+#: templates/modules/docker_manager/index.html:7
+#: templates/modules/docker_manager/index.html:34
+#: templates/modules/docker_manager/volume_detail.html:21
+#: templates/modules/docker_manager/volumes.html:35
+msgid "Docker Manager"
+msgstr "Docker-Verwaltung"
+
+#: templates/components/nav.html:38
+msgid "SIEM Integration"
+msgstr "SIEM-Integration"
+
+#: templates/modules/cve_scanner/index.html:33
+msgid "Scan installed packages against OS-specific CVE advisories"
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:38
+#: templates/modules/cve_scanner/index.html:175
+msgid "Scan Now"
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:42
+#: templates/modules/dev_packages/index.html:25
+#: templates/modules/docker_manager/container_detail.html:153
+#: templates/modules/docker_manager/container_detail.html:233
+#: templates/modules/docker_manager/image_detail.html:179
+#: templates/modules/docker_manager/images.html:344
+#: templates/modules/firewall/iptables.html:32
+#: templates/modules/firewall/iptables.html:92
+#: templates/modules/firewall/ufw.html:36
+#: templates/modules/firewall/ufw.html:90
+#: templates/modules/package_manager/index.html:45
+#: templates/modules/process_monitor/index.html:67
+#: templates/modules/process_monitor/index.html:282
+#: templates/modules/process_monitor/ip_analysis.html:24
+#: templates/modules/process_topology/index.html:145
+#: templates/modules/service_builder/logs.html:30
+#: templates/modules/service_builder/service_detail.html:204
+#: templates/modules/service_monitoring/index.html:46
+#: templates/modules/service_monitoring/index.html:173
+#: templates/modules/system_information/index.html:49
+#: templates/modules/system_information/index.html:420
+#: templates/modules/system_logs/detailed_analysis_modal.html:208
+#: templates/modules/system_logs/index.html:60
+#: templates/modules/user_management/index.html:56
+#: templates/pages/security/alert-management.html:44
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#: templates/modules/cve_scanner/index.html:54
+#, fuzzy
+#| msgid "Developer Packages"
+msgid "Installed Packages"
+msgstr "Entwickler-Pakete"
+
+#: templates/modules/cve_scanner/index.html:63
+msgid "Matched CVEs"
+msgstr ""
+
+# Package Manager table headers
+#: templates/modules/cve_scanner/index.html:74
+#: templates/modules/dev_packages/index.html:45
+#: templates/modules/dev_packages/index.html:67
+#: templates/modules/package_manager/index.html:99
+#: templates/modules/package_manager/index.html:137
+#: templates/modules/package_manager/updates_modal.html:16
+msgid "Package"
+msgstr "Paket"
+
+#: templates/modules/cve_scanner/index.html:75
+#, fuzzy
+#| msgid "Granted Permissions"
+msgid "Installed Version"
+msgstr "Gewährte Berechtigungen"
+
+#: templates/modules/cve_scanner/index.html:76
+msgid "Advisory"
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:77
+msgid "Issues"
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:78
+#, fuzzy
+#| msgid "Security"
+msgid "Severity"
+msgstr "Sicherheit"
+
+#: templates/modules/cve_scanner/index.html:79
+msgid "Fixed"
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:108
+#: templates/modules/cve_scanner/index.html:132
+msgid "No matched CVEs yet. Run a scan."
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:157
+#, fuzzy
+#| msgid "running"
+msgid "Scanning"
+msgstr "Läuft"
+
+#: templates/modules/dev_packages/detail_modal.html:5
+#: templates/modules/package_manager/detail_modal.html:5
+#, fuzzy
+#| msgid "Image Details"
+msgid "Package Details"
+msgstr "Image-Details"
+
+#: templates/modules/dev_packages/detail_modal.html:7
+#: templates/modules/dev_packages/detail_modal.html:8
+#: templates/modules/docker_manager/image_details_modal.html:76
+#: templates/modules/docker_manager/images.html:341
+#: templates/modules/docker_manager/images.html:363
+#: templates/modules/docker_manager/images.html:385
+#: templates/modules/service_builder/templates.html:105
+#: templates/modules/system_logs/analysis_modal.html:10
+#: templates/modules/system_logs/analysis_modal.html:77
+#: templates/modules/system_logs/detailed_analysis_modal.html:12
+#: templates/modules/system_logs/detailed_analysis_modal.html:206
+#: templates/modules/system_logs/export_modal.html:10
+#: templates/modules/system_logs/own_logs.html:47
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:103
+msgid "Close"
+msgstr "Schließen"
+
+#: templates/modules/dev_packages/detail_modal.html:14
+#: templates/modules/package_manager/detail_modal.html:13
+#: templates/pages/settings/settings.html:151
+msgid "General Information"
+msgstr "Allgemeine Informationen"
+
+#: templates/modules/dev_packages/detail_modal.html:18
+#: templates/modules/package_manager/detail_modal.html:19
+#, fuzzy
+#| msgid "No dependencies"
+msgid "Dependencies"
+msgstr "Keine Abhängigkeiten"
+
+# Developer Packages additional translations
+#: templates/modules/dev_packages/index.html:22
+msgid "Project and global ecosystem packages with update status"
+msgstr "Projekt- und globale Ökosystem-Pakete mit Update-Status"
+
+#: templates/modules/dev_packages/index.html:32
+#: templates/modules/dev_packages/index.html:47
+#: templates/modules/dev_packages/index.html:66
+#: templates/modules/package_manager/index.html:82
+#: templates/modules/package_manager/index.html:101
+#: templates/modules/package_manager/index.html:136
+#: templates/modules/package_manager/updates_modal.html:19
+msgid "Manager"
+msgstr "Paketverwalter"
+
+#: templates/modules/dev_packages/index.html:33
+#: templates/modules/dev_packages/index.html:61
+#: templates/modules/package_manager/index.html:84
+#: templates/modules/package_manager/index.html:128
+#: templates/pages/security/activity-history.html:51
+#: templates/pages/security/activity-history.html:82
+msgid "All"
+msgstr "Alle"
+
+#: templates/modules/dev_packages/index.html:36
+#: templates/modules/docker_manager/hubs.html:101
+#: templates/modules/package_manager/index.html:88
+#: templates/modules/process_monitor/index.html:214
+#: templates/modules/process_monitor/index.html:275
+#: templates/modules/service_monitoring/index.html:100
+#: templates/modules/service_monitoring/index.html:183
+#: templates/pages/security/alert-management.html:135
+msgid "Search"
+msgstr "Suchen"
+
+#: templates/modules/dev_packages/index.html:37
+#: templates/modules/package_manager/index.html:89
+msgid "Search packages..."
+msgstr "Pakete suchen..."
+
+#: templates/modules/dev_packages/index.html:46
+#: templates/modules/dev_packages/index.html:68
+#: templates/modules/package_manager/index.html:100
+#: templates/modules/package_manager/index.html:138
+#: templates/modules/process_topology/components/snapshot_loader.html:76
+msgid "Version"
+msgstr "Version"
+
+#: templates/modules/dev_packages/index.html:48
+#: templates/modules/docker_manager/index.html:89
+#: templates/modules/package_manager/index.html:102
+#: templates/modules/process_monitor/index.html:110
+#: templates/modules/process_monitor/index.html:269
+#: templates/modules/service_builder/services.html:54
+#: templates/modules/service_monitoring/index.html:115
+#: templates/modules/service_monitoring/index.html:187
+#: templates/modules/user_management/index.html:113
+msgid "Actions"
+msgstr "Aktionen"
+
+#: templates/modules/dev_packages/index.html:51
+#: templates/modules/docker_manager/hubs.html:133
+#: templates/modules/docker_manager/hubs.html:218
+#: templates/modules/docker_manager/image_detail.html:116
+#: templates/modules/docker_manager/image_detail.html:120
+#: templates/modules/docker_manager/image_detail.html:152
+#: templates/modules/package_manager/index.html:109
+#: templates/modules/package_manager/index.html:135
+#: templates/modules/package_manager/updates_modal.html:24
+#: templates/modules/process_monitor/all_ports.html:21
+#: templates/modules/process_monitor/group_view.html:21
+#: templates/modules/process_monitor/index.html:177
+#: templates/modules/process_monitor/index.html:254
+#: templates/modules/process_monitor/interface_view.html:21
+#: templates/modules/process_monitor/ip_analysis.html:41
+#: templates/modules/process_monitor/pid_group_view.html:21
+#: templates/modules/process_monitor/port_details.html:21
+#: templates/modules/process_monitor/process_details.html:21
+#: templates/modules/process_monitor/process_management.html:21
+#: templates/modules/service_monitoring/index.html:200
+#: templates/modules/user_management/index.html:191
+#: templates/modules/user_management/index.html:227
+#: templates/modules/user_management/user_details_modal.html:17
+msgid "Loading..."
+msgstr "Laden..."
+
+# Package Manager JavaScript translations
+#: templates/modules/dev_packages/index.html:60
+#: templates/modules/package_manager/index.html:127
+msgid "No managers found"
+msgstr "Keine Paketverwalter gefunden"
+
+#: templates/modules/dev_packages/index.html:62
+#: templates/modules/docker_manager/hubs.html:197
+#: templates/modules/package_manager/index.html:130
+#: templates/modules/service_monitoring/index.html:214
+#: templates/modules/system_information/index.html:302
+msgid "Details"
+msgstr "Einzelheiten"
+
+#: templates/modules/dev_packages/index.html:63
+msgid "No results"
+msgstr "Keine Ergebnisse"
+
+#: templates/modules/dev_packages/index.html:64
+msgid "No dependencies"
+msgstr "Keine Abhängigkeiten"
+
+#: templates/modules/dev_packages/index.html:65
+msgid "No data"
+msgstr "Keine Daten"
+
+#: templates/modules/dev_packages/index.html:69
+#: templates/modules/docker_manager/image_details_modal.html:26
+#: templates/modules/package_manager/index.html:139
+#: templates/modules/service_builder/create_service.html:187
+#: templates/modules/service_builder/service_detail.html:153
+#: templates/modules/service_monitoring/index.html:114
+#: templates/modules/service_monitoring/index.html:186
+msgid "Description"
+msgstr "Beschreibung"
+
+#: templates/modules/dev_packages/index.html:70
+#: templates/modules/package_manager/index.html:140
+msgid "Homepage"
+msgstr "Startseite"
+
+#: templates/modules/dev_packages/index.html:71
+#: templates/modules/package_manager/index.html:141
+msgid "License"
+msgstr "Lizenz"
+
+#: templates/modules/docker_manager/container_detail.html:7
+msgid "Container Detail"
+msgstr "Container-Details"
+
+#: templates/modules/docker_manager/container_detail.html:54
+msgid "STATUS"
+msgstr "STATUS"
+
+#: templates/modules/docker_manager/container_detail.html:88
+#: templates/modules/docker_manager/image_detail.html:90
+#: templates/modules/docker_manager/volume_detail.html:58
+msgid "Inspect"
+msgstr "Untersuchen"
+
+#: templates/modules/docker_manager/container_detail.html:92
+msgid "Bind mounts"
+msgstr "Bind-Mounts"
+
+#: templates/modules/docker_manager/container_detail.html:96
+#: templates/modules/system_logs/own_logs.html:40
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:25
+msgid "Files"
+msgstr "Dateien"
+
+#: templates/modules/docker_manager/container_detail.html:100
+msgid "Stats"
+msgstr "Statistiken"
+
+#: templates/modules/docker_manager/container_detail.html:111
+#: templates/modules/docker_manager/container_detail.html:205
+#: templates/modules/docker_manager/image_detail.html:183
+#: templates/modules/service_builder/service_detail.html:210
+msgid "Loading logs..."
+msgstr "Protokolle werden geladen..."
+
+#: templates/modules/docker_manager/container_detail.html:120
+#: templates/modules/docker_manager/container_detail.html:206
+#: templates/modules/docker_manager/image_detail.html:199
+#, fuzzy
+#| msgid "Loading process data..."
+msgid "Loading inspect data..."
+msgstr "Prozessdaten werden geladen..."
+
+#: templates/modules/docker_manager/container_detail.html:129
+#: templates/modules/docker_manager/container_detail.html:207
+#, fuzzy
+#| msgid "Loading timezones..."
+msgid "Loading mount information..."
+msgstr "Zeitzonen werden geladen..."
+
+#: templates/modules/docker_manager/container_detail.html:158
+#: templates/modules/docker_manager/container_detail.html:208
+#, fuzzy
+#| msgid "Loading rules..."
+msgid "Loading files..."
+msgstr "Regeln werden geladen..."
+
+#: templates/modules/docker_manager/container_detail.html:168
+#: templates/modules/docker_manager/container_detail.html:234
+#: templates/modules/process_topology/components/settings.html:35
+#: templates/modules/service_monitoring/index.html:221
+#: templates/modules/system_information/index.html:69
+msgid "CPU Usage"
+msgstr "CPU-Nutzung"
+
+#: templates/modules/docker_manager/container_detail.html:172
+#: templates/modules/docker_manager/container_detail.html:235
+#: templates/modules/process_topology/components/settings.html:36
+#: templates/modules/service_monitoring/index.html:220
+#: templates/modules/system_information/index.html:81
+#: templates/modules/system_information/index.html:133
+msgid "Memory Usage"
+msgstr "Speichernutzung"
+
+#: templates/modules/docker_manager/container_detail.html:176
+#: templates/modules/docker_manager/container_detail.html:236
+msgid "Network I/O"
+msgstr "Netzwerk-I/O"
+
+#: templates/modules/docker_manager/container_detail.html:180
+#: templates/modules/docker_manager/container_detail.html:237
+msgid "Block I/O"
+msgstr "Block-I/O"
+
+#: templates/modules/docker_manager/container_detail.html:209
+#: templates/modules/service_monitoring/index.html:223
+msgid "No logs available"
+msgstr "Keine Protokolle verfügbar"
+
+#: templates/modules/docker_manager/container_detail.html:210
+#, fuzzy
+#| msgid "Update available"
+msgid "No inspect data available"
+msgstr "Update verfügbar"
+
+#: templates/modules/docker_manager/container_detail.html:211
+#, fuzzy
+#| msgid "No description available"
+msgid "No mount information available"
+msgstr "Keine Beschreibung verfügbar"
+
+#: templates/modules/docker_manager/container_detail.html:212
+#, fuzzy
+#| msgid "No logs available"
+msgid "No files available"
+msgstr "Keine Protokolle verfügbar"
+
+#: templates/modules/docker_manager/container_detail.html:213
+#, fuzzy
+#| msgid "No templates available"
+msgid "No stats available"
+msgstr "Keine Vorlagen verfügbar"
+
+#: templates/modules/docker_manager/container_detail.html:214
+#: templates/modules/docker_manager/volume_detail.html:142
+#: templates/modules/firewall/selection.html:34
+#: templates/modules/process_monitor/index.html:76
+#: templates/modules/process_monitor/index.html:255
+#: templates/modules/service_monitoring/index.html:201
+#: templates/modules/system_logs/own_logs.html:52
+#: templates/modules/user_management/index.html:65
+#: templates/pages/security/alert-management.html:79
+#: templates/pages/security/alert-management.html:110
+#: templates/pages/security/alert-management.html:213
+#: templates/pages/settings/settings.html:33
+msgid "Error"
+msgstr "Fehler"
+
+#: templates/modules/docker_manager/container_detail.html:215
+msgid "Container ID not found"
+msgstr "Container-ID nicht gefunden"
+
+#: templates/modules/docker_manager/container_detail.html:216
+msgid "Stop container"
+msgstr "Container stoppen"
+
+#: templates/modules/docker_manager/container_detail.html:217
+msgid "Stopping container"
+msgstr "Container wird gestoppt"
+
+#: templates/modules/docker_manager/container_detail.html:218
+msgid "Container stopped"
+msgstr "Container gestoppt"
+
+#: templates/modules/docker_manager/container_detail.html:219
+msgid "Starting container"
+msgstr "Container wird gestartet"
+
+#: templates/modules/docker_manager/container_detail.html:220
+msgid "Container started"
+msgstr "Container gestartet"
+
+#: templates/modules/docker_manager/container_detail.html:221
+msgid "Restart container"
+msgstr "Container neu starten"
+
+#: templates/modules/docker_manager/container_detail.html:222
+msgid "Restarting container"
+msgstr "Container wird neu gestartet"
+
+#: templates/modules/docker_manager/container_detail.html:223
+msgid "Container restarted"
+msgstr "Container neu gestartet"
+
+#: templates/modules/docker_manager/container_detail.html:224
+msgid "Delete container"
+msgstr "Container löschen"
+
+#: templates/modules/docker_manager/container_detail.html:225
+msgid "This action cannot be undone"
+msgstr "Diese Aktion kann nicht rückgängig gemacht werden"
+
+#: templates/modules/docker_manager/container_detail.html:226
+msgid "Deleting container"
+msgstr "Container wird gelöscht"
+
+#: templates/modules/docker_manager/container_detail.html:227
+msgid "Container deleted"
+msgstr "Container gelöscht"
+
+#: templates/modules/docker_manager/container_detail.html:228
+msgid "Copied to clipboard"
+msgstr "In Zwischenablage kopiert"
+
+#: templates/modules/docker_manager/container_detail.html:229
+msgid "Failed to copy"
+msgstr "Kopieren fehlgeschlagen"
+
+#: templates/modules/docker_manager/container_detail.html:230
+#: templates/modules/firewall/iptables.html:33
+#: templates/modules/firewall/iptables.html:96
+#: templates/modules/firewall/ufw.html:37
+#: templates/modules/firewall/ufw.html:94
+#: templates/modules/system_logs/own_logs.html:79
+msgid "Back"
+msgstr "Zurück"
+
+#: templates/modules/docker_manager/container_detail.html:231
+msgid "Up"
+msgstr ""
+
+#: templates/modules/docker_manager/container_detail.html:232
+#: templates/modules/docker_manager/images.html:366
+#: templates/modules/docker_manager/images.html:388
+msgid "Copy"
+msgstr ""
+
+#: templates/modules/docker_manager/hubs.html:7
+msgid "Docker Hubs"
+msgstr "Docker Hubs"
+
+# Docker Manager translations
+#: templates/modules/docker_manager/hubs.html:40
+#: templates/modules/docker_manager/images.html:37
+#: templates/modules/docker_manager/index.html:35
+#: templates/modules/docker_manager/volumes.html:36
+msgid "Give feedback"
+msgstr "Feedback geben"
+
+#: templates/modules/docker_manager/hubs.html:49
+#: templates/modules/docker_manager/images.html:46
+#: templates/modules/docker_manager/index.html:44
+#: templates/modules/docker_manager/volumes.html:45
+#, fuzzy
+#| msgid "Container"
+msgid "Containers"
+msgstr "Container"
+
+#: templates/modules/docker_manager/hubs.html:57
+#: templates/modules/docker_manager/images.html:54
+#: templates/modules/docker_manager/index.html:52
+#: templates/modules/docker_manager/volumes.html:53
+#: templates/modules/docker_manager/volumes.html:65
+#: templates/modules/docker_manager/volumes.html:86
+#, fuzzy
+#| msgid "Unused Volumes"
+msgid "Volumes"
+msgstr "Ungenutzte Volumes"
+
+#: templates/modules/docker_manager/hubs.html:61
+#: templates/modules/docker_manager/images.html:58
+#: templates/modules/docker_manager/index.html:56
+#: templates/modules/docker_manager/volumes.html:57
+msgid "Hubs"
+msgstr ""
+
+#: templates/modules/docker_manager/hubs.html:70
+#: templates/pages/dashboard.html:124
+msgid "Docker Hub"
+msgstr "Docker Hub"
+
+#: templates/modules/docker_manager/hubs.html:71
+msgid "Discover and manage Docker images, extensions, and plugins"
+msgstr "Docker-Images, Erweiterungen und Plugins entdecken und verwalten"
+
+#: templates/modules/docker_manager/hubs.html:75
+msgid "Cache"
+msgstr "Cache"
+
+#: templates/modules/docker_manager/hubs.html:75
+msgid "files"
+msgstr "Dateien"
+
+#: templates/modules/docker_manager/hubs.html:79
+#: templates/modules/docker_manager/hubs.html:127
+msgid "official images"
+msgstr "offizielle Images"
+
+#: templates/modules/docker_manager/hubs.html:85
+msgid "Refresh All Data"
+msgstr "Alle Daten aktualisieren"
+
+#: templates/modules/docker_manager/hubs.html:87
+msgid "Refresh All"
+msgstr "Alles aktualisieren"
+
+#: templates/modules/docker_manager/hubs.html:89
+msgid "Clear Cache"
+msgstr "Cache leeren"
+
+#: templates/modules/docker_manager/hubs.html:100
+msgid "Search Docker Hub..."
+msgstr "Docker Hub durchsuchen..."
+
+#: templates/modules/docker_manager/hubs.html:104
+msgid "Clear Search"
+msgstr "Suche löschen"
+
+#: templates/modules/docker_manager/hubs.html:117
+msgid "Docker Images"
+msgstr "Docker-Images"
+
+#: templates/modules/docker_manager/hubs.html:125
+msgid "Docker Official Images"
+msgstr "Offizielle Docker-Images"
+
+#: templates/modules/docker_manager/hubs.html:134
+#: templates/modules/docker_manager/hubs.html:219
+msgid "Please wait while we fetch the data"
+msgstr "Bitte warten, während die Daten abgerufen werden"
+
+#: templates/modules/docker_manager/hubs.html:153
+msgid "Refreshing Docker Hub Data"
+msgstr "Docker Hub-Daten werden aktualisiert"
+
+#: templates/modules/docker_manager/hubs.html:165
+#: templates/modules/docker_manager/index.html:86
+#: templates/modules/process_monitor/index.html:107
+#: templates/modules/process_monitor/index.html:266
+#: templates/modules/process_topology/components/info_panel.html:25
+#: templates/modules/process_topology/components/settings.html:34
+#: templates/modules/service_builder/logs.html:50
+#: templates/modules/service_builder/services.html:52
+#: templates/modules/service_monitoring/index.html:92
+#: templates/modules/service_monitoring/index.html:112
+#: templates/modules/service_monitoring/index.html:179
+#: templates/modules/user_management/index.html:111
+#: templates/modules/user_management/index.html:245
+#: templates/pages/security/activity-history.html:80
+#: templates/pages/security/alert-management.html:116
+msgid "Status"
+msgstr "Zustand"
+
+#: templates/modules/docker_manager/hubs.html:166
+msgid "Initializing..."
+msgstr "Initialisiere..."
+
+#: templates/modules/docker_manager/hubs.html:169
+msgid "Images Loaded"
+msgstr "Images geladen"
+
+#: templates/modules/docker_manager/hubs.html:173
+msgid "Categories Loaded"
+msgstr "Kategorien geladen"
+
+#: templates/modules/docker_manager/hubs.html:177
+msgid "Time Elapsed"
+msgstr "Verstrichene Zeit"
+
+#: templates/modules/docker_manager/hubs.html:182
+#: templates/modules/docker_manager/hubs.html:220
+msgid "Starting refresh process..."
+msgstr "Aktualisierungsprozess wird gestartet..."
+
+#: templates/modules/docker_manager/hubs.html:194
+#: templates/modules/docker_manager/image_details_modal.html:30
+msgid "Official"
+msgstr "Offiziell"
+
+#: templates/modules/docker_manager/hubs.html:195
+#: templates/modules/service_monitoring/index.html:213
+msgid "No description available"
+msgstr "Keine Beschreibung verfügbar"
+
+#: templates/modules/docker_manager/hubs.html:196
+msgid "Pull"
+msgstr "Abrufen"
+
+#: templates/modules/docker_manager/hubs.html:198
+msgid "Image"
+msgstr "Image"
+
+#: templates/modules/docker_manager/hubs.html:199
+msgid "is being pulled..."
+msgstr "wird abgerufen..."
+
+#: templates/modules/docker_manager/hubs.html:200
+msgid "Pull failed"
+msgstr "Abruf fehlgeschlagen"
+
+#: templates/modules/docker_manager/hubs.html:201
+msgid "Modal function not available"
+msgstr "Modal-Funktion nicht verfügbar"
+
+#: templates/modules/docker_manager/hubs.html:202
+msgid "Failed to load image details"
+msgstr "Fehler beim Laden der Image-Details"
+
+#: templates/modules/docker_manager/hubs.html:203
+msgid "Error loading image details"
+msgstr "Fehler beim Laden der Image-Details"
+
+#: templates/modules/docker_manager/hubs.html:204
+msgid "Cache refreshed"
+msgstr "Cache aktualisiert"
+
+#: templates/modules/docker_manager/hubs.html:205
+msgid "Cache refresh failed"
+msgstr "Cache-Aktualisierung fehlgeschlagen"
+
+#: templates/modules/docker_manager/hubs.html:206
+msgid "Cache refreshed!"
+msgstr "Cache aktualisiert!"
+
+#: templates/modules/docker_manager/hubs.html:207
+msgid "Cache refreshed successfully!"
+msgstr "Cache erfolgreich aktualisiert!"
+
+#: templates/modules/docker_manager/hubs.html:208
+msgid "Refresh failed"
+msgstr "Aktualisierung fehlgeschlagen"
+
+#: templates/modules/docker_manager/hubs.html:209
+msgid "Initializing refresh..."
+msgstr "Aktualisierung wird initialisiert..."
+
+#: templates/modules/docker_manager/hubs.html:210
+msgid "Loading categories..."
+msgstr "Kategorien werden geladen..."
+
+#: templates/modules/docker_manager/hubs.html:211
+msgid "Loading popular images..."
+msgstr "Beliebte Images werden geladen..."
+
+#: templates/modules/docker_manager/hubs.html:212
+msgid "Optimizing cache..."
+msgstr "Cache wird optimiert..."
+
+#: templates/modules/docker_manager/hubs.html:213
+msgid "Finalizing refresh..."
+msgstr "Aktualisierung wird abgeschlossen..."
+
+#: templates/modules/docker_manager/hubs.html:214
+msgid "Refresh completed!"
+msgstr "Aktualisierung abgeschlossen!"
+
+#: templates/modules/docker_manager/hubs.html:215
+msgid "Are you sure you want to clear the cache?"
+msgstr "Sind Sie sicher, dass Sie den Cache leeren möchten?"
+
+#: templates/modules/docker_manager/hubs.html:216
+msgid "Cache cleared"
+msgstr "Cache geleert"
+
+#: templates/modules/docker_manager/hubs.html:217
+msgid "Cache clear failed"
+msgstr "Cache-Löschung fehlgeschlagen"
+
+#: templates/modules/docker_manager/hubs.html:221
+#: templates/modules/service_monitoring/index.html:217
+msgid "Yes"
+msgstr "Ja"
+
+#: templates/modules/docker_manager/hubs.html:222
+#: templates/modules/service_monitoring/index.html:218
+msgid "No"
+msgstr "Nein"
+
+#: templates/modules/docker_manager/hubs.html:223
+#: templates/modules/process_monitor/index.html:256
+#: templates/modules/system_information/index.html:427
+#: templates/pages/security/activity-history.html:138
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: templates/modules/docker_manager/hubs.html:224
+msgid "No image selected"
+msgstr "Kein Image ausgewählt"
+
+#: templates/modules/docker_manager/hubs.html:225
+msgid "Pulling..."
+msgstr "Wird abgerufen..."
+
+#: templates/modules/docker_manager/hubs.html:226
+msgid "Pull error"
+msgstr "Abruffehler"
+
+#: templates/modules/docker_manager/hubs.html:227
+msgid "Invalid date"
+msgstr "Ungültiges Datum"
+
+#: templates/modules/docker_manager/hubs.html:228
+msgid "Pulling"
+msgstr "Wird abgerufen"
+
+#: templates/modules/docker_manager/hubs.html:229
+msgid "pulled successfully"
+msgstr "erfolgreich abgerufen"
+
+#: templates/modules/docker_manager/hubs.html:230
+msgid "Failed to pull"
+msgstr "Abruf fehlgeschlagen"
+
+#: templates/modules/docker_manager/image_detail.html:7
+#: templates/modules/docker_manager/image_detail.html:37
+#: templates/modules/docker_manager/image_details_modal.html:9
+msgid "Image Details"
+msgstr "Image-Details"
+
+#: templates/modules/docker_manager/image_detail.html:60
+msgid "Run"
+msgstr "Ausführen"
+
+#: templates/modules/docker_manager/image_detail.html:64
+#: templates/modules/docker_manager/index.html:129
+#: templates/modules/docker_manager/volume_detail.html:35
+msgid "Delete"
+msgstr "Löschen"
+
+#: templates/modules/docker_manager/image_detail.html:74
+#: templates/modules/docker_manager/volume_detail.html:54
+#: templates/modules/service_builder/service_detail.html:64
+#: templates/modules/system_logs/own_logs.html:37
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:19
+msgid "Overview"
+msgstr "Übersicht"
+
+#: templates/modules/docker_manager/image_detail.html:78
+msgid "Layers"
+msgstr ""
+
+#: templates/modules/docker_manager/image_detail.html:82
+#, fuzzy
+#| msgid "Image History"
+msgid "History"
+msgstr "Image-Verlauf"
+
+#: templates/modules/docker_manager/image_detail.html:101
+#: templates/modules/docker_manager/image_details_modal.html:19
+#: templates/modules/docker_manager/volume_detail.html:67
+#: templates/modules/process_topology/components/snapshot_loader.html:61
+#: templates/modules/user_management/create_user_modal.html:21
+#: templates/modules/user_management/index.html:237
+msgid "Basic Information"
+msgstr "Grundinformationen"
+
+#: templates/modules/docker_manager/image_detail.html:103
+#, fuzzy
+#| msgid "Image"
+msgid "Image ID"
+msgstr "Image"
+
+#: templates/modules/docker_manager/image_detail.html:107
+#: templates/modules/docker_manager/volume_detail.html:44
+#: templates/modules/docker_manager/volume_detail.html:78
+#, fuzzy
+#| msgid "File Size"
+msgid "Size"
+msgstr "Dateigröße"
+
+#: templates/modules/docker_manager/image_detail.html:111
+#: templates/modules/docker_manager/volume_detail.html:45
+#: templates/modules/docker_manager/volume_detail.html:82
+#: templates/modules/process_topology/components/snapshot_loader.html:68
+#: templates/modules/service_builder/service_detail.html:101
+#: templates/modules/service_builder/services.html:53
+msgid "Created"
+msgstr "Erstellt"
+
+#: templates/modules/docker_manager/image_detail.html:115
+#: templates/modules/package_manager/index.html:144
+#: templates/modules/system_information/index.html:186
+msgid "Architecture"
+msgstr "Architektur"
+
+#: templates/modules/docker_manager/image_detail.html:119
+#: templates/modules/system_information/index.html:166
+msgid "OS"
+msgstr ""
+
+#: templates/modules/docker_manager/image_detail.html:125
+#: templates/modules/docker_manager/volume_detail.html:93
+msgid "Labels"
+msgstr ""
+
+#: templates/modules/docker_manager/image_detail.html:127
+#, fuzzy
+#| msgid "Loading rules..."
+msgid "Loading labels..."
+msgstr "Regeln werden geladen..."
+
+#: templates/modules/docker_manager/image_detail.html:132
+#: templates/modules/service_builder/create_service.html:375
+#: templates/modules/service_builder/service_detail.html:188
+msgid "Environment Variables"
+msgstr ""
+
+#: templates/modules/docker_manager/image_detail.html:134
+#, fuzzy
+#| msgid "Loading user details..."
+msgid "Loading environment variables..."
+msgstr "Benutzerdetails werden geladen..."
+
+#: templates/modules/docker_manager/image_detail.html:139
+#, fuzzy
+#| msgid "Most Used Ports"
+msgid "Exposed Ports"
+msgstr "Meistgenutzte Ports"
+
+#: templates/modules/docker_manager/image_detail.html:141
+#, fuzzy
+#| msgid "Loading rules..."
+msgid "Loading exposed ports..."
+msgstr "Warnungen werden geladen..."
+
+#: templates/modules/docker_manager/image_detail.html:151
+#, fuzzy
+#| msgid "Image Logs"
+msgid "Image Layers"
+msgstr "Image-Protokolle"
+
+#: templates/modules/docker_manager/image_detail.html:155
+#, fuzzy
+#| msgid "Loading rules..."
+msgid "Loading layers..."
+msgstr "Warnungen werden geladen..."
+
+#: templates/modules/docker_manager/image_detail.html:164
+#: templates/modules/docker_manager/images.html:376
+msgid "Image History"
+msgstr "Image-Verlauf"
+
+#: templates/modules/docker_manager/image_detail.html:167
+#, fuzzy
+#| msgid "Loading logs..."
+msgid "Loading history..."
+msgstr "Protokolle werden geladen..."
+
+#: templates/modules/docker_manager/image_detail.html:176
+#: templates/modules/docker_manager/images.html:332
+msgid "Image Logs"
+msgstr "Image-Protokolle"
+
+#: templates/modules/docker_manager/image_detail.html:192
+#: templates/modules/docker_manager/images.html:354
+msgid "Image Inspect"
+msgstr "Image untersuchen"
+
+#: templates/modules/docker_manager/image_detail.html:195
+#: templates/modules/docker_manager/volume_detail.html:132
+#, fuzzy
+#| msgid "JSON"
+msgid "Copy JSON"
+msgstr "JSON"
+
+#: templates/modules/docker_manager/image_details_modal.html:22
+#: templates/modules/docker_manager/index.html:84
+#: templates/modules/docker_manager/volume_detail.html:70
+#: templates/modules/service_builder/service_detail.html:87
+msgid "Name"
+msgstr "Name"
+
+#: templates/modules/docker_manager/image_details_modal.html:34
+#, fuzzy
+#| msgid "Last Update:"
+msgid "Last Updated"
+msgstr "Letzte Aktualisierung:"
+
+#: templates/modules/docker_manager/image_details_modal.html:41
+#, fuzzy
+#| msgid "System Statistics"
+msgid "Statistics"
+msgstr "Systemstatistiken"
+
+#: templates/modules/docker_manager/image_details_modal.html:48
+#, fuzzy
+#| msgid "Start"
+msgid "Stars"
+msgstr "Starten"
+
+#: templates/modules/docker_manager/image_details_modal.html:57
+#, fuzzy
+#| msgid "Pull"
+msgid "Pulls"
+msgstr "Abrufen"
+
+#: templates/modules/docker_manager/image_details_modal.html:65
+msgid "Tags"
+msgstr ""
+
+#: templates/modules/docker_manager/image_details_modal.html:80
+#: templates/modules/docker_manager/pull_popup.html:8
+msgid "Pull Image"
+msgstr "Image abrufen"
+
+#: templates/modules/docker_manager/images.html:67
+msgid "Search images by name or tag..."
+msgstr "Images nach Name oder Tag suchen..."
+
+#: templates/modules/docker_manager/images.html:73
+msgid "Show only dangling images"
+msgstr "Nur hängende Images anzeigen"
+
+#: templates/modules/docker_manager/images.html:100
+#: templates/modules/docker_manager/volumes.html:96
+msgid "Prune"
+msgstr "Bereinigen"
+
+#: templates/modules/docker_manager/images.html:195
+msgid "Create New Build"
+msgstr "Neuen Build erstellen"
+
+#: templates/modules/docker_manager/images.html:203
+#: templates/modules/docker_manager/images.html:281
+msgid "Dockerfile Path"
+msgstr "Dockerfile-Pfad"
+
+#: templates/modules/docker_manager/images.html:206
+msgid "Absolute path to the directory containing Dockerfile"
+msgstr "Absoluter Pfad zum Verzeichnis mit Dockerfile"
+
+#: templates/modules/docker_manager/images.html:211
+#: templates/modules/docker_manager/images.html:269
+#: templates/modules/docker_manager/pull_popup.html:15
+msgid "Image Name"
+msgstr "Image-Name"
+
+#: templates/modules/docker_manager/images.html:216
+#: templates/modules/docker_manager/images.html:274
+msgid "Tag"
+msgstr "Markierung"
+
+#: templates/modules/docker_manager/images.html:223
+#: templates/modules/docker_manager/images.html:288
+msgid "Build Arguments (JSON)"
+msgstr "Build-Argumente (JSON)"
+
+#: templates/modules/docker_manager/images.html:226
+#: templates/modules/docker_manager/images.html:291
+msgid "Optional build arguments in JSON format"
+msgstr "Optionale Build-Argumente im JSON-Format"
+
+#: templates/modules/docker_manager/images.html:233
+msgid "No Cache"
+msgstr "Kein Cache"
+
+#: templates/modules/docker_manager/images.html:235
+msgid "Build without using cache"
+msgstr "Build ohne Cache-Verwendung"
+
+#: templates/modules/docker_manager/images.html:240
+#: templates/modules/docker_manager/images.html:296
+#: templates/modules/docker_manager/images.html:323
+#: templates/modules/docker_manager/modals/create_volume_modal.html:38
+#: templates/modules/docker_manager/modals/delete_modal.html:30
+#: templates/modules/docker_manager/modals/purge_modal.html:68
+#: templates/modules/docker_manager/modals/restart_modal.html:26
+#: templates/modules/docker_manager/modals/start_modal.html:26
+#: templates/modules/docker_manager/modals/stop_modal.html:26
+#: templates/modules/docker_manager/pull_popup.html:80
+#: templates/modules/process_topology/components/snapshot_loader.html:181
+#: templates/modules/user_management/create_user_modal.html:100
+#: templates/modules/user_management/delete_user_modal.html:46
+#: templates/pages/security/alert-management.html:189
+#: templates/pages/settings/settings.html:397
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: templates/modules/docker_manager/images.html:243
+msgid "Start Build"
+msgstr "Build starten"
+
+#: templates/modules/docker_manager/images.html:253
+msgid "Build from Git Repository"
+msgstr "Aus Git-Repository bauen"
+
+#: templates/modules/docker_manager/images.html:261
+msgid "Git Repository URL"
+msgstr "Git-Repository-URL"
+
+#: templates/modules/docker_manager/images.html:264
+msgid "URL of the Git repository containing Dockerfile"
+msgstr "URL des Git-Repositories mit Dockerfile"
+
+#: templates/modules/docker_manager/images.html:284
+msgid "Path to Dockerfile within the repository"
+msgstr "Pfad zum Dockerfile im Repository"
+
+#: templates/modules/docker_manager/images.html:299
+msgid "Build from Git"
+msgstr "Aus Git bauen"
+
+#: templates/modules/docker_manager/images.html:309
+msgid "Building Image"
+msgstr "Image wird erstellt"
+
+#: templates/modules/docker_manager/images.html:316
+msgid "Preparing build..."
+msgstr "Build wird vorbereitet..."
+
+#: templates/modules/docker_manager/index.html:65
+msgid "Search containers by name or image..."
+msgstr "Container nach Name oder Image suchen..."
+
+#: templates/modules/docker_manager/index.html:71
+msgid "Only show running containers"
+msgstr "Nur laufende Container anzeigen"
+
+#: templates/modules/docker_manager/index.html:87
+msgid "Port(s)"
+msgstr "Port(s)"
+
+#: templates/modules/docker_manager/index.html:88
+msgid "Last started"
+msgstr "Zuletzt gestartet"
+
+#: templates/modules/docker_manager/index.html:118
+#: templates/modules/service_monitoring/index.html:194
+msgid "Stop"
+msgstr "Stoppen"
+
+#: templates/modules/docker_manager/index.html:121
+#: templates/modules/process_monitor/index.html:300
+#: templates/modules/service_builder/service_detail.html:35
+#: templates/modules/service_monitoring/index.html:195
+msgid "Restart"
+msgstr "Neustarten"
+
+#: templates/modules/docker_manager/index.html:125
+#: templates/modules/service_monitoring/index.html:193
+msgid "Start"
+msgstr "Starten"
+
+#: templates/modules/docker_manager/index.html:139
+msgid "No containers found"
+msgstr "Keine Container gefunden"
+
+#: templates/modules/docker_manager/index.html:141
+msgid "Docker is not running"
+msgstr "Docker läuft nicht"
+
+#: templates/modules/docker_manager/index.html:155
+msgid "Engine running"
+msgstr "Engine läuft"
+
+#: templates/modules/docker_manager/index.html:155
+msgid "Engine stopped"
+msgstr "Engine gestoppt"
+
+#: templates/modules/docker_manager/index.html:161
+msgid "Restart to update"
+msgstr "Neustarten zum Aktualisieren"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:8
+#: templates/modules/docker_manager/modals/create_volume_modal.html:41
+msgid "Create Volume"
+msgstr "Volume erstellen"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:15
+msgid "Volume Name"
+msgstr "Volume-Name"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:16
+msgid "Enter volume name"
+msgstr "Volume-Name eingeben"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:17
+msgid "Leave empty for auto-generated name"
+msgstr "Leer lassen für automatisch generierten Namen"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:20
+#: templates/modules/docker_manager/volume_detail.html:43
+#: templates/modules/docker_manager/volume_detail.html:74
+msgid "Driver"
+msgstr "Treiber"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:22
+msgid "Local"
+msgstr "Lokal"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:23
+msgid "NFS"
+msgstr "NFS"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:24
+msgid "CIFS"
+msgstr "CIFS"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:28
+msgid "Labels (KEY=VALUE, one per line)"
+msgstr "Labels (SCHLÜSSEL=WERT, eine pro Zeile)"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:29
+msgid "e.g., environment=production"
+msgstr "z.B. environment=production"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:32
+msgid "Driver Options (KEY=VALUE, one per line)"
+msgstr "Treiberoptionen (SCHLÜSSEL=WERT, eine pro Zeile)"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:33
+msgid "e.g., type=nfs,o=addr=192.168.1.100,rw"
+msgstr "z.B. type=nfs,o=addr=192.168.1.100,rw"
+
+#: templates/modules/docker_manager/modals/delete_modal.html:9
+#: templates/modules/docker_manager/modals/delete_modal.html:31
+msgid "Delete Container"
+msgstr "Container löschen"
+
+#: templates/modules/docker_manager/modals/delete_modal.html:13
+msgid ""
+"Are you sure you want to delete this container? This action cannot be undone."
+msgstr ""
+"Sind Sie sicher, dass Sie diesen Container löschen möchten? Diese Aktion "
+"kann nicht rückgängig gemacht werden."
+
+#: templates/modules/docker_manager/modals/delete_modal.html:16
+#: templates/modules/docker_manager/modals/restart_modal.html:16
+#: templates/modules/docker_manager/modals/start_modal.html:16
+#: templates/modules/docker_manager/modals/stop_modal.html:16
+#, fuzzy
+#| msgid "Container"
+msgid "Container ID"
+msgstr "Container"
+
+#: templates/modules/docker_manager/modals/delete_modal.html:20
+#: templates/modules/docker_manager/modals/restart_modal.html:20
+#: templates/modules/docker_manager/modals/start_modal.html:20
+#: templates/modules/docker_manager/modals/stop_modal.html:20
+#, fuzzy
+#| msgid "Container"
+msgid "Container Name"
+msgstr "Container"
+
+#: templates/modules/docker_manager/modals/delete_modal.html:26
+msgid "This will permanently remove the container and all its data."
+msgstr "Dies entfernt den Container und alle seine Daten dauerhaft."
+
+#: templates/modules/docker_manager/modals/purge_modal.html:9
+msgid "Purge System"
+msgstr "System bereinigen"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:18
+#: templates/modules/system_logs/own_logs.html:53
+#: templates/pages/security/activity-history.html:85
+#: templates/pages/security/activity-history.html:136
+#: templates/pages/security/alert-management.html:70
+#: templates/pages/security/alert-management.html:109
+#: templates/pages/security/alert-management.html:212
+#: templates/pages/settings/settings.html:34
+msgid "Warning"
+msgstr "Warnung"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:19
+msgid ""
+"This action will permanently remove unused images and volumes. This action "
+"cannot be undone."
+msgstr ""
+"Diese Aktion entfernt dauerhaft ungenutzte Images und Volumes. Diese Aktion "
+"kann nicht rückgängig gemacht werden."
+
+#: templates/modules/docker_manager/modals/purge_modal.html:24
+msgid "Purge Options"
+msgstr "Bereinigungsoptionen"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:30
+msgid "Remove dangling images"
+msgstr "Hängende Images entfernen"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:31
+msgid "Unused images only"
+msgstr "Nur ungenutzte Images"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:39
+msgid "Remove unused volumes"
+msgstr "Ungenutzte Volumes entfernen"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:40
+msgid "Unused volumes only"
+msgstr "Nur ungenutzte Volumes"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:48
+msgid "Type 'PURGE' to confirm this action"
+msgstr "Geben Sie 'PURGE' ein, um diese Aktion zu bestätigen"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:49
+msgid "Type PURGE here"
+msgstr "PURGE hier eingeben"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:54
+msgid "Estimated Cleanup"
+msgstr "Geschätzte Bereinigung"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:57
+msgid "Dangling Images"
+msgstr "Hängende Images"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:61
+msgid "Unused Volumes"
+msgstr "Ungenutzte Volumes"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:69
+#, fuzzy
+#| msgid "Estimated Cleanup"
+msgid "Estimate Cleanup"
+msgstr "Geschätzte Bereinigung"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:70
+#, fuzzy
+#| msgid "Cancel Purge"
+msgid "Execute Purge"
+msgstr "Bereinigung abbrechen"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:82
+msgid "Purging System"
+msgstr "System wird bereinigt"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:89
+msgid "Preparing purge..."
+msgstr "Bereinigung wird vorbereitet..."
+
+#: templates/modules/docker_manager/modals/purge_modal.html:92
+msgid "Starting purge process..."
+msgstr "Bereinigungsprozess wird gestartet..."
+
+#: templates/modules/docker_manager/modals/purge_modal.html:98
+msgid "Cancel Purge"
+msgstr "Bereinigung abbrechen"
+
+#: templates/modules/docker_manager/modals/restart_modal.html:9
+#: templates/modules/docker_manager/modals/restart_modal.html:27
+msgid "Restart Container"
+msgstr "Container neu starten"
+
+#: templates/modules/docker_manager/modals/restart_modal.html:13
+msgid "Are you sure you want to restart this container?"
+msgstr "Sind Sie sicher, dass Sie diesen Container neu starten möchten?"
+
+#: templates/modules/docker_manager/modals/start_modal.html:9
+#: templates/modules/docker_manager/modals/start_modal.html:27
+msgid "Start Container"
+msgstr "Container starten"
+
+#: templates/modules/docker_manager/modals/start_modal.html:13
+msgid "Are you sure you want to start this container?"
+msgstr "Sind Sie sicher, dass Sie diesen Container starten möchten?"
+
+#: templates/modules/docker_manager/modals/stop_modal.html:9
+#: templates/modules/docker_manager/modals/stop_modal.html:27
+msgid "Stop Container"
+msgstr "Container stoppen"
+
+#: templates/modules/docker_manager/modals/stop_modal.html:13
+msgid "Are you sure you want to stop this container?"
+msgstr "Sind Sie sicher, dass Sie diesen Container stoppen möchten?"
+
+#: templates/modules/docker_manager/pull_popup.html:16
+msgid "e.g., nginx:latest"
+msgstr "z.B. nginx:latest"
+
+#: templates/modules/docker_manager/pull_popup.html:17
+msgid "Docker Hub image name and tag"
+msgstr "Docker Hub Image-Name und Tag"
+
+#: templates/modules/docker_manager/pull_popup.html:21
+msgid "Registry"
+msgstr "Registrierung"
+
+#: templates/modules/docker_manager/pull_popup.html:23
+msgid "Docker Hub (docker.io)"
+msgstr "Docker Hub (docker.io)"
+
+#: templates/modules/docker_manager/pull_popup.html:24
+msgid "GitHub Container Registry"
+msgstr "GitHub Container Registry"
+
+#: templates/modules/docker_manager/pull_popup.html:25
+msgid "Quay.io"
+msgstr "Quay.io"
+
+#: templates/modules/docker_manager/pull_popup.html:26
+msgid "Custom Registry"
+msgstr "Benutzerdefinierte Registry"
+
+#: templates/modules/docker_manager/pull_popup.html:31
+msgid "Custom Registry URL"
+msgstr "URL der benutzerdefinierten Registry"
+
+#: templates/modules/docker_manager/pull_popup.html:32
+msgid "e.g., registry.example.com"
+msgstr "z.B. registry.example.com"
+
+#: templates/modules/docker_manager/pull_popup.html:36
+msgid "Authentication"
+msgstr "Authentifizierung"
+
+#: templates/modules/docker_manager/pull_popup.html:41
+msgid "Use authentication"
+msgstr "Authentifizierung verwenden"
+
+#: templates/modules/docker_manager/pull_popup.html:48
+#: templates/modules/system_information/index.html:210
+#: templates/modules/user_management/create_user_modal.html:26
+#: templates/modules/user_management/index.html:105
+#: templates/modules/user_management/index.html:238
+#: templates/pages/settings/settings.html:154
+msgid "Username"
+msgstr "Benutzername"
+
+#: templates/modules/docker_manager/pull_popup.html:49
+msgid "Registry username"
+msgstr "Registry-Benutzername"
+
+#: templates/modules/docker_manager/pull_popup.html:52
+msgid "Password/Token"
+msgstr "Passwort/Token"
+
+#: templates/modules/docker_manager/pull_popup.html:53
+msgid "Registry password or token"
+msgstr "Registry-Passwort oder Token"
+
+#: templates/modules/docker_manager/pull_popup.html:58
+msgid "Pull Options"
+msgstr "Abruf-Optionen"
+
+#: templates/modules/docker_manager/pull_popup.html:63
+msgid "Pull all tags"
+msgstr "Alle Tags abrufen"
+
+#: templates/modules/docker_manager/pull_popup.html:68
+msgid "Quiet mode"
+msgstr "Ruhemodus"
+
+#: templates/modules/docker_manager/pull_popup.html:73
+msgid "Disable content trust"
+msgstr "Content Trust deaktivieren"
+
+#: templates/modules/docker_manager/pull_popup.html:83
+msgid "Start Pull"
+msgstr "Abruf starten"
+
+#: templates/modules/docker_manager/pull_popup.html:95
+msgid "Pulling Image"
+msgstr "Image wird abgerufen"
+
+#: templates/modules/docker_manager/pull_popup.html:103
+msgid "Preparing pull..."
+msgstr "Abruf wird vorbereitet..."
+
+#: templates/modules/docker_manager/pull_popup.html:106
+msgid "Starting pull process..."
+msgstr "Abrufprozess wird gestartet..."
+
+#: templates/modules/docker_manager/pull_popup.html:112
+msgid "Cancel Pull"
+msgstr "Abruf abbrechen"
+
+# Volume Detail new strings
+#: templates/modules/docker_manager/volume_detail.html:8
+msgid "Docker Volume Detail"
+msgstr "Docker-Volume-Details"
+
+#: templates/modules/docker_manager/volume_detail.html:86
+msgid "Mountpoint"
+msgstr "Einhängepunkt"
+
+#: templates/modules/docker_manager/volume_detail.html:103
+msgid "No labels found."
+msgstr "Keine Labels gefunden."
+
+#: templates/modules/docker_manager/volume_detail.html:109
+#: templates/modules/firewall/iptables.html:49
+msgid "Options"
+msgstr "Optionen"
+
+#: templates/modules/docker_manager/volume_detail.html:119
+msgid "No options found."
+msgstr "Keine Optionen gefunden."
+
+#: templates/modules/docker_manager/volume_detail.html:129
+msgid "Full Inspect Data"
+msgstr "Vollständige Inspektionsdaten"
+
+#: templates/modules/docker_manager/volume_detail.html:139
+msgid "Volume Not Found"
+msgstr "Volume nicht gefunden"
+
+#: templates/modules/docker_manager/volume_detail.html:140
+msgid ""
+"The volume you are looking for could not be found or Docker is not running."
+msgstr ""
+"Das gesuchte Volume konnte nicht gefunden werden oder Docker läuft nicht."
+
+#: templates/modules/docker_manager/volume_detail.html:144
+msgid "Back to Volumes"
+msgstr "Zurück zu Volumes"
+
+# Volume Detail new strings
+#: templates/modules/docker_manager/volumes.html:7
+#, fuzzy
+#| msgid "Docker Volume Detail"
+msgid "Docker Volumes"
+msgstr "Docker-Volume-Details"
+
+#: templates/modules/docker_manager/volumes.html:66
+msgid "Manage your Docker volumes"
+msgstr "Ihre Docker-Volumes verwalten"
+
+#: templates/modules/docker_manager/volumes.html:72
+msgid "Search volumes by name..."
+msgstr "Volumes nach Name suchen..."
+
+#: templates/modules/docker_manager/volumes.html:77
+msgid "Show dangling volumes"
+msgstr "Hängende Volumes anzeigen"
+
+#: templates/modules/docker_manager/volumes.html:92
+msgid "Create"
+msgstr "Erstellen"
+
+#: templates/modules/firewall/iptables.html:8
+msgid "iptables Firewall Management"
+msgstr "iptables Firewall-Verwaltung"
+
+#: templates/modules/firewall/iptables.html:31
+#: templates/modules/firewall/iptables.html:86
+#: templates/modules/firewall/selection.html:31
+#: templates/modules/firewall/selection.html:87
+#: templates/modules/firewall/selection.html:112
+#: templates/modules/firewall/selection.html:137
+#: templates/modules/firewall/ufw.html:31
+#: templates/modules/firewall/ufw.html:80
+#: templates/modules/service_builder/service_detail.html:52
+#: templates/modules/service_builder/services.html:75
+#: templates/pages/settings/settings.html:26
+#: templates/pages/settings/settings.html:247
+#: templates/pages/settings/settings.html:545
+#: templates/pages/settings/settings.html:658
+msgid "Checking..."
+msgstr "Prüfe..."
+
+#: templates/modules/firewall/iptables.html:34
+#: templates/modules/firewall/iptables.html:58
+#: templates/modules/firewall/iptables.html:115
+#: templates/modules/firewall/ufw.html:38
+#: templates/modules/firewall/ufw.html:113
+msgid "Loading rules..."
+msgstr "Regeln werden geladen..."
+
+#: templates/modules/firewall/iptables.html:35
+#: templates/modules/firewall/iptables.html:126
+#: templates/modules/firewall/ufw.html:39
+#: templates/modules/firewall/ufw.html:137
+msgid "No Rules Found"
+msgstr "Keine Regeln gefunden"
+
+#: templates/modules/firewall/iptables.html:36
+#: templates/modules/firewall/iptables.html:127
+msgid "No iptables rules are currently configured."
+msgstr "Derzeit sind keine iptables-Regeln konfiguriert."
+
+#: templates/modules/firewall/iptables.html:37
+#: templates/modules/firewall/iptables.html:107
+#: templates/modules/firewall/ufw.html:47
+#: templates/modules/firewall/ufw.html:105
+msgid "Firewall Rules"
+msgstr "Firewall-Regeln"
+
+#: templates/modules/firewall/iptables.html:38
+#: templates/modules/firewall/iptables.html:82
+msgid "iptables Firewall"
+msgstr "iptables Firewall"
+
+#: templates/modules/firewall/iptables.html:39
+msgid "Error loading iptables status"
+msgstr "Fehler beim Laden des iptables-Status"
+
+#: templates/modules/firewall/iptables.html:40
+msgid "Error loading iptables rules"
+msgstr "Fehler beim Laden der iptables-Regeln"
+
+#: templates/modules/firewall/iptables.html:41
+#: templates/modules/firewall/ufw.html:41
+#: templates/modules/firewall/ufw.html:121
+#: templates/modules/service_builder/logs.html:49
+msgid "Action"
+msgstr "Aktion"
+
+#: templates/modules/firewall/iptables.html:42
+#: templates/modules/firewall/ufw.html:42
+#: templates/modules/firewall/ufw.html:122
+msgid "Direction"
+msgstr "Richtung"
+
+#: templates/modules/firewall/iptables.html:43
+#: templates/modules/firewall/ufw.html:43
+#: templates/modules/firewall/ufw.html:123
+msgid "Source"
+msgstr "Quelle"
+
+#: templates/modules/firewall/iptables.html:44
+#: templates/modules/firewall/ufw.html:44
+#: templates/modules/firewall/ufw.html:124
+msgid "Destination"
+msgstr "Ziel"
+
+#: templates/modules/firewall/iptables.html:45
+#: templates/modules/firewall/ufw.html:45
+#: templates/modules/firewall/ufw.html:125
+#: templates/modules/process_monitor/index.html:199
+#: templates/modules/process_monitor/index.html:273
+#: templates/modules/service_builder/create_service.html:211
+#: templates/modules/service_builder/service_detail.html:130
+#: templates/pages/settings/settings.html:1009
+msgid "Port"
+msgstr "Port"
+
+#: templates/modules/firewall/iptables.html:46
+#: templates/modules/firewall/ufw.html:46
+#: templates/modules/firewall/ufw.html:126
+#: templates/modules/process_monitor/index.html:104
+#: templates/modules/process_monitor/index.html:263
+#: templates/modules/system_information/index.html:301
+msgid "Protocol"
+msgstr "Protokoll"
+
+#: templates/modules/firewall/iptables.html:47
+msgid "Chain"
+msgstr "Kette"
+
+#: templates/modules/firewall/iptables.html:48
+msgid "Target"
+msgstr "Ziel"
+
+#: templates/modules/firewall/iptables.html:50
+msgid "Comment"
+msgstr "Kommentar"
+
+#: templates/modules/firewall/iptables.html:51
+msgid "Delete Rule"
+msgstr "Regel löschen"
+
+#: templates/modules/firewall/iptables.html:52
+msgid "Are you sure you want to delete this rule?"
+msgstr "Sind Sie sicher, dass Sie diese Regel löschen möchten?"
+
+#: templates/modules/firewall/iptables.html:53
+msgid "Rule deleted successfully"
+msgstr "Regel erfolgreich gelöscht"
+
+#: templates/modules/firewall/iptables.html:54
+msgid "Error deleting rule"
+msgstr "Fehler beim Löschen der Regel"
+
+# JavaScript Translations
+#: templates/modules/firewall/iptables.html:55
+#: templates/modules/firewall/ufw.html:32
+#: templates/modules/service_monitoring/index.html:215
+#: templates/pages/settings/settings.html:24
+msgid "Enabled"
+msgstr "Aktiviert"
+
+#: templates/modules/firewall/iptables.html:56
+#: templates/modules/firewall/ufw.html:33
+#: templates/pages/settings/settings.html:25
+#: templates/pages/settings/settings.html:890
+#: templates/pages/settings/settings.html:914
+#: templates/pages/settings/settings.html:938
+#: templates/pages/settings/settings.html:962
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+#: templates/modules/firewall/iptables.html:57
+#: templates/modules/firewall/selection.html:33
+msgid "Not Available"
+msgstr "Nicht verfügbar"
+
+#: templates/modules/firewall/iptables.html:59
+msgid "rules"
+msgstr "Regeln"
+
+#: templates/modules/firewall/iptables.html:60
+msgid "Deleting rule"
+msgstr "Regel wird gelöscht"
+
+#: templates/modules/firewall/iptables.html:61
+msgid "Connection error"
+msgstr "Verbindungsfehler"
+
+# Firewall Management
+#: templates/modules/firewall/selection.html:8
+#: templates/modules/firewall/selection.html:64
+msgid "Firewall Management"
+msgstr "Firewall-Verwaltung"
+
+#: templates/modules/firewall/selection.html:32
+msgid "Available"
+msgstr "Verfügbar"
+
+#: templates/modules/firewall/selection.html:35
+#: templates/modules/firewall/selection.html:80
+msgid "UFW"
+msgstr "UFW"
+
+#: templates/modules/firewall/selection.html:36
+#: templates/modules/firewall/selection.html:105
+#, fuzzy
+#| msgid "Manage iptables"
+msgid "iptables"
+msgstr "iptables"
+
+#: templates/modules/firewall/selection.html:37
+#: templates/modules/firewall/selection.html:130
+#, fuzzy
+#| msgid "Manage firewalld"
+msgid "firewalld"
+msgstr "firewalld"
+
+#: templates/modules/firewall/selection.html:38
+#: templates/modules/firewall/selection.html:81
+msgid "Uncomplicated Firewall"
+msgstr "Einfache Firewall"
+
+#: templates/modules/firewall/selection.html:39
+#: templates/modules/firewall/selection.html:106
+msgid "Advanced Firewall"
+msgstr "Erweiterte Firewall"
+
+#: templates/modules/firewall/selection.html:40
+#: templates/modules/firewall/selection.html:131
+msgid "Dynamic Firewall"
+msgstr "Dynamische Firewall"
+
+#: templates/modules/firewall/selection.html:41
+#: templates/modules/firewall/selection.html:94
+msgid "Manage UFW"
+msgstr "UFW verwalten"
+
+#: templates/modules/firewall/selection.html:42
+#: templates/modules/firewall/selection.html:119
+msgid "Manage iptables"
+msgstr "iptables verwalten"
+
+#: templates/modules/firewall/selection.html:43
+#: templates/modules/firewall/selection.html:144
+msgid "Manage firewalld"
+msgstr "firewalld verwalten"
+
+#: templates/modules/firewall/selection.html:66
+msgid "Choose your firewall system to manage rules and settings"
+msgstr ""
+"Wählen Sie Ihr Firewall-System aus, um Regeln und Einstellungen zu verwalten"
+
+#: templates/modules/firewall/ufw.html:8
+msgid "UFW Firewall Management"
+msgstr "UFW Firewall-Verwaltung"
+
+#: templates/modules/firewall/ufw.html:34
+#: templates/modules/firewall/ufw.html:86
+#: templates/modules/service_monitoring/index.html:196
+#: templates/pages/settings/settings.html:254
+msgid "Enable"
+msgstr "Aktivieren"
+
+#: templates/modules/firewall/ufw.html:35
+#: templates/modules/service_monitoring/index.html:197
+#: templates/pages/settings/settings.html:258
+msgid "Disable"
+msgstr "Deaktivieren"
+
+#: templates/modules/firewall/ufw.html:40
+#: templates/modules/firewall/ufw.html:138
+msgid "No firewall rules are currently configured."
+msgstr "Derzeit sind keine Firewall-Regeln konfiguriert."
+
+#: templates/modules/firewall/ufw.html:48
+#: templates/modules/firewall/ufw.html:76
+msgid "UFW Firewall"
+msgstr "UFW Firewall"
+
+#: templates/modules/firewall/ufw.html:49
+msgid "Error loading UFW status"
+msgstr "Fehler beim Laden des UFW-Status"
+
+#: templates/modules/firewall/ufw.html:50
+msgid "Error loading UFW rules"
+msgstr "Fehler beim Laden der UFW-Regeln"
+
+#: templates/modules/firewall/ufw.html:51
+msgid "Error toggling UFW"
+msgstr "Fehler beim Umschalten von UFW"
+
+#: templates/modules/firewall/ufw.html:52
+msgid "UFW enabled successfully"
+msgstr "UFW erfolgreich aktiviert"
+
+#: templates/modules/firewall/ufw.html:53
+msgid "UFW disabled successfully"
+msgstr "UFW erfolgreich deaktiviert"
+
+#: templates/modules/firewall/ufw.html:54
+msgid "UFW enable failed"
+msgstr "UFW-Aktivierung fehlgeschlagen"
+
+#: templates/modules/firewall/ufw.html:55
+msgid "UFW disable failed"
+msgstr "UFW-Deaktivierung fehlgeschlagen"
+
+#: templates/modules/package_manager/index.html:40
+msgid "View system updates and installed packages"
+msgstr "System-Updates und installierte Pakete anzeigen"
+
+#: templates/modules/package_manager/index.html:56
+msgid "Total Updates"
+msgstr "Gesamt-Updates"
+
+#: templates/modules/package_manager/index.html:63
+msgid "Critical Updates"
+msgstr "Kritische Updates"
+
+#: templates/modules/package_manager/index.html:70
+msgid "Managers"
+msgstr "Paketverwalter"
+
+#: templates/modules/package_manager/index.html:129
+msgid "Update available"
+msgstr "Update verfügbar"
+
+#: templates/modules/package_manager/index.html:131
+msgid "No results found"
+msgstr "Keine Ergebnisse gefunden"
+
+#: templates/modules/package_manager/index.html:132
+msgid "No dependencies found"
+msgstr "Keine Abhängigkeiten gefunden"
+
+#: templates/modules/package_manager/index.html:133
+msgid "critical"
+msgstr "kritisch"
+
+#: templates/modules/package_manager/index.html:134
+msgid "No updates found"
+msgstr "Keine Updates gefunden"
+
+#: templates/modules/package_manager/index.html:142
+msgid "Repository"
+msgstr "Repositorium"
+
+#: templates/modules/package_manager/index.html:143
+msgid "Maintainer"
+msgstr "Betreuer"
+
+#: templates/modules/package_manager/updates_modal.html:5
+#, fuzzy
+#| msgid "Developer Packages"
+msgid "Upgradeable Packages"
+msgstr "Entwickler-Pakete"
+
+# Password Change
+#: templates/modules/package_manager/updates_modal.html:17
+#, fuzzy
+#| msgid "Current Password"
+msgid "Current"
+msgstr "Aktuelles Passwort"
+
+#: templates/modules/package_manager/updates_modal.html:18
+#, fuzzy
+#| msgid "Network"
+msgid "New"
+msgstr "Netzwerk"
+
+#: templates/modules/package_manager/updates_modal.html:20
+#: templates/pages/security/alert-management.html:61
+#: templates/pages/security/alert-management.html:108
+#: templates/pages/security/alert-management.html:211
+msgid "Critical"
+msgstr "Kritisch"
+
+#: templates/modules/process_monitor/all_ports.html:12
+msgid "All Ports"
+msgstr "Alle Ports"
+
+#: templates/modules/process_monitor/connection_search.html:13
+msgid "Search Results"
+msgstr "Suchergebnisse"
+
+#: templates/modules/process_monitor/connection_search.html:22
+msgid "Searching..."
+msgstr "Suche..."
+
+#: templates/modules/process_monitor/group_view.html:12
+#: templates/modules/process_monitor/index.html:63
+#: templates/modules/process_monitor/index.html:281
+msgid "Group View"
+msgstr "Gruppenansicht"
+
+#: templates/modules/process_monitor/index.html:44
+#: templates/modules/process_monitor/index.html:283
+#: templates/modules/system_information/index.html:42
+#: templates/modules/system_information/index.html:426
+msgid "Connecting..."
+msgstr "Verbinden..."
+
+# Process Monitor additional translations
+#: templates/modules/process_monitor/index.html:46
+msgid "Monitor and manage network processes and port connections"
+msgstr "Netzwerkprozesse und Portverbindungen überwachen und verwalten"
+
+#: templates/modules/process_monitor/index.html:51
+#: templates/modules/process_monitor/index.html:278
+msgid "By PID"
+msgstr "Nach PID"
+
+#: templates/modules/process_monitor/index.html:55
+#: templates/modules/process_monitor/index.html:279
+msgid "By Interface"
+msgstr "Nach Schnittstelle"
+
+#: templates/modules/process_monitor/index.html:59
+#: templates/modules/process_monitor/index.html:280
+msgid "By IP"
+msgstr "Nach IP"
+
+#: templates/modules/process_monitor/index.html:89
+#: templates/modules/system_information/index.html:375
+msgid "Active Connections"
+msgstr "Aktive Verbindungen"
+
+#: templates/modules/process_monitor/index.html:93
+#: templates/modules/process_monitor/index.html:259
+#: templates/modules/user_management/index.html:96
+#: templates/pages/security/activity-history.html:146
+msgid "Total"
+msgstr "Gesamt"
+
+#: templates/modules/process_monitor/index.html:93
+#: templates/modules/process_monitor/index.html:260
+msgid "connections"
+msgstr "Verbindungen"
+
+#: templates/modules/process_monitor/index.html:102
+#: templates/modules/process_monitor/index.html:195
+#: templates/modules/process_monitor/index.html:261
+#: templates/modules/process_topology/components/info_panel.html:21
+#: templates/modules/service_monitoring/index.html:226
+msgid "PID"
+msgstr "PID"
+
+#: templates/modules/process_monitor/index.html:103
+#: templates/modules/process_monitor/index.html:262
+#, fuzzy
+#| msgid "processes"
+msgid "Process"
+msgstr "Prozesse"
+
+#: templates/modules/process_monitor/index.html:105
+#: templates/modules/process_monitor/index.html:264
+#, fuzzy
+#| msgid "Host Address"
+msgid "Local Address"
+msgstr "Host-Adresse"
+
+#: templates/modules/process_monitor/index.html:106
+#: templates/modules/process_monitor/index.html:265
+#, fuzzy
+#| msgid "Host Address"
+msgid "Remote Address"
+msgstr "Host-Adresse"
+
+#: templates/modules/process_monitor/index.html:108
+#: templates/modules/process_monitor/index.html:267
+#: templates/modules/process_topology/components/info_panel.html:39
+#, fuzzy
+#| msgid "Memory Usage"
+msgid "Memory"
+msgstr "Speichernutzung"
+
+#: templates/modules/process_monitor/index.html:109
+#: templates/modules/process_monitor/index.html:268
+#: templates/modules/process_topology/components/info_panel.html:35
+#, fuzzy
+#| msgid "CPU:"
+msgid "CPU"
+msgstr "CPU:"
+
+#: templates/modules/process_monitor/index.html:132
+#: templates/modules/process_monitor/index.html:257
+#: templates/modules/service_builder/templates.html:70
+#: templates/modules/service_monitoring/index.html:198
+#: templates/modules/user_management/index.html:150
+#: templates/modules/user_management/index.html:225
+msgid "View Details"
+msgstr "Details anzeigen"
+
+#: templates/modules/process_monitor/index.html:139
+#: templates/modules/process_monitor/index.html:258
+#: templates/modules/process_monitor/process_management.html:12
+msgid "Process Management"
+msgstr "Prozessverwaltung"
+
+#: templates/modules/process_monitor/index.html:150
+#: templates/modules/process_monitor/index.html:253
+msgid "No connections found"
+msgstr "Keine Verbindungen gefunden"
+
+#: templates/modules/process_monitor/index.html:167
+#: templates/modules/process_monitor/index.html:270
+msgid "Most Used Ports"
+msgstr "Meistgenutzte Ports"
+
+#: templates/modules/process_monitor/index.html:171
+#: templates/modules/process_monitor/index.html:271
+#: templates/modules/service_builder/index.html:93
+#: templates/modules/service_builder/index.html:188
+#: templates/modules/service_builder/index.html:222
+msgid "View All"
+msgstr "Alle anzeigen"
+
+#: templates/modules/process_monitor/index.html:187
+#: templates/modules/process_monitor/index.html:272
+msgid "Connection Search"
+msgstr "Verbindungssuche"
+
+#: templates/modules/process_monitor/index.html:203
+#: templates/modules/process_monitor/index.html:274
+msgid "IP"
+msgstr ""
+
+#: templates/modules/process_monitor/index.html:210
+#: templates/modules/process_monitor/index.html:276
+msgid "Enter PID to search..."
+msgstr "PID zum Suchen eingeben..."
+
+#: templates/modules/process_monitor/index.html:219
+#: templates/modules/process_monitor/index.html:277
+msgid "Search for all connections related to a specific PID"
+msgstr "Nach allen Verbindungen zu einer bestimmten PID suchen"
+
+#: templates/modules/process_monitor/index.html:284
+msgid "Live Mode: Real-time data streaming"
+msgstr "Live-Modus: Echtzeit-Datenstreaming"
+
+#: templates/modules/process_monitor/index.html:285
+msgid "Live Mode disabled"
+msgstr "Live-Modus deaktiviert"
+
+# Process Management Translations
+#: templates/modules/process_monitor/index.html:287
+msgid ""
+"Please use operations carefully. Terminating system processes may cause "
+"system instability."
+msgstr ""
+"Bitte verwenden Sie Vorgänge mit Vorsicht. Das Beenden von Systemprozessen "
+"kann zu Systeminstabilität führen."
+
+#: templates/modules/process_monitor/index.html:288
+#: templates/modules/process_topology/components/info_panel.html:7
+msgid "Process Information"
+msgstr "Prozessinformationen"
+
+#: templates/modules/process_monitor/index.html:289
+msgid "Available Actions"
+msgstr "Verfügbare Aktionen"
+
+#: templates/modules/process_monitor/index.html:290
+#: templates/modules/process_topology/components/info_panel.html:43
+msgid "Thread Count"
+msgstr "Thread-Anzahl"
+
+#: templates/modules/process_monitor/index.html:291
+msgid "N/A"
+msgstr "Nicht verfügbar"
+
+#: templates/modules/process_monitor/index.html:292
+msgid "Stop (SIGTERM)"
+msgstr "Stoppen (SIGTERM)"
+
+#: templates/modules/process_monitor/index.html:293
+msgid "Gracefully stops the process"
+msgstr "Beendet den Prozess ordnungsgemäß"
+
+#: templates/modules/process_monitor/index.html:294
+msgid "Force Kill (SIGKILL)"
+msgstr "Erzwungenes Beenden (SIGKILL)"
+
+#: templates/modules/process_monitor/index.html:295
+msgid "Forcefully terminates the process"
+msgstr "Beendet den Prozess zwangsweise"
+
+#: templates/modules/process_monitor/index.html:296
+msgid "Suspend (SIGSTOP)"
+msgstr "Anhalten (SIGSTOP)"
+
+#: templates/modules/process_monitor/index.html:297
+msgid "Suspends the process"
+msgstr "Hält den Prozess an"
+
+#: templates/modules/process_monitor/index.html:298
+msgid "Resume (SIGCONT)"
+msgstr "Fortsetzen (SIGCONT)"
+
+#: templates/modules/process_monitor/index.html:299
+msgid "Resumes suspended process"
+msgstr "Setzt angehaltenen Prozess fort"
+
+#: templates/modules/process_monitor/index.html:301
+msgid "Stops and restarts the process"
+msgstr "Stoppt und startet den Prozess neu"
+
+#: templates/modules/process_monitor/index.html:302
+#, python-brace-format
+msgid "Are you sure you want to {action} this process?"
+msgstr "Sind Sie sicher, dass Sie diesen Prozess {action} möchten?"
+
+#: templates/modules/process_monitor/index.html:303
+#: templates/modules/service_monitoring/index.html:203
+msgid "Operation successful"
+msgstr "Vorgang erfolgreich"
+
+#: templates/modules/process_monitor/index.html:304
+#: templates/modules/service_monitoring/index.html:204
+msgid "Operation failed"
+msgstr "Vorgang fehlgeschlagen"
+
+#: templates/modules/process_monitor/index.html:305
+msgid "Operation could not be completed"
+msgstr "Vorgang konnte nicht abgeschlossen werden"
+
+#: templates/modules/process_monitor/index.html:306
+#: templates/modules/service_monitoring/index.html:207
+msgid "stop"
+msgstr "stoppen"
+
+#: templates/modules/process_monitor/index.html:307
+msgid "kill"
+msgstr "beenden"
+
+#: templates/modules/process_monitor/index.html:308
+msgid "suspend"
+msgstr "anhalten"
+
+#: templates/modules/process_monitor/index.html:309
+msgid "resume"
+msgstr "fortsetzen"
+
+#: templates/modules/process_monitor/index.html:310
+#: templates/modules/service_monitoring/index.html:208
+#, fuzzy
+#| msgid "Restart"
+msgid "restart"
+msgstr "Neustarten"
+
+#: templates/modules/process_monitor/interface_view.html:12
+msgid "Processes by Interface"
+msgstr "Prozesse nach Schnittstelle"
+
+#: templates/modules/process_monitor/ip_analysis.html:11
+msgid "IP Analysis & Request Tracking"
+msgstr "IP-Analyse und Anforderungsverfolgung"
+
+#: templates/modules/process_monitor/ip_analysis.html:28
+#: templates/modules/system_logs/index.html:61
+#: templates/pages/security/activity-history.html:41
+#: templates/pages/security/alert-management.html:48
+msgid "Export"
+msgstr "Exportieren"
+
+#: templates/modules/process_monitor/ip_analysis.html:37
+msgid "IP Addresses"
+msgstr "IP-Adressen"
+
+#: templates/modules/process_monitor/pid_group_view.html:12
+msgid "Processes by PID"
+msgstr "Prozesse nach PID"
+
+#: templates/modules/process_monitor/port_details.html:12
+msgid "Port Details"
+msgstr "Portdetails"
+
+# Process Monitor Modal Translations
+#: templates/modules/process_monitor/process_details.html:11
+msgid "Process Details"
+msgstr "Prozessdetails"
+
+#: templates/modules/process_topology/components/filters.html:7
+#: templates/modules/process_topology/index.html:149
+#, fuzzy
+#| msgid "Apply Filters"
+msgid "Filters"
+msgstr "Filter anwenden"
+
+#: templates/modules/process_topology/components/filters.html:16
+msgid "Search Process"
+msgstr "Prozess suchen"
+
+#: templates/modules/process_topology/components/filters.html:17
+msgid "Process name, PID or user..."
+msgstr "Prozessname, PID oder Benutzer..."
+
+#: templates/modules/process_topology/components/filters.html:21
+msgid "Focus on PID"
+msgstr "Auf PID fokussieren"
+
+#: templates/modules/process_topology/components/filters.html:22
+msgid "Enter PID to show only connected processes..."
+msgstr "PID eingeben, um nur verbundene Prozesse anzuzeigen..."
+
+#: templates/modules/process_topology/components/filters.html:23
+msgid "Show only processes connected to this PID"
+msgstr "Nur Prozesse anzeigen, die mit dieser PID verbunden sind"
+
+#: templates/modules/process_topology/components/filters.html:27
+msgid "Maximum Process Count"
+msgstr "Maximale Prozessanzahl"
+
+#: templates/modules/process_topology/components/filters.html:33
+#: templates/modules/process_topology/index.html:211
+msgid "Process States"
+msgstr "Prozesszustände"
+
+#: templates/modules/process_topology/components/filters.html:37
+#: templates/modules/process_topology/index.html:215
+#: templates/pages/settings/settings.html:31
+msgid "Running"
+msgstr "Läuft"
+
+#: templates/modules/process_topology/components/filters.html:41
+#: templates/modules/process_topology/index.html:219
+#, fuzzy
+#| msgid "Sleeping Processes"
+msgid "Sleeping"
+msgstr "Schlafende Prozesse"
+
+#: templates/modules/process_topology/components/filters.html:45
+#: templates/modules/process_topology/index.html:223
+#: templates/pages/settings/settings.html:32
+msgid "Stopped"
+msgstr "Gestoppt"
+
+#: templates/modules/process_topology/components/filters.html:49
+#: templates/modules/process_topology/index.html:227
+msgid "Zombie"
+msgstr ""
+
+#: templates/modules/process_topology/components/filters.html:56
+msgid "Apply Filters"
+msgstr "Filter anwenden"
+
+#: templates/modules/process_topology/components/info_panel.html:17
+msgid "Process Name"
+msgstr "Prozessname"
+
+#: templates/modules/process_topology/components/info_panel.html:31
+#: templates/modules/process_topology/components/settings.html:37
+#: templates/modules/service_builder/logs.html:52
+#: templates/modules/service_builder/service_detail.html:97
+#: templates/modules/service_builder/service_detail.html:157
+#: templates/modules/service_builder/services.html:51
+#: templates/modules/user_management/delete_user_modal.html:29
+msgid "User"
+msgstr "User"
+
+#: templates/modules/process_topology/components/info_panel.html:47
+msgid "Started"
+msgstr "Gestartet"
+
+#: templates/modules/process_topology/components/info_panel.html:55
+msgid "Terminate"
+msgstr "Beenden"
+
+#: templates/modules/process_topology/components/info_panel.html:59
+msgid "Connections"
+msgstr "Verbindungen"
+
+#: templates/modules/process_topology/components/info_panel.html:63
+msgid "Suspend"
+msgstr "Anhalten"
+
+#: templates/modules/process_topology/components/settings.html:7
+msgid "Graph Settings"
+msgstr "Diagrammeinstellungen"
+
+#: templates/modules/process_topology/components/settings.html:17
+msgid "Display"
+msgstr "Anzeige"
+
+#: templates/modules/process_topology/components/settings.html:20
+msgid "Node size"
+msgstr "Knotengröße"
+
+#: templates/modules/process_topology/components/settings.html:26
+msgid "Link thickness"
+msgstr "Verbindungsstärke"
+
+#: templates/modules/process_topology/components/settings.html:32
+msgid "Color scheme"
+msgstr "Farbschema"
+
+#: templates/modules/process_topology/components/settings.html:44
+msgid "Forces"
+msgstr "Kräfte"
+
+#: templates/modules/process_topology/components/settings.html:47
+msgid "Center force"
+msgstr "Zentrierkraft"
+
+#: templates/modules/process_topology/components/settings.html:53
+msgid "Repel force"
+msgstr "Abstoßungskraft"
+
+#: templates/modules/process_topology/components/settings.html:59
+msgid "Link distance"
+msgstr "Verbindungsabstand"
+
+#: templates/modules/process_topology/components/settings.html:65
+msgid "Collision radius"
+msgstr "Kollisionsradius"
+
+#: templates/modules/process_topology/components/settings.html:73
+msgid "Layout"
+msgstr "Layout"
+
+#: templates/modules/process_topology/components/settings.html:76
+msgid "Distribution"
+msgstr "Verteilung"
+
+#: templates/modules/process_topology/components/settings.html:78
+msgid "Compact"
+msgstr "Kompakt"
+
+#: templates/modules/process_topology/components/settings.html:79
+msgid "Spread"
+msgstr "Verteilt"
+
+#: templates/modules/process_topology/components/settings.html:80
+msgid "Clustered"
+msgstr "Gruppiert"
+
+#: templates/modules/process_topology/components/settings.html:81
+msgid "Linear"
+msgstr "Linear"
+
+#: templates/modules/process_topology/components/settings.html:86
+msgid "Canvas width"
+msgstr "Leinwandbreite"
+
+#: templates/modules/process_topology/components/settings.html:92
+msgid "Canvas height"
+msgstr "Leinwandhöhe"
+
+#: templates/modules/process_topology/components/settings.html:100
+#: templates/modules/system_logs/index.html:95
+msgid "Auto"
+msgstr "Automatisch"
+
+#: templates/modules/process_topology/components/settings.html:104
+msgid "Auto refresh"
+msgstr "Automatische Aktualisierung"
+
+#: templates/modules/process_topology/components/settings.html:108
+msgid "Refresh interval"
+msgstr "Aktualisierungsintervall"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:9
+#: templates/modules/process_topology/components/snapshot_loader.html:177
+msgid "Load Snapshot"
+msgstr "Snapshot laden"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:22
+msgid "Drop JSON file here"
+msgstr "JSON-Datei hier ablegen"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:23
+msgid "or click to browse"
+msgstr "oder zum Durchsuchen klicken"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:33
+msgid "Loading Snapshot..."
+msgstr "Snapshot wird geladen..."
+
+#: templates/modules/process_topology/components/snapshot_loader.html:34
+msgid "Processing snapshot data..."
+msgstr "Snapshot-Daten werden verarbeitet..."
+
+#: templates/modules/process_topology/components/snapshot_loader.html:41
+msgid "Snapshot Preview"
+msgstr "Snapshot-Vorschau"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:64
+msgid "Filename"
+msgstr "Dateiname"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:72
+msgid "File Size"
+msgstr "Dateigröße"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:84
+msgid "Process Statistics"
+msgstr "Prozessstatistiken"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:87
+msgid "Total Processes"
+msgstr "Gesamtprozesse"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:91
+msgid "Running Processes"
+msgstr "Laufende Prozesse"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:95
+msgid "Sleeping Processes"
+msgstr "Schlafende Prozesse"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:99
+msgid "Zombie Processes"
+msgstr "Zombie-Prozesse"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:107
+msgid "Connection Statistics"
+msgstr "Verbindungsstatistiken"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:110
+msgid "Total Connections"
+msgstr "Gesamtverbindungen"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:114
+msgid "Parent-Child Links"
+msgstr "Eltern-Kind-Verbindungen"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:118
+msgid "Network Links"
+msgstr "Netzwerkverbindungen"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:122
+msgid "System Links"
+msgstr "Systemverbindungen"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:133
+#: templates/modules/system_information/index.html:170
+msgid "Platform"
+msgstr "Plattform"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:137
+#: templates/pages/settings/settings.html:191
+msgid "Language"
+msgstr "Sprache"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:141
+msgid "User Agent"
+msgstr "Benutzeragent"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:145
+msgid "Browser"
+msgstr "Browser"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:153
+msgid "Snapshot Settings"
+msgstr "Snapshot-Einstellungen"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:156
+msgid "Node Size"
+msgstr "Knotengröße"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:160
+msgid "Canvas Size"
+msgstr "Leinwandgröße"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:164
+msgid "Force Settings"
+msgstr "Krafteinstellungen"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:168
+msgid "Color Scheme"
+msgstr "Farbschema"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:191
+msgid "Error Loading Snapshot"
+msgstr "Fehler beim Laden des Snapshots"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:192
+msgid "Invalid snapshot file format"
+msgstr "Ungültiges Snapshot-Dateiformat"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:195
+msgid "Try Again"
+msgstr "Erneut versuchen"
+
+#: templates/modules/process_topology/index.html:139
+msgid "Interactive process visualization and monitoring"
+msgstr "Interaktive Prozessvisualisierung und -überwachung"
+
+#: templates/modules/process_topology/index.html:153
+#: templates/pages/settings/settings.html:74
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: templates/modules/process_topology/index.html:157
+#, fuzzy
+#| msgid "Load Snapshot"
+msgid "Snapshot"
+msgstr "Snapshot laden"
+
+#: templates/modules/process_topology/index.html:161
+#, fuzzy
+#| msgid "Load More"
+msgid "Load"
+msgstr "Mehr laden"
+
+#: templates/modules/process_topology/index.html:176
+msgid "Loading process data..."
+msgstr "Prozessdaten werden geladen..."
+
+#: templates/modules/process_topology/index.html:184
+msgid "No Process Data Found"
+msgstr "Keine Prozessdaten gefunden"
+
+#: templates/modules/process_topology/index.html:185
+msgid "An error occurred while loading system processes."
+msgstr "Beim Laden der Systemprozesse ist ein Fehler aufgetreten."
+
+#: templates/modules/process_topology/index.html:188
+msgid "Refresh Page"
+msgstr "Seite aktualisieren"
+
+#: templates/modules/process_topology/index.html:199
+msgid "processes"
+msgstr "Prozesse"
+
+#: templates/modules/process_topology/index.html:202
+msgid "Last updated"
+msgstr "Zuletzt aktualisiert"
+
+#: templates/modules/process_topology/index.html:234
+msgid "Connection Types"
+msgstr "Verbindungstypen"
+
+#: templates/modules/process_topology/index.html:238
+msgid "Parent-Child"
+msgstr "Eltern-Kind"
+
+#: templates/modules/process_topology/index.html:242
+msgid "Network Connection"
+msgstr "Netzwerkverbindung"
+
+#: templates/modules/service_builder/create_service.html:23
+msgid "Create New Service"
+msgstr "Neuen Dienst erstellen"
+
+#: templates/modules/service_builder/create_service.html:26
+msgid "Configure and deploy a new Linux systemd service for your application."
+msgstr ""
+"Konfigurieren und bereitstellen Sie einen neuen Linux systemd-Dienst für "
+"Ihre Anwendung."
+
+#: templates/modules/service_builder/create_service.html:32
+#: templates/modules/service_builder/logs.html:34
+#: templates/modules/service_builder/services.html:35
+#: templates/modules/service_builder/templates.html:34
+msgid "Back to Dashboard"
+msgstr "Zurück zum Dashboard"
+
+#: templates/modules/service_builder/create_service.html:49
+msgid "Service Type"
+msgstr "Diensttyp"
+
+#: templates/modules/service_builder/create_service.html:51
+msgid "Choose the type of service you want to create"
+msgstr "Wählen Sie den Typ des Dienstes, den Sie erstellen möchten"
+
+#: templates/modules/service_builder/create_service.html:62
+msgid "Normal Application"
+msgstr "Normale Anwendung"
+
+#: templates/modules/service_builder/create_service.html:63
+msgid "Standard application or script"
+msgstr "Standardanwendung oder Skript"
+
+#: templates/modules/service_builder/create_service.html:74
+msgid "Web Application"
+msgstr "Webanwendung"
+
+#: templates/modules/service_builder/create_service.html:75
+msgid "HTTP server or web service"
+msgstr "HTTP-Server oder Webdienst"
+
+#: templates/modules/service_builder/create_service.html:86
+msgid "Background Service"
+msgstr "Hintergrunddienst"
+
+#: templates/modules/service_builder/create_service.html:87
+msgid "Background daemon or worker"
+msgstr "Hintergrund-Daemon oder Worker"
+
+#: templates/modules/service_builder/create_service.html:100
+msgid "Application Configuration"
+msgstr "Anwendungskonfiguration"
+
+#: templates/modules/service_builder/create_service.html:102
+msgid "Configure your application details"
+msgstr "Konfigurieren Sie Ihre Anwendungsdetails"
+
+#: templates/modules/service_builder/create_service.html:109
+#: templates/modules/service_builder/service_detail.html:169
+msgid "Application Path"
+msgstr "Anwendungspfad"
+
+#: templates/modules/service_builder/create_service.html:114
+msgid "Full path to your application file or script"
+msgstr "Vollständiger Pfad zu Ihrer Anwendungsdatei oder Ihrem Skript"
+
+#: templates/modules/service_builder/create_service.html:124
+msgid "Interpreter (Optional)"
+msgstr "Ausführungsprogramm (Optional)"
+
+#: templates/modules/service_builder/create_service.html:129
+msgid "Interpreter for scripted languages (Python, PHP, etc.)"
+msgstr "Interpreter für Skriptsprachen (Python, PHP, etc.)"
+
+#: templates/modules/service_builder/create_service.html:135
+#: templates/modules/service_builder/service_detail.html:120
+#: templates/modules/service_builder/service_detail.html:180
+#, fuzzy
+#| msgid "Home Directory"
+msgid "Working Directory"
+msgstr "Heimverzeichnis"
+
+#: templates/modules/service_builder/create_service.html:140
+msgid "Working directory for the service"
+msgstr "Arbeitsverzeichnis für den Dienst"
+
+#: templates/modules/service_builder/create_service.html:151
+#: templates/modules/service_monitoring/index.html:136
+#: templates/modules/service_monitoring/index.html:189
+msgid "Service Details"
+msgstr "Dienstdetails"
+
+#: templates/modules/service_builder/create_service.html:153
+msgid "Basic service information"
+msgstr "Grundlegende Dienstinformationen"
+
+#: templates/modules/service_builder/create_service.html:160
+#: templates/modules/service_builder/service_detail.html:149
+#: templates/modules/service_builder/services.html:49
+#: templates/modules/service_monitoring/index.html:111
+#: templates/modules/service_monitoring/index.html:185
+msgid "Service Name"
+msgstr "Dienstname"
+
+#: templates/modules/service_builder/create_service.html:165
+msgid "Unique name for your service (lowercase, no spaces)"
+msgstr "Eindeutiger Name für Ihren Dienst (Kleinbuchstaben, keine Leerzeichen)"
+
+#: templates/modules/service_builder/create_service.html:171
+msgid "Run As User"
+msgstr "Als Benutzer ausführen"
+
+#: templates/modules/service_builder/create_service.html:179
+msgid "System user to run the service"
+msgstr "Systembenutzer zum Ausführen des Dienstes"
+
+#: templates/modules/service_builder/create_service.html:192
+msgid "Optional description for your service"
+msgstr "Optionale Beschreibung für Ihren Dienst"
+
+#: templates/modules/service_builder/create_service.html:202
+msgid "Web Application Settings"
+msgstr "Webanwendungseinstellungen"
+
+#: templates/modules/service_builder/create_service.html:204
+msgid "Configure web server settings"
+msgstr "Webserver-Einstellungen konfigurieren"
+
+#: templates/modules/service_builder/create_service.html:216
+msgid "Port number for your web application"
+msgstr "Portnummer für Ihre Webanwendung"
+
+#: templates/modules/service_builder/create_service.html:223
+msgid "Host Address"
+msgstr "Host-Adresse"
+
+#: templates/modules/service_builder/create_service.html:233
+msgid "Network interface to bind to"
+msgstr "Netzwerkschnittstelle zum Binden"
+
+#: templates/modules/service_builder/create_service.html:244
+#: templates/modules/service_builder/service_detail.html:167
+msgid "Application Settings"
+msgstr "Anwendungseinstellungen"
+
+#: templates/modules/service_builder/create_service.html:246
+msgid "Configure standard application settings"
+msgstr "Standardanwendungseinstellungen konfigurieren"
+
+#: templates/modules/service_builder/create_service.html:253
+msgid "Execution Mode"
+msgstr "Ausführungsmodus"
+
+#: templates/modules/service_builder/create_service.html:261
+msgid "How the application should run"
+msgstr "Wie die Anwendung ausgeführt werden soll"
+
+#: templates/modules/service_builder/create_service.html:267
+msgid "Startup Timeout (seconds)"
+msgstr "Starttimeout (Sekunden)"
+
+#: templates/modules/service_builder/create_service.html:272
+msgid "Maximum time to wait for startup"
+msgstr "Maximale Wartezeit für den Start"
+
+#: templates/modules/service_builder/create_service.html:280
+msgid "Command Line Arguments"
+msgstr "Befehlszeilenargumente"
+
+#: templates/modules/service_builder/create_service.html:285
+msgid "Additional arguments to pass to the application"
+msgstr "Zusätzliche Argumente, die an die Anwendung übergeben werden sollen"
+
+#: templates/modules/service_builder/create_service.html:295
+msgid "Background Service Settings"
+msgstr "Hintergrunddienst-Einstellungen"
+
+#: templates/modules/service_builder/create_service.html:297
+msgid "Configure background daemon settings"
+msgstr "Hintergrund-Daemon-Einstellungen konfigurieren"
+
+#: templates/modules/service_builder/create_service.html:304
+msgid "Daemon Type"
+msgstr "Daemon-Typ"
+
+#: templates/modules/service_builder/create_service.html:313
+msgid "Type of daemon process"
+msgstr "Typ des Daemon-Prozesses"
+
+#: templates/modules/service_builder/create_service.html:319
+msgid "Process Priority"
+msgstr "Prozesspriorität"
+
+#: templates/modules/service_builder/create_service.html:327
+msgid "Process priority level"
+msgstr "Prozessprioritätsstufe"
+
+#: templates/modules/service_builder/create_service.html:335
+msgid "Log File Path"
+msgstr "Protokolldateipfad"
+
+#: templates/modules/service_builder/create_service.html:340
+msgid "Optional custom log file path"
+msgstr "Optioneller benutzerdefinierter Protokolldateipfad"
+
+#: templates/modules/service_builder/create_service.html:350
+msgid "Advanced Settings"
+msgstr "Erweiterte Einstellungen"
+
+#: templates/modules/service_builder/create_service.html:352
+msgid "Optional advanced configuration"
+msgstr "Optionale erweiterte Konfiguration"
+
+#: templates/modules/service_builder/create_service.html:359
+#: templates/modules/service_builder/service_detail.html:161
+msgid "Restart Policy"
+msgstr "Neustartrichtlinie"
+
+#: templates/modules/service_builder/create_service.html:367
+msgid "When to restart the service"
+msgstr "Wann der Dienst neu gestartet werden soll"
+
+#: templates/modules/service_builder/create_service.html:380
+msgid "Environment variables (one per line, format: KEY=value)"
+msgstr "Umgebungsvariablen (eine pro Zeile, Format: KEY=Wert)"
+
+#: templates/modules/service_builder/create_service.html:389
+msgid "Validate Configuration"
+msgstr "Konfiguration validieren"
+
+#: templates/modules/service_builder/create_service.html:406
+msgid "Service Creation Status"
+msgstr "Dienst-Erstellungsstatus"
+
+#: templates/modules/service_builder/create_service.html:415
+msgid "Creating your service, please wait..."
+msgstr "Dienst wird erstellt, bitte warten..."
+
+#: templates/modules/service_builder/create_service.html:428
+msgid "Configuration Validation"
+msgstr "Konfigurationsvalidierung"
+
+# Service Builder translations
+#: templates/modules/service_builder/index.html:26
+msgid ""
+"Create and manage Linux systemd services with ease. Build, deploy, and "
+"monitor your applications."
+msgstr ""
+"Erstellen und verwalten Sie Linux systemd-Dienste mühelos. Erstellen, "
+"bereitstellen und überwachen Sie Ihre Anwendungen."
+
+#: templates/modules/service_builder/index.html:36
+#: templates/modules/service_builder/templates.html:5
+#, fuzzy
+#| msgid "Use Template"
+msgid "Templates"
+msgstr "Vorlage verwenden"
+
+#: templates/modules/service_builder/index.html:50
+#: templates/modules/service_monitoring/index.html:68
+#: templates/modules/service_monitoring/index.html:175
+msgid "Active Services"
+msgstr "Aktive Dienste"
+
+#: templates/modules/service_builder/index.html:59
+msgid "Available Templates"
+msgstr "Verfügbare Vorlagen"
+
+#: templates/modules/service_builder/index.html:68
+msgid "Recent Operations"
+msgstr "Letzte Operationen"
+
+#: templates/modules/service_builder/index.html:77
+msgid "System Ready"
+msgstr "System bereit"
+
+#: templates/modules/service_builder/index.html:90
+msgid "Recent Services"
+msgstr "Letzte Dienste"
+
+#: templates/modules/service_builder/index.html:121
+msgid "No services created yet"
+msgstr "Noch keine Dienste erstellt"
+
+#: templates/modules/service_builder/index.html:123
+#: templates/modules/service_builder/services.html:113
+msgid "Create Your First Service"
+msgstr "Erstellen Sie Ihren ersten Dienst"
+
+#: templates/modules/service_builder/index.html:135
+msgid "Quick Actions"
+msgstr "Schnellaktionen"
+
+#: templates/modules/service_builder/index.html:146
+msgid "Build a new systemd service"
+msgstr "Einen neuen systemd-Dienst erstellen"
+
+#: templates/modules/service_builder/index.html:154
+msgid "Browse Templates"
+msgstr "Vorlagen durchsuchen"
+
+#: templates/modules/service_builder/index.html:155
+msgid "Use pre-built service templates"
+msgstr "Vorgefertigte Dienstvorlagen verwenden"
+
+#: templates/modules/service_builder/index.html:163
+msgid "Manage Services"
+msgstr "Dienste verwalten"
+
+#: templates/modules/service_builder/index.html:164
+msgid "View and control existing services"
+msgstr "Vorhandene Dienste anzeigen und steuern"
+
+#: templates/modules/service_builder/index.html:172
+#: templates/modules/service_monitoring/index.html:199
+msgid "View Logs"
+msgstr "Protokolle anzeigen"
+
+#: templates/modules/service_builder/index.html:173
+msgid "Check service operation logs"
+msgstr "Dienstbetriebsprotokolle prüfen"
+
+#: templates/modules/service_builder/index.html:208
+msgid "No templates available"
+msgstr "Keine Vorlagen verfügbar"
+
+#: templates/modules/service_builder/index.html:219
+msgid "Recent Activity"
+msgstr "Letzte Aktivität"
+
+#: templates/modules/service_builder/index.html:254
+msgid "No recent activity"
+msgstr "Keine letzten Aktivitäten"
+
+#: templates/modules/service_builder/logs.html:24
+msgid "View and monitor service operation logs"
+msgstr "Dienstbetriebsprotokolle anzeigen und überwachen"
+
+#: templates/modules/service_builder/logs.html:48
+msgid "Service"
+msgstr "Dienst"
+
+#: templates/modules/service_builder/logs.html:51
+#: templates/modules/system_logs/own_logs.html:45
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:91
+msgid "Message"
+msgstr "Nachricht"
+
+#: templates/modules/service_builder/logs.html:53
+#: templates/pages/settings/settings.html:1087
+msgid "Time"
+msgstr "Zeit"
+
+#: templates/modules/service_builder/logs.html:101
+msgid "No Logs Found"
+msgstr "Keine Protokolle gefunden"
+
+#: templates/modules/service_builder/logs.html:102
+msgid ""
+"No service logs have been recorded yet. Create and manage services to see "
+"logs here."
+msgstr ""
+"Es wurden noch keine Dienstprotokolle aufgezeichnet. Erstellen und verwalten "
+"Sie Dienste, um hier Protokolle zu sehen."
+
+#: templates/modules/service_builder/service_detail.html:31
+msgid "Edit Service"
+msgstr "Dienst bearbeiten"
+
+#: templates/modules/service_builder/service_detail.html:39
+msgid "Back to Services"
+msgstr "Zurück zu Diensten"
+
+#: templates/modules/service_builder/service_detail.html:53
+msgid "Service status is being checked"
+msgstr "Dienststatus wird geprüft"
+
+#: templates/modules/service_builder/service_detail.html:68
+msgid "Configuration"
+msgstr "Konfiguration"
+
+#: templates/modules/service_builder/service_detail.html:76
+msgid "Control"
+msgstr "Steuerung"
+
+#: templates/modules/service_builder/service_detail.html:85
+msgid "Service Information"
+msgstr "Dienstinformationen"
+
+#: templates/modules/service_builder/service_detail.html:91
+#: templates/modules/service_builder/services.html:50
+#: templates/modules/system_information/index.html:299
+#: templates/modules/user_management/index.html:110
+#: templates/modules/user_management/index.html:244
+msgid "Type"
+msgstr "Typ"
+
+#: templates/modules/service_builder/service_detail.html:107
+msgid "Application Details"
+msgstr "Anwendungsdetails"
+
+#: templates/modules/service_builder/service_detail.html:109
+msgid "Path"
+msgstr "Pfad"
+
+#: templates/modules/service_builder/service_detail.html:114
+#: templates/modules/service_builder/service_detail.html:174
+msgid "Interpreter"
+msgstr "Ausführungsprogramm"
+
+#: templates/modules/service_builder/service_detail.html:128
+msgid "Network Configuration"
+msgstr "Netzwerkkonfiguration"
+
+#: templates/modules/service_builder/service_detail.html:134
+#: templates/pages/settings/settings.html:1005
+msgid "Host"
+msgstr ""
+
+#: templates/modules/service_builder/service_detail.html:145
+msgid "Service Configuration"
+msgstr "Dienstkonfiguration"
+
+#: templates/modules/service_builder/service_detail.html:147
+msgid "Basic Settings"
+msgstr "Grundeinstellungen"
+
+#: templates/modules/service_builder/service_detail.html:219
+msgid "Service Control"
+msgstr "Dienststeuerung"
+
+#: templates/modules/service_builder/service_detail.html:223
+msgid "Start Service"
+msgstr "Dienst starten"
+
+#: templates/modules/service_builder/service_detail.html:227
+msgid "Stop Service"
+msgstr "Dienst stoppen"
+
+#: templates/modules/service_builder/service_detail.html:231
+msgid "Restart Service"
+msgstr "Dienst neu starten"
+
+#: templates/modules/service_builder/service_detail.html:235
+msgid "Enable Service"
+msgstr "Dienst aktivieren"
+
+#: templates/modules/service_builder/service_detail.html:239
+msgid "Disable Service"
+msgstr "Dienst deaktivieren"
+
+#: templates/modules/service_builder/service_detail.html:244
+msgid "Danger Zone"
+msgstr "Gefahrenzone"
+
+#: templates/modules/service_builder/service_detail.html:245
+msgid "These actions are permanent and cannot be undone."
+msgstr ""
+"Diese Aktionen sind dauerhaft und können nicht rückgängig gemacht werden."
+
+#: templates/modules/service_builder/service_detail.html:248
+msgid "Delete Service"
+msgstr "Dienst löschen"
+
+#: templates/modules/service_builder/services.html:25
+msgid "Manage and monitor your Linux systemd services"
+msgstr "Verwalten und überwachen Sie Ihre Linux systemd-Dienste"
+
+#: templates/modules/service_builder/services.html:109
+msgid "No Services Found"
+msgstr "Keine Dienste gefunden"
+
+#: templates/modules/service_builder/services.html:110
+msgid ""
+"You haven't created any services yet. Create your first service to get "
+"started."
+msgstr ""
+"Sie haben noch keine Dienste erstellt. Erstellen Sie Ihren ersten Dienst, um "
+"zu beginnen."
+
+#: templates/modules/service_builder/templates.html:24
+msgid "Pre-built service templates for common applications"
+msgstr "Vorgefertigte Dienstvorlagen für gängige Anwendungen"
+
+#: templates/modules/service_builder/templates.html:30
+#: templates/modules/service_builder/templates.html:84
+msgid "Create Custom Service"
+msgstr "Benutzerdefinierten Dienst erstellen"
+
+#: templates/modules/service_builder/templates.html:66
+#: templates/modules/service_builder/templates.html:106
+msgid "Use Template"
+msgstr "Vorlage verwenden"
+
+#: templates/modules/service_builder/templates.html:80
+msgid "No Templates Available"
+msgstr "Keine Vorlagen verfügbar"
+
+#: templates/modules/service_builder/templates.html:81
+msgid ""
+"No service templates have been created yet. Create a custom service to get "
+"started."
+msgstr ""
+"Es wurden noch keine Dienstvorlagen erstellt. Erstellen Sie einen "
+"benutzerdefinierten Dienst, um zu beginnen."
+
+#: templates/modules/service_builder/templates.html:96
+msgid "Template Details"
+msgstr "Vorlagendetails"
+
+# Service Monitoring Translations
+#: templates/modules/service_monitoring/index.html:7
+#: templates/modules/service_monitoring/index.html:38
+#: templates/modules/service_monitoring/index.html:170
+#: templates/pages/dashboard.html:199
+#: templates/pages/settings/settings.html:765
+msgid "Service Monitoring"
+msgstr "Dienstüberwachung"
+
+#: templates/modules/service_monitoring/index.html:39
+#: templates/modules/service_monitoring/index.html:172
+msgid "Live Mode Status"
+msgstr "Live-Modus-Status"
+
+#: templates/modules/service_monitoring/index.html:41
+#: templates/modules/service_monitoring/index.html:171
+msgid "Monitor and manage system services"
+msgstr "Systemdienste überwachen und verwalten"
+
+#: templates/modules/service_monitoring/index.html:59
+#: templates/modules/service_monitoring/index.html:174
+msgid "Total Services"
+msgstr "Gesamte Dienste"
+
+#: templates/modules/service_monitoring/index.html:77
+#: templates/modules/service_monitoring/index.html:176
+msgid "Inactive Services"
+msgstr "Inaktive Dienste"
+
+#: templates/modules/service_monitoring/index.html:86
+#: templates/modules/service_monitoring/index.html:113
+#: templates/modules/service_monitoring/index.html:177
+#: templates/modules/system_logs/own_logs.html:51
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:45
+msgid "Category"
+msgstr "Kategorie"
+
+#: templates/modules/service_monitoring/index.html:88
+#: templates/modules/service_monitoring/index.html:178
+msgid "All Categories"
+msgstr "Alle Kategorien"
+
+#: templates/modules/service_monitoring/index.html:94
+#: templates/modules/service_monitoring/index.html:180
+#: templates/pages/security/alert-management.html:118
+msgid "All Status"
+msgstr "Alle Status"
+
+#: templates/modules/service_monitoring/index.html:95
+#: templates/modules/service_monitoring/index.html:181
+#: templates/modules/service_monitoring/index.html:216
+#: templates/modules/user_management/index.html:136
+#: templates/modules/user_management/index.html:222
+#: templates/pages/settings/settings.html:27
+msgid "Active"
+msgstr "Aktiv"
+
+#: templates/modules/service_monitoring/index.html:96
+#: templates/modules/service_monitoring/index.html:182
+#: templates/modules/user_management/index.html:136
+#: templates/modules/user_management/index.html:223
+#: templates/pages/settings/settings.html:28
+msgid "Inactive"
+msgstr "Inaktiv"
+
+#: templates/modules/service_monitoring/index.html:101
+#: templates/modules/service_monitoring/index.html:184
+msgid "Search services..."
+msgstr "Dienste suchen..."
+
+#: templates/modules/service_monitoring/index.html:122
+#: templates/modules/service_monitoring/index.html:188
+msgid "Loading services..."
+msgstr "Dienste werden geladen..."
+
+#: templates/modules/service_monitoring/index.html:191
+msgid "No services found"
+msgstr "Keine Dienste gefunden"
+
+#: templates/modules/service_monitoring/index.html:192
+msgid "Error loading services"
+msgstr "Fehler beim Laden der Dienste"
+
+#: templates/modules/service_monitoring/index.html:202
+#: templates/pages/settings/settings.html:35
+msgid "Success"
+msgstr "Erfolg"
+
+#: templates/modules/service_monitoring/index.html:205
+#, python-brace-format
+msgid "Are you sure you want to {action} this service?"
+msgstr "Sind Sie sicher, dass Sie diesen Dienst {action} möchten?"
+
+#: templates/modules/service_monitoring/index.html:206
+#, fuzzy
+#| msgid "Restart"
+msgid "start"
+msgstr "Neustarten"
+
+#: templates/modules/service_monitoring/index.html:209
+#, fuzzy
+#| msgid "Enable"
+msgid "enable"
+msgstr "Aktivieren"
+
+#: templates/modules/service_monitoring/index.html:210
+#, fuzzy
+#| msgid "Disable"
+msgid "disable"
+msgstr "Deaktivieren"
+
+#: templates/modules/service_monitoring/index.html:211
+msgid "Try adjusting your filters or search terms"
+msgstr "Versuchen Sie, Ihre Filter oder Suchbegriffe anzupassen"
+
+#: templates/modules/service_monitoring/index.html:212
+#: templates/modules/system_logs/own_logs.html:56
+msgid "Other"
+msgstr "Andere"
+
+#: templates/modules/service_monitoring/index.html:219
+msgid "Uptime"
+msgstr "Betriebszeit"
+
+#: templates/modules/service_monitoring/index.html:224
+#: templates/modules/system_information/index.html:421
+msgid "Live Mode: Active"
+msgstr "Live-Modus: Aktiv"
+
+#: templates/modules/service_monitoring/index.html:225
+#: templates/modules/system_information/index.html:422
+msgid "Live Mode: Inactive"
+msgstr "Live-Modus: Inaktiv"
+
+#: templates/modules/service_monitoring/index.html:227
+msgid "System Service"
+msgstr "Systemdienst"
+
+# System Information additional translations
+#: templates/modules/system_information/index.html:44
+msgid "Monitor system hardware, performance metrics and network information"
+msgstr "Systemhardware, Leistungsmetriken und Netzwerkinformationen überwachen"
+
+#: templates/modules/system_information/index.html:85
+#: templates/modules/system_information/index.html:434
+#, fuzzy
+#| msgid "Available"
+msgid "available"
+msgstr "Verfügbar"
+
+#: templates/modules/system_information/index.html:93
+#: templates/modules/system_information/index.html:146
+msgid "Disk Usage"
+msgstr "Festplattennutzung"
+
+#: templates/modules/system_information/index.html:97
+msgid "free"
+msgstr ""
+
+#: templates/modules/system_information/index.html:108
+#: templates/modules/system_information/index.html:435
+#, fuzzy
+#| msgid "By Interface"
+msgid "interfaces"
+msgstr "Nach Schnittstelle"
+
+#: templates/modules/system_information/index.html:109
+#: templates/modules/system_information/index.html:436
+#, fuzzy
+#| msgid "Active Connections"
+msgid "Active connections"
+msgstr "Aktive Verbindungen"
+
+#: templates/modules/system_information/index.html:120
+msgid "CPU Performance"
+msgstr "CPU-Leistung"
+
+#: templates/modules/system_information/index.html:178
+#, fuzzy
+#| msgid "Distribution"
+msgid "Distribution Family"
+msgstr "Verteilung"
+
+#: templates/modules/system_information/index.html:190
+#, fuzzy
+#| msgid "Username"
+msgid "Hostname"
+msgstr "Benutzername"
+
+#: templates/modules/system_information/index.html:202
+#: templates/modules/user_management/index.html:78
+#: templates/modules/user_management/index.html:88
+#: templates/modules/user_management/index.html:231
+msgid "System Users"
+msgstr "Systembenutzer"
+
+#: templates/modules/system_information/index.html:211
+#: templates/modules/user_management/index.html:106
+#: templates/modules/user_management/index.html:239
+msgid "UID"
+msgstr "UID"
+
+#: templates/modules/system_information/index.html:212
+#: templates/modules/user_management/create_user_modal.html:62
+#: templates/modules/user_management/index.html:108
+#: templates/modules/user_management/index.html:242
+msgid "Home Directory"
+msgstr "Heimverzeichnis"
+
+#: templates/modules/system_information/index.html:224
+#: templates/modules/system_information/index.html:432
+#: templates/modules/user_management/index.html:167
+#: templates/modules/user_management/index.html:219
+msgid "No users found"
+msgstr "Keine Benutzer gefunden"
+
+#: templates/modules/system_information/index.html:238
+#, fuzzy
+#| msgid "Network Configuration"
+msgid "Network Information"
+msgstr "Netzwerkkonfiguration"
+
+#: templates/modules/system_information/index.html:244
+#, fuzzy
+#| msgid "Network interface to bind to"
+msgid "Network Interfaces"
+msgstr "Netzwerkschnittstelle zum Binden"
+
+#: templates/modules/system_information/index.html:249
+#: templates/modules/system_information/index.html:300
+#, fuzzy
+#| msgid "By Interface"
+msgid "Interface"
+msgstr "Nach Schnittstelle"
+
+#: templates/modules/system_information/index.html:250
+#: templates/modules/user_management/index.html:269
+msgid "IP Address"
+msgstr "IP-Adresse"
+
+#: templates/modules/system_information/index.html:251
+msgid "Netmask"
+msgstr ""
+
+#: templates/modules/system_information/index.html:252
+msgid "Sent"
+msgstr ""
+
+#: templates/modules/system_information/index.html:253
+msgid "Received"
+msgstr ""
+
+#: templates/modules/system_information/index.html:267
+#: templates/modules/system_information/index.html:433
+#, fuzzy
+#| msgid "Network interface to bind to"
+msgid "No network interfaces found"
+msgstr "Netzwerkschnittstelle zum Binden"
+
+#: templates/modules/system_information/index.html:277
+#, fuzzy
+#| msgid "Configuration"
+msgid "DNS Configuration"
+msgstr "Konfiguration"
+
+#: templates/modules/system_information/index.html:280
+msgid "Nameserver"
+msgstr ""
+
+#: templates/modules/system_information/index.html:284
+#, fuzzy
+#| msgid "Searching..."
+msgid "Search Domain"
+msgstr "Suche..."
+
+#: templates/modules/system_information/index.html:293
+#, fuzzy
+#| msgid "Network Links"
+msgid "Network Routes"
+msgstr "Netzwerkverbindungen"
+
+#: templates/modules/system_information/index.html:293
+#: templates/modules/system_information/index.html:437
+msgid "routes"
+msgstr ""
+
+#: templates/modules/system_information/index.html:328
+#, fuzzy
+#| msgid "Service Information"
+msgid "Security Information"
+msgstr "Dienstinformationen"
+
+#: templates/modules/system_information/index.html:338
+#: templates/modules/user_management/index.html:230
+msgid "Active Users"
+msgstr "Aktive Benutzer"
+
+#: templates/modules/system_information/index.html:341
+#: templates/modules/system_information/index.html:378
+#: templates/modules/system_information/index.html:438
+msgid "Live"
+msgstr ""
+
+#: templates/modules/system_information/index.html:364
+#: templates/modules/system_information/index.html:430
+#, fuzzy
+#| msgid "No active ports found"
+msgid "No active users found"
+msgstr "Keine aktiven Ports gefunden"
+
+#: templates/modules/system_information/index.html:401
+#: templates/modules/system_information/index.html:431
+#, fuzzy
+#| msgid "No connections found"
+msgid "No active connections found"
+msgstr "Keine Verbindungen gefunden"
+
+#: templates/modules/system_information/index.html:419
+#, fuzzy
+#| msgid "Searching..."
+msgid "Refreshing..."
+msgstr "Suche..."
+
+#: templates/modules/system_information/index.html:423
+#, fuzzy
+#| msgid "Live Mode: Active"
+msgid "Live Mode: Error"
+msgstr "Live-Modus: Aktiv"
+
+#: templates/modules/system_information/index.html:424
+msgid "Used"
+msgstr ""
+
+#: templates/modules/system_information/index.html:425
+msgid "Free"
+msgstr ""
+
+#: templates/modules/system_information/index.html:428
+#, fuzzy
+#| msgid "Loading sessions..."
+msgid "No session"
+msgstr "Sitzungen werden geladen..."
+
+#: templates/modules/system_information/index.html:429
+#, fuzzy
+#| msgid "Port Details"
+msgid "No details"
+msgstr "Portdetails"
+
+#: templates/modules/system_logs/analysis_modal.html:9
+msgid "Log Analysis"
+msgstr "Protokollanalyse"
+
+#: templates/modules/system_logs/analysis_modal.html:18
+msgid "Critical Errors"
+msgstr "Kritische Fehler"
+
+#: templates/modules/system_logs/analysis_modal.html:26
+#: templates/modules/system_logs/detailed_analysis_modal.html:22
+#: templates/modules/system_logs/index.html:81
+msgid "Warnings"
+msgstr "Warnungen"
+
+#: templates/modules/system_logs/analysis_modal.html:34
+#: templates/modules/system_logs/index.html:82
+#: templates/modules/system_logs/own_logs.html:54
+#: templates/pages/security/activity-history.html:86
+#: templates/pages/security/activity-history.html:137
+#: templates/pages/security/alert-management.html:88
+#: templates/pages/security/alert-management.html:111
+#: templates/pages/security/alert-management.html:214
+#: templates/pages/settings/settings.html:36
+msgid "Info"
+msgstr "Information"
+
+#: templates/modules/system_logs/analysis_modal.html:42
+#: templates/modules/system_logs/index.html:83
+#: templates/modules/system_logs/own_logs.html:55
+msgid "Debug"
+msgstr "Debug"
+
+#: templates/modules/system_logs/analysis_modal.html:51
+msgid "Log Level Distribution"
+msgstr "Protokollstufenverteilung"
+
+#: templates/modules/system_logs/analysis_modal.html:55
+msgid "Log Distribution Over Time"
+msgstr "Protokollverteilung über die Zeit"
+
+#: templates/modules/system_logs/analysis_modal.html:59
+#: templates/modules/system_logs/detailed_analysis_modal.html:56
+msgid "Error Categories"
+msgstr "Fehlerkategorien"
+
+#: templates/modules/system_logs/analysis_modal.html:63
+msgid "Hourly Log Distribution"
+msgstr "Stündliche Protokollverteilung"
+
+#: templates/modules/system_logs/analysis_modal.html:67
+msgid "Service-Based Error Distribution"
+msgstr "Dienstbasierte Fehlerverteilung"
+
+#: templates/modules/system_logs/analysis_modal.html:71
+msgid "Common Errors"
+msgstr "Häufige Fehler"
+
+#: templates/modules/system_logs/analysis_modal.html:72
+#, fuzzy
+#| msgid "No content found."
+msgid "No common error patterns found."
+msgstr "Kein Inhalt gefunden."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:10
+msgid "Detailed Log Analysis"
+msgstr "Detaillierte Protokollanalyse"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:19
+#: templates/modules/system_logs/index.html:80
+#, fuzzy
+#| msgid "Error"
+msgid "Errors"
+msgstr "Fehler"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:34
+msgid "Database"
+msgstr ""
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:48
+#, fuzzy
+#| msgid "Port Details"
+msgid "Error Details"
+msgstr "Portdetails"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:51
+#, fuzzy
+#| msgid "Loading user details..."
+msgid "Loading error details..."
+msgstr "Benutzerdetails werden geladen..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:68
+#, fuzzy
+#| msgid "Image Details"
+msgid "Warning Details"
+msgstr "Image-Details"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:71
+#, fuzzy
+#| msgid "Loading user details..."
+msgid "Loading warning details..."
+msgstr "Benutzerdetails werden geladen..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:76
+#, fuzzy
+#| msgid "Connection Statistics"
+msgid "Warning Statistics"
+msgstr "Verbindungsstatistiken"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:88
+#, fuzzy
+#| msgid "Security Event"
+msgid "Security Events"
+msgstr "Sicherheitsereignis"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:91
+#, fuzzy
+#| msgid "Loading services..."
+msgid "Loading security events..."
+msgstr "Dienste werden geladen..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:96
+#, fuzzy
+#| msgid "Security Notice"
+msgid "Security Categories"
+msgstr "Sicherheitshinweis"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:108
+#, fuzzy
+#| msgid "System Information"
+msgid "Debug Information"
+msgstr "Systeminformationen"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:111
+#, fuzzy
+#| msgid "Loading categories..."
+msgid "Loading debug information..."
+msgstr "Kategorien werden geladen..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:116
+#, fuzzy
+#| msgid "System Statistics"
+msgid "Debug Statistics"
+msgstr "Systemstatistiken"
+
+# Logs
+#: templates/modules/system_logs/detailed_analysis_modal.html:128
+#, fuzzy
+#| msgid "System Logs"
+msgid "System Errors"
+msgstr "Systemprotokolle"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:131
+#, fuzzy
+#| msgid "Loading timezones..."
+msgid "Loading system errors..."
+msgstr "Zeitzonen werden geladen..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:136
+#: templates/modules/user_management/index.html:185
+msgid "System Statistics"
+msgstr "Systemstatistiken"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:148
+#, fuzzy
+#| msgid "Network Links"
+msgid "Network Errors"
+msgstr "Netzwerkverbindungen"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:151
+#, fuzzy
+#| msgid "Loading categories..."
+msgid "Loading network errors..."
+msgstr "Kategorien werden geladen..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:156
+#, fuzzy
+#| msgid "Connection Statistics"
+msgid "Network Statistics"
+msgstr "Verbindungsstatistiken"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:168
+#, fuzzy
+#| msgid "Critical Errors"
+msgid "Database Errors"
+msgstr "Kritische Fehler"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:171
+#, fuzzy
+#| msgid "Loading categories..."
+msgid "Loading database errors..."
+msgstr "Kategorien werden geladen..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:176
+#, fuzzy
+#| msgid "System Statistics"
+msgid "Database Statistics"
+msgstr "Systemstatistiken"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:188
+#, fuzzy
+#| msgid "Service Status:"
+msgid "Service Status"
+msgstr "Dienststatus:"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:191
+#, fuzzy
+#| msgid "Loading services..."
+msgid "Loading service status..."
+msgstr "Dienste werden geladen..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:196
+#, fuzzy
+#| msgid "Service Status:"
+msgid "Service Statistics"
+msgstr "Dienststatus:"
+
+#: templates/modules/system_logs/export_modal.html:9
+msgid "Export Logs"
+msgstr "Protokolle exportieren"
+
+#: templates/modules/system_logs/export_modal.html:17
+msgid "Which logs do you want to export?"
+msgstr "Welche Protokolle möchten Sie exportieren?"
+
+#: templates/modules/system_logs/export_modal.html:22
+msgid "Select All"
+msgstr "Alle auswählen"
+
+#: templates/modules/system_logs/export_modal.html:26
+msgid "Deselect All"
+msgstr "Alle abwählen"
+
+#: templates/modules/system_logs/export_modal.html:41
+msgid "Kernel Logs"
+msgstr "Kernel-Protokolle"
+
+#: templates/modules/system_logs/export_modal.html:48
+msgid "Auth Logs"
+msgstr "Authentifizierungsprotokolle"
+
+#: templates/modules/system_logs/export_modal.html:55
+msgid "Daemon Logs"
+msgstr "Daemon-Protokolle"
+
+#: templates/modules/system_logs/export_modal.html:62
+msgid "Cron Logs"
+msgstr "Cron-Protokolle"
+
+#: templates/modules/system_logs/export_modal.html:69
+msgid "Boot Logs"
+msgstr "Boot-Protokolle"
+
+#: templates/modules/system_logs/export_modal.html:79
+msgid "Export Format"
+msgstr "Exportformat"
+
+#: templates/modules/system_logs/export_modal.html:101
+msgid "Log Level Filter"
+msgstr "Protokollstufenfilter"
+
+#: templates/modules/system_logs/export_modal.html:104
+#: templates/modules/system_logs/index.html:79
+#, fuzzy
+#| msgid "Level"
+msgid "All Levels"
+msgstr "Ebene"
+
+#: templates/modules/system_logs/export_modal.html:105
+#, fuzzy
+#| msgid "Error"
+msgid "Errors Only"
+msgstr "Fehler"
+
+#: templates/modules/system_logs/export_modal.html:106
+#, fuzzy
+#| msgid "Warnings"
+msgid "Warnings Only"
+msgstr "Warnungen"
+
+#: templates/modules/system_logs/export_modal.html:107
+#, fuzzy
+#| msgid "Info"
+msgid "Info Only"
+msgstr "Information"
+
+#: templates/modules/system_logs/export_modal.html:108
+#, fuzzy
+#| msgid "Debug"
+msgid "Debug Only"
+msgstr "Debug"
+
+#: templates/modules/system_logs/export_modal.html:115
+#, fuzzy
+#| msgid "Export Logs"
+msgid "Export Selected Logs"
+msgstr "Protokolle exportieren"
+
+# System Logs missing translations
+#: templates/modules/system_logs/index.html:56
+msgid "Real-time monitoring of system activities and events"
+msgstr "Echtzeitüberwachung von Systemaktivitäten und -ereignissen"
+
+# Application Logs Analysis modal translations
+#: templates/modules/system_logs/index.html:62
+#: templates/modules/system_logs/own_logs.html:34
+#: templates/modules/system_logs/own_logs.html:80
+msgid "Analyze"
+msgstr "Analysieren"
+
+#: templates/modules/system_logs/index.html:63
+#, fuzzy
+#| msgid "Detailed Log Analysis"
+msgid "Detailed Analysis"
+msgstr "Detaillierte Protokollanalyse"
+
+#: templates/modules/system_logs/index.html:64
+msgid "App Logs"
+msgstr "App-Protokolle"
+
+#: templates/modules/system_logs/index.html:75
+#, fuzzy
+#| msgid "Search alerts..."
+msgid "Search logs..."
+msgstr "Warnungen suchen..."
+
+#: templates/modules/system_logs/index.html:92
+#, fuzzy
+#| msgid "Log Out"
+msgid "Log Output"
+msgstr "Abmelden"
+
+#: templates/modules/system_logs/index.html:94
+#, fuzzy
+#| msgid "Clear Cache"
+msgid "Clear"
+msgstr "Cache leeren"
+
+#: templates/modules/system_logs/index.html:95
+msgid "Auto scroll"
+msgstr ""
+
+#: templates/modules/system_logs/index.html:101
+#, fuzzy
+#| msgid "Last updated"
+msgid "Last update"
+msgstr "Zuletzt aktualisiert"
+
+#: templates/modules/system_logs/index.html:102
+#: templates/modules/system_logs/own_logs.html:33
+msgid "entries"
+msgstr "Einträge"
+
+#: templates/modules/system_logs/own_logs.html:20
+#: templates/modules/system_logs/own_logs.html:97
+msgid "Select File..."
+msgstr "Datei auswählen..."
+
+#: templates/modules/system_logs/own_logs.html:21
+msgid "Please select a file to download"
+msgstr "Bitte wählen Sie eine Datei zum Herunterladen aus"
+
+#: templates/modules/system_logs/own_logs.html:22
+msgid "No files available for this module"
+msgstr "Keine Dateien für dieses Modul verfügbar"
+
+#: templates/modules/system_logs/own_logs.html:23
+msgid "Select a File"
+msgstr "Datei auswählen"
+
+#: templates/modules/system_logs/own_logs.html:24
+msgid "Please select a log file to view."
+msgstr "Bitte wählen Sie eine Protokolldatei zum Anzeigen aus."
+
+#: templates/modules/system_logs/own_logs.html:25
+msgid "No content found."
+msgstr "Kein Inhalt gefunden."
+
+#: templates/modules/system_logs/own_logs.html:26
+msgid "lines • Page"
+msgstr "Zeilen • Seite"
+
+#: templates/modules/system_logs/own_logs.html:27
+msgid "Previous"
+msgstr "Vorherige"
+
+#: templates/modules/system_logs/own_logs.html:28
+msgid "Next"
+msgstr "Nächste"
+
+#: templates/modules/system_logs/own_logs.html:29
+msgid "No categories found."
+msgstr "Keine Kategorien gefunden."
+
+#: templates/modules/system_logs/own_logs.html:30
+msgid "Error occurred while fetching application logs."
+msgstr "Fehler beim Abrufen der Anwendungsprotokolle."
+
+#: templates/modules/system_logs/own_logs.html:32
+msgid "log entries"
+msgstr "Protokolleinträge"
+
+#: templates/modules/system_logs/own_logs.html:35
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:6
+msgid "Application Logs Analysis"
+msgstr "Analyse der Anwendungsprotokolle"
+
+#: templates/modules/system_logs/own_logs.html:36
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:12
+msgid "Collecting and analyzing logs..."
+msgstr "Protokolle werden gesammelt und analysiert..."
+
+#: templates/modules/system_logs/own_logs.html:38
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:23
+msgid "Total Lines"
+msgstr "Gesamtzeilen"
+
+#: templates/modules/system_logs/own_logs.html:39
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:24
+#, fuzzy
+#| msgid "All Categories"
+msgid "Categories"
+msgstr "Alle Kategorien"
+
+#: templates/modules/system_logs/own_logs.html:41
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:58
+msgid "Levels (Pie)"
+msgstr "Ebenen (Torte)"
+
+#: templates/modules/system_logs/own_logs.html:42
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:67
+msgid "By Category (Bar)"
+msgstr "Nach Kategorie (Balken)"
+
+#: templates/modules/system_logs/own_logs.html:43
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:76
+msgid "Timeline (Last 24h)"
+msgstr "Zeitverlauf (Letzte 24 Std.)"
+
+#: templates/modules/system_logs/own_logs.html:44
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:85
+msgid "Top Error Messages"
+msgstr "Häufigste Fehlermeldungen"
+
+#: templates/modules/system_logs/own_logs.html:46
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:34
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:92
+msgid "Count"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:48
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:29
+msgid "Levels Summary"
+msgstr "Ebenenübersicht"
+
+#: templates/modules/system_logs/own_logs.html:49
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:41
+msgid "By Category Summary"
+msgstr "Übersicht nach Kategorie"
+
+#: templates/modules/system_logs/own_logs.html:50
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:33
+msgid "Level"
+msgstr "Ebene"
+
+#: templates/modules/system_logs/own_logs.html:57
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:46
+msgid "Lines"
+msgstr "Zeilen"
+
+#: templates/modules/system_logs/own_logs.html:58
+msgid "No errors found"
+msgstr "Keine Fehler gefunden"
+
+#: templates/modules/system_logs/own_logs.html:76
+msgid "Daily logs generated by the app"
+msgstr "Tägliche Protokolle, die von der App generiert werden"
+
+#: templates/modules/system_logs/own_logs.html:89
+msgid "Module"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:91
+#, fuzzy
+#| msgid "Select File..."
+msgid "Select Module..."
+msgstr "Datei auswählen..."
+
+#: templates/modules/system_logs/own_logs.html:95
+#, fuzzy
+#| msgid "Files"
+msgid "File"
+msgstr "Dateien"
+
+#: templates/modules/system_logs/own_logs.html:102
+msgid "Go to latest logs"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:103
+msgid "Latest"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:105
+msgid "Download all logs in category"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:106
+#, fuzzy
+#| msgid "Download Codes"
+msgid "Download"
+msgstr "Codes herunterladen"
+
+#: templates/modules/system_logs/own_logs.html:117
+#: templates/modules/user_management/index.html:41
+#: templates/modules/user_management/index.html:214
+msgid "Ready"
+msgstr "Bereit"
+
+#: templates/modules/system_logs/own_logs.html:123
+#, fuzzy
+#| msgid "Select a File"
+msgid "Select a Module"
+msgstr "Datei auswählen"
+
+#: templates/modules/system_logs/own_logs.html:124
+msgid "Choose a module from the dropdown to view its logs"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:130
+msgid "Select a module to view logs"
+msgstr "Wählen Sie ein Modul aus, um Protokolle anzuzeigen"
+
+#: templates/modules/user_management/create_user_modal.html:9
+msgid "Create New User"
+msgstr "Neuen Benutzer erstellen"
+
+#: templates/modules/user_management/create_user_modal.html:32
+msgid "Enter username"
+msgstr "Benutzername eingeben"
+
+#: templates/modules/user_management/create_user_modal.html:35
+#: templates/modules/user_management/index.html:281
+msgid "Username can only contain letters, numbers, underscores, and hyphens"
+msgstr ""
+"Benutzername darf nur Buchstaben, Zahlen, Unterstriche und Bindestriche "
+"enthalten"
+
+#: templates/modules/user_management/create_user_modal.html:36
+msgid ""
+"Username must be unique and contain only letters, numbers, underscores, and "
+"hyphens"
+msgstr ""
+"Benutzername muss eindeutig sein und darf nur Buchstaben, Zahlen, "
+"Unterstriche und Bindestriche enthalten"
+
+#: templates/modules/user_management/create_user_modal.html:41
+#: templates/pages/settings/settings.html:1038
+msgid "Password"
+msgstr "Passwort"
+
+#: templates/modules/user_management/create_user_modal.html:47
+msgid "Enter password"
+msgstr "Passwort eingeben"
+
+#: templates/modules/user_management/create_user_modal.html:49
+msgid "Password will be set using chpasswd command"
+msgstr "Passwort wird mit dem chpasswd-Befehl gesetzt"
+
+#: templates/modules/user_management/create_user_modal.html:57
+msgid "Advanced Options"
+msgstr "Erweiterte Optionen"
+
+#: templates/modules/user_management/create_user_modal.html:69
+msgid "Leave empty to use default /home/username"
+msgstr "Leer lassen, um das Standardverzeichnis /home/username zu verwenden"
+
+#: templates/modules/user_management/create_user_modal.html:74
+msgid "Root Directory"
+msgstr "Root-Verzeichnis"
+
+#: templates/modules/user_management/create_user_modal.html:81
+msgid "Different mount point for root directory (optional)"
+msgstr "Anderer Einhängepunkt für Root-Verzeichnis (optional)"
+
+#: templates/modules/user_management/create_user_modal.html:89
+msgid "Grant Sudo Privileges"
+msgstr "Sudo-Berechtigungen gewähren"
+
+#: templates/modules/user_management/create_user_modal.html:92
+msgid "Give this user administrative privileges (sudo access)"
+msgstr "Diesem Benutzer administrative Berechtigungen gewähren (sudo-Zugriff)"
+
+#: templates/modules/user_management/create_user_modal.html:104
+#: templates/modules/user_management/index.html:48
+msgid "Create User"
+msgstr "Benutzer erstellen"
+
+#: templates/modules/user_management/delete_user_modal.html:9
+#: templates/modules/user_management/delete_user_modal.html:50
+#: templates/modules/user_management/index.html:156
+#: templates/modules/user_management/index.html:226
+msgid "Delete User"
+msgstr "Benutzer löschen"
+
+#: templates/modules/user_management/delete_user_modal.html:21
+msgid "Are you sure you want to delete this user?"
+msgstr "Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?"
+
+#: templates/modules/user_management/delete_user_modal.html:23
+msgid "This action will permanently delete the user"
+msgstr "Diese Aktion löscht den Benutzer dauerhaft"
+
+#: templates/modules/user_management/delete_user_modal.html:24
+msgid "and remove their home directory. This action cannot be undone."
+msgstr ""
+"und entfernt dessen Heimverzeichnis. Diese Aktion kann nicht rückgängig "
+"gemacht werden."
+
+#: templates/modules/user_management/delete_user_modal.html:33
+msgid "Home directory will be removed"
+msgstr "Heimverzeichnis wird entfernt"
+
+#: templates/modules/user_management/delete_user_modal.html:37
+msgid "User data will be permanently deleted"
+msgstr "Benutzerdaten werden dauerhaft gelöscht"
+
+# User Management translations
+#: templates/modules/user_management/index.html:43
+msgid "Manage system users, permissions, and monitor user activities"
+msgstr ""
+"Systembenutzer, Berechtigungen verwalten und Benutzeraktivitäten überwachen"
+
+#: templates/modules/user_management/index.html:52
+msgid "Sync Users"
+msgstr "Benutzer synchronisieren"
+
+#: templates/modules/user_management/index.html:84
+msgid "All Users"
+msgstr "Alle Benutzer"
+
+#: templates/modules/user_management/index.html:92
+#: templates/modules/user_management/index.html:232
+msgid "Real Users"
+msgstr "Echte Benutzer"
+
+#: templates/modules/user_management/index.html:96
+msgid "users"
+msgstr "Benutzer"
+
+#: templates/modules/user_management/index.html:107
+#: templates/modules/user_management/index.html:240
+msgid "GID"
+msgstr "GID"
+
+#: templates/modules/user_management/index.html:109
+#: templates/modules/user_management/index.html:243
+msgid "Shell"
+msgstr "Shell"
+
+#: templates/modules/user_management/index.html:112
+#: templates/modules/user_management/index.html:246
+msgid "Last Login"
+msgstr "Letzte Anmeldung"
+
+#: templates/modules/user_management/index.html:131
+#: templates/modules/user_management/index.html:221
+msgid "Real"
+msgstr "Echt"
+
+#: templates/modules/user_management/index.html:143
+#: templates/modules/user_management/index.html:224
+#: templates/pages/settings/settings.html:57
+msgid "Never"
+msgstr "Nie"
+
+#: templates/modules/user_management/index.html:215
+msgid "Syncing users..."
+msgstr "Benutzer werden synchronisiert..."
+
+#: templates/modules/user_management/index.html:216
+msgid "Sync failed"
+msgstr "Synchronisierung fehlgeschlagen"
+
+#: templates/modules/user_management/index.html:217
+msgid "Users synchronized successfully"
+msgstr "Benutzer erfolgreich synchronisiert"
+
+#: templates/modules/user_management/index.html:218
+msgid "Failed to synchronize users"
+msgstr "Fehler beim Synchronisieren der Benutzer"
+
+#: templates/modules/user_management/index.html:228
+msgid "Error loading stats"
+msgstr "Fehler beim Laden der Statistiken"
+
+#: templates/modules/user_management/index.html:229
+msgid "Total Users"
+msgstr "Gesamtbenutzer"
+
+#: templates/modules/user_management/index.html:233
+#: templates/modules/user_management/index.html:267
+#: templates/modules/user_management/user_sessions.html:9
+#: templates/pages/settings/settings.html:469
+msgid "Active Sessions"
+msgstr "Aktive Sitzungen"
+
+#: templates/modules/user_management/index.html:234
+#: templates/modules/user_management/index.html:266
+msgid "Recent Activities"
+msgstr "Letzte Aktivitäten"
+
+#: templates/modules/user_management/index.html:235
+msgid "Loading user details..."
+msgstr "Benutzerdetails werden geladen..."
+
+#: templates/modules/user_management/index.html:236
+msgid "Error loading data"
+msgstr "Fehler beim Laden der Daten"
+
+#: templates/modules/user_management/index.html:241
+msgid "Group"
+msgstr "Gruppe"
+
+#: templates/modules/user_management/index.html:247
+msgid "System User"
+msgstr "Systembenutzer"
+
+#: templates/modules/user_management/index.html:248
+msgid "Real User"
+msgstr "Echter Benutzer"
+
+#: templates/modules/user_management/index.html:249
+msgid "Permissions & Groups"
+msgstr "Berechtigungen & Gruppen"
+
+#: templates/modules/user_management/index.html:250
+msgid "Group Memberships"
+msgstr "Gruppenzugehörigkeiten"
+
+#: templates/modules/user_management/index.html:251
+msgid "Primary"
+msgstr "Primär"
+
+#: templates/modules/user_management/index.html:252
+msgid "Sudo Access"
+msgstr "Sudo-Zugriff"
+
+#: templates/modules/user_management/index.html:253
+msgid "Has sudo privileges"
+msgstr "Hat sudo-Berechtigungen"
+
+#: templates/modules/user_management/index.html:254
+msgid "Allowed Commands"
+msgstr "Erlaubte Befehle"
+
+#: templates/modules/user_management/index.html:255
+msgid "Special Permissions"
+msgstr "Spezielle Berechtigungen"
+
+#: templates/modules/user_management/index.html:256
+msgid "System Permissions"
+msgstr "Systemberechtigungen"
+
+#: templates/modules/user_management/index.html:257
+msgid "Network Permissions"
+msgstr "Netzwerkberechtigungen"
+
+#: templates/modules/user_management/index.html:258
+msgid "Root Access"
+msgstr "Root-Zugriff"
+
+#: templates/modules/user_management/index.html:259
+msgid "System Modification"
+msgstr "Systemmodifikation"
+
+#: templates/modules/user_management/index.html:260
+msgid "Package Installation"
+msgstr "Paketinstallation"
+
+#: templates/modules/user_management/index.html:261
+msgid "Service Management"
+msgstr "Dienstverwaltung"
+
+#: templates/modules/user_management/index.html:262
+msgid "Log Access"
+msgstr "Protokollzugriff"
+
+#: templates/modules/user_management/index.html:263
+msgid "Port Binding"
+msgstr "Port-Bindung"
+
+#: templates/modules/user_management/index.html:264
+msgid "Raw Sockets"
+msgstr "Roh-Sockets"
+
+#: templates/modules/user_management/index.html:265
+msgid "Privileged Ports"
+msgstr "Privilegierte Ports"
+
+#: templates/modules/user_management/index.html:268
+msgid "Session ID"
+msgstr "Sitzungs-ID"
+
+#: templates/modules/user_management/index.html:270
+msgid "Login Time"
+msgstr "Anmeldezeit"
+
+#: templates/modules/user_management/index.html:271
+msgid "Last Activity"
+msgstr "Letzte Aktivität"
+
+#: templates/modules/user_management/index.html:272
+msgid "Deleting..."
+msgstr "Löschen..."
+
+#: templates/modules/user_management/index.html:273
+msgid "User created successfully!"
+msgstr "Benutzer erfolgreich erstellt!"
+
+#: templates/modules/user_management/index.html:274
+msgid "Failed to create user"
+msgstr "Fehler beim Erstellen des Benutzers"
+
+#: templates/modules/user_management/index.html:275
+msgid "Server returned invalid response"
+msgstr "Server gab ungültige Antwort zurück"
+
+#: templates/modules/user_management/index.html:276
+msgid "Server error occurred"
+msgstr "Serverfehler aufgetreten"
+
+#: templates/modules/user_management/index.html:277
+msgid "Error creating user"
+msgstr "Fehler beim Erstellen des Benutzers"
+
+#: templates/modules/user_management/index.html:278
+msgid "Username is required"
+msgstr "Benutzername ist erforderlich"
+
+#: templates/modules/user_management/index.html:279
+msgid "Password is required"
+msgstr "Passwort ist erforderlich"
+
+#: templates/modules/user_management/index.html:280
+msgid "Username must be at least 2 characters long"
+msgstr "Benutzername muss mindestens 2 Zeichen lang sein"
+
+#: templates/modules/user_management/index.html:282
+msgid "Password must be at least 6 characters long"
+msgstr "Passwort muss mindestens 6 Zeichen lang sein"
+
+#: templates/modules/user_management/index.html:283
+msgid "User deleted successfully"
+msgstr "Benutzer erfolgreich gelöscht"
+
+#: templates/modules/user_management/index.html:284
+msgid "Failed to delete user"
+msgstr "Fehler beim Löschen des Benutzers"
+
+#: templates/modules/user_management/index.html:285
+msgid "An unexpected error occurred"
+msgstr "Ein unerwarteter Fehler ist aufgetreten"
+
+#: templates/modules/user_management/index.html:286
+msgid "Cannot delete root user"
+msgstr "Root-Benutzer kann nicht gelöscht werden"
+
+#: templates/modules/user_management/index.html:287
+msgid "User does not exist"
+msgstr "Benutzer existiert nicht"
+
+#: templates/modules/user_management/user_activities.html:9
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "User Activities"
+msgstr "Letzte Aktivitäten"
+
+#: templates/modules/user_management/user_activities.html:18
+#: templates/pages/security/activity-history.html:96
+msgid "Loading activities..."
+msgstr "Aktivitäten werden geladen..."
+
+#: templates/modules/user_management/user_details_modal.html:8
+msgid "User Details"
+msgstr "Benutzerdetails"
+
+#: templates/modules/user_management/user_sessions.html:18
+msgid "Loading sessions..."
+msgstr "Sitzungen werden geladen..."
+
+# Dashboard
+#: templates/pages/dashboard.html:7
+msgid "Command Center"
+msgstr "Kommandozentrale"
+
+# Dashboard JavaScript translation keys
+#: templates/pages/dashboard.html:24
+msgid "system_status_online"
+msgstr "SYSTEM-STATUS: ONLINE"
+
+#: templates/pages/dashboard.html:25
+msgid "system_status_warning"
+msgstr "SYSTEM-STATUS: WARNUNG"
+
+#: templates/pages/dashboard.html:26
+msgid "system_status_offline"
+msgstr "SYSTEM-STATUS: OFFLINE"
+
+#: templates/pages/dashboard.html:27
+msgid "system_status_checking"
+msgstr "SYSTEM-STATUS: PRÜFE..."
+
+#: templates/pages/dashboard.html:28
+msgid "last_check"
+msgstr "Letzte Prüfung: "
+
+#: templates/pages/dashboard.html:29
+msgid "failed_to_load_system_metrics"
+msgstr "Fehler beim Laden der Systemmetriken"
+
+#: templates/pages/dashboard.html:30
+msgid "system_metrics_unavailable"
+msgstr "Systemmetriken nicht verfügbar"
+
+#: templates/pages/dashboard.html:31
+msgid "no_ports_in_use"
+msgstr "Keine Ports in Verwendung"
+
+#: templates/pages/dashboard.html:32
+msgid "user_logged_in"
+msgstr "Benutzer angemeldet"
+
+#: templates/pages/dashboard.html:33
+msgid "system_monitoring_started"
+msgstr "Systemüberwachung gestartet"
+
+#: templates/pages/dashboard.html:34
+msgid "just_now"
+msgstr "Gerade eben"
+
+#: templates/pages/dashboard.html:35
+msgid "minutes_ago"
+msgstr "m zuvor"
+
+#: templates/pages/dashboard.html:36
+msgid "hours_ago"
+msgstr "h zuvor"
+
+#: templates/pages/dashboard.html:37
+msgid "running"
+msgstr "Läuft"
+
+#: templates/pages/dashboard.html:38
+msgid "stopped"
+msgstr "Gestoppt"
+
+#: templates/pages/dashboard.html:39
+msgid "exited"
+msgstr "Beendet"
+
+#: templates/pages/dashboard.html:40
+#, fuzzy
+#| msgid "Unknown"
+msgid "unknown"
+msgstr "Unbekannt"
+
+#: templates/pages/dashboard.html:56
+msgid "SYSTEM STATUS: CHECKING..."
+msgstr "SYSTEM-STATUS: PRÜFE..."
+
+#: templates/pages/dashboard.html:60
+msgid "Last Check: --"
+msgstr "Letzte Prüfung: --"
+
+#: templates/pages/dashboard.html:67
+msgid "CPU:"
+msgstr "CPU:"
+
+#: templates/pages/dashboard.html:74
+msgid "RAM:"
+msgstr "RAM:"
+
+#: templates/pages/dashboard.html:81
+msgid "Disk:"
+msgstr "Festplatte:"
+
+#: templates/pages/dashboard.html:88
+msgid "Network:"
+msgstr "Netzwerk:"
+
+#: templates/pages/dashboard.html:95
+msgid "Temp:"
+msgstr "Temp.:"
+
+#: templates/pages/dashboard.html:99 templates/pages/dashboard.html:263
+msgid "Uptime:"
+msgstr "Laufzeit:"
+
+#: templates/pages/dashboard.html:111
+msgid "QUICK ACTIONS"
+msgstr "SCHNELLAKTIONEN"
+
+#: templates/pages/dashboard.html:120
+msgid "System Monitor"
+msgstr "Systemüberwachung"
+
+#: templates/pages/dashboard.html:144
+msgid "Log Viewer"
+msgstr "Protokollanzeige"
+
+#: templates/pages/dashboard.html:164
+msgid "ALERT CENTER"
+msgstr "WARNUNGSZENTRALE"
+
+#: templates/pages/dashboard.html:165
+msgid "View All Alerts"
+msgstr "Alle Warnungen anzeigen"
+
+#: templates/pages/dashboard.html:172
+#: templates/pages/security/alert-management.html:145
+#: templates/pages/security/alert-management.html:205
+#, fuzzy
+#| msgid "Loading rules..."
+msgid "Loading alerts..."
+msgstr "Warnungen werden geladen..."
+
+#: templates/pages/dashboard.html:173
+msgid "Please wait"
+msgstr "Bitte warten"
+
+#: templates/pages/dashboard.html:181
+msgid "LIVE CONTROL"
+msgstr "LIVE-STEUERUNG"
+
+#: templates/pages/dashboard.html:210
+msgid "DOCKER CONTAINERS"
+msgstr "DOCKER-CONTAINER"
+
+#: templates/pages/dashboard.html:215
+msgid "Running:"
+msgstr "Läuft:"
+
+#: templates/pages/dashboard.html:219
+msgid "Stopped:"
+msgstr "Gestoppt:"
+
+#: templates/pages/dashboard.html:223
+msgid "Total:"
+msgstr "Gesamt:"
+
+#: templates/pages/dashboard.html:233
+msgid "MOST USED PORTS"
+msgstr "MEISTGENUTZTE PORTS"
+
+#: templates/pages/dashboard.html:247
+msgid "PERFORMANCE METRICS"
+msgstr "LEISTUNGSKENNZAHLEN"
+
+#: templates/pages/dashboard.html:251
+msgid "Response Time:"
+msgstr "Antwortzeit:"
+
+#: templates/pages/dashboard.html:255
+msgid "Error Rate:"
+msgstr "Fehlerrate:"
+
+#: templates/pages/dashboard.html:259
+msgid "Throughput:"
+msgstr "Durchsatz:"
+
+#: templates/pages/security/activity-history.html:7
+#: templates/pages/security/activity-history.html:34
+#: templates/pages/settings/settings.html:442
+msgid "Account Activity History"
+msgstr "Konto-Aktivitätsverlauf"
+
+#: templates/pages/security/activity-history.html:36
+msgid "View all activities that occurred on your account"
+msgstr "Alle Aktivitäten auf Ihrem Konto anzeigen"
+
+#: templates/pages/security/activity-history.html:49
+msgid "Activity Type"
+msgstr "Aktivitätstyp"
+
+#: templates/pages/security/activity-history.html:52
+msgid "Login"
+msgstr "Anmeldung"
+
+#: templates/pages/security/activity-history.html:53
+msgid "Logout"
+msgstr "Abmeldung"
+
+#: templates/pages/security/activity-history.html:54
+msgid "Password Change"
+msgstr "Passwortänderung"
+
+#: templates/pages/security/activity-history.html:55
+msgid "2FA Enable"
+msgstr "2FA aktiviert"
+
+#: templates/pages/security/activity-history.html:56
+msgid "2FA Disable"
+msgstr "2FA deaktiviert"
+
+#: templates/pages/security/activity-history.html:57
+msgid "2FA Verify"
+msgstr "2FA-Verifizierung"
+
+#: templates/pages/security/activity-history.html:58
+msgid "Profile Update"
+msgstr "Profilaktualisierung"
+
+#: templates/pages/security/activity-history.html:59
+msgid "Profile Image Upload"
+msgstr "Profilbild hochgeladen"
+
+#: templates/pages/security/activity-history.html:60
+msgid "Profile Image Remove"
+msgstr "Profilbild entfernt"
+
+#: templates/pages/security/activity-history.html:61
+msgid "Email Change"
+msgstr "E-Mail-Änderung"
+
+#: templates/pages/security/activity-history.html:62
+msgid "Name Change"
+msgstr "Namensänderung"
+
+#: templates/pages/security/activity-history.html:63
+msgid "Language Change"
+msgstr "Sprachänderung"
+
+#: templates/pages/security/activity-history.html:64
+msgid "Timezone Change"
+msgstr "Zeitzonenänderung"
+
+#: templates/pages/security/activity-history.html:65
+msgid "API Key Regenerate"
+msgstr "API-Schlüssel neu generiert"
+
+#: templates/pages/security/activity-history.html:66
+msgid "Failed Login"
+msgstr "Fehlgeschlagene Anmeldung"
+
+#: templates/pages/security/activity-history.html:67
+msgid "Security Event"
+msgstr "Sicherheitsereignis"
+
+#: templates/pages/security/activity-history.html:71
+#: templates/pages/security/alert-management.html:125
+msgid "Date Range"
+msgstr "Datumsbereich"
+
+#: templates/pages/security/activity-history.html:73
+msgid "Last 7 Days"
+msgstr "Letzte 7 Tage"
+
+#: templates/pages/security/activity-history.html:74
+msgid "Last 30 Days"
+msgstr "Letzte 30 Tage"
+
+#: templates/pages/security/activity-history.html:75
+msgid "Last 3 Months"
+msgstr "Letzte 3 Monate"
+
+#: templates/pages/security/activity-history.html:76
+msgid "Last 1 Year"
+msgstr "Letztes Jahr"
+
+#: templates/pages/security/activity-history.html:83
+#: templates/pages/security/activity-history.html:134
+msgid "Successful"
+msgstr "Erfolgreich"
+
+#: templates/pages/security/activity-history.html:84
+#: templates/pages/security/activity-history.html:135
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+#: templates/pages/security/activity-history.html:102
+msgid "No activity yet"
+msgstr "Noch keine Aktivität"
+
+#: templates/pages/security/activity-history.html:103
+msgid "There are no recorded activities in your account yet."
+msgstr "Es sind noch keine Aktivitäten in Ihrem Konto aufgezeichnet."
+
+#: templates/pages/security/activity-history.html:113
+#: templates/pages/security/alert-management.html:162
+#: templates/pages/security/alert-management.html:208
+msgid "Load More"
+msgstr "Mehr laden"
+
+#: templates/pages/security/activity-history.html:139
+msgid "No activities found with the selected filters"
+msgstr "Keine Aktivitäten mit den gewählten Filtern gefunden"
+
+#: templates/pages/security/activity-history.html:140
+msgid "An error occurred while loading activities"
+msgstr "Fehler beim Laden der Aktivitäten"
+
+#: templates/pages/security/activity-history.html:141
+msgid "Refreshing activity history..."
+msgstr "Aktivitätsverlauf wird aktualisiert..."
+
+#: templates/pages/security/activity-history.html:142
+msgid "Exporting activity history..."
+msgstr "Aktivitätsverlauf wird exportiert..."
+
+#: templates/pages/security/activity-history.html:143
+msgid "Activity history exported successfully"
+msgstr "Aktivitätsverlauf erfolgreich exportiert"
+
+#: templates/pages/security/activity-history.html:144
+msgid "An error occurred during export"
+msgstr "Fehler beim Exportieren"
+
+#: templates/pages/security/activity-history.html:145
+msgid "Page"
+msgstr "Seite"
+
+#: templates/pages/security/activity-history.html:147
+msgid "activities"
+msgstr "Aktivitäten"
+
+#: templates/pages/security/alert-management.html:39
+#: templates/pages/settings/settings.html:456
+msgid "Monitor and manage all system alerts"
+msgstr "Alle Systemwarnungen überwachen und verwalten"
+
+#: templates/pages/security/alert-management.html:97
+#: templates/pages/security/alert-management.html:120
+#: templates/pages/security/alert-management.html:209
+msgid "Resolved"
+msgstr "Gelöst"
+
+#: templates/pages/security/alert-management.html:105
+msgid "Alert Type"
+msgstr "Warnungstyp"
+
+#: templates/pages/security/alert-management.html:107
+msgid "All Types"
+msgstr "Alle Typen"
+
+#: templates/pages/security/alert-management.html:119
+#: templates/pages/security/alert-management.html:210
+msgid "Unresolved"
+msgstr "Ungelöst"
+
+#: templates/pages/security/alert-management.html:127
+msgid "Last 7 days"
+msgstr "Letzte 7 Tage"
+
+#: templates/pages/security/alert-management.html:128
+msgid "Last 30 days"
+msgstr "Letzte 30 Tage"
+
+#: templates/pages/security/alert-management.html:129
+msgid "Last 90 days"
+msgstr "Letzte 90 Tage"
+
+#: templates/pages/security/alert-management.html:130
+msgid "Last year"
+msgstr "Letztes Jahr"
+
+#: templates/pages/security/alert-management.html:136
+msgid "Search alerts..."
+msgstr "Warnungen suchen..."
+
+#: templates/pages/security/alert-management.html:151
+#: templates/pages/security/alert-management.html:206
+msgid "No alerts found"
+msgstr "Keine Warnungen gefunden"
+
+#: templates/pages/security/alert-management.html:152
+#: templates/pages/security/alert-management.html:207
+msgid "There are no alerts matching your current filters."
+msgstr "Es gibt keine Warnungen, die Ihren aktuellen Filtern entsprechen."
+
+#: templates/pages/security/alert-management.html:177
+msgid "Add Note to Alert"
+msgstr "Notiz zur Warnung hinzufügen"
+
+#: templates/pages/security/alert-management.html:184
+msgid "Note"
+msgstr "Notiz"
+
+#: templates/pages/security/alert-management.html:185
+msgid "Enter your note about this alert..."
+msgstr "Geben Sie Ihre Notiz zu dieser Warnung ein..."
+
+#: templates/pages/security/alert-management.html:190
+msgid "Save Note"
+msgstr "Notiz speichern"
+
+#: templates/pages/security/alert-management.html:215
+msgid "Mark as Resolved"
+msgstr "Als gelöst markieren"
+
+#: templates/pages/security/alert-management.html:216
+msgid "Mark as Unresolved"
+msgstr "Als ungelöst markieren"
+
+#: templates/pages/security/alert-management.html:217
+msgid "Just now"
+msgstr "Gerade eben"
+
+#: templates/pages/security/alert-management.html:218
+msgid "m ago"
+msgstr "m zuvor"
+
+#: templates/pages/security/alert-management.html:219
+msgid "h ago"
+msgstr "h zuvor"
+
+#: templates/pages/security/alert-management.html:220
+msgid "d ago"
+msgstr "T zuvor"
+
+#: templates/pages/security/alert-management.html:221
+msgid "Export Alerts"
+msgstr "Warnungen exportieren"
+
+#: templates/pages/security/alert-management.html:222
+msgid "Refresh Alerts"
+msgstr "Warnungen aktualisieren"
+
+#: templates/pages/security/alert-management.html:223
+msgid "Alert resolved successfully"
+msgstr "Warnung erfolgreich als gelöst markiert"
+
+#: templates/pages/security/alert-management.html:224
+msgid "Alert marked as unresolved"
+msgstr "Warnung als ungelöst markiert"
+
+#: templates/pages/security/alert-management.html:225
+msgid "An error occurred"
+msgstr "Ein Fehler ist aufgetreten"
+
+#: templates/pages/security/alert-management.html:226
+msgid "Are you sure you want to mark this alert as resolved?"
+msgstr "Sind Sie sicher, dass Sie diese Warnung als gelöst markieren möchten?"
+
+#: templates/pages/security/alert-management.html:227
+msgid "Are you sure you want to mark this alert as unresolved?"
+msgstr ""
+"Sind Sie sicher, dass Sie diese Warnung als ungelöst markieren möchten?"
+
+# Settings page translations
+#: templates/pages/settings/settings.html:7
+msgid "Ophiron Settings"
+msgstr "Ophiron-Einstellungen"
+
+#: templates/pages/settings/settings.html:29
+msgid "Online"
+msgstr "Online"
+
+#: templates/pages/settings/settings.html:30
+msgid "Offline"
+msgstr "Offline"
+
+#: templates/pages/settings/settings.html:38
+msgid "Please enter SMTP host"
+msgstr ""
+
+#: templates/pages/settings/settings.html:39
+msgid "Please enter email address"
+msgstr ""
+
+#: templates/pages/settings/settings.html:40
+msgid "Please enter a valid email address"
+msgstr ""
+
+#: templates/pages/settings/settings.html:41
+msgid "Please configure SMTP settings first (host and email)"
+msgstr ""
+
+#: templates/pages/settings/settings.html:42
+#, fuzzy
+#| msgid "System initialized successfully"
+msgid "SMTP configuration saved successfully"
+msgstr "System initialized successfully"
+
+#: templates/pages/settings/settings.html:43
+#, fuzzy
+#| msgid "Failed to copy"
+msgid "Failed to save"
+msgstr "Kopieren fehlgeschlagen"
+
+#: templates/pages/settings/settings.html:44
+#, fuzzy
+#| msgid "Configuration"
+msgid "Failed to save SMTP configuration"
+msgstr "Konfiguration"
+
+#: templates/pages/settings/settings.html:45
+#, fuzzy
+#| msgid "Operation successful"
+msgid "SMTP connection test successful"
+msgstr "Vorgang erfolgreich"
+
+#: templates/pages/settings/settings.html:46
+#, fuzzy
+#| msgid "No connections found"
+msgid "SMTP connection test failed"
+msgstr "Keine Verbindungen gefunden"
+
+#: templates/pages/settings/settings.html:47
+#, fuzzy
+#| msgid "Connection Statistics"
+msgid "Connection test failed"
+msgstr "Verbindungsstatistiken"
+
+#: templates/pages/settings/settings.html:48
+msgid "Failed to test SMTP connection"
+msgstr ""
+
+#: templates/pages/settings/settings.html:49
+#, fuzzy
+#| msgid "Total Connections"
+msgid "Error testing connection"
+msgstr "Gesamtverbindungen"
+
+#: templates/pages/settings/settings.html:50
+#, fuzzy
+#| msgid "Searching..."
+msgid "Saving..."
+msgstr "Suche..."
+
+#: templates/pages/settings/settings.html:51
+#, fuzzy
+#| msgid "Deleting..."
+msgid "Testing..."
+msgstr "Löschen..."
+
+#: templates/pages/settings/settings.html:52
+#, fuzzy
+#| msgid "System initialized successfully"
+msgid "CVE automation settings saved successfully"
+msgstr "System initialized successfully"
+
+#: templates/pages/settings/settings.html:53
+msgid "Failed to save CVE automation settings"
+msgstr ""
+
+#: templates/pages/settings/settings.html:54
+#, fuzzy
+#| msgid "Refresh completed!"
+msgid "Test completed"
+msgstr "Aktualisierung abgeschlossen!"
+
+#: templates/pages/settings/settings.html:55
+#, fuzzy
+#| msgid "Refresh failed"
+msgid "Test failed"
+msgstr "Aktualisierung fehlgeschlagen"
+
+#: templates/pages/settings/settings.html:56
+msgid "Failed to run CVE automation test"
+msgstr ""
+
+#: templates/pages/settings/settings.html:58
+msgid "Not scheduled"
+msgstr "Nicht geplant"
+
+#: templates/pages/settings/settings.html:59
+#, fuzzy, python-brace-format
+#| msgid "Application Settings"
+msgid "Applied {description} settings"
+msgstr "Anwendungseinstellungen"
+
+#: templates/pages/settings/settings.html:60
+#, fuzzy
+#| msgid "Unknown"
+msgid "unknown error"
+msgstr "Unbekannt"
+
+#: templates/pages/settings/settings.html:75
+msgid "Manage system settings"
+msgstr "Systemeinstellungen verwalten"
+
+#: templates/pages/settings/settings.html:106
+msgid "SMTP"
+msgstr ""
+
+#: templates/pages/settings/settings.html:115
+msgid "Profile Image"
+msgstr "Profilbild"
+
+#: templates/pages/settings/settings.html:127
+msgid "Upload Image"
+msgstr "Bild hochladen"
+
+#: templates/pages/settings/settings.html:131
+msgid "Remove"
+msgstr "Entfernen"
+
+#: templates/pages/settings/settings.html:158
+msgid "Email"
+msgstr "E-Mail"
+
+#: templates/pages/settings/settings.html:162
+msgid "Full Name"
+msgstr "Vollständiger Name"
+
+#: templates/pages/settings/settings.html:166
+msgid "Roles & Permissions"
+msgstr "Rollen & Berechtigungen"
+
+#: templates/pages/settings/settings.html:176
+msgid "Granted Permissions"
+msgstr "Gewährte Berechtigungen"
+
+#: templates/pages/settings/settings.html:188
+msgid "System Preferences"
+msgstr "Systemeinstellungen"
+
+#: templates/pages/settings/settings.html:193
+msgid "English"
+msgstr "Englisch"
+
+#: templates/pages/settings/settings.html:194
+msgid "Türkçe"
+msgstr "Türkçe"
+
+#: templates/pages/settings/settings.html:195
+msgid "German"
+msgstr "Deutsch"
+
+# Time Zone
+#: templates/pages/settings/settings.html:199
+msgid "Time Zone"
+msgstr "Zeitzone"
+
+#: templates/pages/settings/settings.html:199
+msgid ""
+"Controls how dates and times are displayed in the UI. It does not change "
+"server time or database storage."
+msgstr ""
+"Steuert, wie Datum und Uhrzeit in der Benutzeroberfläche angezeigt werden. "
+"Dies ändert nicht die Serverzeit oder Datenbankspeicherung."
+
+#: templates/pages/settings/settings.html:201
+msgid "Loading timezones..."
+msgstr "Zeitzonen werden geladen..."
+
+# Password Change
+#: templates/pages/settings/settings.html:214
+#: templates/pages/settings/settings.html:365
+msgid "Current Password"
+msgstr "Aktuelles Passwort"
+
+#: templates/pages/settings/settings.html:215
+msgid "Enter your current password"
+msgstr "Geben Sie Ihr aktuelles Passwort ein"
+
+#: templates/pages/settings/settings.html:218
+msgid "New Password"
+msgstr "Neues Passwort"
+
+#: templates/pages/settings/settings.html:219
+msgid "Enter your new password"
+msgstr "Geben Sie Ihr neues Passwort ein"
+
+#: templates/pages/settings/settings.html:229
+msgid "Confirm Password"
+msgstr "Passwort bestätigen"
+
+#: templates/pages/settings/settings.html:230
+msgid "Re-enter your new password"
+msgstr "Geben Sie Ihr neues Passwort erneut ein"
+
+#: templates/pages/settings/settings.html:232
+msgid "Update Password"
+msgstr "Passwort aktualisieren"
+
+# 2FA
+#: templates/pages/settings/settings.html:240
+msgid "Two-Factor Authentication"
+msgstr "Zwei-Faktor-Authentifizierung"
+
+#: templates/pages/settings/settings.html:267
+msgid "2FA Setup"
+msgstr "2FA-Einrichtung"
+
+#: templates/pages/settings/settings.html:274
+msgid "Download an Authenticator App"
+msgstr "Authenticator-App herunterladen"
+
+#: templates/pages/settings/settings.html:275
+msgid ""
+"Download Google Authenticator, Microsoft Authenticator, or a similar app."
+msgstr ""
+"Laden Sie Google Authenticator, Microsoft Authenticator oder eine ähnliche "
+"App herunter."
+
+#: templates/pages/settings/settings.html:277
+msgid "Scan the QR Code"
+msgstr "QR-Code scannen"
+
+#: templates/pages/settings/settings.html:278
+msgid "Open the app on your phone and scan the QR code below:"
+msgstr ""
+"Öffnen Sie die App auf Ihrem Telefon und scannen Sie den folgenden QR-Code:"
+
+#: templates/pages/settings/settings.html:281
+msgid "QR Code"
+msgstr "QR-Code"
+
+#: templates/pages/settings/settings.html:284
+msgid "Generating QR code..."
+msgstr "QR-Code wird generiert..."
+
+#: templates/pages/settings/settings.html:289
+msgid "Manual Setup"
+msgstr "Manuelle Einrichtung"
+
+#: templates/pages/settings/settings.html:290
+msgid "If you cannot scan the QR code, enter the following key manually:"
+msgstr ""
+"Wenn Sie den QR-Code nicht scannen können, geben Sie den folgenden Schlüssel "
+"manuell ein:"
+
+#: templates/pages/settings/settings.html:300
+msgid "Next Step"
+msgstr "Nächster Schritt"
+
+#: templates/pages/settings/settings.html:305
+msgid "Enter Verification Code"
+msgstr "Bestätigungscode eingeben"
+
+#: templates/pages/settings/settings.html:306
+msgid "Enter the 6-digit code from your authenticator app:"
+msgstr "Geben Sie den 6-stelligen Code aus Ihrer Authenticator-App ein:"
+
+#: templates/pages/settings/settings.html:312
+msgid "Verify"
+msgstr "Bestätigen"
+
+#: templates/pages/settings/settings.html:318
+msgid "2FA Enabled Successfully!"
+msgstr "2FA erfolgreich aktiviert!"
+
+#: templates/pages/settings/settings.html:319
+msgid ""
+"Store your backup codes in a safe place. These codes allow access if you "
+"lose your phone."
+msgstr ""
+"Bewahren Sie Ihre Backup-Codes an einem sicheren Ort auf. Diese Codes "
+"ermöglichen den Zugriff, falls Sie Ihr Telefon verlieren."
+
+#: templates/pages/settings/settings.html:322
+msgid "Backup Codes:"
+msgstr "Backup-Codes:"
+
+#: templates/pages/settings/settings.html:326
+msgid "Download Codes"
+msgstr "Codes herunterladen"
+
+#: templates/pages/settings/settings.html:331
+msgid "Done"
+msgstr "Fertig"
+
+#: templates/pages/settings/settings.html:344
+#: templates/pages/settings/settings.html:401
+msgid "Disable 2FA"
+msgstr "2FA deaktivieren"
+
+#: templates/pages/settings/settings.html:356
+msgid "Security Notice"
+msgstr "Sicherheitshinweis"
+
+#: templates/pages/settings/settings.html:357
+msgid ""
+"Disabling 2FA reduces your account security. To proceed, enter your password "
+"and your 2FA code."
+msgstr ""
+"Das Deaktivieren von 2FA verringert die Sicherheit Ihres Kontos. Um "
+"fortzufahren, geben Sie Ihr Passwort und Ihren 2FA-Code ein."
+
+#: templates/pages/settings/settings.html:367
+msgid "Enter your password"
+msgstr "Geben Sie Ihr Passwort ein"
+
+#: templates/pages/settings/settings.html:373
+msgid "2FA Verification"
+msgstr "2FA-Verifizierung"
+
+#: templates/pages/settings/settings.html:376
+msgid "6-digit code or backup code"
+msgstr "6-stelliger Code oder Backup-Code"
+
+#: templates/pages/settings/settings.html:380
+msgid "Code"
+msgstr "Code"
+
+#: templates/pages/settings/settings.html:384
+msgid "Backup"
+msgstr "Backup"
+
+#: templates/pages/settings/settings.html:390
+msgid "Enter the 6-digit code from your app or one of your backup codes"
+msgstr ""
+"Geben Sie den 6-stelligen Code aus Ihrer App oder einen Ihrer Backup-Codes "
+"ein"
+
+# Security History
+#: templates/pages/settings/settings.html:413
+msgid "Security History"
+msgstr "Sicherheitsverlauf"
+
+#: templates/pages/settings/settings.html:420
+msgid "Password Changed"
+msgstr "Passwort geändert"
+
+#: templates/pages/settings/settings.html:421
+msgid "Last password change: Today"
+msgstr "Letzte Passwortänderung: Heute"
+
+#: templates/pages/settings/settings.html:430
+msgid "Last Sign-in"
+msgstr "Letzte Anmeldung"
+
+#: templates/pages/settings/settings.html:431
+msgid "Today 14:30"
+msgstr "Heute 14:30"
+
+#: templates/pages/settings/settings.html:443
+msgid "View all your account activities"
+msgstr "Alle Kontovorgänge anzeigen"
+
+#: templates/pages/settings/settings.html:470
+msgid "Manage signed-in devices"
+msgstr "Angemeldete Geräte verwalten"
+
+#: templates/pages/settings/settings.html:488
+msgid ""
+"Background monitoring service. When enabled, Process Monitor will "
+"continuously run in the background and cache data for instant access."
+msgstr ""
+"Hintergrundüberwachungsdienst. Wenn aktiviert, läuft der Prozessmonitor "
+"kontinuierlich im Hintergrund und speichert Daten für sofortigen Zugriff."
+
+#: templates/pages/settings/settings.html:494
+#: templates/pages/settings/settings.html:607
+#: templates/pages/settings/settings.html:720
+#: templates/pages/settings/settings.html:774
+msgid "Live Mode (Global)"
+msgstr "Live-Modus (Global)"
+
+#: templates/pages/settings/settings.html:495
+msgid ""
+"Continuously monitor network processes in the background (Shared by all "
+"admins)"
+msgstr ""
+"Netzwerkprozesse kontinuierlich im Hintergrund überwachen (wird von allen "
+"Administratoren geteilt)"
+
+#: templates/pages/settings/settings.html:507
+#: templates/pages/settings/settings.html:620
+#: templates/pages/settings/settings.html:787
+msgid "Monitoring Interval:"
+msgstr "Überwachungsintervall:"
+
+#: templates/pages/settings/settings.html:507
+#: templates/pages/settings/settings.html:524
+#: templates/pages/settings/settings.html:620
+#: templates/pages/settings/settings.html:637
+#: templates/pages/settings/settings.html:733
+#: templates/pages/settings/settings.html:787
+msgid "seconds"
+msgstr "Sekunden"
+
+#: templates/pages/settings/settings.html:513
+msgid "Very Fast"
+msgstr "Sehr schnell"
+
+#: templates/pages/settings/settings.html:514
+#: templates/pages/settings/settings.html:627
+#: templates/pages/settings/settings.html:740
+#: templates/pages/settings/settings.html:794
+msgid "Slow"
+msgstr "Langsam"
+
+#: templates/pages/settings/settings.html:517
+msgid ""
+"Data update frequency when live mode is enabled. Lower = More real-time "
+"(higher CPU usage)"
+msgstr ""
+"Datenaktualisierungsfrequenz bei aktiviertem Live-Modus. Niedriger = "
+"Echtzeit (höhere CPU-Nutzung)"
+
+#: templates/pages/settings/settings.html:524
+#: templates/pages/settings/settings.html:637
+msgid "Cache Duration:"
+msgstr "Cache-Dauer:"
+
+#: templates/pages/settings/settings.html:530
+#: templates/pages/settings/settings.html:643
+msgid "Short"
+msgstr "Kurz"
+
+#: templates/pages/settings/settings.html:531
+#: templates/pages/settings/settings.html:644
+msgid "10min - Long"
+msgstr "10 Min. - Lang"
+
+#: templates/pages/settings/settings.html:534
+msgid "How long data stays in cache. Longer = Less database usage"
+msgstr "Wie lange Daten im Cache bleiben. Länger = Geringere Datenbanknutzung"
+
+#: templates/pages/settings/settings.html:543
+#: templates/pages/settings/settings.html:656
+msgid "Service Status:"
+msgstr "Dienststatus:"
+
+#: templates/pages/settings/settings.html:550
+#: templates/pages/settings/settings.html:663
+msgid "Cache Status:"
+msgstr "Cache-Status:"
+
+#: templates/pages/settings/settings.html:557
+#: templates/pages/settings/settings.html:670
+msgid "Last Update:"
+msgstr "Letzte Aktualisierung:"
+
+#: templates/pages/settings/settings.html:564
+#: templates/pages/settings/settings.html:677
+msgid "Last Modified By:"
+msgstr "Zuletzt geändert von:"
+
+#: templates/pages/settings/settings.html:573
+#: templates/pages/settings/settings.html:686
+msgid "Force Refresh"
+msgstr "Erzwingen aktualisieren"
+
+#: templates/pages/settings/settings.html:577
+#: templates/pages/settings/settings.html:690
+#: templates/pages/settings/settings.html:751
+#: templates/pages/settings/settings.html:805
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
+
+#: templates/pages/settings/settings.html:581
+#: templates/pages/settings/settings.html:694
+msgid "Open Monitor"
+msgstr "Monitor öffnen"
+
+#: templates/pages/settings/settings.html:589
+#: templates/pages/settings/settings.html:702
+msgid "Note:"
+msgstr "Hinweis:"
+
+#: templates/pages/settings/settings.html:589
+msgid ""
+"When Live Mode is enabled, the system will continuously monitor processes "
+"and update the cache. This ensures instant page load when you access Process "
+"Monitor, but may increase system resource usage slightly."
+msgstr ""
+"Wenn der Live-Modus aktiviert ist, überwacht das System kontinuierlich "
+"Prozesse und aktualisiert den Cache. Dies gewährleistet sofortiges Laden der "
+"Seite beim Zugriff auf den Prozessmonitor, kann jedoch die "
+"Systemressourcennutzung leicht erhöhen."
+
+#: templates/pages/settings/settings.html:601
+msgid ""
+"Background system metrics monitoring. When enabled, System Information will "
+"continuously collect hardware and system data for instant dashboard access."
+msgstr ""
+"Hintergrundüberwachung der Systemmetriken. Wenn aktiviert, sammelt "
+"Systeminformationen kontinuierlich Hardware- und Systemdaten für sofortigen "
+"Dashboard-Zugriff."
+
+#: templates/pages/settings/settings.html:608
+msgid ""
+"Continuously monitor system metrics in the background (Shared by all admins)"
+msgstr ""
+"Systemmetriken kontinuierlich im Hintergrund überwachen (wird von allen "
+"Administratoren geteilt)"
+
+#: templates/pages/settings/settings.html:626
+#: templates/pages/settings/settings.html:739
+#: templates/pages/settings/settings.html:793
+msgid "Fast"
+msgstr "Schnell"
+
+#: templates/pages/settings/settings.html:630
+msgid ""
+"Data collection frequency when live mode is enabled. Lower = More frequent "
+"updates"
+msgstr ""
+"Datenabtastfrequenz bei aktiviertem Live-Modus. Niedriger = Häufigere "
+"Aktualisierungen"
+
+#: templates/pages/settings/settings.html:647
+msgid "How long data stays in cache. Longer = Less CPU usage"
+msgstr "Wie lange Daten im Cache bleiben. Länger = Geringere CPU-Nutzung"
+
+#: templates/pages/settings/settings.html:702
+msgid ""
+"When Live Mode is enabled, the system will continuously collect CPU, memory, "
+"disk, and network metrics. This ensures instant dashboard loading with real-"
+"time data visualization."
+msgstr ""
+"Wenn der Live-Modus aktiviert ist, sammelt das System kontinuierlich CPU-, "
+"Speicher-, Festplatten- und Netzwerkmetriken. Dies gewährleistet sofortiges "
+"Laden des Dashboards mit Echtzeit-Datenvisualisierung."
+
+#: templates/pages/settings/settings.html:714
+msgid ""
+"Controls live refresh for Application Logs (Own Logs). When enabled, the "
+"logs page auto-refreshes using the configured interval."
+msgstr ""
+"Steuert die Live-Aktualisierung für Anwendungsprotokolle (Eigene "
+"Protokolle). Wenn aktiviert, aktualisiert sich die Protokollseite "
+"automatisch mit dem konfigurierten Intervall."
+
+#: templates/pages/settings/settings.html:721
+msgid "Auto-refresh logs periodically (shared by all admins)"
+msgstr ""
+"Protokolle periodisch automatisch aktualisieren (wird von allen "
+"Administratoren geteilt)"
+
+#: templates/pages/settings/settings.html:733
+msgid "Refresh Interval:"
+msgstr "Aktualisierungsintervall:"
+
+#: templates/pages/settings/settings.html:743
+msgid "How often Own Logs page refreshes when live mode is enabled."
+msgstr ""
+"Wie oft sich die Eigene Protokolle-Seite aktualisiert, wenn der Live-Modus "
+"aktiviert ist."
+
+#: templates/pages/settings/settings.html:755
+msgid "Open Application Logs"
+msgstr "Anwendungsprotokolle öffnen"
+
+#: templates/pages/settings/settings.html:768
+msgid ""
+"Live monitoring for system services. When enabled, Service Monitoring will "
+"continuously update service status in real-time."
+msgstr ""
+"Live-Überwachung für Systemdienste. Wenn aktiviert, aktualisiert die "
+"Dienstüberwachung kontinuierlich den Dienststatus in Echtzeit."
+
+#: templates/pages/settings/settings.html:775
+msgid ""
+"Continuously monitor system services in real-time (Shared by all admins)"
+msgstr ""
+"Systemdienste kontinuierlich in Echtzeit überwachen (wird von allen "
+"Administratoren geteilt)"
+
+#: templates/pages/settings/settings.html:797
+msgid "How often service status is updated when live mode is enabled."
+msgstr ""
+"Wie oft der Dienststatus aktualisiert wird, wenn der Live-Modus aktiviert "
+"ist."
+
+#: templates/pages/settings/settings.html:809
+msgid "Open Service Monitoring"
+msgstr "Dienstüberwachung öffnen"
+
+# API Settings
+#: templates/pages/settings/settings.html:819
+msgid "API Keys"
+msgstr "API-Schlüssel"
+
+#: templates/pages/settings/settings.html:822
+msgid "API Key"
+msgstr "API-Schlüssel"
+
+#: templates/pages/settings/settings.html:834
+msgid "API Secret"
+msgstr "API-Geheimnis"
+
+#: templates/pages/settings/settings.html:846
+msgid "API Permissions"
+msgstr "API-Berechtigungen"
+
+#: templates/pages/settings/settings.html:852
+msgid "System Monitoring"
+msgstr "Systemüberwachung"
+
+#: templates/pages/settings/settings.html:857
+msgid "Security Management"
+msgstr "Sicherheitsverwaltung"
+
+#: templates/pages/settings/settings.html:877
+msgid ""
+"Enable detailed logging for different system modules. Logs are stored daily "
+"in"
+msgstr ""
+"Detaillierte Protokollierung für verschiedene Systemmodule aktivieren. "
+"Protokolle werden täglich gespeichert in"
+
+#: templates/pages/settings/settings.html:877
+msgid "directory."
+msgstr "Verzeichnis."
+
+#: templates/pages/settings/settings.html:884
+msgid "Process Monitor Logs"
+msgstr "Prozessmonitor-Protokolle"
+
+#: templates/pages/settings/settings.html:885
+msgid ""
+"Log all Process Monitor operations including API calls, connections, process "
+"details, port queries, and errors. Logs are stored daily in logger/process-"
+"monitor/ directory (format: process_monitor_YYYY-MM-DD.log). Note: Logging "
+"may slightly impact performance."
+msgstr ""
+"Alle Prozessmonitor-Operationen protokollieren, einschließlich API-Aufrufe, "
+"Verbindungen, Prozessdetails, Portabfragen und Fehler. Protokolle werden "
+"täglich im logger/process-monitor/ Verzeichnis gespeichert (Format: "
+"process_monitor_YYYY-MM-DD.log). Hinweis: Die Protokollierung kann die "
+"Leistung leicht beeinträchtigen."
+
+#: templates/pages/settings/settings.html:908
+msgid "Docker Manager Logs"
+msgstr "Docker-Manager-Protokolle"
+
+#: templates/pages/settings/settings.html:909
+msgid ""
+"Log all Docker operations including container start/stop, image pull/push, "
+"build operations, exec commands, logs viewing, container inspection, and "
+"statistics. Logs are stored in database with detailed operation tracking "
+"including user, timestamp, IP address, and operation details. Note: Logging "
+"may slightly impact performance."
+msgstr ""
+"Alle Docker-Operationen protokollieren, einschließlich Container-Start/Stop, "
+"Image-Pull/Push, Build-Operationen, Exec-Befehle, Protokollanzeige, "
+"Container-Inspektion und Statistiken. Protokolle werden in der Datenbank mit "
+"detailliertem Vorgangs-Tracking gespeichert, einschließlich Benutzer, "
+"Zeitstempel, IP-Adresse und Vorgangsdetails. Hinweis: Die Protokollierung "
+"kann die Leistung leicht beeinträchtigen."
+
+# System Information
+#: templates/pages/settings/settings.html:932
+#, fuzzy
+#| msgid "System Information"
+msgid "System Information Logs"
+msgstr "Systeminformations-Protokolle"
+
+#: templates/pages/settings/settings.html:933
+msgid ""
+"Log all System Information operations including hardware monitoring, system "
+"health checks, performance metrics, system scans, update checks, backup "
+"operations, and maintenance tasks. Logs are stored in database with detailed "
+"operation tracking including user, timestamp, IP address, execution time, "
+"and operation details. Note: Logging may slightly impact performance."
+msgstr ""
+"Alle Systeminformations-Operationen protokollieren, einschließlich Hardware-"
+"Überwachung, System-Gesundheitschecks, Leistungsmetriken, System-Scans, "
+"Update-Prüfungen, Backup-Operationen und Wartungsaufgaben. Protokolle werden "
+"in der Datenbank mit detailliertem Vorgangs-Tracking gespeichert, "
+"einschließlich Benutzer, Zeitstempel, IP-Adresse, Ausführungszeit und "
+"Vorgangsdetails. Hinweis: Die Protokollierung kann die Leistung leicht "
+"beeinträchtigen."
+
+# Service Monitoring
+#: templates/pages/settings/settings.html:956
+#, fuzzy
+#| msgid "Service Monitoring"
+msgid "Service Monitoring Logs"
+msgstr "Dienstüberwachungs-Protokolle"
+
+#: templates/pages/settings/settings.html:957
+msgid ""
+"Log all Service Monitoring operations including service start/stop/restart/"
+"enable/disable, service creation/deletion, service status checks, and live "
+"mode operations. Logs are stored in database with detailed operation "
+"tracking including user, timestamp, IP address, and operation details. Note: "
+"Logging may slightly impact performance."
+msgstr ""
+"Alle Dienstüberwachungs-Operationen protokollieren, einschließlich Dienst-"
+"Start/Stop/Neustart/Aktivierung/Deaktivierung, Dienst-Erstellung/Löschung, "
+"Dienststatus-Prüfungen und Live-Modus-Operationen. Protokolle werden in der "
+"Datenbank mit detailliertem Vorgangs-Tracking gespeichert, einschließlich "
+"Benutzer, Zeitstempel, IP-Adresse und Vorgangsdetails. Hinweis: Die "
+"Protokollierung kann die Leistung leicht beeinträchtigen."
+
+#: templates/pages/settings/settings.html:985
+#, fuzzy
+#| msgid "Configuration"
+msgid "SMTP Configuration"
+msgstr "Konfiguration"
+
+#: templates/pages/settings/settings.html:994
+msgid "Provider"
+msgstr ""
+
+#: templates/pages/settings/settings.html:996
+msgid "Custom"
+msgstr ""
+
+#: templates/pages/settings/settings.html:997
+#, fuzzy
+#| msgid "Email"
+msgid "Gmail"
+msgstr "E-Mail"
+
+#: templates/pages/settings/settings.html:998
+msgid "Outlook / Hotmail"
+msgstr ""
+
+#: templates/pages/settings/settings.html:999
+msgid "Yahoo Mail"
+msgstr ""
+
+#: templates/pages/settings/settings.html:1000
+msgid "Office 365"
+msgstr ""
+
+#: templates/pages/settings/settings.html:1019
+msgid "Use TLS"
+msgstr ""
+
+#: templates/pages/settings/settings.html:1023
+msgid "Use SSL"
+msgstr ""
+
+#: templates/pages/settings/settings.html:1027
+#, fuzzy
+#| msgid "Enable"
+msgid "Enable SMTP"
+msgstr "Aktivieren"
+
+#: templates/pages/settings/settings.html:1034
+#, fuzzy
+#| msgid "IP Address"
+msgid "Email Address"
+msgstr "IP-Adresse"
+
+#: templates/pages/settings/settings.html:1039
+msgid "Your SMTP password or App Password"
+msgstr ""
+
+#: templates/pages/settings/settings.html:1047
+#, fuzzy
+#| msgid "Total Connections"
+msgid "Test Connection"
+msgstr "Gesamtverbindungen"
+
+#: templates/pages/settings/settings.html:1051
+#, fuzzy
+#| msgid "Service Configuration"
+msgid "Save Configuration"
+msgstr "Dienstkonfiguration"
+
+#: templates/pages/settings/settings.html:1065
+msgid "CVE Email Automation"
+msgstr "CVE E-Mail-Automatisierung"
+
+#: templates/pages/settings/settings.html:1078
+msgid "Schedule"
+msgstr "Zeitplan"
+
+#: templates/pages/settings/settings.html:1080
+msgid "Daily"
+msgstr "Täglich"
+
+#: templates/pages/settings/settings.html:1081
+msgid "Weekly"
+msgstr "Wöchentlich"
+
+#: templates/pages/settings/settings.html:1082
+msgid "Monthly"
+msgstr "Monatlich"
+
+#: templates/pages/settings/settings.html:1083
+msgid "Custom Cron"
+msgstr "Benutzerdefinierter Cron"
+
+#: templates/pages/settings/settings.html:1095
+msgid "Days (0=Mon, 6=Sun)"
+msgstr "Tage (0=Mo, 6=So)"
+
+#: templates/pages/settings/settings.html:1102
+msgid "Cron Expression"
+msgstr "Cron-Ausdruck"
+
+#: templates/pages/settings/settings.html:1110
+msgid "Min CVEs"
+msgstr "Min. CVEs"
+
+#: templates/pages/settings/settings.html:1115
+msgid "Always Send"
+msgstr "Immer senden"
+
+#: templates/pages/settings/settings.html:1122
+msgid "Status:"
+msgstr "Status:"
+
+#: templates/pages/settings/settings.html:1126
+msgid "Last:"
+msgstr "Letzte:"
+
+#: templates/pages/settings/settings.html:1130
+msgid "Next:"
+msgstr "Nächste:"
+
+#: templates/pages/settings/settings.html:1139
+msgid "Test Now"
+msgstr "Jetzt testen"
+
+#: templates/pages/settings/settings.html:1143
+msgid "Save"
+msgstr "Speichern"
+
+#, fuzzy
+#~| msgid "Port"
+#~ msgid "SMTP Port"
+#~ msgstr "Port"
+
+#~ msgid "Next Run:"
+#~ msgstr "Nächste Ausführung:"
+
+#~ msgid "No processes found"
+#~ msgstr "Keine Prozesse gefunden"
+
+#~ msgid "RECENT ACTIVITIES"
+#~ msgstr "RECENT ACTIVITIES"
+
+#~ msgid "logged in"
+#~ msgstr "logged in"
+
+#~ msgid "CSV"
+#~ msgstr "CSV"
+
+#~ msgid "SYSLOG"
+#~ msgstr "SYSLOG"
+
+#~ msgid "An error occurred during log analysis."
+#~ msgstr "Bei der Protokollanalyse ist ein Fehler aufgetreten."
+
+#~ msgid "Back to Images"
+#~ msgstr "Zurück zu Images"

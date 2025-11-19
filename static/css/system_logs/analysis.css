@@ -1,0 +1,55 @@
+/* Modal base spacing */
+.modal-content { border-radius: var(--radius-lg); }
+.modal-header .modal-title { display: inline-flex; align-items: center; gap: 10px; }
+
+/* Summary cards */
+.modal .card { border: 1px solid var(--border-light); box-shadow: 0 8px 24px var(--shadow-light); }
+.modal .card .card-title { font-size: var(--text-sm); color: var(--text-white); opacity: .9; }
+.modal .card h3 { font-weight: 700; }
+
+/* Charts */
+.analysis-chart { height: 260px; background: var(--bg-primary); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 10px; }
+.analysis-chart canvas { width: 100% !important; height: 100% !important; }
+
+/* Common errors list */
+#commonErrors { 
+    max-height: 400px; 
+    overflow: auto; 
+    border: 1px solid var(--border-light); 
+    border-radius: var(--radius-md); 
+    padding: 15px; 
+    background: var(--bg-primary); 
+}
+
+#commonErrors .alert { margin-bottom: 8px; }
+
+#commonErrors code { 
+    white-space: pre-wrap; 
+    word-break: break-all;
+    font-size: 11px;
+    background: #f8f9fa;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+#commonErrors .card {
+    transition: all 0.2s ease;
+    border-left: 3px solid #dc3545 !important;
+}
+
+#commonErrors .card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#commonErrors .badge {
+    font-size: 10px;
+    padding: 4px 6px;
+}
+
+#commonErrors .text-muted {
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+}
+

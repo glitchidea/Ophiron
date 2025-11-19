@@ -1,0 +1,407 @@
+/* Minimal, black/white, no effects – dedicated styles for Search Results popup */
+
+/* Scope all rules to this modal only */
+#searchResultsModal {
+    display: none; /* toggled by JS */
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#searchResultsModal.active { display: flex; }
+
+#searchResultsModal .modal-dialog {
+    width: 90vw;
+    max-width: 1000px;
+}
+
+#searchResultsModal .modal-content {
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    overflow: hidden;
+    max-height: 90vh;
+}
+
+#searchResultsModal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eaeaea;
+    background: #ffffff;
+}
+
+#searchResultsModal .modal-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111111;
+    flex: 1;
+    min-width: 0; /* Allow title to shrink if needed */
+}
+
+#searchResultsModal .modal-title i { color: #222222; }
+
+#searchResultsModal .modal-close {
+    background: transparent;
+    border: 1px solid #e5e5e5;
+    color: #6c757d;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+#searchResultsModal .modal-close:hover {
+    background: #f8f9fa;
+    border-color: #adb5bd;
+    color: #495057;
+}
+
+#searchResultsModal .modal-body {
+    padding: 12px;
+    background: #ffffff;
+    max-height: calc(90vh - 48px);
+    overflow: auto;
+}
+
+/* Download options (right side of title) */
+#searchResultsModal .download-options {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#searchResultsModal .btn-download-report {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+#searchResultsModal .btn-download-report:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+    color: #212529;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#searchResultsModal .btn-download-report i {
+    font-size: 14px;
+}
+
+#searchResultsModal .btn-download-report.btn-simple {
+    background: #d1ecf1;
+    border-color: #bee5eb;
+    color: #0c5460;
+}
+
+#searchResultsModal .btn-download-report.btn-simple:hover {
+    background: #bee5eb;
+    border-color: #17a2b8;
+    color: #0c5460;
+}
+
+#searchResultsModal .btn-download-report.btn-detailed {
+    background: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+#searchResultsModal .btn-download-report.btn-detailed:hover {
+    background: #c3e6cb;
+    border-color: #28a745;
+    color: #155724;
+}
+
+/* Summary row */
+#searchResultsModal .search-results-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+#searchResultsModal .summary-card {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+}
+
+#searchResultsModal .summary-card-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111111;
+}
+
+#searchResultsModal .summary-card-label {
+    font-size: 11px;
+    color: #555555;
+    text-transform: uppercase;
+}
+
+/* Section blocks */
+#searchResultsModal .search-results-section {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+#searchResultsModal .search-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#searchResultsModal .search-section-header i { color: #222222; }
+
+#searchResultsModal .search-section-header h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#searchResultsModal .search-section-badge {
+    margin-left: auto;
+    border: 1px solid #dcdcdc;
+    color: #222222;
+    background: #ffffff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+/* Cards grid */
+#searchResultsModal .search-process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 8px;
+}
+
+#searchResultsModal .search-process-card {
+    border: 1px solid #dcdcdc; /* slightly stronger to make boxes clearer */
+    border-radius: 6px;
+    background: #fafafa; /* subtle contrast to separate cards */
+    padding: 10px;
+}
+
+#searchResultsModal .search-process-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+#searchResultsModal .search-process-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#searchResultsModal .search-process-pid {
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 11px;
+    color: #222222;
+}
+
+#searchResultsModal .search-process-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 6px;
+}
+
+#searchResultsModal .search-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #eeeeee;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+#searchResultsModal .search-stat-label {
+    font-size: 10px;
+    color: #555555;
+    text-transform: uppercase;
+}
+
+#searchResultsModal .search-stat-value {
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Table */
+#searchResultsModal .table-wrapper {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#searchResultsModal .search-connections-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    table-layout: fixed; /* avoid overflow, enable wrapping */
+}
+
+#searchResultsModal .search-connections-table thead { background: #fafafa; }
+
+#searchResultsModal .search-connections-table th,
+#searchResultsModal .search-connections-table td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #222222;
+    overflow-wrap: anywhere; /* allow breaks within long tokens */
+    word-break: break-word;
+    white-space: normal;
+}
+
+#searchResultsModal .address-cell {
+    font-family: "Courier New", monospace;
+    font-size: 11px;
+    color: #333333;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Prevent long labels/values from overflowing in stats/cards */
+#searchResultsModal .search-process-name,
+#searchResultsModal .search-process-pid,
+#searchResultsModal .search-stat-item,
+#searchResultsModal .summary-card-value,
+#searchResultsModal .summary-card-label {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Make section boxes slightly clearer */
+#searchResultsModal .search-results-section {
+    border-color: #dcdcdc;
+}
+
+/* Badges */
+#searchResultsModal .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    font-size: 10px;
+    color: #222222;
+    background: #ffffff;
+}
+
+#searchResultsModal .pid-badge {
+    border: 1px solid #dcdcdc;
+    background: #f8f8f8;
+    color: #222222;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+}
+
+/* States (grayscale only) */
+#searchResultsModal .badge-status { border-style: solid; }
+#searchResultsModal .badge-established { background: #f3f3f3; border-color: #dcdcdc; color: #111111; }
+#searchResultsModal .badge-listen { background: #f7f7f7; border-color: #dcdcdc; color: #111111; }
+#searchResultsModal .badge-time-wait { background: #fafafa; border-color: #dcdcdc; color: #111111; }
+#searchResultsModal .badge-close-wait { background: #ffffff; border-color: #dcdcdc; color: #111111; }
+#searchResultsModal .badge-none { background: #ffffff; border-color: #dcdcdc; color: #555555; }
+
+/* Loading and empty */
+#searchResultsModal .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    color: #555555;
+    font-size: 12px;
+}
+
+#searchResultsModal .search-no-results {
+    text-align: center;
+    padding: 24px 12px;
+    color: #555555;
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+    #searchResultsModal .modal-dialog { width: 96vw; }
+    #searchResultsModal .search-results-summary { grid-template-columns: 1fr; }
+    #searchResultsModal .search-process-grid { grid-template-columns: 1fr; }
+    
+    #searchResultsModal .modal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+    
+    #searchResultsModal .modal-title {
+        font-size: 14px;
+        width: 100%;
+    }
+    
+    #searchResultsModal .download-options {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-end;
+        gap: 6px;
+    }
+    
+    #searchResultsModal .btn-download-report {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    
+    #searchResultsModal .modal-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 28px;
+        height: 28px;
+    }
+}
+
+

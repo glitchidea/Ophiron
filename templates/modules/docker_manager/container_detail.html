@@ -1,0 +1,255 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Container Detail" %} - {{ container.name }} - Ophiron</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/main.css' %}">
+
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/components/header.css' %}">
+
+    <!-- Container Detail CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/container_detail.css' %}">
+
+</head>
+<body>
+    <meta id="containerIdMeta" content="{{ container.id }}">
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="container-detail">
+                <!-- Container Header -->
+                <div class="container-header">
+                    <div class="container-info">
+                        <div class="container-title">
+                            <button class="nav-btn" onclick="goBack()">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <h1>{{ container.name }}</h1>
+                        </div>
+                        <div class="container-meta">
+                            <span class="container-image">{{ container.image }}</span>
+                            <span class="container-id" onclick="copyToClipboard('{{ container.id }}')">
+                                {{ container.id }} <i class="fas fa-copy"></i>
+                            </span>
+                            {% if container.ports %}
+                            <span class="container-ports">
+                                {{ container.ports }} <i class="fas fa-external-link-alt"></i>
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="container-status">
+                        <div class="status-info">
+                            <span class="status-label">{% trans "STATUS" %}</span>
+                            <span class="status-value status-{{ container.status|lower }}">
+                                {{ container.status }} ({{ container.lastStarted }})
+                            </span>
+                        </div>
+                        <div class="container-actions">
+                            {% if container.status == 'running' %}
+                                <button class="action-btn stop" onclick="stopContainer('{{ container.id }}')">
+                                    <i class="fas fa-stop"></i>
+                                </button>
+                                <button class="action-btn restart" onclick="restartContainer('{{ container.id }}')">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            {% else %}
+                                <button class="action-btn start" onclick="startContainer('{{ container.id }}')">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                            {% endif %}
+                            <button class="action-btn delete" onclick="deleteContainer('{{ container.id }}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Container Navigation Tabs -->
+                <div class="container-nav">
+                    <div class="nav-tabs">
+                        <button class="nav-tab active" data-tab="logs">
+                            <i class="fas fa-file-alt"></i>
+                            {% trans "Logs" %}
+                        </button>
+                        <button class="nav-tab" data-tab="inspect">
+                            <i class="fas fa-search"></i>
+                            {% trans "Inspect" %}
+                        </button>
+                        <button class="nav-tab" data-tab="mounts">
+                            <i class="fas fa-folder-open"></i>
+                            {% trans "Bind mounts" %}
+                        </button>
+                        <button class="nav-tab" data-tab="files">
+                            <i class="fas fa-folder"></i>
+                            {% trans "Files" %}
+                        </button>
+                        <button class="nav-tab" data-tab="stats">
+                            <i class="fas fa-chart-bar"></i>
+                            {% trans "Stats" %}
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Container Content -->
+                <div class="container-content">
+                    <!-- Logs Tab -->
+                    <div class="tab-content active" id="logs-content">
+                        <div class="logs-container">
+                            <div class="logs-output" id="logsOutput">
+                                <div class="log-line">{% trans "Loading logs..." %}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inspect Tab -->
+                    <div class="tab-content" id="inspect-content">
+                        <div class="inspect-container">
+                            <div class="json-viewer" id="inspectData">
+                                {% trans "Loading inspect data..." %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mounts Tab -->
+                    <div class="tab-content" id="mounts-content">
+                        <div class="mounts-container">
+                            <div class="mounts-list" id="mountsList">
+                                {% trans "Loading mount information..." %}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Files Tab -->
+                    <div class="tab-content" id="files-content">
+                        <div class="files-container">
+                            <div class="files-header">
+                                <div class="files-navigation">
+                                    <button class="nav-btn" id="backBtn" onclick="goBackInFiles()" disabled>
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                    <button class="nav-btn" onclick="goUp()">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                </div>
+                                <div class="files-path">
+                                    <span class="current-path" id="currentPath">/</span>
+                                </div>
+                                <div class="files-controls">
+                                    <button class="control-btn" onclick="loadFiles()">
+                                        <i class="fas fa-sync"></i>
+                                        {% trans "Refresh" %}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="files-tree" id="filesTree">
+                                {% trans "Loading files..." %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Tab -->
+                    <div class="tab-content" id="stats-content">
+                        <div class="stats-container">
+                            <div class="stats-grid" id="statsGrid">
+                                <div class="stat-card">
+                                    <div class="stat-label">{% trans "CPU Usage" %}</div>
+                                    <div class="stat-value" id="cpuUsage">0%</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-label">{% trans "Memory Usage" %}</div>
+                                    <div class="stat-value" id="memoryUsage">0 MB</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-label">{% trans "Network I/O" %}</div>
+                                    <div class="stat-value" id="networkIO">0 B</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-label">{% trans "Block I/O" %}</div>
+                                    <div class="stat-value" id="blockIO">0 B</div>
+                                </div>
+                            </div>
+                            <div class="stats-charts">
+                                <div class="chart-container">
+                                    <canvas id="cpuChart"></canvas>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="memoryChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- CSRF Token -->
+    {% csrf_token %}
+
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = {
+            'Loading logs...': '{% trans "Loading logs..." %}',
+            'Loading inspect data...': '{% trans "Loading inspect data..." %}',
+            'Loading mount information...': '{% trans "Loading mount information..." %}',
+            'Loading files...': '{% trans "Loading files..." %}',
+            'No logs available': '{% trans "No logs available" %}',
+            'No inspect data available': '{% trans "No inspect data available" %}',
+            'No mount information available': '{% trans "No mount information available" %}',
+            'No files available': '{% trans "No files available" %}',
+            'No stats available': '{% trans "No stats available" %}',
+            'Error': '{% trans "Error" %}',
+            'Container ID not found': '{% trans "Container ID not found" %}',
+            'Stop container': '{% trans "Stop container" %}',
+            'Stopping container': '{% trans "Stopping container" %}',
+            'Container stopped': '{% trans "Container stopped" %}',
+            'Starting container': '{% trans "Starting container" %}',
+            'Container started': '{% trans "Container started" %}',
+            'Restart container': '{% trans "Restart container" %}',
+            'Restarting container': '{% trans "Restarting container" %}',
+            'Container restarted': '{% trans "Container restarted" %}',
+            'Delete container': '{% trans "Delete container" %}',
+            'This action cannot be undone': '{% trans "This action cannot be undone" %}',
+            'Deleting container': '{% trans "Deleting container" %}',
+            'Container deleted': '{% trans "Container deleted" %}',
+            'Copied to clipboard': '{% trans "Copied to clipboard" %}',
+            'Failed to copy': '{% trans "Failed to copy" %}',
+            'Back': '{% trans "Back" %}',
+            'Up': '{% trans "Up" %}',
+            'Copy': '{% trans "Copy" %}',
+            'Refresh': '{% trans "Refresh" %}',
+            'CPU Usage': '{% trans "CPU Usage" %}',
+            'Memory Usage': '{% trans "Memory Usage" %}',
+            'Network I/O': '{% trans "Network I/O" %}',
+            'Block I/O': '{% trans "Block I/O" %}'
+        };
+    </script>
+
+    <!-- Header JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+
+    <!-- Container Detail JavaScript -->
+    <script src="{% load static %}{% static 'js/docker_manager/container_detail.js' %}"></script>
+
+    <!-- Tab Modules -->
+    <script src="{% load static %}{% static 'js/docker_manager/tabs/logs_simple.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/tabs/inspect.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/tabs/mounts_simple.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/tabs/files_simple.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/tabs/stats.js' %}"></script>
+
+</body>
+</html>

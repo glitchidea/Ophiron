@@ -1,0 +1,253 @@
+/* 2FA Login Page Specific Styles */
+
+/* 2FA Form Enhancements */
+.field-help {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+.field-help i {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Backup Code Toggle */
+.backup-toggle {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.backup-toggle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.backup-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.backup-toggle-btn i {
+    font-size: 14px;
+}
+
+/* Help Section */
+.help-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.help-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.help-item:last-child {
+    margin-bottom: 0;
+}
+
+.help-item i {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.4);
+    width: 20px;
+    text-align: center;
+}
+
+/* 2FA Code Input Specific */
+#twoFactorCode {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+}
+
+#backupCode {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Loading Button State */
+.submit-btn.loading .btn-content {
+    opacity: 0;
+}
+
+.submit-btn.loading .btn-loading {
+    display: block !important;
+}
+
+.btn-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.btn-loading i {
+    font-size: 18px;
+    color: #000000;
+}
+
+/* Enhanced Alert for 2FA */
+.alert.rate-limited {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    border: 2px solid #ff4757;
+    box-shadow: 0 8px 30px rgba(255, 107, 107, 0.3);
+}
+
+.alert.rate-limited .alert-text {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.alert.rate-limited .alert-text i {
+    margin-right: 8px;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* Notification Styles for 2FA */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    animation: slideIn 0.3s ease forwards;
+    max-width: 400px;
+    color: white;
+}
+
+.notification.success {
+    background: #38a169;
+}
+
+.notification.error {
+    background: #e53e3e;
+}
+
+.notification.info {
+    background: #4299e1;
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.notification-content i {
+    font-size: 16px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* 2FA Specific Animations */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Enhanced Focus States for 2FA */
+.input-field:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+}
+
+/* Mobile Responsive for 2FA */
+@media (max-width: 768px) {
+    .help-section {
+        margin-top: 20px;
+        padding: 15px;
+    }
+    
+    .help-item {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+    
+    .backup-toggle-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    #twoFactorCode {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+    
+    #backupCode {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .help-section {
+        padding: 12px;
+    }
+    
+    .help-item {
+        font-size: 11px;
+        gap: 8px;
+    }
+    
+    .help-item i {
+        font-size: 14px;
+    }
+    
+    .backup-toggle-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+}

@@ -1,0 +1,26 @@
+{% load i18n %}
+<div id="pkgDetailModal" class="modal" style="display: none;">
+    <div class="modal-content large">
+        <div class="modal-header">
+            <h3 id="pkgDetailTitle">{% trans "Package Details" %}</h3>
+            <button class="modal-close" onclick="closeModal('pkgDetailModal')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="pkg-detail-grid">
+                <div class="pkg-detail-section">
+                    <h4 class="pkg-section-title"><i class="fas fa-info-circle"></i> {% trans "General Information" %}</h4>
+                    <table class="pkg-detail-table" id="pkgInfoTable">
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="pkg-detail-section">
+                    <h4 class="pkg-section-title"><i class="fas fa-sitemap"></i> {% trans "Dependencies" %}</h4>
+                    <div id="pkgDeps" class="pkg-badges"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

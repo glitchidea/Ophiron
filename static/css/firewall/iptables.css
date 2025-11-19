@@ -1,0 +1,706 @@
+/* ===== IPTABLES FIREWALL - MODULAR DESIGN ===== */
+
+/* ===== OVERRIDE DASHBOARD CONSTRAINTS ===== */
+.dashboard-main {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+.dashboard-container {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
+
+/* ===== IPTABLES MANAGEMENT - FULL WIDTH ===== */
+.iptables-management {
+    padding: 0;
+    background: #ffffff;
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    position: relative;
+    left: 0;
+    right: 0;
+}
+
+/* ===== IPTABLES HEADER ===== */
+.iptables-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 20px 24px;
+    margin: 0;
+    width: 100%;
+}
+
+.iptables-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    max-width: 100%;
+}
+
+.iptables-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.iptables-title h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.iptables-title h1 i {
+    color: #059669;
+    font-size: 20px;
+}
+
+.iptables-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.iptables-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* ===== RULES SECTION - FULL WIDTH ===== */
+.iptables-rules-section {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.iptables-rules-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e5e7eb;
+    background: #ffffff;
+    margin: 0;
+    width: 100%;
+}
+
+.iptables-rules-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.iptables-rules-header h3 i {
+    color: #059669;
+    font-size: 16px;
+}
+
+.rules-count {
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    background: #f3f4f6;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+}
+
+/* ===== RULES BY CHAIN CONTAINER ===== */
+#iptablesRulesContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chain-section {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chain-header {
+    background: #f9fafb;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chain-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.chain-title i {
+    font-size: 18px;
+}
+
+.chain-count {
+    background: #3b82f6;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.chain-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: #ffffff;
+}
+
+.chain-table thead {
+    background: #f3f4f6;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.chain-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: #374151;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+}
+
+.chain-table th:last-child {
+    border-right: none;
+}
+
+.chain-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f3f4f6;
+    border-right: 1px solid #f3f4f6;
+    vertical-align: middle;
+    color: #1f2937;
+    font-size: 14px;
+}
+
+.chain-table td:last-child {
+    border-right: none;
+}
+
+.chain-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.chain-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.rules-table thead {
+    background: #f9fafb;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.rules-table th {
+    padding: 16px 20px;
+    text-align: left;
+    font-weight: 600;
+    color: #374151;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+}
+
+.rules-table th:last-child {
+    border-right: none;
+}
+
+.rules-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f3f4f6;
+    border-right: 1px solid #f3f4f6;
+    vertical-align: middle;
+    color: #1f2937;
+    font-size: 14px;
+}
+
+.rules-table td:last-child {
+    border-right: none;
+}
+
+.rules-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.rules-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ===== TABLE COLUMNS - FULL WIDTH ===== */
+.col-number {
+    width: 3%;
+    text-align: center;
+    min-width: 30px;
+}
+
+.col-table {
+    width: 8%;
+    min-width: 60px;
+}
+
+.col-chain {
+    width: 8%;
+    min-width: 70px;
+}
+
+.col-target {
+    width: 8%;
+    min-width: 70px;
+}
+
+.col-protocol {
+    width: 6%;
+    min-width: 50px;
+}
+
+.col-source {
+    width: 12%;
+    min-width: 100px;
+}
+
+.col-destination {
+    width: 12%;
+    min-width: 100px;
+}
+
+.col-port {
+    width: 8%;
+    min-width: 60px;
+}
+
+.col-interface {
+    width: 8%;
+    min-width: 60px;
+}
+
+.col-match {
+    width: 10%;
+    min-width: 80px;
+}
+
+.col-options {
+    width: 19%;
+    min-width: 120px;
+}
+
+/* ===== RULE ELEMENTS ===== */
+.rule-number-badge {
+    background: #f3f4f6;
+    color: #374151;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: monospace;
+    border: 1px solid #d1d5db;
+    display: inline-block;
+    min-width: 24px;
+    text-align: center;
+}
+
+.rule-chain {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid;
+}
+
+.rule-chain.input {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #fde68a;
+}
+
+.rule-chain.forward {
+    background: #dbeafe;
+    color: #1e40af;
+    border-color: #93c5fd;
+}
+
+.rule-chain.output {
+    background: #f0fdf4;
+    color: #166534;
+    border-color: #bbf7d0;
+}
+
+.rule-target {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid;
+}
+
+.rule-target.accept {
+    background: #f0fdf4;
+    color: #166534;
+    border-color: #bbf7d0;
+}
+
+.rule-target.drop {
+    background: #fef2f2;
+    color: #991b1b;
+    border-color: #fecaca;
+}
+
+.rule-target.reject {
+    background: #fffbeb;
+    color: #92400e;
+    border-color: #fed7aa;
+}
+
+.rule-target.return {
+    background: #f1f5f9;
+    color: #475569;
+    border-color: #cbd5e1;
+}
+
+.rule-protocol {
+    font-size: 12px;
+    font-weight: 600;
+    color: #1f2937;
+    background: #f1f5f9;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.rule-address {
+    font-family: monospace;
+    font-size: 13px;
+    color: #1f2937;
+    background: #f8fafc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rule-port {
+    font-family: monospace;
+    font-size: 13px;
+    color: #1f2937;
+    background: #eff6ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+}
+
+.rule-options {
+    font-family: monospace;
+    font-size: 11px;
+    color: #6b7280;
+    background: #f9fafb;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #e5e7eb;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rule-table {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid;
+}
+
+.rule-table.filter {
+    background: #f0f9ff;
+    color: #0369a1;
+    border-color: #bae6fd;
+}
+
+.rule-table.nat {
+    background: #fef3c7;
+    color: #92400e;
+    border-color: #fde68a;
+}
+
+.rule-table.mangle {
+    background: #f0fdf4;
+    color: #166534;
+    border-color: #bbf7d0;
+}
+
+.rule-table.raw {
+    background: #f3f4f6;
+    color: #4b5563;
+    border-color: #d1d5db;
+}
+
+.rule-table.security {
+    background: #fef2f2;
+    color: #991b1b;
+    border-color: #fecaca;
+}
+
+.rule-interface {
+    font-family: monospace;
+    font-size: 12px;
+    color: #1f2937;
+    background: #f1f5f9;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    display: inline-block;
+}
+
+.rule-match {
+    font-size: 11px;
+    color: #6b7280;
+    background: #fef3c7;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #fde68a;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ===== LOADING STATE ===== */
+.rules-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px;
+    color: #6b7280;
+    font-size: 16px;
+    background: #ffffff;
+    width: 100%;
+}
+
+.rules-loading i {
+    font-size: 20px;
+    color: #059669;
+}
+
+/* ===== EMPTY STATE ===== */
+.rules-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 40px;
+    text-align: center;
+    color: #6b7280;
+    background: #ffffff;
+    width: 100%;
+}
+
+.rules-empty i {
+    font-size: 48px;
+    color: #d1d5db;
+}
+
+.rules-empty h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #374151;
+    margin: 0;
+}
+
+.rules-empty p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
+.btn-primary:hover {
+    background: #047857;
+}
+
+.btn-secondary {
+    background: #6b7280;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background: #4b5563;
+}
+
+/* ===== STATUS INDICATORS ===== */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6b7280;
+    display: inline-block;
+}
+
+.status-dot.active {
+    background: #059669;
+}
+
+.status-dot.inactive {
+    background: #dc2626;
+}
+
+.status-text.active {
+    color: #059669;
+}
+
+.status-text.inactive {
+    color: #dc2626;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .iptables-header {
+        padding: 16px 20px;
+    }
+    
+    .iptables-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .iptables-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .iptables-actions {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    
+    .iptables-rules-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 16px 20px;
+    }
+    
+    .rules-table {
+        font-size: 12px;
+        width: 100vw;
+    }
+    
+    .rules-table th,
+    .rules-table td {
+        padding: 12px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .iptables-header {
+        padding: 12px 16px;
+    }
+    
+    .iptables-rules-header {
+        padding: 12px 16px;
+    }
+    
+    .rules-table {
+        width: 100vw;
+    }
+    
+    .rules-table th,
+    .rules-table td {
+        padding: 8px 12px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}

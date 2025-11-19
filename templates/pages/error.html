@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ophiron - 404 Error</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../static/css/error/style.css">
+</head>
+<body>
+    <!-- Left Panel - 404 Custom Design -->
+    <div class="left-panel">
+        <div class="floating-elements">
+            <div class="error-particle particle-1"></div>
+            <div class="error-particle particle-2"></div>
+            <div class="error-particle particle-3"></div>
+            <div class="error-particle particle-4"></div>
+            <div class="error-particle particle-5"></div>
+        </div>
+        <div class="left-content">
+            <div class="error-visual">
+                <div class="error-icon-container">
+                    <i class="fas fa-exclamation-triangle error-icon"></i>
+                </div>
+                <h1 class="error-code-large">{{ error_code|default:"404" }}</h1>
+                <div class="error-animation">
+                    <div class="error-line line-1"></div>
+                    <div class="error-line line-2"></div>
+                    <div class="error-line line-3"></div>
+                </div>
+            </div>
+            <div class="error-info">
+                <h2 class="error-title-main">{{ error_title|default:"Page Not Found" }}</h2>
+                <p class="error-description-main">
+                    {{ error_message|default:"The page you are looking for does not exist or may have been moved." }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel - 404 Error -->
+    <div class="right-panel">
+        <div class="error-container">
+            <div class="error-header">
+                <h2 class="error-title">{{ error_code|default:"404" }}</h2>
+                <p class="error-subtitle">{{ error_title|default:"Page Not Found" }}</p>
+                <div class="status-line">
+                    <div class="status-indicator"></div>
+                    <span class="status-text">ERROR DETECTED</span>
+                </div>
+            </div>
+
+            <div class="error-content">
+                <p class="error-description">
+                    {{ error_message|default:"The page you are looking for does not exist or may have been moved." }}
+                </p>
+                
+                <div class="error-actions">
+                    <a href="{% url 'login' %}" class="btn-primary">
+                        <i class="fas fa-home"></i>
+                        Go to Home
+                    </a>
+                    <button onclick="history.back()" class="btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Go Back
+                    </button>
+                </div>
+            </div>
+
+            <div class="error-footer">
+                <div class="error-details">
+                    <div class="error-code">Error Code: {{ error_code|default:"404" }}</div>
+                    <div class="error-time" id="errorTime"></div>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Documentation</a>
+                    <a href="#" class="footer-link">Support</a>
+                </div>
+                <div class="footer-text">
+                    Made by <a href="https://glitchidea.com" target="_blank">glitchidea</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../../static/js/error/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!-- Settings Panel Component - Obsidian Style -->
+{% load i18n %}
+<div id="settings-panel" class="settings-panel">
+    <div class="panel-header">
+        <div class="panel-title">
+            <i class="fas fa-cog"></i>
+            <span>{% trans "Graph Settings" %}</span>
+        </div>
+        <button type="button" class="panel-close" id="close-settings">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="panel-body">
+        <!-- Display Section -->
+        <div class="settings-group">
+            <h6 class="group-title">{% trans "Display" %}</h6>
+            
+            <div class="setting-item">
+                <label for="node-size" class="setting-label">{% trans "Node size" %}</label>
+                <input type="range" class="setting-range" id="node-size" min="0.3" max="3.0" step="0.1" value="1.0">
+                <span class="range-value" id="node-size-value">1.0</span>
+            </div>
+            
+            <div class="setting-item">
+                <label for="connection-thickness" class="setting-label">{% trans "Link thickness" %}</label>
+                <input type="range" class="setting-range" id="connection-thickness" min="0.5" max="3.0" step="0.1" value="1.0">
+                <span class="range-value" id="connection-thickness-value">1.0</span>
+            </div>
+            
+            <div class="setting-item">
+                <label for="color-scheme" class="setting-label">{% trans "Color scheme" %}</label>
+                <select class="setting-select" id="color-scheme">
+                    <option value="status">{% trans "Status" %}</option>
+                    <option value="cpu">{% trans "CPU Usage" %}</option>
+                    <option value="memory">{% trans "Memory Usage" %}</option>
+                    <option value="user">{% trans "User" %}</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Forces Section -->
+        <div class="settings-group">
+            <h6 class="group-title">{% trans "Forces" %}</h6>
+            
+            <div class="setting-item">
+                <label for="centrality-force" class="setting-label">{% trans "Center force" %}</label>
+                <input type="range" class="setting-range" id="centrality-force" min="0.1" max="3.0" step="0.1" value="2.0">
+                <span class="range-value" id="centrality-force-value">2.0</span>
+            </div>
+            
+            <div class="setting-item">
+                <label for="charge-force" class="setting-label">{% trans "Repel force" %}</label>
+                <input type="range" class="setting-range" id="charge-force" min="-1000" max="-50" step="50" value="-150">
+                <span class="range-value" id="charge-force-value">-150</span>
+            </div>
+            
+            <div class="setting-item">
+                <label for="node-distance" class="setting-label">{% trans "Link distance" %}</label>
+                <input type="range" class="setting-range" id="node-distance" min="20" max="200" step="10" value="50">
+                <span class="range-value" id="node-distance-value">50</span>
+            </div>
+            
+            <div class="setting-item">
+                <label for="collision-radius" class="setting-label">{% trans "Collision radius" %}</label>
+                <input type="range" class="setting-range" id="collision-radius" min="5" max="50" step="5" value="15">
+                <span class="range-value" id="collision-radius-value">15</span>
+            </div>
+        </div>
+
+        <!-- Layout Section -->
+        <div class="settings-group">
+            <h6 class="group-title">{% trans "Layout" %}</h6>
+            
+            <div class="setting-item">
+                <label for="node-distribution" class="setting-label">{% trans "Distribution" %}</label>
+                <select class="setting-select" id="node-distribution">
+                    <option value="compact">{% trans "Compact" %}</option>
+                    <option value="spread">{% trans "Spread" %}</option>
+                    <option value="clustered">{% trans "Clustered" %}</option>
+                    <option value="linear">{% trans "Linear" %}</option>
+                </select>
+            </div>
+            
+            <div class="setting-item">
+                <label for="canvas-width" class="setting-label">{% trans "Canvas width" %}</label>
+                <input type="range" class="setting-range" id="canvas-width" min="400" max="1200" step="50" value="800">
+                <span class="range-value" id="canvas-width-value">800</span>
+            </div>
+            
+            <div class="setting-item">
+                <label for="canvas-height" class="setting-label">{% trans "Canvas height" %}</label>
+                <input type="range" class="setting-range" id="canvas-height" min="300" max="800" step="50" value="600">
+                <span class="range-value" id="canvas-height-value">600</span>
+            </div>
+        </div>
+
+        <!-- Auto Settings -->
+        <div class="settings-group">
+            <h6 class="group-title">{% trans "Auto" %}</h6>
+            
+            <div class="setting-item checkbox-item">
+                <input type="checkbox" id="auto-refresh" checked>
+                <label for="auto-refresh">{% trans "Auto refresh" %}</label>
+            </div>
+            
+            <div class="setting-item">
+                <label for="refresh-interval" class="setting-label">{% trans "Refresh interval" %}</label>
+                <input type="number" class="setting-input" id="refresh-interval" value="5" min="1" max="60">
+                <span class="input-suffix">s</span>
+            </div>
+        </div>
+    </div>
+</div>

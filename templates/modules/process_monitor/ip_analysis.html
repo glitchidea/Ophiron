@@ -1,0 +1,52 @@
+{% load static %}
+{% load i18n %}
+
+<!-- IP Analysis Modal -->
+<div class="modal" id="ipAnalysisModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-globe"></i>
+                    {% trans "IP Analysis & Request Tracking" %}
+                </h3>
+                <button class="modal-close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="ip-analysis-container">
+                    <!-- Header Actions -->
+                    <div class="ip-analysis-header">
+                        <div class="header-actions">
+                            <button id="refreshIPAnalysis" class="btn-primary">
+                                <i class="fas fa-sync-alt"></i>
+                                {% trans "Refresh" %}
+                            </button>
+                            <button id="exportIPReport" class="btn-secondary">
+                                <i class="fas fa-download"></i>
+                                {% trans "Export" %}
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Main Content Layout -->
+                    <div class="ip-analysis-layout">
+                        <!-- IP Cards Grid -->
+                        <div class="ip-overview-section">
+                            <h2><i class="fas fa-globe"></i> {% trans "IP Addresses" %}</h2>
+                            <div class="ip-cards-grid" id="ipCardsGrid">
+                                <div class="loading">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    <span>{% trans "Loading..." %}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

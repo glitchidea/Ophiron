@@ -1,0 +1,318 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Plugins" %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="plugin-list-main">
+            <div class="plugin-list-header">
+                <h1>
+                    <i class="fas fa-puzzle-piece"></i>
+                    {% trans "Plugins" %}
+                </h1>
+                <p class="plugin-list-subtitle">
+                    {% trans "Manage and access your installed plugins" %}
+                </p>
+            </div>
+            
+            <div class="plugin-list-content">
+                {% if plugins %}
+                <div class="plugin-grid">
+                    {% for plugin in plugins %}
+                    <div class="plugin-card {% if not plugin.enabled %}plugin-disabled{% endif %}">
+                        <div class="plugin-card-header">
+                            <div class="plugin-icon">
+                                <i class="{{ plugin.icon }}"></i>
+                            </div>
+                            <div class="plugin-status">
+                                {% if plugin.enabled %}
+                                <span class="status-badge status-enabled">
+                                    <i class="fas fa-check-circle"></i>
+                                    {% trans "Enabled" %}
+                                </span>
+                                {% else %}
+                                <span class="status-badge status-disabled">
+                                    <i class="fas fa-times-circle"></i>
+                                    {% trans "Disabled" %}
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="plugin-card-body">
+                            <h3 class="plugin-name">{{ plugin.display_name }}</h3>
+                            <p class="plugin-description">{{ plugin.description|default:"No description available" }}</p>
+                            
+                            <div class="plugin-meta">
+                                <span class="plugin-version">
+                                    <i class="fas fa-tag"></i>
+                                    v{{ plugin.version }}
+                                </span>
+                                <span class="plugin-author">
+                                    <i class="fas fa-user"></i>
+                                    {{ plugin.author }}
+                                </span>
+                                <span class="plugin-category">
+                                    <i class="fas fa-folder"></i>
+                                    {{ plugin.category }}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="plugin-card-footer">
+                            {% if plugin.enabled and plugin.route %}
+                            <a href="/{{ plugin.route }}/" class="btn btn-primary">
+                                <i class="fas fa-external-link-alt"></i>
+                                {% trans "Open" %}
+                            </a>
+                            {% else %}
+                            <button class="btn btn-secondary" disabled>
+                                <i class="fas fa-lock"></i>
+                                {% trans "Disabled" %}
+                            </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <h2>{% trans "No plugins installed" %}</h2>
+                    <p>{% trans "Install plugins to extend Ophiron's functionality" %}</p>
+                </div>
+                {% endif %}
+            </div>
+        </main>
+    </div>
+    
+    <style>
+        .plugin-list-main {
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .plugin-list-header {
+            margin-bottom: 30px;
+        }
+        
+        .plugin-list-header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .plugin-list-header h1 i {
+            color: #667eea;
+        }
+        
+        .plugin-list-subtitle {
+            color: #6b7280;
+            font-size: 16px;
+            margin: 0;
+        }
+        
+        .plugin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+        
+        .plugin-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .plugin-card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .plugin-card.plugin-disabled {
+            opacity: 0.7;
+        }
+        
+        .plugin-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .plugin-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .plugin-status {
+            display: flex;
+            align-items: center;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .status-enabled {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+        }
+        
+        .status-disabled {
+            background: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .plugin-card-body {
+            padding: 20px;
+            flex: 1;
+        }
+        
+        .plugin-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 10px 0;
+        }
+        
+        .plugin-description {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0 0 16px 0;
+            min-height: 48px;
+        }
+        
+        .plugin-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        
+        .plugin-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .plugin-meta i {
+            font-size: 11px;
+        }
+        
+        .plugin-card-footer {
+            padding: 16px 20px;
+            border-top: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+        
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #6b7280;
+            cursor: not-allowed;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #6b7280;
+        }
+        
+        .empty-state i {
+            font-size: 64px;
+            color: #d1d5db;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h2 {
+            font-size: 24px;
+            color: #374151;
+            margin: 0 0 10px 0;
+        }
+        
+        .empty-state p {
+            font-size: 16px;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .plugin-list-main {
+                padding: 20px;
+            }
+            
+            .plugin-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html>
+

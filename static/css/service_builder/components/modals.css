@@ -1,0 +1,354 @@
+/*
+Service Builder Modals CSS
+Modal components and overlay styles
+*/
+
+/* ===== MODAL OVERLAY ===== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal.fade {
+    transition: opacity var(--transition-normal);
+}
+
+/* ===== MODAL DIALOG ===== */
+.modal-dialog {
+    position: relative;
+    width: auto;
+    max-width: 500px;
+    margin: 1.75rem;
+    transform: scale(0.8);
+    transition: transform var(--transition-normal);
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
+}
+
+.modal-dialog.modal-lg {
+    max-width: 800px;
+}
+
+.modal-dialog.modal-xl {
+    max-width: 1200px;
+}
+
+/* ===== MODAL CONTENT ===== */
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    outline: 0;
+    overflow: hidden;
+}
+
+/* ===== MODAL HEADER ===== */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-light);
+    background: var(--bg-light);
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.btn-close:hover {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.btn-close::before {
+    content: '×';
+    font-size: 20px;
+    line-height: 1;
+}
+
+/* ===== MODAL BODY ===== */
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 24px;
+}
+
+/* ===== MODAL FOOTER ===== */
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-light);
+    background: var(--bg-light);
+}
+
+/* ===== SPINNER ===== */
+.spinner-border {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border: 0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+}
+
+.spinner-border.text-primary {
+    color: var(--accent-blue);
+}
+
+@keyframes spinner-border {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== MODAL CONTENT STYLES ===== */
+.modal-content .text-center {
+    text-align: center;
+}
+
+.modal-content .text-success {
+    color: var(--accent-green);
+}
+
+.modal-content .text-danger {
+    color: var(--accent-red);
+}
+
+.modal-content .text-info {
+    color: var(--accent-cyan);
+}
+
+.modal-content .text-warning {
+    color: var(--accent-yellow);
+}
+
+/* ===== VALIDATION RESULTS ===== */
+.validation-results {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.validation-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+}
+
+.validation-item.success {
+    background: rgba(40, 167, 69, 0.1);
+    border-color: rgba(40, 167, 69, 0.2);
+}
+
+.validation-item.error {
+    background: rgba(255, 107, 107, 0.1);
+    border-color: rgba(255, 107, 107, 0.2);
+}
+
+.validation-item.warning {
+    background: rgba(255, 193, 7, 0.1);
+    border-color: rgba(255, 193, 7, 0.2);
+}
+
+.validation-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.validation-icon.success {
+    background: var(--accent-green);
+    color: var(--text-white);
+}
+
+.validation-icon.error {
+    background: var(--accent-red);
+    color: var(--text-white);
+}
+
+.validation-icon.warning {
+    background: var(--accent-yellow);
+    color: var(--text-white);
+}
+
+.validation-content {
+    flex: 1;
+}
+
+.validation-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+}
+
+.validation-message {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ===== SERVICE CREATION STATUS ===== */
+.service-status {
+    text-align: center;
+    padding: 20px;
+}
+
+.service-status-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.service-status-icon.success {
+    color: var(--accent-green);
+}
+
+.service-status-icon.error {
+    color: var(--accent-red);
+}
+
+.service-status-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+}
+
+.service-status-message {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+}
+
+.service-status-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress {
+    height: 8px;
+    background: var(--bg-light);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--accent-blue);
+    border-radius: var(--radius-sm);
+    transition: width var(--transition-normal);
+    width: 0%;
+}
+
+.progress-bar.animated {
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 40px 0;
+    }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+    
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding: 16px;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+    }
+    
+    .modal-footer .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-dialog {
+        margin: 0.25rem;
+        max-width: calc(100% - 0.5rem);
+    }
+    
+    .validation-item {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .validation-icon {
+        align-self: flex-start;
+    }
+}

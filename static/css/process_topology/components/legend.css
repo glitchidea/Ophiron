@@ -1,0 +1,188 @@
+/*
+Process Topology Legend Component CSS - Fixed Layout
+Single panel design to prevent overlapping
+*/
+
+/* ===== LEGEND CONTAINER ===== */
+.legend-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* ===== LEGEND PANEL ===== */
+.legend-panel {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+    max-width: 220px;
+    backdrop-filter: blur(5px);
+}
+
+/* ===== LEGEND SECTIONS ===== */
+.legend-section {
+    margin-bottom: 12px;
+}
+
+.legend-section:last-child {
+    margin-bottom: 0;
+}
+
+.legend-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 3px;
+}
+
+/* ===== LEGEND ITEMS ===== */
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.legend-item:hover {
+    background: var(--primary-gray);
+}
+
+/* ===== LEGEND COLORS ===== */
+.legend-color {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.legend-color.status-running {
+    background: var(--accent-green);
+}
+
+.legend-color.status-sleeping {
+    background: var(--accent-cyan);
+}
+
+.legend-color.status-stopped {
+    background: #6c757d;
+}
+
+.legend-color.status-zombie {
+    background: var(--accent-red);
+}
+
+.legend-color.status-disk-sleep {
+    background: var(--accent-yellow);
+}
+
+.legend-color.status-dead {
+    background: #343a40;
+}
+
+.legend-color.status-waking {
+    background: var(--accent-teal);
+}
+
+.legend-color.status-parked {
+    background: var(--accent-purple);
+}
+
+/* ===== LEGEND LINES ===== */
+.legend-line {
+    width: 16px;
+    height: 2px;
+    flex-shrink: 0;
+    border-radius: 1px;
+}
+
+.legend-line.parent-child {
+    background: var(--accent-blue);
+}
+
+.legend-line.network {
+    background: var(--accent-green);
+}
+
+.legend-line.file {
+    background: var(--accent-yellow);
+}
+
+.legend-line.memory {
+    background: var(--accent-cyan);
+}
+
+.legend-line.signal {
+    background: var(--accent-red);
+}
+
+.legend-line.pipe {
+    background: var(--accent-purple);
+}
+
+.legend-line.socket {
+    background: var(--accent-orange);
+}
+
+.legend-line.shared-memory {
+    background: var(--accent-teal);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .legend-container {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .legend-panel {
+        min-width: 160px;
+        max-width: 200px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .legend-panel {
+        padding: 8px;
+        min-width: 140px;
+        max-width: 180px;
+    }
+    
+    .legend-section {
+        margin-bottom: 8px;
+    }
+    
+    .legend-item {
+        font-size: 10px;
+        padding: 1px 2px;
+    }
+    
+    .legend-color {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .legend-line {
+        width: 12px;
+        height: 1px;
+    }
+}

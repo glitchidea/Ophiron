@@ -1,0 +1,26 @@
+{% load static %}
+{% load i18n %}
+<link rel="stylesheet" href="{% static 'css/process_monitor/group_view.css' %}">
+
+<!-- Group View Modal -->
+<div class="modal" id="groupViewModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-layer-group"></i>
+                    {% trans "Group View" %}
+                </h3>
+                <button class="modal-close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="groupViewBody">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>{% trans "Loading..." %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

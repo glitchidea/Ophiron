@@ -1,0 +1,234 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ophiron - {% trans "Alert Management" %}</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/components/header.css' %}">
+    
+    <!-- Security CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/security/style.css' %}">
+    
+    <!-- Alert Management CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/security/alert-management.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="security-main">
+            <div class="security-container">
+                <!-- Page Title -->
+                <div class="security-header">
+                    <div class="security-title-section">
+                        <h1 class="security-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            {% trans "Alert Management" %}
+                        </h1>
+                        <p class="security-subtitle">{% trans "Monitor and manage all system alerts" %}</p>
+                    </div>
+                    <div class="security-actions">
+                        <button class="btn-secondary" onclick="refreshAlerts()">
+                            <i class="fas fa-sync-alt"></i>
+                            {% trans "Refresh" %}
+                        </button>
+                        <button class="btn-primary" onclick="exportAlerts()">
+                            <i class="fas fa-download"></i>
+                            {% trans "Export" %}
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Alert Statistics -->
+                <div class="alert-stats" id="alertStats">
+                    <div class="stat-card">
+                        <div class="stat-icon critical">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="criticalCount">0</h3>
+                            <p>{% trans "Critical" %}</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="warningCount">0</h3>
+                            <p>{% trans "Warning" %}</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon error">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="errorCount">0</h3>
+                            <p>{% trans "Error" %}</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon info">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="infoCount">0</h3>
+                            <p>{% trans "Info" %}</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon resolved">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="resolvedCount">0</h3>
+                            <p>{% trans "Resolved" %}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Alert Filters -->
+                <div class="alert-filters">
+                    <div class="filter-group">
+                        <label for="alertType">{% trans "Alert Type" %}</label>
+                        <select id="alertType" onchange="filterAlerts()">
+                            <option value="">{% trans "All Types" %}</option>
+                            <option value="critical">{% trans "Critical" %}</option>
+                            <option value="warning">{% trans "Warning" %}</option>
+                            <option value="error">{% trans "Error" %}</option>
+                            <option value="info">{% trans "Info" %}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="alertStatus">{% trans "Status" %}</label>
+                        <select id="alertStatus" onchange="filterAlerts()">
+                            <option value="">{% trans "All Status" %}</option>
+                            <option value="unresolved">{% trans "Unresolved" %}</option>
+                            <option value="resolved">{% trans "Resolved" %}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="dateRange">{% trans "Date Range" %}</label>
+                        <select id="dateRange" onchange="filterAlerts()">
+                            <option value="7">{% trans "Last 7 days" %}</option>
+                            <option value="30" selected>{% trans "Last 30 days" %}</option>
+                            <option value="90">{% trans "Last 90 days" %}</option>
+                            <option value="365">{% trans "Last year" %}</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="searchAlerts">{% trans "Search" %}</label>
+                        <input type="text" id="searchAlerts" placeholder="{% trans 'Search alerts...' %}" onkeyup="searchAlerts()">
+                    </div>
+                </div>
+                
+                <!-- Alert List -->
+                <div class="alert-list" id="alertList">
+                    <!-- Loading indicator -->
+                    <div class="loading-indicator" id="loadingIndicator" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>{% trans "Loading alerts..." %}</p>
+                    </div>
+                    
+                    <!-- Empty state -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>{% trans "No alerts found" %}</h3>
+                        <p>{% trans "There are no alerts matching your current filters." %}</p>
+                    </div>
+                    
+                    <!-- Alerts will be loaded here dynamically -->
+                </div>
+                
+                <!-- Load More -->
+                <div class="load-more-section" id="loadMoreSection" style="display: none;">
+                    <button class="btn-secondary load-more-btn" onclick="loadMoreAlerts()">
+                        <i class="fas fa-plus"></i>
+                        {% trans "Load More" %}
+                    </button>
+                </div>
+                
+                <!-- Pagination Info -->
+                <div class="pagination-info" id="paginationInfo" style="display: none;">
+                    <span id="paginationText"></span>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Note Modal -->
+        <div class="modal-overlay" id="noteModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>{% trans "Add Note to Alert" %}</h3>
+                    <button class="modal-close" onclick="closeNoteModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="noteText">{% trans "Note" %}</label>
+                        <textarea id="noteText" rows="4" placeholder="{% trans 'Enter your note about this alert...' %}"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" onclick="closeNoteModal()">{% trans "Cancel" %}</button>
+                    <button class="btn-primary" onclick="saveNote()">{% trans "Save Note" %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- Header JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+    
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = {
+            'loading_alerts': '{% trans "Loading alerts..." %}',
+            'no_alerts_found': '{% trans "No alerts found" %}',
+            'no_alerts_description': '{% trans "There are no alerts matching your current filters." %}',
+            'load_more': '{% trans "Load More" %}',
+            'resolved': '{% trans "Resolved" %}',
+            'unresolved': '{% trans "Unresolved" %}',
+            'critical': '{% trans "Critical" %}',
+            'warning': '{% trans "Warning" %}',
+            'error': '{% trans "Error" %}',
+            'info': '{% trans "Info" %}',
+            'mark_resolved': '{% trans "Mark as Resolved" %}',
+            'mark_unresolved': '{% trans "Mark as Unresolved" %}',
+            'just_now': '{% trans "Just now" %}',
+            'minutes_ago': '{% trans "m ago" %}',
+            'hours_ago': '{% trans "h ago" %}',
+            'days_ago': '{% trans "d ago" %}',
+            'export_alerts': '{% trans "Export Alerts" %}',
+            'refresh_alerts': '{% trans "Refresh Alerts" %}',
+            'alert_resolved': '{% trans "Alert resolved successfully" %}',
+            'alert_unresolved': '{% trans "Alert marked as unresolved" %}',
+            'error_occurred': '{% trans "An error occurred" %}',
+            'confirm_resolve': '{% trans "Are you sure you want to mark this alert as resolved?" %}',
+            'confirm_unresolve': '{% trans "Are you sure you want to mark this alert as unresolved?" %}'
+        };
+    </script>
+    
+    <!-- Alert Management JavaScript -->
+    <script src="{% load static %}{% static 'js/security/alert-management.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Docker Manager" %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/components/header.css' %}">
+    
+    <!-- Docker Manager CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/main.css' %}">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/modals.css' %}">
+    
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="docker-manager">
+                <!-- Header -->
+                <div class="docker-header">
+                    <div class="header-left">
+                        <h1 class="docker-title">{% trans "Docker Manager" %}</h1>
+                        <span class="feedback-link">{% trans "Give feedback" %}</span>
+                    </div>
+                </div>
+
+                <!-- Docker Navigation -->
+                <div class="docker-nav">
+                    <div class="docker-nav-container">
+                        <a href="{% url 'docker_manager:index' %}" class="docker-nav-item active">
+                            <i class="fas fa-cube"></i>
+                            <span>{% trans "Containers" %}</span>
+                        </a>
+                        <a href="{% url 'docker_manager:images' %}" class="docker-nav-item">
+                            <i class="fas fa-images"></i>
+                            <span>Images</span>
+                        </a>
+                        <a href="{% url 'docker_manager:volumes' %}" class="docker-nav-item">
+                            <i class="fas fa-database"></i>
+                            <span>{% trans "Volumes" %}</span>
+                        </a>
+                        <a href="{% url 'docker_manager:hubs' %}" class="docker-nav-item">
+                            <i class="fas fa-cube"></i>
+                            <span>{% trans "Hubs" %}</span>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Search and Filter -->
+                <div class="search-filter">
+                        <div class="search-container">
+                            <input type="text" class="search-input" placeholder="{% trans 'Search containers by name or image...' %}" id="containerSearch">
+                        </div>
+                    <div class="filter-container">
+                        <label class="filter-toggle">
+                            <input type="checkbox" id="runningOnly" checked>
+                            <span class="toggle-slider"></span>
+                            {% trans "Only show running containers" %}
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Containers Table -->
+                <div class="containers-table-container">
+                    <table class="containers-table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-col">
+                                    <input type="checkbox" id="selectAll">
+                                </th>
+                                <th class="name-col">{% trans "Name" %}</th>
+                                <th class="image-col">Image</th>
+                                <th class="status-col">{% trans "Status" %}</th>
+                                <th class="ports-col">{% trans "Port(s)" %}</th>
+                                <th class="started-col">{% trans "Last started" %}</th>
+                                <th class="actions-col">{% trans "Actions" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody id="containersTableBody">
+                            {% for container in containers %}
+                            <tr>
+                                <td class="checkbox-col">
+                                    <input type="checkbox" class="container-checkbox" data-container-id="{{ container.id }}">
+                                </td>
+                                <td class="name-col">
+                                    <a href="{% url 'docker_manager:container_detail' container.id %}" class="container-name">{{ container.name }}</a>
+                                    <span class="container-id">{{ container.id }}</span>
+                                    <span class="copy-icon" onclick="copyToClipboard('{{ container.id }}')">📋</span>
+                                </td>
+                                <td class="image-col">
+                                    <a href="{% url 'docker_manager:image_detail' container.image_id %}" class="container-name">{{ container.image }}</a>
+                                </td>
+                                <td class="status-col">
+                                    <span class="status-{{ container.status|lower }}">{{ container.status }}</span>
+                                </td>
+                                <td class="ports-col">
+                                    {% if container.ports %}
+                                        <a href="#" class="ports">{{ container.ports }}</a><span class="external-link">🔗</span>
+                                    {% endif %}
+                                </td>
+                                <td class="started-col">{{ container.lastStarted }}</td>
+                                <td class="actions-col">
+                                    <div class="actions">
+                                        {% if container.status == 'running' %}
+                                            <button class="action-btn stop" onclick="showStopModal('{{ container.id }}', '{{ container.name }}')" title="{% trans 'Stop' %}">
+                                                <i class="fas fa-stop"></i>
+                                            </button>
+                                            <button class="action-btn restart" onclick="showRestartModal('{{ container.id }}', '{{ container.name }}')" title="{% trans 'Restart' %}">
+                                                <i class="fas fa-redo"></i>
+                                            </button>
+                                        {% else %}
+                                            <button class="action-btn start" onclick="showStartModal('{{ container.id }}', '{{ container.name }}')" title="{% trans 'Start' %}">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        {% endif %}
+                                        <button class="action-btn delete" onclick="showDeleteModal('{{ container.id }}', '{{ container.name }}')" title="{% trans 'Delete' %}">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 40px; color: #718096;">
+                                    {% if docker_running %}
+                                        {% trans "No containers found" %}
+                                    {% else %}
+                                        {% trans "Docker is not running" %}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Status Bar -->
+                <div class="status-bar">
+                    <div class="status-left">
+                        <span class="engine-status">
+                            <span class="status-icon {% if docker_running %}running{% else %}stopped{% endif %}"></span>
+                            {% if docker_running %}{% trans "Engine running" %}{% else %}{% trans "Engine stopped" %}{% endif %}
+                        </span>
+                    </div>
+                    <div class="status-right">
+                        <button class="restart-btn">
+                            <span class="info-icon">ℹ</span>
+                            {% trans "Restart to update" %}
+                            <span class="notification-badge">1</span>
+                        </button>
+                        <span class="items-count">{% trans "Showing" %} {{ containers|length }} {% trans "items" %}</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Action Modals -->
+    {% include 'modules/docker_manager/modals/start_modal.html' %}
+    {% include 'modules/docker_manager/modals/stop_modal.html' %}
+    {% include 'modules/docker_manager/modals/restart_modal.html' %}
+    {% include 'modules/docker_manager/modals/delete_modal.html' %}
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = JSON.parse('{{ js_translations|escapejs }}');
+    </script>
+    
+    <!-- Header JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+    
+    <!-- Modal JavaScript -->
+    <script src="{% load static %}{% static 'js/docker_manager/modals.js' %}"></script>
+    
+    <!-- Docker Manager JavaScript -->
+    <script src="{% load static %}{% static 'js/docker_manager/main.js' %}"></script>
+    
+</body>
+</html>

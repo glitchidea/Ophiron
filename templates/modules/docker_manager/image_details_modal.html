@@ -1,0 +1,84 @@
+{% load i18n %}
+<!-- Image Details Modal -->
+<div id="imageDetailsModal" class="image-details-modal" style="display: none;">
+    <div class="modal-overlay" onclick="closeImageDetailsModal()"></div>
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-title">
+                <i class="fas fa-image"></i>
+                <span id="modalImageName">{% trans "Image Details" %}</span>
+            </div>
+            <button class="modal-close" onclick="closeImageDetailsModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="image-info">
+                <div class="info-section">
+                    <h3>{% trans "Basic Information" %}</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <label>{% trans "Name" %}:</label>
+                            <span id="detailName">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Description" %}:</label>
+                            <span id="detailDescription">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Official" %}:</label>
+                            <span id="detailOfficial">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label>{% trans "Last Updated" %}:</label>
+                            <span id="detailLastUpdated">-</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <h3>{% trans "Statistics" %}</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">{% trans "Stars" %}</div>
+                                <div class="stat-value" id="detailStars">0</div>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-label">{% trans "Pulls" %}</div>
+                                <div class="stat-value" id="detailPulls">0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-section">
+                    <h3>{% trans "Tags" %}</h3>
+                    <div class="tags-container" id="detailTags">
+                        <span class="tag">latest</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeImageDetailsModal()">
+                <i class="fas fa-times"></i>
+                {% trans "Close" %}
+            </button>
+            <button class="btn btn-primary" onclick="pullSelectedImage()">
+                <i class="fas fa-download"></i>
+                {% trans "Pull Image" %}
+            </button>
+        </div>
+    </div>
+</div>

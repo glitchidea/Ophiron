@@ -1,0 +1,30 @@
+{% load i18n %}
+<!-- Start Container Modal -->
+<div id="startModal" class="action-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-icon start">
+                <i class="fas fa-play-circle"></i>
+            </div>
+            <h3 id="startModalTitle">{% trans "Start Container" %}</h3>
+            <span class="close" onclick="closeStartModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p id="startModalMessage">{% trans "Are you sure you want to start this container?" %}</p>
+            <div class="container-info">
+                <div class="info-item">
+                    <strong id="startContainerIdLabel">{% trans "Container ID" %}:</strong>
+                    <span id="startContainerId"></span>
+                </div>
+                <div class="info-item">
+                    <strong id="startContainerNameLabel">{% trans "Container Name" %}:</strong>
+                    <span id="startContainerName"></span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeStartModal()" id="startCancelBtn">{% trans "Cancel" %}</button>
+            <button class="btn btn-success" onclick="confirmStartContainer()" id="startConfirmBtn">{% trans "Start Container" %}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,154 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Firewall Management" %} - Ophiron</title>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS for modals -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Base styles to match dashboard -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+    <!-- Page specific styles -->
+    <link rel="stylesheet" href="{% static 'css/firewall/selection.css' %}">
+
+    <!-- Bootstrap JS for modals -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Header and Navigation Scripts -->
+    <script defer src="{% static 'js/components/header.js' %}"></script>
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = {
+            'checking': '{% trans "Checking..." %}',
+            'available': '{% trans "Available" %}',
+            'not_available': '{% trans "Not Available" %}',
+            'error': '{% trans "Error" %}',
+            'ufw': '{% trans "UFW" %}',
+            'iptables': '{% trans "iptables" %}',
+            'firewalld': '{% trans "firewalld" %}',
+            'uncomplicated_firewall': '{% trans "Uncomplicated Firewall" %}',
+            'advanced_firewall': '{% trans "Advanced Firewall" %}',
+            'dynamic_firewall': '{% trans "Dynamic Firewall" %}',
+            'manage_ufw': '{% trans "Manage UFW" %}',
+            'manage_iptables': '{% trans "Manage iptables" %}',
+            'manage_firewalld': '{% trans "Manage firewalld" %}'
+        };
+    </script>
+    
+    <!-- Page script -->
+    <script defer src="{% static 'js/firewall/selection.js' %}"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        {% include 'components/header.html' %}
+
+        <main class="dashboard-main">
+            <!-- Firewall Selection Header -->
+            <section class="firewall-selection-shell">
+                <header class="firewall-selection-head">
+                    <div class="firewall-selection-titles">
+                        <div class="firewall-selection-title-wrapper">
+                            <h1 class="firewall-selection-title">
+                                <div class="firewall-selection-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <span class="firewall-selection-title-text">{% trans "Firewall Management" %}</span>
+                            </h1>
+                            <p class="firewall-selection-subtitle">{% trans "Choose your firewall system to manage rules and settings" %}</p>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Firewall Options -->
+                <div class="firewall-options">
+                    <div class="firewall-options-grid">
+                        <!-- UFW Option -->
+                        <div class="firewall-option-card" data-firewall="ufw">
+                            <div class="firewall-option-header">
+                                <div class="firewall-option-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <h3 class="firewall-option-title">{% trans "UFW" %}</h3>
+                                <span class="firewall-option-subtitle">{% trans "Uncomplicated Firewall" %}</span>
+                            </div>
+                            <div class="firewall-option-content">
+                                <div class="firewall-option-status" id="ufw-status">
+                                    <div class="status-indicator">
+                                        <div class="status-dot"></div>
+                                        <span class="status-text">{% trans "Checking..." %}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="firewall-option-actions">
+                                <button class="btn-primary" onclick="selectFirewall('ufw')">
+                                    <i class="fas fa-arrow-right"></i>
+                                    {% trans "Manage UFW" %}
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- iptables Option -->
+                        <div class="firewall-option-card" data-firewall="iptables">
+                            <div class="firewall-option-header">
+                                <div class="firewall-option-icon">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h3 class="firewall-option-title">{% trans "iptables" %}</h3>
+                                <span class="firewall-option-subtitle">{% trans "Advanced Firewall" %}</span>
+                            </div>
+                            <div class="firewall-option-content">
+                                <div class="firewall-option-status" id="iptables-status">
+                                    <div class="status-indicator">
+                                        <div class="status-dot"></div>
+                                        <span class="status-text">{% trans "Checking..." %}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="firewall-option-actions">
+                                <button class="btn-primary" onclick="selectFirewall('iptables')">
+                                    <i class="fas fa-arrow-right"></i>
+                                    {% trans "Manage iptables" %}
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- firewalld Option -->
+                        <div class="firewall-option-card" data-firewall="firewalld">
+                            <div class="firewall-option-header">
+                                <div class="firewall-option-icon">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <h3 class="firewall-option-title">{% trans "firewalld" %}</h3>
+                                <span class="firewall-option-subtitle">{% trans "Dynamic Firewall" %}</span>
+                            </div>
+                            <div class="firewall-option-content">
+                                <div class="firewall-option-status" id="firewalld-status">
+                                    <div class="status-indicator">
+                                        <div class="status-dot"></div>
+                                        <span class="status-text">{% trans "Checking..." %}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="firewall-option-actions">
+                                <button class="btn-primary" onclick="selectFirewall('firewalld')">
+                                    <i class="fas fa-arrow-right"></i>
+                                    {% trans "Manage firewalld" %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

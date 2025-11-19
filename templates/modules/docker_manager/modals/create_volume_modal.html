@@ -1,0 +1,45 @@
+{% load i18n %}
+<!-- Create Volume Modal -->
+<div class="modal-overlay" id="createVolumeModal">
+    <div class="modal-content create-volume-modal">
+        <div class="modal-header">
+            <h3>
+                <i class="fas fa-plus"></i>
+                {% trans "Create Volume" %}
+            </h3>
+            <button class="close-btn" onclick="closeCreateVolumeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="createVolumeForm">
+                <div class="form-group">
+                    <label for="volumeName">{% trans "Volume Name" %}:</label>
+                    <input type="text" id="volumeName" placeholder="{% trans 'Enter volume name' %}" required>
+                    <small class="form-help">{% trans "Leave empty for auto-generated name" %}</small>
+                </div>
+                <div class="form-group">
+                    <label for="volumeDriver">{% trans "Driver" %}:</label>
+                    <select id="volumeDriver">
+                        <option value="local">{% trans "Local" %}</option>
+                        <option value="nfs">{% trans "NFS" %}</option>
+                        <option value="cifs">{% trans "CIFS" %}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="volumeLabels">{% trans "Labels (KEY=VALUE, one per line)" %}:</label>
+                    <textarea id="volumeLabels" rows="3" placeholder="{% trans 'e.g., environment=production' %}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="volumeOptions">{% trans "Driver Options (KEY=VALUE, one per line)" %}:</label>
+                    <textarea id="volumeOptions" rows="3" placeholder="{% trans 'e.g., type=nfs,o=addr=192.168.1.100,rw' %}"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeCreateVolumeModal()">{% trans "Cancel" %}</button>
+            <button class="btn btn-primary" onclick="createVolume()">
+                <i class="fas fa-plus"></i>
+                {% trans "Create Volume" %}
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,188 @@
+/* ===== EXPORT MODAL STYLES ===== */
+.export-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.export-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 0.75rem;
+}
+
+.section-title i {
+    color: #007bff;
+    font-size: 0.8rem;
+}
+
+/* ===== CATEGORY CONTROLS ===== */
+.category-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    color: white;
+    background: #007bff;
+}
+
+.btn-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+    background: transparent;
+}
+
+.btn-outline-secondary:hover {
+    color: white;
+    background: #6c757d;
+}
+
+/* ===== LOG CATEGORIES ===== */
+.log-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.category-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.category-option:hover {
+    border-color: #007bff;
+    background: #f8f9ff;
+}
+
+.category-option input[type="checkbox"] {
+    accent-color: #007bff;
+    cursor: pointer;
+}
+
+.category-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1a202c;
+    cursor: pointer;
+}
+
+.category-label i {
+    color: #007bff;
+    font-size: 0.8rem;
+    width: 14px;
+    text-align: center;
+}
+
+/* ===== EXPORT FORMAT OPTIONS ===== */
+.export-options { 
+    display: flex; 
+    gap: 12px; 
+    flex-wrap: wrap;
+}
+
+.export-options .option { 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; 
+    padding: 10px 12px; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.export-options .option:hover {
+    border-color: #007bff;
+    background: #f8f9ff;
+}
+
+.export-options input[type="radio"] { 
+    accent-color: #007bff; 
+}
+
+/* ===== LOG LEVEL FILTER ===== */
+.form-select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: #ffffff;
+    font-size: 0.85rem;
+    color: #1a202c;
+    cursor: pointer;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* ===== EXPORT ACTIONS ===== */
+.export-actions { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    margin-top: 16px; 
+}
+
+.export-status { 
+    color: #6c757d; 
+    font-size: 0.8rem; 
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .log-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    .export-options {
+        flex-direction: column;
+    }
+    
+    .export-options .option {
+        justify-content: center;
+    }
+}
+

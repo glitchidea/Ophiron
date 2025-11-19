@@ -1,0 +1,56 @@
+{% load i18n %}
+<!-- Delete User Confirmation Modal -->
+<div class="modal" id="deleteUserModal">
+    <div class="modal-dialog delete-user-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    {% trans "Delete User" %}
+                </h3>
+                <button class="modal-close" onclick="closeModal(document.getElementById('deleteUserModal'))">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="delete-warning">
+                    <div class="warning-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="warning-content">
+                        <h4>{% trans "Are you sure you want to delete this user?" %}</h4>
+                        <p class="warning-text">
+                            {% trans "This action will permanently delete the user" %} <strong id="deleteUsername"></strong> 
+                            {% trans "and remove their home directory. This action cannot be undone." %}
+                        </p>
+                        <div class="warning-details">
+                            <div class="detail-item">
+                                <i class="fas fa-user"></i>
+                                <span>{% trans "User" %}: <strong id="deleteUserInfo"></strong></span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-folder"></i>
+                                <span>{% trans "Home directory will be removed" %}</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-database"></i>
+                                <span>{% trans "User data will be permanently deleted" %}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="delete-actions">
+                    <button type="button" class="btn-secondary" id="cancelDeleteUser">
+                        <i class="fas fa-times"></i>
+                        {% trans "Cancel" %}
+                    </button>
+                    <button type="button" class="btn-danger" id="confirmDeleteUser">
+                        <i class="fas fa-trash"></i>
+                        {% trans "Delete User" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

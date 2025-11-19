@@ -1,0 +1,547 @@
+{% extends 'plugins/base.html' %}
+{% load i18n %}
+{% load plugin_i18n %}
+
+{% block plugin_title %}{% trans "Plugin Settings" %}{% endblock %}
+
+{% block plugin_content %}
+<div class="plugin-settings-container">
+    <div class="plugin-settings-header">
+        <a href="{% url 'plugins:list' %}" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            {% trans "Back to Plugins" %}
+        </a>
+        <h1 class="plugin-settings-title">
+            <i class="{{ plugin.icon }}"></i>
+            {% plugin_i18n plugin.name "display_name" plugin.name %}
+        </h1>
+        <p class="plugin-settings-subtitle">
+            {% plugin_i18n plugin.name "description" "Plugin settings" %}
+        </p>
+    </div>
+
+    <div class="plugin-settings-content">
+        <div class="settings-form">
+            <form id="plugin-settings-form">
+                {% csrf_token %}
+                {% for key, setting_config in plugin.settings.items %}
+                <div class="settings-field">
+                    <label for="setting-{{ key }}">
+                        {% if setting_config.description %}
+                            {% if setting_config.description.tr or setting_config.description.en or setting_config.description.de %}
+                                {# Çok dilli açıklama #}
+                                {% if LANGUAGE_CODE|slice:":2" == "tr" %}
+                                    {{ setting_config.description.tr|default:setting_config.description.en|default:key }}
+                                {% elif LANGUAGE_CODE|slice:":2" == "de" %}
+                                    {{ setting_config.description.de|default:setting_config.description.en|default:key }}
+                                {% else %}
+                                    {{ setting_config.description.en|default:key }}
+                                {% endif %}
+                            {% else %}
+                                {# Tek dilli açıklama #}
+                                {{ setting_config.description }}
+                            {% endif %}
+                        {% else %}
+                            {{ key }}
+                        {% endif %}
+                        {% if setting_config.required %}
+                            <span class="required">*</span>
+                        {% endif %}
+                    </label>
+                    
+                    {% if setting_config.type == 'password' or 'key' in key.lower or 'secret' in key.lower %}
+                        <input 
+                            type="password" 
+                            id="setting-{{ key }}" 
+                            name="{{ key }}" 
+                            class="settings-input"
+                            placeholder="{% trans 'Enter value...' %}"
+                            {% if setting_config.required %}required{% endif %}
+                        >
+                        <button type="button" class="toggle-password" data-target="setting-{{ key }}">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    {% elif setting_config.type == 'number' %}
+                        <input 
+                            type="number" 
+                            id="setting-{{ key }}" 
+                            name="{{ key }}" 
+                            class="settings-input"
+                            {% if setting_config.required %}required{% endif %}
+                        >
+                    {% elif setting_config.type == 'boolean' %}
+                        <label class="switch">
+                            <input type="checkbox" id="setting-{{ key }}" name="{{ key }}">
+                            <span class="slider"></span>
+                        </label>
+                    {% else %}
+                        <input 
+                            type="text" 
+                            id="setting-{{ key }}" 
+                            name="{{ key }}" 
+                            class="settings-input"
+                            placeholder="{% trans 'Enter value...' %}"
+                            {% if setting_config.required %}required{% endif %}
+                        >
+                    {% endif %}
+                    
+                    {% if setting_config.description %}
+                        <small class="settings-hint">
+                            {% if setting_config.description.tr or setting_config.description.en or setting_config.description.de %}
+                                {# Çok dilli açıklama #}
+                                {% if LANGUAGE_CODE|slice:":2" == "tr" %}
+                                    {{ setting_config.description.tr|default:setting_config.description.en }}
+                                {% elif LANGUAGE_CODE|slice:":2" == "de" %}
+                                    {{ setting_config.description.de|default:setting_config.description.en }}
+                                {% else %}
+                                    {{ setting_config.description.en }}
+                                {% endif %}
+                            {% else %}
+                                {# Tek dilli açıklama #}
+                                {{ setting_config.description }}
+                            {% endif %}
+                        </small>
+                    {% endif %}
+                </div>
+                {% empty %}
+                <div class="no-settings">
+                    <i class="fas fa-info-circle"></i>
+                    <p>{% trans "This plugin has no configurable settings." %}</p>
+                </div>
+                {% endfor %}
+                
+                {% if plugin.settings %}
+                <div class="settings-actions">
+                    <button type="button" class="btn-secondary" id="cancel-btn">
+                        <i class="fas fa-times"></i>
+                        {% trans "Cancel" %}
+                    </button>
+                    <button type="submit" class="btn-primary" id="save-btn">
+                        <i class="fas fa-save"></i>
+                        {% trans "Save Settings" %}
+                    </button>
+                </div>
+                {% endif %}
+            </form>
+            
+            <!-- Scheduled Tasks Section (Read-only, auto-managed) -->
+            <div class="scheduled-tasks-section" style="margin-top: 40px;">
+                <h3 class="settings-section-title">
+                    <i class="fas fa-clock"></i>
+                    {% trans "Scheduled Tasks" %}
+                </h3>
+                <div class="module-card">
+                    <p class="settings-description">
+                        {% trans "Automated tasks are configured by the plugin developer in plugin.json or settings. Tasks are automatically managed by the system." %}
+                    </p>
+                    
+                    <div id="scheduled-tasks-list">
+                        <div class="loading" style="text-align: center; padding: 20px;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            {% trans "Loading tasks..." %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+.plugin-settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.plugin-settings-header {
+    margin-bottom: 40px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #4299e1;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 16px;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #3182ce;
+}
+
+.plugin-settings-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a202c;
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.plugin-settings-subtitle {
+    font-size: 16px;
+    color: #718096;
+    margin: 0;
+}
+
+.settings-form {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 32px;
+}
+
+.settings-field {
+    margin-bottom: 24px;
+}
+
+.settings-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a202c;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: #e53e3e;
+}
+
+.settings-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.settings-input:focus {
+    outline: none;
+    border-color: #4299e1;
+}
+
+.toggle-password {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.settings-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #718096;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #cbd5e0;
+    transition: 0.3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4299e1;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.no-settings {
+    text-align: center;
+    padding: 60px 20px;
+    color: #718096;
+}
+
+.no-settings i {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.settings-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #4299e1;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #3182ce;
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: #4a5568;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e0;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const pluginName = '{{ plugin.name }}';
+    const form = document.getElementById('plugin-settings-form');
+    const saveBtn = document.getElementById('save-btn');
+    const cancelBtn = document.getElementById('cancel-btn');
+    
+    // Load current settings
+    fetch(`/plugins/api/settings/${pluginName}/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'ok') {
+                const settings = data.data.settings;
+                for (const [key, value] of Object.entries(settings)) {
+                    const input = document.getElementById(`setting-${key}`);
+                    if (input) {
+                        if (input.type === 'checkbox') {
+                            input.checked = value.value === 'true' || value.value === true;
+                        } else {
+                            input.value = value.value || '';
+                        }
+                    }
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error loading settings:', error);
+        });
+    
+    // Save settings
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const settings = {};
+            
+            for (const [key, value] of formData.entries()) {
+                settings[key] = value;
+            }
+            
+            // Handle checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                if (!formData.has(checkbox.name)) {
+                    settings[checkbox.name] = 'false';
+                }
+            });
+            
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {% trans "Saving..." %}';
+            
+            fetch(`/plugins/api/settings/${pluginName}/save/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify({ settings: settings })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    alert('{% trans "Settings saved successfully!" %}');
+                } else {
+                    alert('{% trans "Error saving settings:" %} ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error saving settings:', error);
+                alert('{% trans "Error saving settings." %}');
+            })
+            .finally(() => {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = '<i class="fas fa-save"></i> {% trans "Save Settings" %}';
+            });
+        });
+    }
+    
+    // Cancel button
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            window.location.href = '{% url "plugins:list" %}';
+        });
+    }
+    
+    // Toggle password visibility
+    document.querySelectorAll('.toggle-password').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const input = document.getElementById(targetId);
+            const icon = this.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
+    
+    // Scheduled Tasks (Read-only, auto-managed)
+    // pluginName zaten yukarıda tanımlı
+    
+    // Load tasks
+    function loadTasks() {
+        fetch(`/plugins/api/scheduler/${pluginName}/tasks/`)
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('scheduled-tasks-list');
+                if (!container) return;
+                
+                if (data.status === 'ok' && data.data && data.data.tasks && data.data.tasks.length > 0) {
+                    const tasks = data.data.tasks;
+                    container.innerHTML = tasks.map(task => {
+                        const nextRun = task.next_run ? new Date(task.next_run).toLocaleString() : '-';
+                        const lastRun = task.last_run ? new Date(task.last_run).toLocaleString() : '-';
+                        const statusIcon = task.enabled ? 'fa-check-circle' : 'fa-times-circle';
+                        const statusColor = task.enabled ? '#22543d' : '#742a2a';
+                        const statusBg = task.enabled ? '#c6f6d5' : '#fed7d7';
+                        
+                        return `
+                            <div class="task-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+                                <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+                                    <div>
+                                        <h4 style="margin: 0 0 4px 0; font-size: 16px; font-weight: 600;">${task.endpoint}</h4>
+                                        <p style="margin: 0; font-size: 12px; color: #718096;">
+                                            ${task.schedule_type === 'custom' ? `Cron: ${task.schedule_cron}` : 
+                                              task.schedule_type === 'daily' ? `Daily at ${task.schedule_time}` :
+                                              task.schedule_type === 'weekly' ? `Weekly on days ${task.schedule_days} at ${task.schedule_time}` :
+                                              `Monthly on day ${task.schedule_day} at ${task.schedule_time}`}
+                                        </p>
+                                    </div>
+                                    <span style="padding: 4px 12px; border-radius: 12px; font-size: 12px; background: ${statusBg}; color: ${statusColor};">
+                                        <i class="fas ${statusIcon}"></i> ${task.enabled ? '{% trans "Enabled" %}' : '{% trans "Disabled" %}'}
+                                    </span>
+                                </div>
+                                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 12px; color: #718096;">
+                                    <div>
+                                        <strong>{% trans "Next Run:" %}</strong><br>
+                                        ${nextRun}
+                                    </div>
+                                    <div>
+                                        <strong>{% trans "Last Run:" %}</strong><br>
+                                        ${lastRun}
+                                    </div>
+                                    <div>
+                                        <strong>{% trans "Status:" %}</strong><br>
+                                        ${task.last_status || '-'}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    container.innerHTML = '<p style="text-align: center; color: #718096; padding: 20px;"><i class="fas fa-info-circle"></i> {% trans "No scheduled tasks configured for this plugin." %}</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error loading tasks:', error);
+                const container = document.getElementById('scheduled-tasks-list');
+                if (container) {
+                    container.innerHTML = '<p style="text-align: center; color: #718096; padding: 20px;"><i class="fas fa-info-circle"></i> {% trans "No scheduled tasks configured for this plugin." %}</p>';
+                }
+            });
+    }
+    
+    // Load tasks on page load
+    loadTasks();
+});
+</script>
+
+<style>
+
+.settings-section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a202c;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scheduled-tasks-section {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.task-card {
+    transition: box-shadow 0.2s;
+}
+
+.task-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+</style>
+{% endblock plugin_content %}
+

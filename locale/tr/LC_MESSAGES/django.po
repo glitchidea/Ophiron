@@ -1,0 +1,5950 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ophiron\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-05 22:12+0000\n"
+"PO-Revision-Date: 2025-01-26 12:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Turkish\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Logs
+#: modul/SystemLogs/views.py:29 templates/components/nav.html:33
+#: templates/modules/system_logs/export_modal.html:34
+#: templates/modules/system_logs/index.html:8
+#: templates/modules/system_logs/index.html:54
+#: templates/pages/settings/settings.html:874
+msgid "System Logs"
+msgstr "Sistem Logları"
+
+# Application Logs
+#: modul/SystemLogs/views.py:401 templates/modules/system_logs/own_logs.html:8
+#: templates/modules/system_logs/own_logs.html:75
+#: templates/modules/system_logs/own_logs.html:114
+#: templates/pages/dashboard.html:195
+#: templates/pages/settings/settings.html:711
+msgid "Application Logs"
+msgstr "Uygulama Logları"
+
+#: modul/docker_manager/views.py:126
+msgid "Container ID copied to clipboard"
+msgstr "Konteyner ID'si panoya kopyalandı"
+
+#: modul/docker_manager/views.py:127
+msgid "Container"
+msgstr "Konteyner"
+
+#: modul/docker_manager/views.py:128
+msgid "durdurulsun mu?"
+msgstr "durdurulsun mu?"
+
+#: modul/docker_manager/views.py:129
+msgid "durduruluyor..."
+msgstr "durduruluyor..."
+
+#: modul/docker_manager/views.py:130
+msgid "durduruldu"
+msgstr "durduruldu"
+
+#: modul/docker_manager/views.py:131
+msgid "başlatılıyor..."
+msgstr "başlatılıyor..."
+
+#: modul/docker_manager/views.py:132
+msgid "başlatıldı"
+msgstr "başlatıldı"
+
+#: modul/docker_manager/views.py:133
+msgid "silinsin mi? Bu işlem geri alınamaz."
+msgstr "silinsin mi? Bu işlem geri alınamaz."
+
+#: modul/docker_manager/views.py:134
+msgid "siliniyor..."
+msgstr "siliniyor..."
+
+#: modul/docker_manager/views.py:135
+msgid "silindi"
+msgstr "silindi"
+
+#: modul/docker_manager/views.py:136
+msgid "yeniden başlatılsın mı?"
+msgstr "yeniden başlatılsın mı?"
+
+#: modul/docker_manager/views.py:137
+msgid "yeniden başlatılıyor..."
+msgstr "yeniden başlatılıyor..."
+
+#: modul/docker_manager/views.py:138
+msgid "yeniden başlatıldı"
+msgstr "yeniden başlatıldı"
+
+#: modul/docker_manager/views.py:139
+msgid "Hata:"
+msgstr "Hata:"
+
+#: modul/docker_manager/views.py:140
+msgid "More options for"
+msgstr "Daha fazla seçenek"
+
+#: modul/docker_manager/views.py:141
+msgid "Opening terminal..."
+msgstr "Terminal açılıyor..."
+
+#: modul/docker_manager/views.py:142
+msgid ""
+"Are you sure you want to restart Docker? This will stop all running "
+"containers."
+msgstr ""
+"Docker'ı yeniden başlatmak istediğinizden emin misiniz? Bu işlem tüm çalışan "
+"konteynerleri durduracak."
+
+#: modul/docker_manager/views.py:143
+msgid "Restarting Docker..."
+msgstr "Docker yeniden başlatılıyor..."
+
+#: modul/docker_manager/views.py:144
+#, fuzzy
+#| msgid "User created successfully!"
+msgid "Docker service restarted successfully"
+msgstr "Kullanıcı başarıyla oluşturuldu!"
+
+#: modul/docker_manager/views.py:145
+#: templates/modules/docker_manager/images.html:83
+#: templates/modules/docker_manager/index.html:164
+#: templates/modules/docker_manager/volumes.html:87
+#: templates/modules/process_topology/index.html:199
+#: templates/modules/system_logs/own_logs.html:31
+msgid "Showing"
+msgstr "Gösteriliyor"
+
+#: modul/docker_manager/views.py:146
+#: templates/modules/docker_manager/images.html:83
+#: templates/modules/docker_manager/index.html:164
+#: templates/modules/docker_manager/volumes.html:87
+msgid "items"
+msgstr "öğe"
+
+# Process Topology translations
+#: modul/process_topology/views.py:14 templates/components/nav.html:32
+#: templates/modules/process_topology/index.html:5
+#: templates/modules/process_topology/index.html:137
+msgid "Process Topology"
+msgstr "Süreç Topolojisi"
+
+#: modul/service_builder/views.py:51 templates/components/nav.html:23
+#: templates/modules/service_builder/create_service.html:5
+#: templates/modules/service_builder/index.html:5
+#: templates/modules/service_builder/index.html:23
+#: templates/modules/service_builder/logs.html:5
+#: templates/modules/service_builder/service_detail.html:5
+#: templates/modules/service_builder/services.html:5
+#: templates/modules/service_builder/templates.html:5
+#: templates/pages/dashboard.html:116
+msgid "Service Builder"
+msgstr "Hizmet Oluşturucu"
+
+# Service Builder views.py translations
+#: modul/service_builder/views.py:80
+#: templates/modules/service_builder/create_service.html:5
+#: templates/modules/service_builder/create_service.html:393
+#: templates/modules/service_builder/index.html:32
+#: templates/modules/service_builder/index.html:145
+#: templates/modules/service_builder/logs.html:105
+#: templates/modules/service_builder/services.html:31
+msgid "Create Service"
+msgstr "Servis Oluştur"
+
+#: modul/service_builder/views.py:102
+#: templates/modules/service_builder/index.html:185
+#: templates/modules/service_builder/templates.html:21
+msgid "Service Templates"
+msgstr "Servis Şablonları"
+
+#: modul/service_builder/views.py:122
+#: templates/modules/service_builder/services.html:5
+#: templates/modules/service_builder/services.html:22
+#: templates/modules/system_logs/detailed_analysis_modal.html:37
+msgid "Services"
+msgstr "Servisler"
+
+#: modul/service_builder/views.py:142
+#: templates/modules/service_builder/logs.html:5
+#: templates/modules/service_builder/logs.html:21
+#: templates/modules/service_builder/service_detail.html:201
+#: templates/modules/service_monitoring/index.html:151
+#: templates/modules/service_monitoring/index.html:190
+msgid "Service Logs"
+msgstr "Servis Logları"
+
+#: modul/service_builder/views.py:168
+#, python-format
+msgid "Service: %(service_name)s"
+msgstr "Servis: %(service_name)s"
+
+#: modul/service_builder/views.py:196
+#, python-format
+msgid "Edit Service: %(service_name)s"
+msgstr "Servis Düzenle: %(service_name)s"
+
+#: modul/user_management/views.py:38 modul/user_management/views.py:49
+#: templates/components/nav.html:34
+#: templates/modules/user_management/index.html:8
+#: templates/modules/user_management/index.html:40
+#: templates/pages/dashboard.html:132
+#: templates/pages/settings/settings.html:862
+msgid "User Management"
+msgstr "Kullanıcı Yönetimi"
+
+# Header and Navigation
+#: templates/components/header.html:24
+msgid "Admin"
+msgstr "Yönetici"
+
+#: templates/components/header.html:32
+#: templates/pages/settings/settings.html:82
+msgid "General Settings"
+msgstr "Genel Ayarlar"
+
+#: templates/components/header.html:36
+#: templates/pages/settings/settings.html:86
+#: templates/pages/settings/settings.html:211
+msgid "Change Password"
+msgstr "Şifre Değiştir"
+
+#: templates/components/header.html:40 templates/components/nav.html:6
+#: templates/components/nav.html:7
+#: templates/modules/system_logs/detailed_analysis_modal.html:25
+#: templates/pages/settings/settings.html:90
+msgid "Security"
+msgstr "Güvenlik"
+
+#: templates/components/header.html:44
+#: templates/pages/settings/settings.html:94
+msgid "Modular Settings"
+msgstr "Modüler Ayarlar"
+
+#: templates/components/header.html:48
+#: templates/pages/settings/settings.html:98
+msgid "API Settings"
+msgstr "API Ayarları"
+
+#: templates/components/header.html:52
+#: templates/modules/docker_manager/container_detail.html:84
+#: templates/modules/docker_manager/image_detail.html:86
+#: templates/modules/service_builder/service_detail.html:72
+#: templates/modules/service_monitoring/index.html:222
+#: templates/pages/settings/settings.html:102
+msgid "Logs"
+msgstr "Loglar"
+
+#: templates/components/header.html:57
+msgid "Activity History"
+msgstr "Hesap Aktivite Geçmişi"
+
+#: templates/components/header.html:61
+#: templates/pages/security/alert-management.html:7
+#: templates/pages/security/alert-management.html:37
+#: templates/pages/settings/settings.html:455
+msgid "Alert Management"
+msgstr "Uyarı Yönetimi"
+
+#: templates/components/header.html:66
+msgid "Log Out"
+msgstr "Çıkış Yap"
+
+#: templates/components/nav.html:10
+#: templates/modules/package_manager/index.html:7
+#: templates/modules/package_manager/index.html:38
+#: templates/modules/system_information/index.html:182
+#: templates/pages/dashboard.html:148
+msgid "Package Manager"
+msgstr "Paket Yöneticisi"
+
+#: templates/components/nav.html:11 templates/modules/dev_packages/index.html:7
+#: templates/modules/dev_packages/index.html:21
+#: templates/pages/dashboard.html:152
+msgid "Developer Packages"
+msgstr "Geliştirici Paketleri"
+
+#: templates/components/nav.html:12 templates/modules/cve_scanner/index.html:7
+#: templates/modules/cve_scanner/index.html:31
+#: templates/pages/dashboard.html:156
+msgid "CVE Scanner"
+msgstr ""
+
+#: templates/components/nav.html:17 templates/components/nav.html:18
+#: templates/modules/system_information/index.html:105
+#: templates/modules/system_logs/detailed_analysis_modal.html:31
+msgid "Network"
+msgstr "Ağ"
+
+# Process Monitor
+#: templates/components/nav.html:21
+#: templates/modules/process_monitor/index.html:7
+#: templates/modules/process_monitor/index.html:43
+#: templates/pages/dashboard.html:140 templates/pages/dashboard.html:187
+#: templates/pages/settings/settings.html:485
+msgid "Process Monitor"
+msgstr "Süreç İzleyici"
+
+#: templates/components/nav.html:22 templates/pages/dashboard.html:136
+msgid "Service Monitor"
+msgstr "Hizmet İzleyici"
+
+#: templates/components/nav.html:28 templates/components/nav.html:29
+#: templates/modules/system_logs/detailed_analysis_modal.html:28
+#: templates/modules/user_management/index.html:131
+#: templates/modules/user_management/index.html:220
+msgid "System"
+msgstr "Sistem"
+
+#: templates/components/nav.html:35 templates/pages/dashboard.html:128
+#, fuzzy
+#| msgid "UFW Firewall"
+msgid "Firewall"
+msgstr "UFW Güvenlik Duvarı"
+
+#: templates/components/nav.html:36
+#: templates/modules/process_topology/components/snapshot_loader.html:130
+#: templates/modules/system_information/index.html:7
+#: templates/modules/system_information/index.html:41
+#: templates/modules/system_information/index.html:160
+#: templates/pages/dashboard.html:191
+#: templates/pages/settings/settings.html:598
+msgid "System Information"
+msgstr "Sistem Bilgileri"
+
+# System Information
+#: templates/components/nav.html:37
+#: templates/modules/docker_manager/hubs.html:39
+#: templates/modules/docker_manager/images.html:7
+#: templates/modules/docker_manager/images.html:36
+#: templates/modules/docker_manager/index.html:7
+#: templates/modules/docker_manager/index.html:34
+#: templates/modules/docker_manager/volume_detail.html:21
+#: templates/modules/docker_manager/volumes.html:35
+msgid "Docker Manager"
+msgstr "Docker Yöneticisi"
+
+#: templates/components/nav.html:38
+msgid "SIEM Integration"
+msgstr "SIEM Entegrasyonu"
+
+#: templates/modules/cve_scanner/index.html:33
+msgid "Scan installed packages against OS-specific CVE advisories"
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:38
+#: templates/modules/cve_scanner/index.html:175
+msgid "Scan Now"
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:42
+#: templates/modules/dev_packages/index.html:25
+#: templates/modules/docker_manager/container_detail.html:153
+#: templates/modules/docker_manager/container_detail.html:233
+#: templates/modules/docker_manager/image_detail.html:179
+#: templates/modules/docker_manager/images.html:344
+#: templates/modules/firewall/iptables.html:32
+#: templates/modules/firewall/iptables.html:92
+#: templates/modules/firewall/ufw.html:36
+#: templates/modules/firewall/ufw.html:90
+#: templates/modules/package_manager/index.html:45
+#: templates/modules/process_monitor/index.html:67
+#: templates/modules/process_monitor/index.html:282
+#: templates/modules/process_monitor/ip_analysis.html:24
+#: templates/modules/process_topology/index.html:145
+#: templates/modules/service_builder/logs.html:30
+#: templates/modules/service_builder/service_detail.html:204
+#: templates/modules/service_monitoring/index.html:46
+#: templates/modules/service_monitoring/index.html:173
+#: templates/modules/system_information/index.html:49
+#: templates/modules/system_information/index.html:420
+#: templates/modules/system_logs/detailed_analysis_modal.html:208
+#: templates/modules/system_logs/index.html:60
+#: templates/modules/user_management/index.html:56
+#: templates/pages/security/alert-management.html:44
+msgid "Refresh"
+msgstr "Yenile"
+
+#: templates/modules/cve_scanner/index.html:54
+#, fuzzy
+#| msgid "Developer Packages"
+msgid "Installed Packages"
+msgstr "Geliştirici Paketleri"
+
+#: templates/modules/cve_scanner/index.html:63
+msgid "Matched CVEs"
+msgstr ""
+
+# Package Manager table headers
+#: templates/modules/cve_scanner/index.html:74
+#: templates/modules/dev_packages/index.html:45
+#: templates/modules/dev_packages/index.html:67
+#: templates/modules/package_manager/index.html:99
+#: templates/modules/package_manager/index.html:137
+#: templates/modules/package_manager/updates_modal.html:16
+msgid "Package"
+msgstr "Paket"
+
+#: templates/modules/cve_scanner/index.html:75
+#, fuzzy
+#| msgid "Granted Permissions"
+msgid "Installed Version"
+msgstr "Verilen İzinler"
+
+#: templates/modules/cve_scanner/index.html:76
+msgid "Advisory"
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:77
+msgid "Issues"
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:78
+#, fuzzy
+#| msgid "Security"
+msgid "Severity"
+msgstr "Güvenlik"
+
+#: templates/modules/cve_scanner/index.html:79
+msgid "Fixed"
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:108
+#: templates/modules/cve_scanner/index.html:132
+msgid "No matched CVEs yet. Run a scan."
+msgstr ""
+
+#: templates/modules/cve_scanner/index.html:157
+#, fuzzy
+#| msgid "running"
+msgid "Scanning"
+msgstr "Çalışıyor"
+
+#: templates/modules/dev_packages/detail_modal.html:5
+#: templates/modules/package_manager/detail_modal.html:5
+#, fuzzy
+#| msgid "Image Details"
+msgid "Package Details"
+msgstr "Resim Detayları"
+
+#: templates/modules/dev_packages/detail_modal.html:7
+#: templates/modules/dev_packages/detail_modal.html:8
+#: templates/modules/docker_manager/image_details_modal.html:76
+#: templates/modules/docker_manager/images.html:341
+#: templates/modules/docker_manager/images.html:363
+#: templates/modules/docker_manager/images.html:385
+#: templates/modules/service_builder/templates.html:105
+#: templates/modules/system_logs/analysis_modal.html:10
+#: templates/modules/system_logs/analysis_modal.html:77
+#: templates/modules/system_logs/detailed_analysis_modal.html:12
+#: templates/modules/system_logs/detailed_analysis_modal.html:206
+#: templates/modules/system_logs/export_modal.html:10
+#: templates/modules/system_logs/own_logs.html:47
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:103
+msgid "Close"
+msgstr "Kapat"
+
+#: templates/modules/dev_packages/detail_modal.html:14
+#: templates/modules/package_manager/detail_modal.html:13
+#: templates/pages/settings/settings.html:151
+msgid "General Information"
+msgstr "Genel Bilgiler"
+
+#: templates/modules/dev_packages/detail_modal.html:18
+#: templates/modules/package_manager/detail_modal.html:19
+#, fuzzy
+#| msgid "No dependencies"
+msgid "Dependencies"
+msgstr "Bağımlılık bulunamadı"
+
+# Developer Packages additional translations
+#: templates/modules/dev_packages/index.html:22
+msgid "Project and global ecosystem packages with update status"
+msgstr "Güncelleme durumu ile proje ve global ekosistem paketleri"
+
+#: templates/modules/dev_packages/index.html:32
+#: templates/modules/dev_packages/index.html:47
+#: templates/modules/dev_packages/index.html:66
+#: templates/modules/package_manager/index.html:82
+#: templates/modules/package_manager/index.html:101
+#: templates/modules/package_manager/index.html:136
+#: templates/modules/package_manager/updates_modal.html:19
+msgid "Manager"
+msgstr "Yönetici"
+
+#: templates/modules/dev_packages/index.html:33
+#: templates/modules/dev_packages/index.html:61
+#: templates/modules/package_manager/index.html:84
+#: templates/modules/package_manager/index.html:128
+#: templates/pages/security/activity-history.html:51
+#: templates/pages/security/activity-history.html:82
+msgid "All"
+msgstr ""
+
+#: templates/modules/dev_packages/index.html:36
+#: templates/modules/docker_manager/hubs.html:101
+#: templates/modules/package_manager/index.html:88
+#: templates/modules/process_monitor/index.html:214
+#: templates/modules/process_monitor/index.html:275
+#: templates/modules/service_monitoring/index.html:100
+#: templates/modules/service_monitoring/index.html:183
+#: templates/pages/security/alert-management.html:135
+msgid "Search"
+msgstr "Ara"
+
+#: templates/modules/dev_packages/index.html:37
+#: templates/modules/package_manager/index.html:89
+msgid "Search packages..."
+msgstr "Paket ara..."
+
+#: templates/modules/dev_packages/index.html:46
+#: templates/modules/dev_packages/index.html:68
+#: templates/modules/package_manager/index.html:100
+#: templates/modules/package_manager/index.html:138
+#: templates/modules/process_topology/components/snapshot_loader.html:76
+msgid "Version"
+msgstr "Sürüm"
+
+#: templates/modules/dev_packages/index.html:48
+#: templates/modules/docker_manager/index.html:89
+#: templates/modules/package_manager/index.html:102
+#: templates/modules/process_monitor/index.html:110
+#: templates/modules/process_monitor/index.html:269
+#: templates/modules/service_builder/services.html:54
+#: templates/modules/service_monitoring/index.html:115
+#: templates/modules/service_monitoring/index.html:187
+#: templates/modules/user_management/index.html:113
+msgid "Actions"
+msgstr "Eylemler"
+
+#: templates/modules/dev_packages/index.html:51
+#: templates/modules/docker_manager/hubs.html:133
+#: templates/modules/docker_manager/hubs.html:218
+#: templates/modules/docker_manager/image_detail.html:116
+#: templates/modules/docker_manager/image_detail.html:120
+#: templates/modules/docker_manager/image_detail.html:152
+#: templates/modules/package_manager/index.html:109
+#: templates/modules/package_manager/index.html:135
+#: templates/modules/package_manager/updates_modal.html:24
+#: templates/modules/process_monitor/all_ports.html:21
+#: templates/modules/process_monitor/group_view.html:21
+#: templates/modules/process_monitor/index.html:177
+#: templates/modules/process_monitor/index.html:254
+#: templates/modules/process_monitor/interface_view.html:21
+#: templates/modules/process_monitor/ip_analysis.html:41
+#: templates/modules/process_monitor/pid_group_view.html:21
+#: templates/modules/process_monitor/port_details.html:21
+#: templates/modules/process_monitor/process_details.html:21
+#: templates/modules/process_monitor/process_management.html:21
+#: templates/modules/service_monitoring/index.html:200
+#: templates/modules/user_management/index.html:191
+#: templates/modules/user_management/index.html:227
+#: templates/modules/user_management/user_details_modal.html:17
+msgid "Loading..."
+msgstr "Yükleniyor..."
+
+# Package Manager JavaScript translations
+#: templates/modules/dev_packages/index.html:60
+#: templates/modules/package_manager/index.html:127
+msgid "No managers found"
+msgstr "Yönetici bulunamadı"
+
+#: templates/modules/dev_packages/index.html:62
+#: templates/modules/docker_manager/hubs.html:197
+#: templates/modules/package_manager/index.html:130
+#: templates/modules/service_monitoring/index.html:214
+#: templates/modules/system_information/index.html:302
+msgid "Details"
+msgstr "Detaylar"
+
+#: templates/modules/dev_packages/index.html:63
+msgid "No results"
+msgstr "Sonuç bulunamadı"
+
+#: templates/modules/dev_packages/index.html:64
+msgid "No dependencies"
+msgstr "Bağımlılık bulunamadı"
+
+#: templates/modules/dev_packages/index.html:65
+msgid "No data"
+msgstr "Veri bulunamadı"
+
+#: templates/modules/dev_packages/index.html:69
+#: templates/modules/docker_manager/image_details_modal.html:26
+#: templates/modules/package_manager/index.html:139
+#: templates/modules/service_builder/create_service.html:187
+#: templates/modules/service_builder/service_detail.html:153
+#: templates/modules/service_monitoring/index.html:114
+#: templates/modules/service_monitoring/index.html:186
+msgid "Description"
+msgstr "Açıklama"
+
+#: templates/modules/dev_packages/index.html:70
+#: templates/modules/package_manager/index.html:140
+msgid "Homepage"
+msgstr "Ana Sayfa"
+
+#: templates/modules/dev_packages/index.html:71
+#: templates/modules/package_manager/index.html:141
+msgid "License"
+msgstr "Lisans"
+
+#: templates/modules/docker_manager/container_detail.html:7
+msgid "Container Detail"
+msgstr "Container Detayı"
+
+#: templates/modules/docker_manager/container_detail.html:54
+msgid "STATUS"
+msgstr "DURUM"
+
+#: templates/modules/docker_manager/container_detail.html:88
+#: templates/modules/docker_manager/image_detail.html:90
+#: templates/modules/docker_manager/volume_detail.html:58
+msgid "Inspect"
+msgstr "İncele"
+
+#: templates/modules/docker_manager/container_detail.html:92
+msgid "Bind mounts"
+msgstr "Bind mount'lar"
+
+#: templates/modules/docker_manager/container_detail.html:96
+#: templates/modules/system_logs/own_logs.html:40
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:25
+msgid "Files"
+msgstr "Dosyalar"
+
+#: templates/modules/docker_manager/container_detail.html:100
+msgid "Stats"
+msgstr "İstatistikler"
+
+#: templates/modules/docker_manager/container_detail.html:111
+#: templates/modules/docker_manager/container_detail.html:205
+#: templates/modules/docker_manager/image_detail.html:183
+#: templates/modules/service_builder/service_detail.html:210
+msgid "Loading logs..."
+msgstr "Loglar yükleniyor..."
+
+#: templates/modules/docker_manager/container_detail.html:120
+#: templates/modules/docker_manager/container_detail.html:206
+#: templates/modules/docker_manager/image_detail.html:199
+#, fuzzy
+#| msgid "Loading process data..."
+msgid "Loading inspect data..."
+msgstr "Süreç verileri yükleniyor..."
+
+#: templates/modules/docker_manager/container_detail.html:129
+#: templates/modules/docker_manager/container_detail.html:207
+#, fuzzy
+#| msgid "Loading timezones..."
+msgid "Loading mount information..."
+msgstr "Saat dilimleri yükleniyor..."
+
+#: templates/modules/docker_manager/container_detail.html:158
+#: templates/modules/docker_manager/container_detail.html:208
+#, fuzzy
+#| msgid "Loading rules..."
+msgid "Loading files..."
+msgstr "Kurallar yükleniyor..."
+
+#: templates/modules/docker_manager/container_detail.html:168
+#: templates/modules/docker_manager/container_detail.html:234
+#: templates/modules/process_topology/components/settings.html:35
+#: templates/modules/service_monitoring/index.html:221
+#: templates/modules/system_information/index.html:69
+msgid "CPU Usage"
+msgstr "CPU Kullanımı"
+
+#: templates/modules/docker_manager/container_detail.html:172
+#: templates/modules/docker_manager/container_detail.html:235
+#: templates/modules/process_topology/components/settings.html:36
+#: templates/modules/service_monitoring/index.html:220
+#: templates/modules/system_information/index.html:81
+#: templates/modules/system_information/index.html:133
+msgid "Memory Usage"
+msgstr "Bellek Kullanımı"
+
+#: templates/modules/docker_manager/container_detail.html:176
+#: templates/modules/docker_manager/container_detail.html:236
+msgid "Network I/O"
+msgstr "Ağ G/Ç"
+
+#: templates/modules/docker_manager/container_detail.html:180
+#: templates/modules/docker_manager/container_detail.html:237
+msgid "Block I/O"
+msgstr "Blok G/Ç"
+
+#: templates/modules/docker_manager/container_detail.html:209
+#: templates/modules/service_monitoring/index.html:223
+msgid "No logs available"
+msgstr "Log mevcut değil"
+
+#: templates/modules/docker_manager/container_detail.html:210
+#, fuzzy
+#| msgid "Update available"
+msgid "No inspect data available"
+msgstr "Güncelleme mevcut"
+
+#: templates/modules/docker_manager/container_detail.html:211
+#, fuzzy
+#| msgid "No description available"
+msgid "No mount information available"
+msgstr "Açıklama mevcut değil"
+
+#: templates/modules/docker_manager/container_detail.html:212
+#, fuzzy
+#| msgid "No logs available"
+msgid "No files available"
+msgstr "Log mevcut değil"
+
+#: templates/modules/docker_manager/container_detail.html:213
+#, fuzzy
+#| msgid "No templates available"
+msgid "No stats available"
+msgstr "Şablon mevcut değil"
+
+#: templates/modules/docker_manager/container_detail.html:214
+#: templates/modules/docker_manager/volume_detail.html:142
+#: templates/modules/firewall/selection.html:34
+#: templates/modules/process_monitor/index.html:76
+#: templates/modules/process_monitor/index.html:255
+#: templates/modules/service_monitoring/index.html:201
+#: templates/modules/system_logs/own_logs.html:52
+#: templates/modules/user_management/index.html:65
+#: templates/pages/security/alert-management.html:79
+#: templates/pages/security/alert-management.html:110
+#: templates/pages/security/alert-management.html:213
+#: templates/pages/settings/settings.html:33
+msgid "Error"
+msgstr "Hata"
+
+#: templates/modules/docker_manager/container_detail.html:215
+msgid "Container ID not found"
+msgstr "Container ID bulunamadı"
+
+#: templates/modules/docker_manager/container_detail.html:216
+msgid "Stop container"
+msgstr "Container'ı durdur"
+
+#: templates/modules/docker_manager/container_detail.html:217
+msgid "Stopping container"
+msgstr "Container durduruluyor"
+
+#: templates/modules/docker_manager/container_detail.html:218
+msgid "Container stopped"
+msgstr "Container durduruldu"
+
+#: templates/modules/docker_manager/container_detail.html:219
+msgid "Starting container"
+msgstr "Container başlatılıyor"
+
+#: templates/modules/docker_manager/container_detail.html:220
+msgid "Container started"
+msgstr "Container başlatıldı"
+
+#: templates/modules/docker_manager/container_detail.html:221
+msgid "Restart container"
+msgstr "Container'ı yeniden başlat"
+
+#: templates/modules/docker_manager/container_detail.html:222
+msgid "Restarting container"
+msgstr "Container yeniden başlatılıyor"
+
+#: templates/modules/docker_manager/container_detail.html:223
+msgid "Container restarted"
+msgstr "Container yeniden başlatıldı"
+
+#: templates/modules/docker_manager/container_detail.html:224
+msgid "Delete container"
+msgstr "Container'ı sil"
+
+#: templates/modules/docker_manager/container_detail.html:225
+msgid "This action cannot be undone"
+msgstr "Bu işlem geri alınamaz"
+
+#: templates/modules/docker_manager/container_detail.html:226
+msgid "Deleting container"
+msgstr "Container siliniyor"
+
+#: templates/modules/docker_manager/container_detail.html:227
+msgid "Container deleted"
+msgstr "Container silindi"
+
+#: templates/modules/docker_manager/container_detail.html:228
+msgid "Copied to clipboard"
+msgstr "Panoya kopyalandı"
+
+#: templates/modules/docker_manager/container_detail.html:229
+msgid "Failed to copy"
+msgstr "Kopyalama başarısız"
+
+#: templates/modules/docker_manager/container_detail.html:230
+#: templates/modules/firewall/iptables.html:33
+#: templates/modules/firewall/iptables.html:96
+#: templates/modules/firewall/ufw.html:37
+#: templates/modules/firewall/ufw.html:94
+#: templates/modules/system_logs/own_logs.html:79
+msgid "Back"
+msgstr "Geri"
+
+#: templates/modules/docker_manager/container_detail.html:231
+msgid "Up"
+msgstr ""
+
+#: templates/modules/docker_manager/container_detail.html:232
+#: templates/modules/docker_manager/images.html:366
+#: templates/modules/docker_manager/images.html:388
+msgid "Copy"
+msgstr ""
+
+#: templates/modules/docker_manager/hubs.html:7
+msgid "Docker Hubs"
+msgstr "Docker Hub'ları"
+
+# Docker Manager translations
+#: templates/modules/docker_manager/hubs.html:40
+#: templates/modules/docker_manager/images.html:37
+#: templates/modules/docker_manager/index.html:35
+#: templates/modules/docker_manager/volumes.html:36
+msgid "Give feedback"
+msgstr "Geri bildirim ver"
+
+#: templates/modules/docker_manager/hubs.html:49
+#: templates/modules/docker_manager/images.html:46
+#: templates/modules/docker_manager/index.html:44
+#: templates/modules/docker_manager/volumes.html:45
+#, fuzzy
+#| msgid "Container"
+msgid "Containers"
+msgstr "Konteyner"
+
+#: templates/modules/docker_manager/hubs.html:57
+#: templates/modules/docker_manager/images.html:54
+#: templates/modules/docker_manager/index.html:52
+#: templates/modules/docker_manager/volumes.html:53
+#: templates/modules/docker_manager/volumes.html:65
+#: templates/modules/docker_manager/volumes.html:86
+#, fuzzy
+#| msgid "Unused Volumes"
+msgid "Volumes"
+msgstr "Kullanılmayan Volume'lar"
+
+#: templates/modules/docker_manager/hubs.html:61
+#: templates/modules/docker_manager/images.html:58
+#: templates/modules/docker_manager/index.html:56
+#: templates/modules/docker_manager/volumes.html:57
+msgid "Hubs"
+msgstr ""
+
+#: templates/modules/docker_manager/hubs.html:70
+#: templates/pages/dashboard.html:124
+msgid "Docker Hub"
+msgstr "Docker Hub"
+
+#: templates/modules/docker_manager/hubs.html:71
+msgid "Discover and manage Docker images, extensions, and plugins"
+msgstr "Docker görüntülerini, uzantıları ve eklentileri keşfedin ve yönetin"
+
+#: templates/modules/docker_manager/hubs.html:75
+msgid "Cache"
+msgstr "Önbellek"
+
+#: templates/modules/docker_manager/hubs.html:75
+msgid "files"
+msgstr "dosya"
+
+#: templates/modules/docker_manager/hubs.html:79
+#: templates/modules/docker_manager/hubs.html:127
+msgid "official images"
+msgstr "resmi görüntü"
+
+#: templates/modules/docker_manager/hubs.html:85
+msgid "Refresh All Data"
+msgstr "Tüm Verileri Yenile"
+
+#: templates/modules/docker_manager/hubs.html:87
+msgid "Refresh All"
+msgstr "Tümünü Yenile"
+
+#: templates/modules/docker_manager/hubs.html:89
+msgid "Clear Cache"
+msgstr "Önbelleği Temizle"
+
+#: templates/modules/docker_manager/hubs.html:100
+msgid "Search Docker Hub..."
+msgstr "Docker Hub'da Ara..."
+
+#: templates/modules/docker_manager/hubs.html:104
+msgid "Clear Search"
+msgstr "Aramayı Temizle"
+
+#: templates/modules/docker_manager/hubs.html:117
+msgid "Docker Images"
+msgstr "Docker Görüntüleri"
+
+#: templates/modules/docker_manager/hubs.html:125
+msgid "Docker Official Images"
+msgstr "Docker Resmi Görüntüleri"
+
+#: templates/modules/docker_manager/hubs.html:134
+#: templates/modules/docker_manager/hubs.html:219
+msgid "Please wait while we fetch the data"
+msgstr "Verileri getirirken lütfen bekleyin"
+
+#: templates/modules/docker_manager/hubs.html:153
+msgid "Refreshing Docker Hub Data"
+msgstr "Docker Hub Verileri Yenileniyor"
+
+#: templates/modules/docker_manager/hubs.html:165
+#: templates/modules/docker_manager/index.html:86
+#: templates/modules/process_monitor/index.html:107
+#: templates/modules/process_monitor/index.html:266
+#: templates/modules/process_topology/components/info_panel.html:25
+#: templates/modules/process_topology/components/settings.html:34
+#: templates/modules/service_builder/logs.html:50
+#: templates/modules/service_builder/services.html:52
+#: templates/modules/service_monitoring/index.html:92
+#: templates/modules/service_monitoring/index.html:112
+#: templates/modules/service_monitoring/index.html:179
+#: templates/modules/user_management/index.html:111
+#: templates/modules/user_management/index.html:245
+#: templates/pages/security/activity-history.html:80
+#: templates/pages/security/alert-management.html:116
+msgid "Status"
+msgstr "Durum"
+
+#: templates/modules/docker_manager/hubs.html:166
+msgid "Initializing..."
+msgstr "Başlatılıyor..."
+
+#: templates/modules/docker_manager/hubs.html:169
+msgid "Images Loaded"
+msgstr "Yüklenen Görüntüler"
+
+#: templates/modules/docker_manager/hubs.html:173
+msgid "Categories Loaded"
+msgstr "Yüklenen Kategoriler"
+
+#: templates/modules/docker_manager/hubs.html:177
+msgid "Time Elapsed"
+msgstr "Geçen Süre"
+
+#: templates/modules/docker_manager/hubs.html:182
+#: templates/modules/docker_manager/hubs.html:220
+msgid "Starting refresh process..."
+msgstr "Yenileme işlemi başlatılıyor..."
+
+#: templates/modules/docker_manager/hubs.html:194
+#: templates/modules/docker_manager/image_details_modal.html:30
+msgid "Official"
+msgstr "Resmi"
+
+#: templates/modules/docker_manager/hubs.html:195
+#: templates/modules/service_monitoring/index.html:213
+msgid "No description available"
+msgstr "Açıklama mevcut değil"
+
+#: templates/modules/docker_manager/hubs.html:196
+msgid "Pull"
+msgstr "Çek"
+
+#: templates/modules/docker_manager/hubs.html:198
+msgid "Image"
+msgstr "Görüntü"
+
+#: templates/modules/docker_manager/hubs.html:199
+msgid "is being pulled..."
+msgstr "çekiliyor..."
+
+#: templates/modules/docker_manager/hubs.html:200
+msgid "Pull failed"
+msgstr "Çekme başarısız"
+
+#: templates/modules/docker_manager/hubs.html:201
+msgid "Modal function not available"
+msgstr "Modal işlevi mevcut değil"
+
+#: templates/modules/docker_manager/hubs.html:202
+msgid "Failed to load image details"
+msgstr "Görüntü detayları yüklenemedi"
+
+#: templates/modules/docker_manager/hubs.html:203
+msgid "Error loading image details"
+msgstr "Görüntü detayları yüklenirken hata"
+
+#: templates/modules/docker_manager/hubs.html:204
+msgid "Cache refreshed"
+msgstr "Önbellek yenilendi"
+
+#: templates/modules/docker_manager/hubs.html:205
+msgid "Cache refresh failed"
+msgstr "Önbellek yenileme başarısız"
+
+#: templates/modules/docker_manager/hubs.html:206
+msgid "Cache refreshed!"
+msgstr "Önbellek yenilendi!"
+
+#: templates/modules/docker_manager/hubs.html:207
+msgid "Cache refreshed successfully!"
+msgstr "Önbellek başarıyla yenilendi!"
+
+#: templates/modules/docker_manager/hubs.html:208
+msgid "Refresh failed"
+msgstr "Yenileme başarısız"
+
+#: templates/modules/docker_manager/hubs.html:209
+msgid "Initializing refresh..."
+msgstr "Yenileme başlatılıyor..."
+
+#: templates/modules/docker_manager/hubs.html:210
+msgid "Loading categories..."
+msgstr "Kategoriler yükleniyor..."
+
+#: templates/modules/docker_manager/hubs.html:211
+msgid "Loading popular images..."
+msgstr "Popüler görüntüler yükleniyor..."
+
+#: templates/modules/docker_manager/hubs.html:212
+msgid "Optimizing cache..."
+msgstr "Önbellek optimize ediliyor..."
+
+#: templates/modules/docker_manager/hubs.html:213
+msgid "Finalizing refresh..."
+msgstr "Yenileme tamamlanıyor..."
+
+#: templates/modules/docker_manager/hubs.html:214
+msgid "Refresh completed!"
+msgstr "Yenileme tamamlandı!"
+
+#: templates/modules/docker_manager/hubs.html:215
+msgid "Are you sure you want to clear the cache?"
+msgstr "Önbelleği temizlemek istediğinizden emin misiniz?"
+
+#: templates/modules/docker_manager/hubs.html:216
+msgid "Cache cleared"
+msgstr "Önbellek temizlendi"
+
+#: templates/modules/docker_manager/hubs.html:217
+msgid "Cache clear failed"
+msgstr "Önbellek temizleme başarısız"
+
+#: templates/modules/docker_manager/hubs.html:221
+#: templates/modules/service_monitoring/index.html:217
+msgid "Yes"
+msgstr "Evet"
+
+#: templates/modules/docker_manager/hubs.html:222
+#: templates/modules/service_monitoring/index.html:218
+msgid "No"
+msgstr "Hayır"
+
+#: templates/modules/docker_manager/hubs.html:223
+#: templates/modules/process_monitor/index.html:256
+#: templates/modules/system_information/index.html:427
+#: templates/pages/security/activity-history.html:138
+msgid "Unknown"
+msgstr "Bilinmeyen"
+
+#: templates/modules/docker_manager/hubs.html:224
+msgid "No image selected"
+msgstr "Resim seçilmedi"
+
+#: templates/modules/docker_manager/hubs.html:225
+msgid "Pulling..."
+msgstr "Çekiliyor..."
+
+#: templates/modules/docker_manager/hubs.html:226
+msgid "Pull error"
+msgstr "Çekme hatası"
+
+#: templates/modules/docker_manager/hubs.html:227
+msgid "Invalid date"
+msgstr "Geçersiz tarih"
+
+#: templates/modules/docker_manager/hubs.html:228
+msgid "Pulling"
+msgstr "Çekiliyor"
+
+#: templates/modules/docker_manager/hubs.html:229
+msgid "pulled successfully"
+msgstr "çekiliyor"
+
+#: templates/modules/docker_manager/hubs.html:230
+msgid "Failed to pull"
+msgstr "Çekme başarısız"
+
+#: templates/modules/docker_manager/image_detail.html:7
+#: templates/modules/docker_manager/image_detail.html:37
+#: templates/modules/docker_manager/image_details_modal.html:9
+msgid "Image Details"
+msgstr "Resim Detayları"
+
+#: templates/modules/docker_manager/image_detail.html:60
+msgid "Run"
+msgstr "Çalıştır"
+
+#: templates/modules/docker_manager/image_detail.html:64
+#: templates/modules/docker_manager/index.html:129
+#: templates/modules/docker_manager/volume_detail.html:35
+msgid "Delete"
+msgstr "Sil"
+
+#: templates/modules/docker_manager/image_detail.html:74
+#: templates/modules/docker_manager/volume_detail.html:54
+#: templates/modules/service_builder/service_detail.html:64
+#: templates/modules/system_logs/own_logs.html:37
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:19
+msgid "Overview"
+msgstr "Genel Bakış"
+
+#: templates/modules/docker_manager/image_detail.html:78
+msgid "Layers"
+msgstr ""
+
+#: templates/modules/docker_manager/image_detail.html:82
+#, fuzzy
+#| msgid "Image History"
+msgid "History"
+msgstr "Görüntü Geçmişi"
+
+#: templates/modules/docker_manager/image_detail.html:101
+#: templates/modules/docker_manager/image_details_modal.html:19
+#: templates/modules/docker_manager/volume_detail.html:67
+#: templates/modules/process_topology/components/snapshot_loader.html:61
+#: templates/modules/user_management/create_user_modal.html:21
+#: templates/modules/user_management/index.html:237
+msgid "Basic Information"
+msgstr "Temel Bilgiler"
+
+#: templates/modules/docker_manager/image_detail.html:103
+#, fuzzy
+#| msgid "Image"
+msgid "Image ID"
+msgstr "Görüntü"
+
+#: templates/modules/docker_manager/image_detail.html:107
+#: templates/modules/docker_manager/volume_detail.html:44
+#: templates/modules/docker_manager/volume_detail.html:78
+#, fuzzy
+#| msgid "File Size"
+msgid "Size"
+msgstr "Dosya Boyutu"
+
+#: templates/modules/docker_manager/image_detail.html:111
+#: templates/modules/docker_manager/volume_detail.html:45
+#: templates/modules/docker_manager/volume_detail.html:82
+#: templates/modules/process_topology/components/snapshot_loader.html:68
+#: templates/modules/service_builder/service_detail.html:101
+#: templates/modules/service_builder/services.html:53
+msgid "Created"
+msgstr "Oluşturuldu"
+
+#: templates/modules/docker_manager/image_detail.html:115
+#: templates/modules/package_manager/index.html:144
+#: templates/modules/system_information/index.html:186
+msgid "Architecture"
+msgstr "Mimari"
+
+#: templates/modules/docker_manager/image_detail.html:119
+#: templates/modules/system_information/index.html:166
+msgid "OS"
+msgstr ""
+
+#: templates/modules/docker_manager/image_detail.html:125
+#: templates/modules/docker_manager/volume_detail.html:93
+msgid "Labels"
+msgstr ""
+
+#: templates/modules/docker_manager/image_detail.html:127
+#, fuzzy
+#| msgid "Loading rules..."
+msgid "Loading labels..."
+msgstr "Kurallar yükleniyor..."
+
+#: templates/modules/docker_manager/image_detail.html:132
+#: templates/modules/service_builder/create_service.html:375
+#: templates/modules/service_builder/service_detail.html:188
+msgid "Environment Variables"
+msgstr ""
+
+#: templates/modules/docker_manager/image_detail.html:134
+#, fuzzy
+#| msgid "Loading user details..."
+msgid "Loading environment variables..."
+msgstr "Kullanıcı detayları yükleniyor..."
+
+#: templates/modules/docker_manager/image_detail.html:139
+#, fuzzy
+#| msgid "Most Used Ports"
+msgid "Exposed Ports"
+msgstr "En Çok Kullanılan Portlar"
+
+#: templates/modules/docker_manager/image_detail.html:141
+#, fuzzy
+#| msgid "Loading rules..."
+msgid "Loading exposed ports..."
+msgstr "Kurallar yükleniyor..."
+
+#: templates/modules/docker_manager/image_detail.html:151
+#, fuzzy
+#| msgid "Image Logs"
+msgid "Image Layers"
+msgstr "Görüntü Logları"
+
+#: templates/modules/docker_manager/image_detail.html:155
+#, fuzzy
+#| msgid "Loading rules..."
+msgid "Loading layers..."
+msgstr "Kurallar yükleniyor..."
+
+#: templates/modules/docker_manager/image_detail.html:164
+#: templates/modules/docker_manager/images.html:376
+msgid "Image History"
+msgstr "Görüntü Geçmişi"
+
+#: templates/modules/docker_manager/image_detail.html:167
+#, fuzzy
+#| msgid "Loading logs..."
+msgid "Loading history..."
+msgstr "Loglar yükleniyor..."
+
+#: templates/modules/docker_manager/image_detail.html:176
+#: templates/modules/docker_manager/images.html:332
+msgid "Image Logs"
+msgstr "Görüntü Logları"
+
+#: templates/modules/docker_manager/image_detail.html:192
+#: templates/modules/docker_manager/images.html:354
+msgid "Image Inspect"
+msgstr "Görüntü İnceleme"
+
+#: templates/modules/docker_manager/image_detail.html:195
+#: templates/modules/docker_manager/volume_detail.html:132
+#, fuzzy
+#| msgid "JSON"
+msgid "Copy JSON"
+msgstr "JSON"
+
+#: templates/modules/docker_manager/image_details_modal.html:22
+#: templates/modules/docker_manager/index.html:84
+#: templates/modules/docker_manager/volume_detail.html:70
+#: templates/modules/service_builder/service_detail.html:87
+msgid "Name"
+msgstr "İsim"
+
+#: templates/modules/docker_manager/image_details_modal.html:34
+#, fuzzy
+#| msgid "Last Update:"
+msgid "Last Updated"
+msgstr "Son Güncelleme:"
+
+#: templates/modules/docker_manager/image_details_modal.html:41
+#, fuzzy
+#| msgid "System Statistics"
+msgid "Statistics"
+msgstr "Sistem İstatistikleri"
+
+#: templates/modules/docker_manager/image_details_modal.html:48
+#, fuzzy
+#| msgid "Start"
+msgid "Stars"
+msgstr "Başlat"
+
+#: templates/modules/docker_manager/image_details_modal.html:57
+#, fuzzy
+#| msgid "Pull"
+msgid "Pulls"
+msgstr "Çek"
+
+#: templates/modules/docker_manager/image_details_modal.html:65
+msgid "Tags"
+msgstr ""
+
+#: templates/modules/docker_manager/image_details_modal.html:80
+#: templates/modules/docker_manager/pull_popup.html:8
+msgid "Pull Image"
+msgstr "Görüntü Çek"
+
+#: templates/modules/docker_manager/images.html:67
+msgid "Search images by name or tag..."
+msgstr "Görüntüleri ad veya etikete göre ara..."
+
+#: templates/modules/docker_manager/images.html:73
+msgid "Show only dangling images"
+msgstr "Sadece askıda kalan görüntüleri göster"
+
+#: templates/modules/docker_manager/images.html:100
+#: templates/modules/docker_manager/volumes.html:96
+msgid "Prune"
+msgstr "Temizle"
+
+#: templates/modules/docker_manager/images.html:195
+msgid "Create New Build"
+msgstr "Yeni Derleme Oluştur"
+
+#: templates/modules/docker_manager/images.html:203
+#: templates/modules/docker_manager/images.html:281
+msgid "Dockerfile Path"
+msgstr "Dockerfile Yolu"
+
+#: templates/modules/docker_manager/images.html:206
+msgid "Absolute path to the directory containing Dockerfile"
+msgstr "Dockerfile içeren dizinin mutlak yolu"
+
+#: templates/modules/docker_manager/images.html:211
+#: templates/modules/docker_manager/images.html:269
+#: templates/modules/docker_manager/pull_popup.html:15
+msgid "Image Name"
+msgstr "Görüntü Adı"
+
+#: templates/modules/docker_manager/images.html:216
+#: templates/modules/docker_manager/images.html:274
+msgid "Tag"
+msgstr "Etiket"
+
+#: templates/modules/docker_manager/images.html:223
+#: templates/modules/docker_manager/images.html:288
+msgid "Build Arguments (JSON)"
+msgstr "Derleme Argümanları (JSON)"
+
+#: templates/modules/docker_manager/images.html:226
+#: templates/modules/docker_manager/images.html:291
+msgid "Optional build arguments in JSON format"
+msgstr "JSON formatında isteğe bağlı derleme argümanları"
+
+#: templates/modules/docker_manager/images.html:233
+msgid "No Cache"
+msgstr "Önbellek Yok"
+
+#: templates/modules/docker_manager/images.html:235
+msgid "Build without using cache"
+msgstr "Önbellek kullanmadan derle"
+
+#: templates/modules/docker_manager/images.html:240
+#: templates/modules/docker_manager/images.html:296
+#: templates/modules/docker_manager/images.html:323
+#: templates/modules/docker_manager/modals/create_volume_modal.html:38
+#: templates/modules/docker_manager/modals/delete_modal.html:30
+#: templates/modules/docker_manager/modals/purge_modal.html:68
+#: templates/modules/docker_manager/modals/restart_modal.html:26
+#: templates/modules/docker_manager/modals/start_modal.html:26
+#: templates/modules/docker_manager/modals/stop_modal.html:26
+#: templates/modules/docker_manager/pull_popup.html:80
+#: templates/modules/process_topology/components/snapshot_loader.html:181
+#: templates/modules/user_management/create_user_modal.html:100
+#: templates/modules/user_management/delete_user_modal.html:46
+#: templates/pages/security/alert-management.html:189
+#: templates/pages/settings/settings.html:397
+msgid "Cancel"
+msgstr "İptal"
+
+#: templates/modules/docker_manager/images.html:243
+msgid "Start Build"
+msgstr "Derlemeyi Başlat"
+
+#: templates/modules/docker_manager/images.html:253
+msgid "Build from Git Repository"
+msgstr "Git Deposundan Derle"
+
+#: templates/modules/docker_manager/images.html:261
+msgid "Git Repository URL"
+msgstr "Git Deposu URL'si"
+
+#: templates/modules/docker_manager/images.html:264
+msgid "URL of the Git repository containing Dockerfile"
+msgstr "Dockerfile içeren Git deposunun URL'si"
+
+#: templates/modules/docker_manager/images.html:284
+msgid "Path to Dockerfile within the repository"
+msgstr "Depo içindeki Dockerfile yolu"
+
+#: templates/modules/docker_manager/images.html:299
+msgid "Build from Git"
+msgstr "Git'ten Derle"
+
+#: templates/modules/docker_manager/images.html:309
+msgid "Building Image"
+msgstr "Görüntü Derleniyor"
+
+#: templates/modules/docker_manager/images.html:316
+msgid "Preparing build..."
+msgstr "Derleme hazırlanıyor..."
+
+#: templates/modules/docker_manager/index.html:65
+msgid "Search containers by name or image..."
+msgstr "Konteynerleri isim veya görüntüye göre ara..."
+
+#: templates/modules/docker_manager/index.html:71
+msgid "Only show running containers"
+msgstr "Sadece çalışan konteynerleri göster"
+
+#: templates/modules/docker_manager/index.html:87
+msgid "Port(s)"
+msgstr "Port(lar)"
+
+#: templates/modules/docker_manager/index.html:88
+msgid "Last started"
+msgstr "Son başlatıldı"
+
+#: templates/modules/docker_manager/index.html:118
+#: templates/modules/service_monitoring/index.html:194
+msgid "Stop"
+msgstr "Durdur"
+
+#: templates/modules/docker_manager/index.html:121
+#: templates/modules/process_monitor/index.html:300
+#: templates/modules/service_builder/service_detail.html:35
+#: templates/modules/service_monitoring/index.html:195
+msgid "Restart"
+msgstr "Yeniden Başlat"
+
+#: templates/modules/docker_manager/index.html:125
+#: templates/modules/service_monitoring/index.html:193
+msgid "Start"
+msgstr "Başlat"
+
+#: templates/modules/docker_manager/index.html:139
+msgid "No containers found"
+msgstr "Konteyner bulunamadı"
+
+#: templates/modules/docker_manager/index.html:141
+msgid "Docker is not running"
+msgstr "Docker çalışmıyor"
+
+#: templates/modules/docker_manager/index.html:155
+msgid "Engine running"
+msgstr "Motor çalışıyor"
+
+#: templates/modules/docker_manager/index.html:155
+msgid "Engine stopped"
+msgstr "Motor durdu"
+
+#: templates/modules/docker_manager/index.html:161
+msgid "Restart to update"
+msgstr "Güncellemek için yeniden başlat"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:8
+#: templates/modules/docker_manager/modals/create_volume_modal.html:41
+msgid "Create Volume"
+msgstr "Volume Oluştur"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:15
+msgid "Volume Name"
+msgstr "Volume Adı"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:16
+msgid "Enter volume name"
+msgstr "Volume adını girin"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:17
+msgid "Leave empty for auto-generated name"
+msgstr "Otomatik oluşturulan ad için boş bırakın"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:20
+#: templates/modules/docker_manager/volume_detail.html:43
+#: templates/modules/docker_manager/volume_detail.html:74
+msgid "Driver"
+msgstr "Sürücü"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:22
+msgid "Local"
+msgstr "Yerel"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:23
+msgid "NFS"
+msgstr "NFS"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:24
+msgid "CIFS"
+msgstr "CIFS"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:28
+msgid "Labels (KEY=VALUE, one per line)"
+msgstr "Etiketler (ANAHTAR=DEĞER, satır başına bir tane)"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:29
+msgid "e.g., environment=production"
+msgstr "örn., environment=production"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:32
+msgid "Driver Options (KEY=VALUE, one per line)"
+msgstr "Sürücü Seçenekleri (ANAHTAR=DEĞER, satır başına bir tane)"
+
+#: templates/modules/docker_manager/modals/create_volume_modal.html:33
+msgid "e.g., type=nfs,o=addr=192.168.1.100,rw"
+msgstr "örn., type=nfs,o=addr=192.168.1.100,rw"
+
+#: templates/modules/docker_manager/modals/delete_modal.html:9
+#: templates/modules/docker_manager/modals/delete_modal.html:31
+msgid "Delete Container"
+msgstr "Konteyner Sil"
+
+#: templates/modules/docker_manager/modals/delete_modal.html:13
+msgid ""
+"Are you sure you want to delete this container? This action cannot be undone."
+msgstr ""
+"Bu konteyneri silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
+
+#: templates/modules/docker_manager/modals/delete_modal.html:16
+#: templates/modules/docker_manager/modals/restart_modal.html:16
+#: templates/modules/docker_manager/modals/start_modal.html:16
+#: templates/modules/docker_manager/modals/stop_modal.html:16
+#, fuzzy
+#| msgid "Container"
+msgid "Container ID"
+msgstr "Konteyner"
+
+#: templates/modules/docker_manager/modals/delete_modal.html:20
+#: templates/modules/docker_manager/modals/restart_modal.html:20
+#: templates/modules/docker_manager/modals/start_modal.html:20
+#: templates/modules/docker_manager/modals/stop_modal.html:20
+#, fuzzy
+#| msgid "Container"
+msgid "Container Name"
+msgstr "Konteyner"
+
+#: templates/modules/docker_manager/modals/delete_modal.html:26
+msgid "This will permanently remove the container and all its data."
+msgstr "Bu, konteyneri ve tüm verilerini kalıcı olarak kaldıracaktır."
+
+#: templates/modules/docker_manager/modals/purge_modal.html:9
+msgid "Purge System"
+msgstr "Sistemi Temizle"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:18
+#: templates/modules/system_logs/own_logs.html:53
+#: templates/pages/security/activity-history.html:85
+#: templates/pages/security/activity-history.html:136
+#: templates/pages/security/alert-management.html:70
+#: templates/pages/security/alert-management.html:109
+#: templates/pages/security/alert-management.html:212
+#: templates/pages/settings/settings.html:34
+msgid "Warning"
+msgstr "Uyarı"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:19
+msgid ""
+"This action will permanently remove unused images and volumes. This action "
+"cannot be undone."
+msgstr ""
+"Bu işlem kullanılmayan görüntüleri ve volume'ları kalıcı olarak "
+"kaldıracaktır. Bu işlem geri alınamaz."
+
+#: templates/modules/docker_manager/modals/purge_modal.html:24
+msgid "Purge Options"
+msgstr "Temizleme Seçenekleri"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:30
+msgid "Remove dangling images"
+msgstr "Dangling görüntüleri kaldır"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:31
+msgid "Unused images only"
+msgstr "Sadece kullanılmayan görüntüler"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:39
+msgid "Remove unused volumes"
+msgstr "Kullanılmayan volume'ları kaldır"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:40
+msgid "Unused volumes only"
+msgstr "Sadece kullanılmayan volume'lar"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:48
+msgid "Type 'PURGE' to confirm this action"
+msgstr "Bu işlemi onaylamak için 'PURGE' yazın"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:49
+msgid "Type PURGE here"
+msgstr "Buraya PURGE yazın"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:54
+msgid "Estimated Cleanup"
+msgstr "Tahmini Temizlik"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:57
+msgid "Dangling Images"
+msgstr "Dangling Görüntüler"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:61
+msgid "Unused Volumes"
+msgstr "Kullanılmayan Volume'lar"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:69
+#, fuzzy
+#| msgid "Estimated Cleanup"
+msgid "Estimate Cleanup"
+msgstr "Tahmini Temizlik"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:70
+#, fuzzy
+#| msgid "Cancel Purge"
+msgid "Execute Purge"
+msgstr "Temizliği İptal Et"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:82
+msgid "Purging System"
+msgstr "Sistem Temizleniyor"
+
+#: templates/modules/docker_manager/modals/purge_modal.html:89
+msgid "Preparing purge..."
+msgstr "Temizlik hazırlanıyor..."
+
+#: templates/modules/docker_manager/modals/purge_modal.html:92
+msgid "Starting purge process..."
+msgstr "Temizlik işlemi başlatılıyor..."
+
+#: templates/modules/docker_manager/modals/purge_modal.html:98
+msgid "Cancel Purge"
+msgstr "Temizliği İptal Et"
+
+#: templates/modules/docker_manager/modals/restart_modal.html:9
+#: templates/modules/docker_manager/modals/restart_modal.html:27
+msgid "Restart Container"
+msgstr "Konteyner Yeniden Başlat"
+
+#: templates/modules/docker_manager/modals/restart_modal.html:13
+msgid "Are you sure you want to restart this container?"
+msgstr "Bu konteyneri yeniden başlatmak istediğinizden emin misiniz?"
+
+#: templates/modules/docker_manager/modals/start_modal.html:9
+#: templates/modules/docker_manager/modals/start_modal.html:27
+msgid "Start Container"
+msgstr "Konteyner Başlat"
+
+#: templates/modules/docker_manager/modals/start_modal.html:13
+msgid "Are you sure you want to start this container?"
+msgstr "Bu konteyneri başlatmak istediğinizden emin misiniz?"
+
+#: templates/modules/docker_manager/modals/stop_modal.html:9
+#: templates/modules/docker_manager/modals/stop_modal.html:27
+msgid "Stop Container"
+msgstr "Konteyner Durdur"
+
+#: templates/modules/docker_manager/modals/stop_modal.html:13
+msgid "Are you sure you want to stop this container?"
+msgstr "Bu konteyneri durdurmak istediğinizden emin misiniz?"
+
+#: templates/modules/docker_manager/pull_popup.html:16
+msgid "e.g., nginx:latest"
+msgstr "örn., nginx:latest"
+
+#: templates/modules/docker_manager/pull_popup.html:17
+msgid "Docker Hub image name and tag"
+msgstr "Docker Hub görüntü adı ve etiketi"
+
+#: templates/modules/docker_manager/pull_popup.html:21
+msgid "Registry"
+msgstr "Kayıt Defteri"
+
+#: templates/modules/docker_manager/pull_popup.html:23
+msgid "Docker Hub (docker.io)"
+msgstr "Docker Hub (docker.io)"
+
+#: templates/modules/docker_manager/pull_popup.html:24
+msgid "GitHub Container Registry"
+msgstr "GitHub Container Registry"
+
+#: templates/modules/docker_manager/pull_popup.html:25
+msgid "Quay.io"
+msgstr "Quay.io"
+
+#: templates/modules/docker_manager/pull_popup.html:26
+msgid "Custom Registry"
+msgstr "Özel Kayıt Defteri"
+
+#: templates/modules/docker_manager/pull_popup.html:31
+msgid "Custom Registry URL"
+msgstr "Özel Kayıt Defteri URL'si"
+
+#: templates/modules/docker_manager/pull_popup.html:32
+msgid "e.g., registry.example.com"
+msgstr "örn., registry.example.com"
+
+#: templates/modules/docker_manager/pull_popup.html:36
+msgid "Authentication"
+msgstr "Kimlik Doğrulama"
+
+#: templates/modules/docker_manager/pull_popup.html:41
+msgid "Use authentication"
+msgstr "Kimlik doğrulama kullan"
+
+#: templates/modules/docker_manager/pull_popup.html:48
+#: templates/modules/system_information/index.html:210
+#: templates/modules/user_management/create_user_modal.html:26
+#: templates/modules/user_management/index.html:105
+#: templates/modules/user_management/index.html:238
+#: templates/pages/settings/settings.html:154
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+#: templates/modules/docker_manager/pull_popup.html:49
+msgid "Registry username"
+msgstr "Kayıt defteri kullanıcı adı"
+
+#: templates/modules/docker_manager/pull_popup.html:52
+msgid "Password/Token"
+msgstr "Şifre/Token"
+
+#: templates/modules/docker_manager/pull_popup.html:53
+msgid "Registry password or token"
+msgstr "Kayıt defteri şifresi veya token'ı"
+
+#: templates/modules/docker_manager/pull_popup.html:58
+msgid "Pull Options"
+msgstr "Çekme Seçenekleri"
+
+#: templates/modules/docker_manager/pull_popup.html:63
+msgid "Pull all tags"
+msgstr "Tüm etiketleri çek"
+
+#: templates/modules/docker_manager/pull_popup.html:68
+msgid "Quiet mode"
+msgstr "Sessiz mod"
+
+#: templates/modules/docker_manager/pull_popup.html:73
+msgid "Disable content trust"
+msgstr "İçerik güvenini devre dışı bırak"
+
+#: templates/modules/docker_manager/pull_popup.html:83
+msgid "Start Pull"
+msgstr "Çekmeyi Başlat"
+
+#: templates/modules/docker_manager/pull_popup.html:95
+msgid "Pulling Image"
+msgstr "Görüntü Çekiliyor"
+
+#: templates/modules/docker_manager/pull_popup.html:103
+msgid "Preparing pull..."
+msgstr "Çekme hazırlanıyor..."
+
+#: templates/modules/docker_manager/pull_popup.html:106
+msgid "Starting pull process..."
+msgstr "Çekme süreci başlatılıyor..."
+
+#: templates/modules/docker_manager/pull_popup.html:112
+msgid "Cancel Pull"
+msgstr "Çekmeyi İptal Et"
+
+# Volume Detail new strings
+#: templates/modules/docker_manager/volume_detail.html:8
+msgid "Docker Volume Detail"
+msgstr "Docker Hacim Detayı"
+
+#: templates/modules/docker_manager/volume_detail.html:86
+msgid "Mountpoint"
+msgstr "Bağlama Noktası"
+
+#: templates/modules/docker_manager/volume_detail.html:103
+msgid "No labels found."
+msgstr "Etiket bulunamadı."
+
+#: templates/modules/docker_manager/volume_detail.html:109
+#: templates/modules/firewall/iptables.html:49
+msgid "Options"
+msgstr "Seçenekler"
+
+#: templates/modules/docker_manager/volume_detail.html:119
+msgid "No options found."
+msgstr "Seçenek bulunamadı."
+
+#: templates/modules/docker_manager/volume_detail.html:129
+msgid "Full Inspect Data"
+msgstr "Tam İnceleme Verisi"
+
+#: templates/modules/docker_manager/volume_detail.html:139
+msgid "Volume Not Found"
+msgstr "Hacim Bulunamadı"
+
+#: templates/modules/docker_manager/volume_detail.html:140
+msgid ""
+"The volume you are looking for could not be found or Docker is not running."
+msgstr "Aradığınız hacim bulunamadı veya Docker çalışmıyor."
+
+#: templates/modules/docker_manager/volume_detail.html:144
+msgid "Back to Volumes"
+msgstr "Hacimlere Dön"
+
+# Volume Detail new strings
+#: templates/modules/docker_manager/volumes.html:7
+#, fuzzy
+#| msgid "Docker Volume Detail"
+msgid "Docker Volumes"
+msgstr "Docker Hacim Detayı"
+
+#: templates/modules/docker_manager/volumes.html:66
+msgid "Manage your Docker volumes"
+msgstr "Docker volume'larınızı yönetin"
+
+#: templates/modules/docker_manager/volumes.html:72
+msgid "Search volumes by name..."
+msgstr "Volume adına göre ara..."
+
+#: templates/modules/docker_manager/volumes.html:77
+msgid "Show dangling volumes"
+msgstr "Dangling volume'ları göster"
+
+#: templates/modules/docker_manager/volumes.html:92
+msgid "Create"
+msgstr "Oluştur"
+
+#: templates/modules/firewall/iptables.html:8
+msgid "iptables Firewall Management"
+msgstr "iptables Güvenlik Duvarı Yönetimi"
+
+#: templates/modules/firewall/iptables.html:31
+#: templates/modules/firewall/iptables.html:86
+#: templates/modules/firewall/selection.html:31
+#: templates/modules/firewall/selection.html:87
+#: templates/modules/firewall/selection.html:112
+#: templates/modules/firewall/selection.html:137
+#: templates/modules/firewall/ufw.html:31
+#: templates/modules/firewall/ufw.html:80
+#: templates/modules/service_builder/service_detail.html:52
+#: templates/modules/service_builder/services.html:75
+#: templates/pages/settings/settings.html:26
+#: templates/pages/settings/settings.html:247
+#: templates/pages/settings/settings.html:545
+#: templates/pages/settings/settings.html:658
+msgid "Checking..."
+msgstr "Kontrol ediliyor..."
+
+#: templates/modules/firewall/iptables.html:34
+#: templates/modules/firewall/iptables.html:58
+#: templates/modules/firewall/iptables.html:115
+#: templates/modules/firewall/ufw.html:38
+#: templates/modules/firewall/ufw.html:113
+msgid "Loading rules..."
+msgstr "Kurallar yükleniyor..."
+
+#: templates/modules/firewall/iptables.html:35
+#: templates/modules/firewall/iptables.html:126
+#: templates/modules/firewall/ufw.html:39
+#: templates/modules/firewall/ufw.html:137
+msgid "No Rules Found"
+msgstr "Kural Bulunamadı"
+
+#: templates/modules/firewall/iptables.html:36
+#: templates/modules/firewall/iptables.html:127
+msgid "No iptables rules are currently configured."
+msgstr "Şu anda yapılandırılmış iptables kuralı yok."
+
+#: templates/modules/firewall/iptables.html:37
+#: templates/modules/firewall/iptables.html:107
+#: templates/modules/firewall/ufw.html:47
+#: templates/modules/firewall/ufw.html:105
+msgid "Firewall Rules"
+msgstr "Güvenlik Duvarı Kuralları"
+
+#: templates/modules/firewall/iptables.html:38
+#: templates/modules/firewall/iptables.html:82
+msgid "iptables Firewall"
+msgstr "iptables Güvenlik Duvarı"
+
+#: templates/modules/firewall/iptables.html:39
+msgid "Error loading iptables status"
+msgstr "iptables durumu yüklenirken hata oluştu"
+
+#: templates/modules/firewall/iptables.html:40
+msgid "Error loading iptables rules"
+msgstr "iptables kuralları yüklenirken hata oluştu"
+
+#: templates/modules/firewall/iptables.html:41
+#: templates/modules/firewall/ufw.html:41
+#: templates/modules/firewall/ufw.html:121
+#: templates/modules/service_builder/logs.html:49
+msgid "Action"
+msgstr "Eylem"
+
+#: templates/modules/firewall/iptables.html:42
+#: templates/modules/firewall/ufw.html:42
+#: templates/modules/firewall/ufw.html:122
+msgid "Direction"
+msgstr "Yön"
+
+#: templates/modules/firewall/iptables.html:43
+#: templates/modules/firewall/ufw.html:43
+#: templates/modules/firewall/ufw.html:123
+msgid "Source"
+msgstr "Kaynak"
+
+#: templates/modules/firewall/iptables.html:44
+#: templates/modules/firewall/ufw.html:44
+#: templates/modules/firewall/ufw.html:124
+msgid "Destination"
+msgstr "Hedef"
+
+#: templates/modules/firewall/iptables.html:45
+#: templates/modules/firewall/ufw.html:45
+#: templates/modules/firewall/ufw.html:125
+#: templates/modules/process_monitor/index.html:199
+#: templates/modules/process_monitor/index.html:273
+#: templates/modules/service_builder/create_service.html:211
+#: templates/modules/service_builder/service_detail.html:130
+#: templates/pages/settings/settings.html:1009
+msgid "Port"
+msgstr "Port"
+
+#: templates/modules/firewall/iptables.html:46
+#: templates/modules/firewall/ufw.html:46
+#: templates/modules/firewall/ufw.html:126
+#: templates/modules/process_monitor/index.html:104
+#: templates/modules/process_monitor/index.html:263
+#: templates/modules/system_information/index.html:301
+msgid "Protocol"
+msgstr "Protokol"
+
+#: templates/modules/firewall/iptables.html:47
+msgid "Chain"
+msgstr "Zincir"
+
+#: templates/modules/firewall/iptables.html:48
+msgid "Target"
+msgstr "Hedef"
+
+#: templates/modules/firewall/iptables.html:50
+msgid "Comment"
+msgstr "Yorum"
+
+#: templates/modules/firewall/iptables.html:51
+msgid "Delete Rule"
+msgstr "Kuralı Sil"
+
+#: templates/modules/firewall/iptables.html:52
+msgid "Are you sure you want to delete this rule?"
+msgstr "Bu kuralı silmek istediğinizden emin misiniz?"
+
+#: templates/modules/firewall/iptables.html:53
+msgid "Rule deleted successfully"
+msgstr "Kural başarıyla silindi"
+
+#: templates/modules/firewall/iptables.html:54
+msgid "Error deleting rule"
+msgstr "Kural silinirken hata oluştu"
+
+# JavaScript Translations
+#: templates/modules/firewall/iptables.html:55
+#: templates/modules/firewall/ufw.html:32
+#: templates/modules/service_monitoring/index.html:215
+#: templates/pages/settings/settings.html:24
+msgid "Enabled"
+msgstr "Etkin"
+
+#: templates/modules/firewall/iptables.html:56
+#: templates/modules/firewall/ufw.html:33
+#: templates/pages/settings/settings.html:25
+#: templates/pages/settings/settings.html:890
+#: templates/pages/settings/settings.html:914
+#: templates/pages/settings/settings.html:938
+#: templates/pages/settings/settings.html:962
+msgid "Disabled"
+msgstr "Devre Dışı"
+
+#: templates/modules/firewall/iptables.html:57
+#: templates/modules/firewall/selection.html:33
+msgid "Not Available"
+msgstr "Mevcut Değil"
+
+#: templates/modules/firewall/iptables.html:59
+msgid "rules"
+msgstr "kural"
+
+#: templates/modules/firewall/iptables.html:60
+msgid "Deleting rule"
+msgstr "Kural siliniyor"
+
+#: templates/modules/firewall/iptables.html:61
+msgid "Connection error"
+msgstr "Bağlantı hatası"
+
+# Firewall Management
+#: templates/modules/firewall/selection.html:8
+#: templates/modules/firewall/selection.html:64
+msgid "Firewall Management"
+msgstr "Güvenlik Duvarı Yönetimi"
+
+#: templates/modules/firewall/selection.html:32
+msgid "Available"
+msgstr "Mevcut"
+
+#: templates/modules/firewall/selection.html:35
+#: templates/modules/firewall/selection.html:80
+msgid "UFW"
+msgstr "UFW"
+
+#: templates/modules/firewall/selection.html:36
+#: templates/modules/firewall/selection.html:105
+#, fuzzy
+#| msgid "Manage iptables"
+msgid "iptables"
+msgstr "iptables Yönet"
+
+#: templates/modules/firewall/selection.html:37
+#: templates/modules/firewall/selection.html:130
+#, fuzzy
+#| msgid "Manage firewalld"
+msgid "firewalld"
+msgstr "firewalld Yönet"
+
+#: templates/modules/firewall/selection.html:38
+#: templates/modules/firewall/selection.html:81
+msgid "Uncomplicated Firewall"
+msgstr "Basit Güvenlik Duvarı"
+
+#: templates/modules/firewall/selection.html:39
+#: templates/modules/firewall/selection.html:106
+msgid "Advanced Firewall"
+msgstr "Gelişmiş Güvenlik Duvarı"
+
+#: templates/modules/firewall/selection.html:40
+#: templates/modules/firewall/selection.html:131
+msgid "Dynamic Firewall"
+msgstr "Dinamik Güvenlik Duvarı"
+
+#: templates/modules/firewall/selection.html:41
+#: templates/modules/firewall/selection.html:94
+msgid "Manage UFW"
+msgstr "UFW Yönet"
+
+#: templates/modules/firewall/selection.html:42
+#: templates/modules/firewall/selection.html:119
+msgid "Manage iptables"
+msgstr "iptables Yönet"
+
+#: templates/modules/firewall/selection.html:43
+#: templates/modules/firewall/selection.html:144
+msgid "Manage firewalld"
+msgstr "firewalld Yönet"
+
+#: templates/modules/firewall/selection.html:66
+msgid "Choose your firewall system to manage rules and settings"
+msgstr "Kuralları ve ayarları yönetmek için güvenlik duvarı sisteminizi seçin"
+
+#: templates/modules/firewall/ufw.html:8
+msgid "UFW Firewall Management"
+msgstr "UFW Güvenlik Duvarı Yönetimi"
+
+#: templates/modules/firewall/ufw.html:34
+#: templates/modules/firewall/ufw.html:86
+#: templates/modules/service_monitoring/index.html:196
+#: templates/pages/settings/settings.html:254
+msgid "Enable"
+msgstr "Etkinleştir"
+
+#: templates/modules/firewall/ufw.html:35
+#: templates/modules/service_monitoring/index.html:197
+#: templates/pages/settings/settings.html:258
+msgid "Disable"
+msgstr "Devre Dışı Bırak"
+
+#: templates/modules/firewall/ufw.html:40
+#: templates/modules/firewall/ufw.html:138
+msgid "No firewall rules are currently configured."
+msgstr "Şu anda yapılandırılmış güvenlik duvarı kuralı yok."
+
+#: templates/modules/firewall/ufw.html:48
+#: templates/modules/firewall/ufw.html:76
+msgid "UFW Firewall"
+msgstr "UFW Güvenlik Duvarı"
+
+#: templates/modules/firewall/ufw.html:49
+msgid "Error loading UFW status"
+msgstr "UFW durumu yüklenirken hata oluştu"
+
+#: templates/modules/firewall/ufw.html:50
+msgid "Error loading UFW rules"
+msgstr "UFW kuralları yüklenirken hata oluştu"
+
+#: templates/modules/firewall/ufw.html:51
+msgid "Error toggling UFW"
+msgstr "UFW değiştirilirken hata oluştu"
+
+#: templates/modules/firewall/ufw.html:52
+msgid "UFW enabled successfully"
+msgstr "UFW başarıyla etkinleştirildi"
+
+#: templates/modules/firewall/ufw.html:53
+msgid "UFW disabled successfully"
+msgstr "UFW başarıyla devre dışı bırakıldı"
+
+#: templates/modules/firewall/ufw.html:54
+msgid "UFW enable failed"
+msgstr "UFW etkinleştirilemedi"
+
+#: templates/modules/firewall/ufw.html:55
+msgid "UFW disable failed"
+msgstr "UFW devre dışı bırakılamadı"
+
+#: templates/modules/package_manager/index.html:40
+msgid "View system updates and installed packages"
+msgstr "Sistem güncellemelerini ve kurulu paketleri görüntüleyin"
+
+#: templates/modules/package_manager/index.html:56
+msgid "Total Updates"
+msgstr "Toplam Güncelleme"
+
+#: templates/modules/package_manager/index.html:63
+msgid "Critical Updates"
+msgstr "Kritik Güncelleme"
+
+#: templates/modules/package_manager/index.html:70
+msgid "Managers"
+msgstr "Yöneticiler"
+
+#: templates/modules/package_manager/index.html:129
+msgid "Update available"
+msgstr "Güncelleme mevcut"
+
+#: templates/modules/package_manager/index.html:131
+msgid "No results found"
+msgstr "Sonuç bulunamadı"
+
+#: templates/modules/package_manager/index.html:132
+msgid "No dependencies found"
+msgstr "Bağımlılık bulunamadı"
+
+#: templates/modules/package_manager/index.html:133
+msgid "critical"
+msgstr "kritik"
+
+#: templates/modules/package_manager/index.html:134
+msgid "No updates found"
+msgstr "Güncelleme bulunamadı"
+
+#: templates/modules/package_manager/index.html:142
+msgid "Repository"
+msgstr "Depo"
+
+#: templates/modules/package_manager/index.html:143
+msgid "Maintainer"
+msgstr "Bakımcı"
+
+#: templates/modules/package_manager/updates_modal.html:5
+#, fuzzy
+#| msgid "Developer Packages"
+msgid "Upgradeable Packages"
+msgstr "Geliştirici Paketleri"
+
+# Password Change
+#: templates/modules/package_manager/updates_modal.html:17
+#, fuzzy
+#| msgid "Current Password"
+msgid "Current"
+msgstr "Mevcut Şifre"
+
+#: templates/modules/package_manager/updates_modal.html:18
+#, fuzzy
+#| msgid "Network"
+msgid "New"
+msgstr "Ağ"
+
+#: templates/modules/package_manager/updates_modal.html:20
+#: templates/pages/security/alert-management.html:61
+#: templates/pages/security/alert-management.html:108
+#: templates/pages/security/alert-management.html:211
+msgid "Critical"
+msgstr "Kritik"
+
+#: templates/modules/process_monitor/all_ports.html:12
+msgid "All Ports"
+msgstr "Tüm Portlar"
+
+#: templates/modules/process_monitor/connection_search.html:13
+msgid "Search Results"
+msgstr "Arama Sonuçları"
+
+#: templates/modules/process_monitor/connection_search.html:22
+msgid "Searching..."
+msgstr "Aranıyor..."
+
+#: templates/modules/process_monitor/group_view.html:12
+#: templates/modules/process_monitor/index.html:63
+#: templates/modules/process_monitor/index.html:281
+msgid "Group View"
+msgstr "Grup Görünümü"
+
+#: templates/modules/process_monitor/index.html:44
+#: templates/modules/process_monitor/index.html:283
+#: templates/modules/system_information/index.html:42
+#: templates/modules/system_information/index.html:426
+msgid "Connecting..."
+msgstr "Bağlanıyor..."
+
+# Process Monitor additional translations
+#: templates/modules/process_monitor/index.html:46
+msgid "Monitor and manage network processes and port connections"
+msgstr "Ağ süreçlerini ve port bağlantılarını izleyin ve yönetin"
+
+#: templates/modules/process_monitor/index.html:51
+#: templates/modules/process_monitor/index.html:278
+msgid "By PID"
+msgstr "PID'ye Göre"
+
+#: templates/modules/process_monitor/index.html:55
+#: templates/modules/process_monitor/index.html:279
+msgid "By Interface"
+msgstr "Arayüze Göre"
+
+#: templates/modules/process_monitor/index.html:59
+#: templates/modules/process_monitor/index.html:280
+msgid "By IP"
+msgstr "IP'ye Göre"
+
+#: templates/modules/process_monitor/index.html:89
+#: templates/modules/system_information/index.html:375
+msgid "Active Connections"
+msgstr "Aktif Bağlantılar"
+
+#: templates/modules/process_monitor/index.html:93
+#: templates/modules/process_monitor/index.html:259
+#: templates/modules/user_management/index.html:96
+#: templates/pages/security/activity-history.html:146
+msgid "Total"
+msgstr "Toplam"
+
+#: templates/modules/process_monitor/index.html:93
+#: templates/modules/process_monitor/index.html:260
+msgid "connections"
+msgstr "bağlantılar"
+
+#: templates/modules/process_monitor/index.html:102
+#: templates/modules/process_monitor/index.html:195
+#: templates/modules/process_monitor/index.html:261
+#: templates/modules/process_topology/components/info_panel.html:21
+#: templates/modules/service_monitoring/index.html:226
+msgid "PID"
+msgstr "PID"
+
+#: templates/modules/process_monitor/index.html:103
+#: templates/modules/process_monitor/index.html:262
+#, fuzzy
+#| msgid "processes"
+msgid "Process"
+msgstr "süreçler"
+
+#: templates/modules/process_monitor/index.html:105
+#: templates/modules/process_monitor/index.html:264
+#, fuzzy
+#| msgid "Host Address"
+msgid "Local Address"
+msgstr "Host Adresi"
+
+#: templates/modules/process_monitor/index.html:106
+#: templates/modules/process_monitor/index.html:265
+#, fuzzy
+#| msgid "Host Address"
+msgid "Remote Address"
+msgstr "Host Adresi"
+
+#: templates/modules/process_monitor/index.html:108
+#: templates/modules/process_monitor/index.html:267
+#: templates/modules/process_topology/components/info_panel.html:39
+#, fuzzy
+#| msgid "Memory Usage"
+msgid "Memory"
+msgstr "Bellek Kullanımı"
+
+#: templates/modules/process_monitor/index.html:109
+#: templates/modules/process_monitor/index.html:268
+#: templates/modules/process_topology/components/info_panel.html:35
+#, fuzzy
+#| msgid "CPU:"
+msgid "CPU"
+msgstr "İşlemci:"
+
+#: templates/modules/process_monitor/index.html:132
+#: templates/modules/process_monitor/index.html:257
+#: templates/modules/service_builder/templates.html:70
+#: templates/modules/service_monitoring/index.html:198
+#: templates/modules/user_management/index.html:150
+#: templates/modules/user_management/index.html:225
+msgid "View Details"
+msgstr "Detayları Görüntüle"
+
+#: templates/modules/process_monitor/index.html:139
+#: templates/modules/process_monitor/index.html:258
+#: templates/modules/process_monitor/process_management.html:12
+msgid "Process Management"
+msgstr "Süreç Yönetimi"
+
+#: templates/modules/process_monitor/index.html:150
+#: templates/modules/process_monitor/index.html:253
+msgid "No connections found"
+msgstr "Bağlantı bulunamadı"
+
+#: templates/modules/process_monitor/index.html:167
+#: templates/modules/process_monitor/index.html:270
+msgid "Most Used Ports"
+msgstr "En Çok Kullanılan Portlar"
+
+#: templates/modules/process_monitor/index.html:171
+#: templates/modules/process_monitor/index.html:271
+#: templates/modules/service_builder/index.html:93
+#: templates/modules/service_builder/index.html:188
+#: templates/modules/service_builder/index.html:222
+msgid "View All"
+msgstr "Tümünü Görüntüle"
+
+#: templates/modules/process_monitor/index.html:187
+#: templates/modules/process_monitor/index.html:272
+msgid "Connection Search"
+msgstr "Bağlantı Arama"
+
+#: templates/modules/process_monitor/index.html:203
+#: templates/modules/process_monitor/index.html:274
+msgid "IP"
+msgstr ""
+
+#: templates/modules/process_monitor/index.html:210
+#: templates/modules/process_monitor/index.html:276
+msgid "Enter PID to search..."
+msgstr "Aramak için PID girin..."
+
+#: templates/modules/process_monitor/index.html:219
+#: templates/modules/process_monitor/index.html:277
+msgid "Search for all connections related to a specific PID"
+msgstr "Belirli bir PID ile ilgili tüm bağlantıları arayın"
+
+#: templates/modules/process_monitor/index.html:284
+msgid "Live Mode: Real-time data streaming"
+msgstr "Canlı Mod: Gerçek zamanlı veri akışı"
+
+#: templates/modules/process_monitor/index.html:285
+msgid "Live Mode disabled"
+msgstr "Canlı Mod devre dışı"
+
+# Process Management Translations
+#: templates/modules/process_monitor/index.html:287
+msgid ""
+"Please use operations carefully. Terminating system processes may cause "
+"system instability."
+msgstr ""
+"Lütfen işlemleri dikkatli kullanın. Sistem süreçlerini sonlandırmak sistem "
+"kararsızlığına neden olabilir."
+
+#: templates/modules/process_monitor/index.html:288
+#: templates/modules/process_topology/components/info_panel.html:7
+msgid "Process Information"
+msgstr "Süreç Bilgileri"
+
+#: templates/modules/process_monitor/index.html:289
+msgid "Available Actions"
+msgstr "Mevcut İşlemler"
+
+#: templates/modules/process_monitor/index.html:290
+#: templates/modules/process_topology/components/info_panel.html:43
+msgid "Thread Count"
+msgstr "İş Parçacığı Sayısı"
+
+#: templates/modules/process_monitor/index.html:291
+msgid "N/A"
+msgstr "N/A"
+
+#: templates/modules/process_monitor/index.html:292
+msgid "Stop (SIGTERM)"
+msgstr "Durdur (SIGTERM)"
+
+#: templates/modules/process_monitor/index.html:293
+msgid "Gracefully stops the process"
+msgstr "Süreci nazikçe durdurur"
+
+#: templates/modules/process_monitor/index.html:294
+msgid "Force Kill (SIGKILL)"
+msgstr "Zorla Sonlandır (SIGKILL)"
+
+#: templates/modules/process_monitor/index.html:295
+msgid "Forcefully terminates the process"
+msgstr "Süreci zorla sonlandırır"
+
+#: templates/modules/process_monitor/index.html:296
+msgid "Suspend (SIGSTOP)"
+msgstr "Askıya Al (SIGSTOP)"
+
+#: templates/modules/process_monitor/index.html:297
+msgid "Suspends the process"
+msgstr "Süreci askıya alır"
+
+#: templates/modules/process_monitor/index.html:298
+msgid "Resume (SIGCONT)"
+msgstr "Devam Et (SIGCONT)"
+
+#: templates/modules/process_monitor/index.html:299
+msgid "Resumes suspended process"
+msgstr "Askıya alınmış süreci devam ettirir"
+
+#: templates/modules/process_monitor/index.html:301
+msgid "Stops and restarts the process"
+msgstr "Süreci durdurur ve yeniden başlatır"
+
+#: templates/modules/process_monitor/index.html:302
+#, python-brace-format
+msgid "Are you sure you want to {action} this process?"
+msgstr "Bu süreci {action} etmek istediğinizden emin misiniz?"
+
+#: templates/modules/process_monitor/index.html:303
+#: templates/modules/service_monitoring/index.html:203
+msgid "Operation successful"
+msgstr "İşlem başarılı"
+
+#: templates/modules/process_monitor/index.html:304
+#: templates/modules/service_monitoring/index.html:204
+msgid "Operation failed"
+msgstr "İşlem başarısız"
+
+#: templates/modules/process_monitor/index.html:305
+msgid "Operation could not be completed"
+msgstr "İşlem tamamlanamadı"
+
+#: templates/modules/process_monitor/index.html:306
+#: templates/modules/service_monitoring/index.html:207
+msgid "stop"
+msgstr "durdur"
+
+#: templates/modules/process_monitor/index.html:307
+msgid "kill"
+msgstr "sonlandır"
+
+#: templates/modules/process_monitor/index.html:308
+msgid "suspend"
+msgstr "askıya al"
+
+#: templates/modules/process_monitor/index.html:309
+msgid "resume"
+msgstr "devam et"
+
+#: templates/modules/process_monitor/index.html:310
+#: templates/modules/service_monitoring/index.html:208
+#, fuzzy
+#| msgid "Restart"
+msgid "restart"
+msgstr "Yeniden Başlat"
+
+#: templates/modules/process_monitor/interface_view.html:12
+msgid "Processes by Interface"
+msgstr "Arayüze Göre Süreçler"
+
+#: templates/modules/process_monitor/ip_analysis.html:11
+msgid "IP Analysis & Request Tracking"
+msgstr "IP Analizi ve İstek Takibi"
+
+#: templates/modules/process_monitor/ip_analysis.html:28
+#: templates/modules/system_logs/index.html:61
+#: templates/pages/security/activity-history.html:41
+#: templates/pages/security/alert-management.html:48
+msgid "Export"
+msgstr "Dışa Aktar"
+
+#: templates/modules/process_monitor/ip_analysis.html:37
+msgid "IP Addresses"
+msgstr "IP Adresleri"
+
+#: templates/modules/process_monitor/pid_group_view.html:12
+msgid "Processes by PID"
+msgstr "PID'ye Göre Süreçler"
+
+#: templates/modules/process_monitor/port_details.html:12
+msgid "Port Details"
+msgstr "Port Detayları"
+
+# Process Monitor Modal Translations
+#: templates/modules/process_monitor/process_details.html:11
+msgid "Process Details"
+msgstr "Süreç Detayları"
+
+#: templates/modules/process_topology/components/filters.html:7
+#: templates/modules/process_topology/index.html:149
+#, fuzzy
+#| msgid "Apply Filters"
+msgid "Filters"
+msgstr "Filtreleri Uygula"
+
+#: templates/modules/process_topology/components/filters.html:16
+msgid "Search Process"
+msgstr "Süreç Ara"
+
+#: templates/modules/process_topology/components/filters.html:17
+msgid "Process name, PID or user..."
+msgstr "Süreç adı, PID veya kullanıcı..."
+
+#: templates/modules/process_topology/components/filters.html:21
+msgid "Focus on PID"
+msgstr "PID'ye Odaklan"
+
+#: templates/modules/process_topology/components/filters.html:22
+msgid "Enter PID to show only connected processes..."
+msgstr "Sadece bağlı süreçleri göstermek için PID girin..."
+
+#: templates/modules/process_topology/components/filters.html:23
+msgid "Show only processes connected to this PID"
+msgstr "Sadece bu PID'ye bağlı süreçleri göster"
+
+#: templates/modules/process_topology/components/filters.html:27
+msgid "Maximum Process Count"
+msgstr "Maksimum Süreç Sayısı"
+
+#: templates/modules/process_topology/components/filters.html:33
+#: templates/modules/process_topology/index.html:211
+msgid "Process States"
+msgstr "Süreç Durumları"
+
+#: templates/modules/process_topology/components/filters.html:37
+#: templates/modules/process_topology/index.html:215
+#: templates/pages/settings/settings.html:31
+msgid "Running"
+msgstr "Çalışıyor"
+
+#: templates/modules/process_topology/components/filters.html:41
+#: templates/modules/process_topology/index.html:219
+#, fuzzy
+#| msgid "Sleeping Processes"
+msgid "Sleeping"
+msgstr "Uyuyan Süreçler"
+
+#: templates/modules/process_topology/components/filters.html:45
+#: templates/modules/process_topology/index.html:223
+#: templates/pages/settings/settings.html:32
+msgid "Stopped"
+msgstr "Durduruldu"
+
+#: templates/modules/process_topology/components/filters.html:49
+#: templates/modules/process_topology/index.html:227
+msgid "Zombie"
+msgstr ""
+
+#: templates/modules/process_topology/components/filters.html:56
+msgid "Apply Filters"
+msgstr "Filtreleri Uygula"
+
+#: templates/modules/process_topology/components/info_panel.html:17
+msgid "Process Name"
+msgstr "Süreç Adı"
+
+#: templates/modules/process_topology/components/info_panel.html:31
+#: templates/modules/process_topology/components/settings.html:37
+#: templates/modules/service_builder/logs.html:52
+#: templates/modules/service_builder/service_detail.html:97
+#: templates/modules/service_builder/service_detail.html:157
+#: templates/modules/service_builder/services.html:51
+#: templates/modules/user_management/delete_user_modal.html:29
+msgid "User"
+msgstr "Kullanıcı"
+
+#: templates/modules/process_topology/components/info_panel.html:47
+msgid "Started"
+msgstr "Başlatıldı"
+
+#: templates/modules/process_topology/components/info_panel.html:55
+msgid "Terminate"
+msgstr "Sonlandır"
+
+#: templates/modules/process_topology/components/info_panel.html:59
+msgid "Connections"
+msgstr "Bağlantılar"
+
+#: templates/modules/process_topology/components/info_panel.html:63
+msgid "Suspend"
+msgstr "Askıya Al"
+
+#: templates/modules/process_topology/components/settings.html:7
+msgid "Graph Settings"
+msgstr "Grafik Ayarları"
+
+#: templates/modules/process_topology/components/settings.html:17
+msgid "Display"
+msgstr "Görünüm"
+
+#: templates/modules/process_topology/components/settings.html:20
+msgid "Node size"
+msgstr "Düğüm boyutu"
+
+#: templates/modules/process_topology/components/settings.html:26
+msgid "Link thickness"
+msgstr "Bağlantı kalınlığı"
+
+#: templates/modules/process_topology/components/settings.html:32
+msgid "Color scheme"
+msgstr "Renk şeması"
+
+#: templates/modules/process_topology/components/settings.html:44
+msgid "Forces"
+msgstr "Kuvvetler"
+
+#: templates/modules/process_topology/components/settings.html:47
+msgid "Center force"
+msgstr "Merkez kuvveti"
+
+#: templates/modules/process_topology/components/settings.html:53
+msgid "Repel force"
+msgstr "İtme kuvveti"
+
+#: templates/modules/process_topology/components/settings.html:59
+msgid "Link distance"
+msgstr "Bağlantı mesafesi"
+
+#: templates/modules/process_topology/components/settings.html:65
+msgid "Collision radius"
+msgstr "Çarpışma yarıçapı"
+
+#: templates/modules/process_topology/components/settings.html:73
+msgid "Layout"
+msgstr "Düzen"
+
+#: templates/modules/process_topology/components/settings.html:76
+msgid "Distribution"
+msgstr "Dağılım"
+
+#: templates/modules/process_topology/components/settings.html:78
+msgid "Compact"
+msgstr "Kompakt"
+
+#: templates/modules/process_topology/components/settings.html:79
+msgid "Spread"
+msgstr "Yayılmış"
+
+#: templates/modules/process_topology/components/settings.html:80
+msgid "Clustered"
+msgstr "Kümelendirilmiş"
+
+#: templates/modules/process_topology/components/settings.html:81
+msgid "Linear"
+msgstr "Doğrusal"
+
+#: templates/modules/process_topology/components/settings.html:86
+msgid "Canvas width"
+msgstr "Tuval genişliği"
+
+#: templates/modules/process_topology/components/settings.html:92
+msgid "Canvas height"
+msgstr "Tuval yüksekliği"
+
+#: templates/modules/process_topology/components/settings.html:100
+#: templates/modules/system_logs/index.html:95
+msgid "Auto"
+msgstr "Otomatik"
+
+#: templates/modules/process_topology/components/settings.html:104
+msgid "Auto refresh"
+msgstr "Otomatik yenileme"
+
+#: templates/modules/process_topology/components/settings.html:108
+msgid "Refresh interval"
+msgstr "Yenileme aralığı"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:9
+#: templates/modules/process_topology/components/snapshot_loader.html:177
+msgid "Load Snapshot"
+msgstr "Anlık Görüntü Yükle"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:22
+msgid "Drop JSON file here"
+msgstr "JSON dosyasını buraya bırakın"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:23
+msgid "or click to browse"
+msgstr "veya göz atmak için tıklayın"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:33
+msgid "Loading Snapshot..."
+msgstr "Anlık Görüntü Yükleniyor..."
+
+#: templates/modules/process_topology/components/snapshot_loader.html:34
+msgid "Processing snapshot data..."
+msgstr "Anlık görüntü verileri işleniyor..."
+
+#: templates/modules/process_topology/components/snapshot_loader.html:41
+msgid "Snapshot Preview"
+msgstr "Anlık Görüntü Önizleme"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:64
+msgid "Filename"
+msgstr "Dosya Adı"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:72
+msgid "File Size"
+msgstr "Dosya Boyutu"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:84
+msgid "Process Statistics"
+msgstr "Süreç İstatistikleri"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:87
+msgid "Total Processes"
+msgstr "Toplam Süreçler"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:91
+msgid "Running Processes"
+msgstr "Çalışan Süreçler"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:95
+msgid "Sleeping Processes"
+msgstr "Uyuyan Süreçler"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:99
+msgid "Zombie Processes"
+msgstr "Zombi Süreçler"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:107
+msgid "Connection Statistics"
+msgstr "Bağlantı İstatistikleri"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:110
+msgid "Total Connections"
+msgstr "Toplam Bağlantılar"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:114
+msgid "Parent-Child Links"
+msgstr "Ebeveyn-Çocuk Bağlantıları"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:118
+msgid "Network Links"
+msgstr "Ağ Bağlantıları"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:122
+msgid "System Links"
+msgstr "Sistem Bağlantıları"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:133
+#: templates/modules/system_information/index.html:170
+msgid "Platform"
+msgstr "Platform"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:137
+#: templates/pages/settings/settings.html:191
+msgid "Language"
+msgstr "Dil"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:141
+msgid "User Agent"
+msgstr "Kullanıcı Aracısı"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:145
+msgid "Browser"
+msgstr "Tarayıcı"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:153
+msgid "Snapshot Settings"
+msgstr "Anlık Görüntü Ayarları"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:156
+msgid "Node Size"
+msgstr "Düğüm Boyutu"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:160
+msgid "Canvas Size"
+msgstr "Tuval Boyutu"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:164
+msgid "Force Settings"
+msgstr "Kuvvet Ayarları"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:168
+msgid "Color Scheme"
+msgstr "Renk Şeması"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:191
+msgid "Error Loading Snapshot"
+msgstr "Anlık Görüntü Yükleme Hatası"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:192
+msgid "Invalid snapshot file format"
+msgstr "Geçersiz anlık görüntü dosya formatı"
+
+#: templates/modules/process_topology/components/snapshot_loader.html:195
+msgid "Try Again"
+msgstr "Tekrar Dene"
+
+#: templates/modules/process_topology/index.html:139
+msgid "Interactive process visualization and monitoring"
+msgstr "Etkileşimli süreç görselleştirme ve izleme"
+
+#: templates/modules/process_topology/index.html:153
+#: templates/pages/settings/settings.html:74
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: templates/modules/process_topology/index.html:157
+#, fuzzy
+#| msgid "Load Snapshot"
+msgid "Snapshot"
+msgstr "Anlık Görüntü Yükle"
+
+#: templates/modules/process_topology/index.html:161
+#, fuzzy
+#| msgid "Load More"
+msgid "Load"
+msgstr "Daha Fazla Yükle"
+
+#: templates/modules/process_topology/index.html:176
+msgid "Loading process data..."
+msgstr "Süreç verileri yükleniyor..."
+
+#: templates/modules/process_topology/index.html:184
+msgid "No Process Data Found"
+msgstr "Süreç Verisi Bulunamadı"
+
+#: templates/modules/process_topology/index.html:185
+msgid "An error occurred while loading system processes."
+msgstr "Sistem süreçleri yüklenirken bir hata oluştu."
+
+#: templates/modules/process_topology/index.html:188
+msgid "Refresh Page"
+msgstr "Sayfayı Yenile"
+
+#: templates/modules/process_topology/index.html:199
+msgid "processes"
+msgstr "süreçler"
+
+#: templates/modules/process_topology/index.html:202
+msgid "Last updated"
+msgstr "Son güncelleme"
+
+#: templates/modules/process_topology/index.html:234
+msgid "Connection Types"
+msgstr "Bağlantı Türleri"
+
+#: templates/modules/process_topology/index.html:238
+msgid "Parent-Child"
+msgstr "Ebeveyn-Çocuk"
+
+#: templates/modules/process_topology/index.html:242
+msgid "Network Connection"
+msgstr "Ağ Bağlantısı"
+
+#: templates/modules/service_builder/create_service.html:23
+msgid "Create New Service"
+msgstr "Yeni Servis Oluştur"
+
+#: templates/modules/service_builder/create_service.html:26
+msgid "Configure and deploy a new Linux systemd service for your application."
+msgstr ""
+"Uygulamanız için yeni bir Linux systemd servisi yapılandırın ve dağıtın."
+
+#: templates/modules/service_builder/create_service.html:32
+#: templates/modules/service_builder/logs.html:34
+#: templates/modules/service_builder/services.html:35
+#: templates/modules/service_builder/templates.html:34
+msgid "Back to Dashboard"
+msgstr "Panoya Dön"
+
+#: templates/modules/service_builder/create_service.html:49
+msgid "Service Type"
+msgstr "Servis Tipi"
+
+#: templates/modules/service_builder/create_service.html:51
+msgid "Choose the type of service you want to create"
+msgstr "Oluşturmak istediğiniz servis tipini seçin"
+
+#: templates/modules/service_builder/create_service.html:62
+msgid "Normal Application"
+msgstr "Normal Uygulama"
+
+#: templates/modules/service_builder/create_service.html:63
+msgid "Standard application or script"
+msgstr "Standart uygulama veya script"
+
+#: templates/modules/service_builder/create_service.html:74
+msgid "Web Application"
+msgstr "Web Uygulaması"
+
+#: templates/modules/service_builder/create_service.html:75
+msgid "HTTP server or web service"
+msgstr "HTTP sunucusu veya web servisi"
+
+#: templates/modules/service_builder/create_service.html:86
+msgid "Background Service"
+msgstr "Arka Plan Servisi"
+
+#: templates/modules/service_builder/create_service.html:87
+msgid "Background daemon or worker"
+msgstr "Arka plan daemon veya worker"
+
+#: templates/modules/service_builder/create_service.html:100
+msgid "Application Configuration"
+msgstr "Uygulama Yapılandırması"
+
+#: templates/modules/service_builder/create_service.html:102
+msgid "Configure your application details"
+msgstr "Uygulama detaylarınızı yapılandırın"
+
+#: templates/modules/service_builder/create_service.html:109
+#: templates/modules/service_builder/service_detail.html:169
+msgid "Application Path"
+msgstr "Uygulama Yolu"
+
+#: templates/modules/service_builder/create_service.html:114
+msgid "Full path to your application file or script"
+msgstr "Uygulama dosyanızın veya scriptinizin tam yolu"
+
+#: templates/modules/service_builder/create_service.html:124
+msgid "Interpreter (Optional)"
+msgstr "Yorumlayıcı (Opsiyonel)"
+
+#: templates/modules/service_builder/create_service.html:129
+msgid "Interpreter for scripted languages (Python, PHP, etc.)"
+msgstr "Script dilleri için yorumlayıcı (Python, PHP, vb.)"
+
+#: templates/modules/service_builder/create_service.html:135
+#: templates/modules/service_builder/service_detail.html:120
+#: templates/modules/service_builder/service_detail.html:180
+#, fuzzy
+#| msgid "Home Directory"
+msgid "Working Directory"
+msgstr "Ana Dizin"
+
+#: templates/modules/service_builder/create_service.html:140
+msgid "Working directory for the service"
+msgstr "Servis için çalışma dizini"
+
+#: templates/modules/service_builder/create_service.html:151
+#: templates/modules/service_monitoring/index.html:136
+#: templates/modules/service_monitoring/index.html:189
+msgid "Service Details"
+msgstr "Servis Detayları"
+
+#: templates/modules/service_builder/create_service.html:153
+msgid "Basic service information"
+msgstr "Temel servis bilgileri"
+
+#: templates/modules/service_builder/create_service.html:160
+#: templates/modules/service_builder/service_detail.html:149
+#: templates/modules/service_builder/services.html:49
+#: templates/modules/service_monitoring/index.html:111
+#: templates/modules/service_monitoring/index.html:185
+msgid "Service Name"
+msgstr "Servis Adı"
+
+#: templates/modules/service_builder/create_service.html:165
+msgid "Unique name for your service (lowercase, no spaces)"
+msgstr "Servisiniz için benzersiz isim (küçük harf, boşluksuz)"
+
+#: templates/modules/service_builder/create_service.html:171
+msgid "Run As User"
+msgstr "Kullanıcı Olarak Çalıştır"
+
+#: templates/modules/service_builder/create_service.html:179
+msgid "System user to run the service"
+msgstr "Servisi çalıştıracak sistem kullanıcısı"
+
+#: templates/modules/service_builder/create_service.html:192
+msgid "Optional description for your service"
+msgstr "Servisiniz için opsiyonel açıklama"
+
+#: templates/modules/service_builder/create_service.html:202
+msgid "Web Application Settings"
+msgstr "Web Uygulaması Ayarları"
+
+#: templates/modules/service_builder/create_service.html:204
+msgid "Configure web server settings"
+msgstr "Web sunucu ayarlarını yapılandır"
+
+#: templates/modules/service_builder/create_service.html:216
+msgid "Port number for your web application"
+msgstr "Web uygulamanız için port numarası"
+
+#: templates/modules/service_builder/create_service.html:223
+msgid "Host Address"
+msgstr "Host Adresi"
+
+#: templates/modules/service_builder/create_service.html:233
+msgid "Network interface to bind to"
+msgstr "Bağlanacak ağ arayüzü"
+
+#: templates/modules/service_builder/create_service.html:244
+#: templates/modules/service_builder/service_detail.html:167
+msgid "Application Settings"
+msgstr "Uygulama Ayarları"
+
+#: templates/modules/service_builder/create_service.html:246
+msgid "Configure standard application settings"
+msgstr "Standart uygulama ayarlarını yapılandır"
+
+#: templates/modules/service_builder/create_service.html:253
+msgid "Execution Mode"
+msgstr "Çalıştırma Modu"
+
+#: templates/modules/service_builder/create_service.html:261
+msgid "How the application should run"
+msgstr "Uygulamanın nasıl çalışacağı"
+
+#: templates/modules/service_builder/create_service.html:267
+msgid "Startup Timeout (seconds)"
+msgstr "Başlangıç Zaman Aşımı (saniye)"
+
+#: templates/modules/service_builder/create_service.html:272
+msgid "Maximum time to wait for startup"
+msgstr "Başlangıç için beklenecek maksimum süre"
+
+#: templates/modules/service_builder/create_service.html:280
+msgid "Command Line Arguments"
+msgstr "Komut Satırı Argümanları"
+
+#: templates/modules/service_builder/create_service.html:285
+msgid "Additional arguments to pass to the application"
+msgstr "Uygulamaya gönderilecek ek argümanlar"
+
+#: templates/modules/service_builder/create_service.html:295
+msgid "Background Service Settings"
+msgstr "Arka Plan Servisi Ayarları"
+
+#: templates/modules/service_builder/create_service.html:297
+msgid "Configure background daemon settings"
+msgstr "Arka plan daemon ayarlarını yapılandır"
+
+#: templates/modules/service_builder/create_service.html:304
+msgid "Daemon Type"
+msgstr "Daemon Tipi"
+
+#: templates/modules/service_builder/create_service.html:313
+msgid "Type of daemon process"
+msgstr "Daemon işlem tipi"
+
+#: templates/modules/service_builder/create_service.html:319
+msgid "Process Priority"
+msgstr "İşlem Önceliği"
+
+#: templates/modules/service_builder/create_service.html:327
+msgid "Process priority level"
+msgstr "İşlem öncelik seviyesi"
+
+#: templates/modules/service_builder/create_service.html:335
+msgid "Log File Path"
+msgstr "Log Dosyası Yolu"
+
+#: templates/modules/service_builder/create_service.html:340
+msgid "Optional custom log file path"
+msgstr "Opsiyonel özel log dosyası yolu"
+
+#: templates/modules/service_builder/create_service.html:350
+msgid "Advanced Settings"
+msgstr "Gelişmiş Ayarlar"
+
+#: templates/modules/service_builder/create_service.html:352
+msgid "Optional advanced configuration"
+msgstr "Opsiyonel gelişmiş yapılandırma"
+
+#: templates/modules/service_builder/create_service.html:359
+#: templates/modules/service_builder/service_detail.html:161
+msgid "Restart Policy"
+msgstr "Yeniden Başlatma Politikası"
+
+#: templates/modules/service_builder/create_service.html:367
+msgid "When to restart the service"
+msgstr "Servisin ne zaman yeniden başlatılacağı"
+
+#: templates/modules/service_builder/create_service.html:380
+msgid "Environment variables (one per line, format: KEY=value)"
+msgstr "Ortam değişkenleri (her satırda bir tane, format: KEY=value)"
+
+#: templates/modules/service_builder/create_service.html:389
+msgid "Validate Configuration"
+msgstr "Yapılandırmayı Doğrula"
+
+#: templates/modules/service_builder/create_service.html:406
+msgid "Service Creation Status"
+msgstr "Servis Oluşturma Durumu"
+
+#: templates/modules/service_builder/create_service.html:415
+msgid "Creating your service, please wait..."
+msgstr "Servisiniz oluşturuluyor, lütfen bekleyin..."
+
+#: templates/modules/service_builder/create_service.html:428
+msgid "Configuration Validation"
+msgstr "Yapılandırma Doğrulama"
+
+# Service Builder translations
+#: templates/modules/service_builder/index.html:26
+msgid ""
+"Create and manage Linux systemd services with ease. Build, deploy, and "
+"monitor your applications."
+msgstr ""
+"Linux systemd servislerini kolayca oluşturun ve yönetin. Uygulamalarınızı "
+"oluşturun, dağıtın ve izleyin."
+
+#: templates/modules/service_builder/index.html:36
+#: templates/modules/service_builder/templates.html:5
+#, fuzzy
+#| msgid "Use Template"
+msgid "Templates"
+msgstr "Şablon Kullan"
+
+#: templates/modules/service_builder/index.html:50
+#: templates/modules/service_monitoring/index.html:68
+#: templates/modules/service_monitoring/index.html:175
+msgid "Active Services"
+msgstr "Aktif Servisler"
+
+#: templates/modules/service_builder/index.html:59
+msgid "Available Templates"
+msgstr "Mevcut Şablonlar"
+
+#: templates/modules/service_builder/index.html:68
+msgid "Recent Operations"
+msgstr "Son İşlemler"
+
+#: templates/modules/service_builder/index.html:77
+msgid "System Ready"
+msgstr "Sistem Hazır"
+
+#: templates/modules/service_builder/index.html:90
+msgid "Recent Services"
+msgstr "Son Servisler"
+
+#: templates/modules/service_builder/index.html:121
+msgid "No services created yet"
+msgstr "Henüz servis oluşturulmadı"
+
+#: templates/modules/service_builder/index.html:123
+#: templates/modules/service_builder/services.html:113
+msgid "Create Your First Service"
+msgstr "İlk Servisinizi Oluşturun"
+
+#: templates/modules/service_builder/index.html:135
+msgid "Quick Actions"
+msgstr "Hızlı İşlemler"
+
+#: templates/modules/service_builder/index.html:146
+msgid "Build a new systemd service"
+msgstr "Yeni bir systemd servisi oluştur"
+
+#: templates/modules/service_builder/index.html:154
+msgid "Browse Templates"
+msgstr "Şablonlara Göz At"
+
+#: templates/modules/service_builder/index.html:155
+msgid "Use pre-built service templates"
+msgstr "Önceden hazırlanmış servis şablonlarını kullan"
+
+#: templates/modules/service_builder/index.html:163
+msgid "Manage Services"
+msgstr "Servisleri Yönet"
+
+#: templates/modules/service_builder/index.html:164
+msgid "View and control existing services"
+msgstr "Mevcut servisleri görüntüle ve kontrol et"
+
+#: templates/modules/service_builder/index.html:172
+#: templates/modules/service_monitoring/index.html:199
+msgid "View Logs"
+msgstr "Logları Görüntüle"
+
+#: templates/modules/service_builder/index.html:173
+msgid "Check service operation logs"
+msgstr "Servis işlem loglarını kontrol et"
+
+#: templates/modules/service_builder/index.html:208
+msgid "No templates available"
+msgstr "Şablon mevcut değil"
+
+#: templates/modules/service_builder/index.html:219
+msgid "Recent Activity"
+msgstr "Son Aktivite"
+
+#: templates/modules/service_builder/index.html:254
+msgid "No recent activity"
+msgstr "Son aktivite yok"
+
+#: templates/modules/service_builder/logs.html:24
+msgid "View and monitor service operation logs"
+msgstr "Servis işlem loglarını görüntüle ve izle"
+
+#: templates/modules/service_builder/logs.html:48
+msgid "Service"
+msgstr "Servis"
+
+#: templates/modules/service_builder/logs.html:51
+#: templates/modules/system_logs/own_logs.html:45
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:91
+msgid "Message"
+msgstr "Mesaj"
+
+#: templates/modules/service_builder/logs.html:53
+#: templates/pages/settings/settings.html:1087
+msgid "Time"
+msgstr "Zaman"
+
+#: templates/modules/service_builder/logs.html:101
+msgid "No Logs Found"
+msgstr "Log Bulunamadı"
+
+#: templates/modules/service_builder/logs.html:102
+msgid ""
+"No service logs have been recorded yet. Create and manage services to see "
+"logs here."
+msgstr ""
+"Henüz servis logu kaydedilmedi. Burada logları görmek için servisler "
+"oluşturun ve yönetin."
+
+#: templates/modules/service_builder/service_detail.html:31
+msgid "Edit Service"
+msgstr "Servisi Düzenle"
+
+#: templates/modules/service_builder/service_detail.html:39
+msgid "Back to Services"
+msgstr "Servislere Dön"
+
+#: templates/modules/service_builder/service_detail.html:53
+msgid "Service status is being checked"
+msgstr "Servis durumu kontrol ediliyor"
+
+#: templates/modules/service_builder/service_detail.html:68
+msgid "Configuration"
+msgstr "Yapılandırma"
+
+#: templates/modules/service_builder/service_detail.html:76
+msgid "Control"
+msgstr "Kontrol"
+
+#: templates/modules/service_builder/service_detail.html:85
+msgid "Service Information"
+msgstr "Servis Bilgisi"
+
+#: templates/modules/service_builder/service_detail.html:91
+#: templates/modules/service_builder/services.html:50
+#: templates/modules/system_information/index.html:299
+#: templates/modules/user_management/index.html:110
+#: templates/modules/user_management/index.html:244
+msgid "Type"
+msgstr "Tip"
+
+#: templates/modules/service_builder/service_detail.html:107
+msgid "Application Details"
+msgstr "Uygulama Detayları"
+
+#: templates/modules/service_builder/service_detail.html:109
+msgid "Path"
+msgstr "Yol"
+
+#: templates/modules/service_builder/service_detail.html:114
+#: templates/modules/service_builder/service_detail.html:174
+msgid "Interpreter"
+msgstr "Yorumlayıcı"
+
+#: templates/modules/service_builder/service_detail.html:128
+msgid "Network Configuration"
+msgstr "Ağ Yapılandırması"
+
+#: templates/modules/service_builder/service_detail.html:134
+#: templates/pages/settings/settings.html:1005
+msgid "Host"
+msgstr ""
+
+#: templates/modules/service_builder/service_detail.html:145
+msgid "Service Configuration"
+msgstr "Servis Yapılandırması"
+
+#: templates/modules/service_builder/service_detail.html:147
+msgid "Basic Settings"
+msgstr "Temel Ayarlar"
+
+#: templates/modules/service_builder/service_detail.html:219
+msgid "Service Control"
+msgstr "Servis Kontrolü"
+
+#: templates/modules/service_builder/service_detail.html:223
+msgid "Start Service"
+msgstr "Servisi Başlat"
+
+#: templates/modules/service_builder/service_detail.html:227
+msgid "Stop Service"
+msgstr "Servisi Durdur"
+
+#: templates/modules/service_builder/service_detail.html:231
+msgid "Restart Service"
+msgstr "Servisi Yeniden Başlat"
+
+#: templates/modules/service_builder/service_detail.html:235
+msgid "Enable Service"
+msgstr "Servisi Etkinleştir"
+
+#: templates/modules/service_builder/service_detail.html:239
+msgid "Disable Service"
+msgstr "Servisi Devre Dışı Bırak"
+
+#: templates/modules/service_builder/service_detail.html:244
+msgid "Danger Zone"
+msgstr "Tehlike Bölgesi"
+
+#: templates/modules/service_builder/service_detail.html:245
+msgid "These actions are permanent and cannot be undone."
+msgstr "Bu işlemler kalıcıdır ve geri alınamaz."
+
+#: templates/modules/service_builder/service_detail.html:248
+msgid "Delete Service"
+msgstr "Servisi Sil"
+
+#: templates/modules/service_builder/services.html:25
+msgid "Manage and monitor your Linux systemd services"
+msgstr "Linux systemd servislerinizi yönetin ve izleyin"
+
+#: templates/modules/service_builder/services.html:109
+msgid "No Services Found"
+msgstr "Servis Bulunamadı"
+
+#: templates/modules/service_builder/services.html:110
+msgid ""
+"You haven't created any services yet. Create your first service to get "
+"started."
+msgstr ""
+"Henüz herhangi bir servis oluşturmadınız. Başlamak için ilk servisinizi "
+"oluşturun."
+
+#: templates/modules/service_builder/templates.html:24
+msgid "Pre-built service templates for common applications"
+msgstr "Yaygın uygulamalar için önceden hazırlanmış servis şablonları"
+
+#: templates/modules/service_builder/templates.html:30
+#: templates/modules/service_builder/templates.html:84
+msgid "Create Custom Service"
+msgstr "Özel Servis Oluştur"
+
+#: templates/modules/service_builder/templates.html:66
+#: templates/modules/service_builder/templates.html:106
+msgid "Use Template"
+msgstr "Şablon Kullan"
+
+#: templates/modules/service_builder/templates.html:80
+msgid "No Templates Available"
+msgstr "Şablon Mevcut Değil"
+
+#: templates/modules/service_builder/templates.html:81
+msgid ""
+"No service templates have been created yet. Create a custom service to get "
+"started."
+msgstr ""
+"Henüz servis şablonu oluşturulmadı. Başlamak için özel bir servis oluşturun."
+
+#: templates/modules/service_builder/templates.html:96
+msgid "Template Details"
+msgstr "Şablon Detayları"
+
+# Service Monitoring Translations
+#: templates/modules/service_monitoring/index.html:7
+#: templates/modules/service_monitoring/index.html:38
+#: templates/modules/service_monitoring/index.html:170
+#: templates/pages/dashboard.html:199
+#: templates/pages/settings/settings.html:765
+msgid "Service Monitoring"
+msgstr "Servis İzleme"
+
+#: templates/modules/service_monitoring/index.html:39
+#: templates/modules/service_monitoring/index.html:172
+msgid "Live Mode Status"
+msgstr "Canlı Mod Durumu"
+
+#: templates/modules/service_monitoring/index.html:41
+#: templates/modules/service_monitoring/index.html:171
+msgid "Monitor and manage system services"
+msgstr "Sistem servislerini izleyin ve yönetin"
+
+#: templates/modules/service_monitoring/index.html:59
+#: templates/modules/service_monitoring/index.html:174
+msgid "Total Services"
+msgstr "Toplam Servisler"
+
+#: templates/modules/service_monitoring/index.html:77
+#: templates/modules/service_monitoring/index.html:176
+msgid "Inactive Services"
+msgstr "Pasif Servisler"
+
+#: templates/modules/service_monitoring/index.html:86
+#: templates/modules/service_monitoring/index.html:113
+#: templates/modules/service_monitoring/index.html:177
+#: templates/modules/system_logs/own_logs.html:51
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:45
+msgid "Category"
+msgstr "Kategori"
+
+#: templates/modules/service_monitoring/index.html:88
+#: templates/modules/service_monitoring/index.html:178
+msgid "All Categories"
+msgstr "Tüm Kategoriler"
+
+#: templates/modules/service_monitoring/index.html:94
+#: templates/modules/service_monitoring/index.html:180
+#: templates/pages/security/alert-management.html:118
+msgid "All Status"
+msgstr "Tüm Durumlar"
+
+#: templates/modules/service_monitoring/index.html:95
+#: templates/modules/service_monitoring/index.html:181
+#: templates/modules/service_monitoring/index.html:216
+#: templates/modules/user_management/index.html:136
+#: templates/modules/user_management/index.html:222
+#: templates/pages/settings/settings.html:27
+msgid "Active"
+msgstr "Aktif"
+
+#: templates/modules/service_monitoring/index.html:96
+#: templates/modules/service_monitoring/index.html:182
+#: templates/modules/user_management/index.html:136
+#: templates/modules/user_management/index.html:223
+#: templates/pages/settings/settings.html:28
+msgid "Inactive"
+msgstr "Pasif"
+
+#: templates/modules/service_monitoring/index.html:101
+#: templates/modules/service_monitoring/index.html:184
+msgid "Search services..."
+msgstr "Servis ara..."
+
+#: templates/modules/service_monitoring/index.html:122
+#: templates/modules/service_monitoring/index.html:188
+msgid "Loading services..."
+msgstr "Servisler yükleniyor..."
+
+#: templates/modules/service_monitoring/index.html:191
+msgid "No services found"
+msgstr "Servis bulunamadı"
+
+#: templates/modules/service_monitoring/index.html:192
+msgid "Error loading services"
+msgstr "Servisler yüklenirken hata"
+
+#: templates/modules/service_monitoring/index.html:202
+#: templates/pages/settings/settings.html:35
+msgid "Success"
+msgstr "Başarılı"
+
+#: templates/modules/service_monitoring/index.html:205
+#, python-brace-format
+msgid "Are you sure you want to {action} this service?"
+msgstr "Bu servisi {action} etmek istediğinizden emin misiniz?"
+
+#: templates/modules/service_monitoring/index.html:206
+#, fuzzy
+#| msgid "Restart"
+msgid "start"
+msgstr "Yeniden Başlat"
+
+#: templates/modules/service_monitoring/index.html:209
+#, fuzzy
+#| msgid "Enable"
+msgid "enable"
+msgstr "Etkinleştir"
+
+#: templates/modules/service_monitoring/index.html:210
+#, fuzzy
+#| msgid "Disable"
+msgid "disable"
+msgstr "Devre Dışı Bırak"
+
+#: templates/modules/service_monitoring/index.html:211
+msgid "Try adjusting your filters or search terms"
+msgstr "Filtrelerinizi veya arama terimlerinizi ayarlamayı deneyin"
+
+#: templates/modules/service_monitoring/index.html:212
+#: templates/modules/system_logs/own_logs.html:56
+msgid "Other"
+msgstr "Diğer"
+
+#: templates/modules/service_monitoring/index.html:219
+msgid "Uptime"
+msgstr "Çalışma Süresi"
+
+#: templates/modules/service_monitoring/index.html:224
+#: templates/modules/system_information/index.html:421
+msgid "Live Mode: Active"
+msgstr "Canlı Mod: Aktif"
+
+#: templates/modules/service_monitoring/index.html:225
+#: templates/modules/system_information/index.html:422
+msgid "Live Mode: Inactive"
+msgstr "Canlı Mod: Pasif"
+
+#: templates/modules/service_monitoring/index.html:227
+msgid "System Service"
+msgstr "Sistem Servisi"
+
+# System Information additional translations
+#: templates/modules/system_information/index.html:44
+msgid "Monitor system hardware, performance metrics and network information"
+msgstr "Sistem donanımı, performans metrikleri ve ağ bilgilerini izleyin"
+
+#: templates/modules/system_information/index.html:85
+#: templates/modules/system_information/index.html:434
+#, fuzzy
+#| msgid "Available"
+msgid "available"
+msgstr "Mevcut"
+
+#: templates/modules/system_information/index.html:93
+#: templates/modules/system_information/index.html:146
+msgid "Disk Usage"
+msgstr "Disk Kullanımı"
+
+#: templates/modules/system_information/index.html:97
+msgid "free"
+msgstr ""
+
+#: templates/modules/system_information/index.html:108
+#: templates/modules/system_information/index.html:435
+#, fuzzy
+#| msgid "By Interface"
+msgid "interfaces"
+msgstr "Arayüze Göre"
+
+#: templates/modules/system_information/index.html:109
+#: templates/modules/system_information/index.html:436
+#, fuzzy
+#| msgid "Active Connections"
+msgid "Active connections"
+msgstr "Aktif Bağlantılar"
+
+#: templates/modules/system_information/index.html:120
+msgid "CPU Performance"
+msgstr "CPU Performansı"
+
+#: templates/modules/system_information/index.html:178
+#, fuzzy
+#| msgid "Distribution"
+msgid "Distribution Family"
+msgstr "Dağılım"
+
+#: templates/modules/system_information/index.html:190
+#, fuzzy
+#| msgid "Username"
+msgid "Hostname"
+msgstr "Kullanıcı Adı"
+
+#: templates/modules/system_information/index.html:202
+#: templates/modules/user_management/index.html:78
+#: templates/modules/user_management/index.html:88
+#: templates/modules/user_management/index.html:231
+msgid "System Users"
+msgstr "Sistem Kullanıcıları"
+
+#: templates/modules/system_information/index.html:211
+#: templates/modules/user_management/index.html:106
+#: templates/modules/user_management/index.html:239
+msgid "UID"
+msgstr "UID"
+
+#: templates/modules/system_information/index.html:212
+#: templates/modules/user_management/create_user_modal.html:62
+#: templates/modules/user_management/index.html:108
+#: templates/modules/user_management/index.html:242
+msgid "Home Directory"
+msgstr "Ana Dizin"
+
+#: templates/modules/system_information/index.html:224
+#: templates/modules/system_information/index.html:432
+#: templates/modules/user_management/index.html:167
+#: templates/modules/user_management/index.html:219
+msgid "No users found"
+msgstr "Kullanıcı bulunamadı"
+
+#: templates/modules/system_information/index.html:238
+#, fuzzy
+#| msgid "Network Configuration"
+msgid "Network Information"
+msgstr "Ağ Yapılandırması"
+
+#: templates/modules/system_information/index.html:244
+#, fuzzy
+#| msgid "Network interface to bind to"
+msgid "Network Interfaces"
+msgstr "Bağlanacak ağ arayüzü"
+
+#: templates/modules/system_information/index.html:249
+#: templates/modules/system_information/index.html:300
+#, fuzzy
+#| msgid "By Interface"
+msgid "Interface"
+msgstr "Arayüze Göre"
+
+#: templates/modules/system_information/index.html:250
+#: templates/modules/user_management/index.html:269
+msgid "IP Address"
+msgstr "IP Adresi"
+
+#: templates/modules/system_information/index.html:251
+msgid "Netmask"
+msgstr ""
+
+#: templates/modules/system_information/index.html:252
+msgid "Sent"
+msgstr ""
+
+#: templates/modules/system_information/index.html:253
+msgid "Received"
+msgstr ""
+
+#: templates/modules/system_information/index.html:267
+#: templates/modules/system_information/index.html:433
+#, fuzzy
+#| msgid "Network interface to bind to"
+msgid "No network interfaces found"
+msgstr "Bağlanacak ağ arayüzü"
+
+#: templates/modules/system_information/index.html:277
+#, fuzzy
+#| msgid "Configuration"
+msgid "DNS Configuration"
+msgstr "Yapılandırma"
+
+#: templates/modules/system_information/index.html:280
+msgid "Nameserver"
+msgstr ""
+
+#: templates/modules/system_information/index.html:284
+#, fuzzy
+#| msgid "Searching..."
+msgid "Search Domain"
+msgstr "Aranıyor..."
+
+#: templates/modules/system_information/index.html:293
+#, fuzzy
+#| msgid "Network Links"
+msgid "Network Routes"
+msgstr "Ağ Bağlantıları"
+
+#: templates/modules/system_information/index.html:293
+#: templates/modules/system_information/index.html:437
+msgid "routes"
+msgstr ""
+
+#: templates/modules/system_information/index.html:328
+#, fuzzy
+#| msgid "Service Information"
+msgid "Security Information"
+msgstr "Servis Bilgisi"
+
+#: templates/modules/system_information/index.html:338
+#: templates/modules/user_management/index.html:230
+msgid "Active Users"
+msgstr "Aktif Kullanıcılar"
+
+#: templates/modules/system_information/index.html:341
+#: templates/modules/system_information/index.html:378
+#: templates/modules/system_information/index.html:438
+msgid "Live"
+msgstr ""
+
+#: templates/modules/system_information/index.html:364
+#: templates/modules/system_information/index.html:430
+#, fuzzy
+#| msgid "No active ports found"
+msgid "No active users found"
+msgstr "Aktif port bulunamadı"
+
+#: templates/modules/system_information/index.html:401
+#: templates/modules/system_information/index.html:431
+#, fuzzy
+#| msgid "No connections found"
+msgid "No active connections found"
+msgstr "Bağlantı bulunamadı"
+
+#: templates/modules/system_information/index.html:419
+#, fuzzy
+#| msgid "Searching..."
+msgid "Refreshing..."
+msgstr "Aranıyor..."
+
+#: templates/modules/system_information/index.html:423
+#, fuzzy
+#| msgid "Live Mode: Active"
+msgid "Live Mode: Error"
+msgstr "Canlı Mod: Aktif"
+
+#: templates/modules/system_information/index.html:424
+msgid "Used"
+msgstr ""
+
+#: templates/modules/system_information/index.html:425
+msgid "Free"
+msgstr ""
+
+#: templates/modules/system_information/index.html:428
+#, fuzzy
+#| msgid "Loading sessions..."
+msgid "No session"
+msgstr "Oturumlar yükleniyor..."
+
+#: templates/modules/system_information/index.html:429
+#, fuzzy
+#| msgid "Port Details"
+msgid "No details"
+msgstr "Port Detayları"
+
+#: templates/modules/system_logs/analysis_modal.html:9
+msgid "Log Analysis"
+msgstr "Log Analizi"
+
+#: templates/modules/system_logs/analysis_modal.html:18
+msgid "Critical Errors"
+msgstr "Kritik Hatalar"
+
+#: templates/modules/system_logs/analysis_modal.html:26
+#: templates/modules/system_logs/detailed_analysis_modal.html:22
+#: templates/modules/system_logs/index.html:81
+msgid "Warnings"
+msgstr "Uyarılar"
+
+#: templates/modules/system_logs/analysis_modal.html:34
+#: templates/modules/system_logs/index.html:82
+#: templates/modules/system_logs/own_logs.html:54
+#: templates/pages/security/activity-history.html:86
+#: templates/pages/security/activity-history.html:137
+#: templates/pages/security/alert-management.html:88
+#: templates/pages/security/alert-management.html:111
+#: templates/pages/security/alert-management.html:214
+#: templates/pages/settings/settings.html:36
+msgid "Info"
+msgstr "Bilgi"
+
+#: templates/modules/system_logs/analysis_modal.html:42
+#: templates/modules/system_logs/index.html:83
+#: templates/modules/system_logs/own_logs.html:55
+msgid "Debug"
+msgstr "Hata Ayıklama"
+
+#: templates/modules/system_logs/analysis_modal.html:51
+msgid "Log Level Distribution"
+msgstr "Log Seviye Dağılımı"
+
+#: templates/modules/system_logs/analysis_modal.html:55
+msgid "Log Distribution Over Time"
+msgstr "Zamana Göre Log Dağılımı"
+
+#: templates/modules/system_logs/analysis_modal.html:59
+#: templates/modules/system_logs/detailed_analysis_modal.html:56
+msgid "Error Categories"
+msgstr "Hata Kategorileri"
+
+#: templates/modules/system_logs/analysis_modal.html:63
+msgid "Hourly Log Distribution"
+msgstr "Saatlik Log Dağılımı"
+
+#: templates/modules/system_logs/analysis_modal.html:67
+msgid "Service-Based Error Distribution"
+msgstr "Servis Tabanlı Hata Dağılımı"
+
+#: templates/modules/system_logs/analysis_modal.html:71
+msgid "Common Errors"
+msgstr "Yaygın Hatalar"
+
+#: templates/modules/system_logs/analysis_modal.html:72
+#, fuzzy
+#| msgid "No content found."
+msgid "No common error patterns found."
+msgstr "İçerik bulunamadı."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:10
+msgid "Detailed Log Analysis"
+msgstr "Detaylı Log Analizi"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:19
+#: templates/modules/system_logs/index.html:80
+#, fuzzy
+#| msgid "Error"
+msgid "Errors"
+msgstr "Hata"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:34
+msgid "Database"
+msgstr ""
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:48
+#, fuzzy
+#| msgid "Port Details"
+msgid "Error Details"
+msgstr "Port Detayları"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:51
+#, fuzzy
+#| msgid "Loading user details..."
+msgid "Loading error details..."
+msgstr "Kullanıcı detayları yükleniyor..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:68
+#, fuzzy
+#| msgid "Image Details"
+msgid "Warning Details"
+msgstr "Resim Detayları"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:71
+#, fuzzy
+#| msgid "Loading user details..."
+msgid "Loading warning details..."
+msgstr "Kullanıcı detayları yükleniyor..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:76
+#, fuzzy
+#| msgid "Connection Statistics"
+msgid "Warning Statistics"
+msgstr "Bağlantı İstatistikleri"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:88
+#, fuzzy
+#| msgid "Security Event"
+msgid "Security Events"
+msgstr "Güvenlik Olayı"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:91
+#, fuzzy
+#| msgid "Loading services..."
+msgid "Loading security events..."
+msgstr "Servisler yükleniyor..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:96
+#, fuzzy
+#| msgid "Security Notice"
+msgid "Security Categories"
+msgstr "Güvenlik Uyarısı"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:108
+#, fuzzy
+#| msgid "System Information"
+msgid "Debug Information"
+msgstr "Sistem Bilgileri"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:111
+#, fuzzy
+#| msgid "Loading categories..."
+msgid "Loading debug information..."
+msgstr "Kategoriler yükleniyor..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:116
+#, fuzzy
+#| msgid "System Statistics"
+msgid "Debug Statistics"
+msgstr "Sistem İstatistikleri"
+
+# Logs
+#: templates/modules/system_logs/detailed_analysis_modal.html:128
+#, fuzzy
+#| msgid "System Logs"
+msgid "System Errors"
+msgstr "Sistem Logları"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:131
+#, fuzzy
+#| msgid "Loading timezones..."
+msgid "Loading system errors..."
+msgstr "Saat dilimleri yükleniyor..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:136
+#: templates/modules/user_management/index.html:185
+msgid "System Statistics"
+msgstr "Sistem İstatistikleri"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:148
+#, fuzzy
+#| msgid "Network Links"
+msgid "Network Errors"
+msgstr "Ağ Bağlantıları"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:151
+#, fuzzy
+#| msgid "Loading categories..."
+msgid "Loading network errors..."
+msgstr "Kategoriler yükleniyor..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:156
+#, fuzzy
+#| msgid "Connection Statistics"
+msgid "Network Statistics"
+msgstr "Bağlantı İstatistikleri"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:168
+#, fuzzy
+#| msgid "Critical Errors"
+msgid "Database Errors"
+msgstr "Kritik Hatalar"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:171
+#, fuzzy
+#| msgid "Loading categories..."
+msgid "Loading database errors..."
+msgstr "Kategoriler yükleniyor..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:176
+#, fuzzy
+#| msgid "System Statistics"
+msgid "Database Statistics"
+msgstr "Sistem İstatistikleri"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:188
+#, fuzzy
+#| msgid "Service Status:"
+msgid "Service Status"
+msgstr "Hizmet Durumu:"
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:191
+#, fuzzy
+#| msgid "Loading services..."
+msgid "Loading service status..."
+msgstr "Servisler yükleniyor..."
+
+#: templates/modules/system_logs/detailed_analysis_modal.html:196
+#, fuzzy
+#| msgid "Service Status:"
+msgid "Service Statistics"
+msgstr "Hizmet Durumu:"
+
+#: templates/modules/system_logs/export_modal.html:9
+msgid "Export Logs"
+msgstr "Logları Dışa Aktar"
+
+#: templates/modules/system_logs/export_modal.html:17
+msgid "Which logs do you want to export?"
+msgstr "Hangi logları dışa aktarmak istiyorsunuz?"
+
+#: templates/modules/system_logs/export_modal.html:22
+msgid "Select All"
+msgstr "Tümünü Seç"
+
+#: templates/modules/system_logs/export_modal.html:26
+msgid "Deselect All"
+msgstr "Tümünü Kaldır"
+
+#: templates/modules/system_logs/export_modal.html:41
+msgid "Kernel Logs"
+msgstr "Çekirdek Logları"
+
+#: templates/modules/system_logs/export_modal.html:48
+msgid "Auth Logs"
+msgstr "Kimlik Doğrulama Logları"
+
+#: templates/modules/system_logs/export_modal.html:55
+msgid "Daemon Logs"
+msgstr "Daemon Logları"
+
+#: templates/modules/system_logs/export_modal.html:62
+msgid "Cron Logs"
+msgstr "Cron Logları"
+
+#: templates/modules/system_logs/export_modal.html:69
+msgid "Boot Logs"
+msgstr "Önyükleme Logları"
+
+#: templates/modules/system_logs/export_modal.html:79
+msgid "Export Format"
+msgstr "Dışa Aktarma Formatı"
+
+#: templates/modules/system_logs/export_modal.html:101
+msgid "Log Level Filter"
+msgstr "Log Seviye Filtresi"
+
+#: templates/modules/system_logs/export_modal.html:104
+#: templates/modules/system_logs/index.html:79
+#, fuzzy
+#| msgid "Level"
+msgid "All Levels"
+msgstr "Seviye"
+
+#: templates/modules/system_logs/export_modal.html:105
+#, fuzzy
+#| msgid "Error"
+msgid "Errors Only"
+msgstr "Hata"
+
+#: templates/modules/system_logs/export_modal.html:106
+#, fuzzy
+#| msgid "Warnings"
+msgid "Warnings Only"
+msgstr "Uyarılar"
+
+#: templates/modules/system_logs/export_modal.html:107
+#, fuzzy
+#| msgid "Info"
+msgid "Info Only"
+msgstr "Bilgi"
+
+#: templates/modules/system_logs/export_modal.html:108
+#, fuzzy
+#| msgid "Debug"
+msgid "Debug Only"
+msgstr "Hata Ayıklama"
+
+#: templates/modules/system_logs/export_modal.html:115
+#, fuzzy
+#| msgid "Export Logs"
+msgid "Export Selected Logs"
+msgstr "Logları Dışa Aktar"
+
+# System Logs missing translations
+#: templates/modules/system_logs/index.html:56
+msgid "Real-time monitoring of system activities and events"
+msgstr "Sistem aktivitelerinin ve olaylarının gerçek zamanlı izlenmesi"
+
+# Application Logs Analysis modal translations
+#: templates/modules/system_logs/index.html:62
+#: templates/modules/system_logs/own_logs.html:34
+#: templates/modules/system_logs/own_logs.html:80
+msgid "Analyze"
+msgstr "Analiz Et"
+
+#: templates/modules/system_logs/index.html:63
+#, fuzzy
+#| msgid "Detailed Log Analysis"
+msgid "Detailed Analysis"
+msgstr "Detaylı Log Analizi"
+
+#: templates/modules/system_logs/index.html:64
+msgid "App Logs"
+msgstr "Uygulama Logları"
+
+#: templates/modules/system_logs/index.html:75
+#, fuzzy
+#| msgid "Search alerts..."
+msgid "Search logs..."
+msgstr "Uyarıları ara..."
+
+#: templates/modules/system_logs/index.html:92
+#, fuzzy
+#| msgid "Log Out"
+msgid "Log Output"
+msgstr "Çıkış Yap"
+
+#: templates/modules/system_logs/index.html:94
+#, fuzzy
+#| msgid "Clear Cache"
+msgid "Clear"
+msgstr "Önbelleği Temizle"
+
+#: templates/modules/system_logs/index.html:95
+msgid "Auto scroll"
+msgstr ""
+
+#: templates/modules/system_logs/index.html:101
+#, fuzzy
+#| msgid "Last updated"
+msgid "Last update"
+msgstr "Son güncelleme"
+
+#: templates/modules/system_logs/index.html:102
+#: templates/modules/system_logs/own_logs.html:33
+msgid "entries"
+msgstr "giriş"
+
+#: templates/modules/system_logs/own_logs.html:20
+#: templates/modules/system_logs/own_logs.html:97
+msgid "Select File..."
+msgstr "Dosya Seç..."
+
+#: templates/modules/system_logs/own_logs.html:21
+msgid "Please select a file to download"
+msgstr "İndirmek için bir dosya seçin"
+
+#: templates/modules/system_logs/own_logs.html:22
+msgid "No files available for this module"
+msgstr "Bu modül için dosya bulunamadı"
+
+#: templates/modules/system_logs/own_logs.html:23
+msgid "Select a File"
+msgstr "Bir Dosya Seçin"
+
+#: templates/modules/system_logs/own_logs.html:24
+msgid "Please select a log file to view."
+msgstr "Görüntülemek için bir log dosyası seçin."
+
+#: templates/modules/system_logs/own_logs.html:25
+msgid "No content found."
+msgstr "İçerik bulunamadı."
+
+#: templates/modules/system_logs/own_logs.html:26
+msgid "lines • Page"
+msgstr "satır • Sayfa"
+
+#: templates/modules/system_logs/own_logs.html:27
+msgid "Previous"
+msgstr "Önceki"
+
+#: templates/modules/system_logs/own_logs.html:28
+msgid "Next"
+msgstr "Sonraki"
+
+#: templates/modules/system_logs/own_logs.html:29
+msgid "No categories found."
+msgstr "Kategori bulunamadı."
+
+#: templates/modules/system_logs/own_logs.html:30
+msgid "Error occurred while fetching application logs."
+msgstr "Uygulama logları alınırken hata oluştu."
+
+#: templates/modules/system_logs/own_logs.html:32
+msgid "log entries"
+msgstr "log girişi"
+
+#: templates/modules/system_logs/own_logs.html:35
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:6
+msgid "Application Logs Analysis"
+msgstr "Uygulama Logları Analizi"
+
+#: templates/modules/system_logs/own_logs.html:36
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:12
+msgid "Collecting and analyzing logs..."
+msgstr "Loglar toplanıyor ve analiz ediliyor..."
+
+#: templates/modules/system_logs/own_logs.html:38
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:23
+msgid "Total Lines"
+msgstr "Toplam Satır"
+
+#: templates/modules/system_logs/own_logs.html:39
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:24
+#, fuzzy
+#| msgid "All Categories"
+msgid "Categories"
+msgstr "Tüm Kategoriler"
+
+#: templates/modules/system_logs/own_logs.html:41
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:58
+msgid "Levels (Pie)"
+msgstr "Seviyeler (Pasta)"
+
+#: templates/modules/system_logs/own_logs.html:42
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:67
+msgid "By Category (Bar)"
+msgstr "Kategoriye Göre (Çubuk)"
+
+#: templates/modules/system_logs/own_logs.html:43
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:76
+msgid "Timeline (Last 24h)"
+msgstr "Zaman Çizgisi (Son 24s)"
+
+#: templates/modules/system_logs/own_logs.html:44
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:85
+msgid "Top Error Messages"
+msgstr "En Sık Hata Mesajları"
+
+#: templates/modules/system_logs/own_logs.html:46
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:34
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:92
+msgid "Count"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:48
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:29
+msgid "Levels Summary"
+msgstr "Seviyeler Özeti"
+
+#: templates/modules/system_logs/own_logs.html:49
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:41
+msgid "By Category Summary"
+msgstr "Kategori Özetleri"
+
+#: templates/modules/system_logs/own_logs.html:50
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:33
+msgid "Level"
+msgstr "Seviye"
+
+#: templates/modules/system_logs/own_logs.html:57
+#: templates/modules/system_logs/partials/own_logs_analysis_modal.html:46
+msgid "Lines"
+msgstr "Satırlar"
+
+#: templates/modules/system_logs/own_logs.html:58
+msgid "No errors found"
+msgstr "Hata bulunamadı"
+
+#: templates/modules/system_logs/own_logs.html:76
+msgid "Daily logs generated by the app"
+msgstr "Uygulama tarafından oluşturulan günlük loglar"
+
+#: templates/modules/system_logs/own_logs.html:89
+msgid "Module"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:91
+#, fuzzy
+#| msgid "Select File..."
+msgid "Select Module..."
+msgstr "Dosya Seç..."
+
+#: templates/modules/system_logs/own_logs.html:95
+#, fuzzy
+#| msgid "Files"
+msgid "File"
+msgstr "Dosyalar"
+
+#: templates/modules/system_logs/own_logs.html:102
+msgid "Go to latest logs"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:103
+msgid "Latest"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:105
+msgid "Download all logs in category"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:106
+#, fuzzy
+#| msgid "Download Codes"
+msgid "Download"
+msgstr "Kodları İndir"
+
+#: templates/modules/system_logs/own_logs.html:117
+#: templates/modules/user_management/index.html:41
+#: templates/modules/user_management/index.html:214
+msgid "Ready"
+msgstr "Hazır"
+
+#: templates/modules/system_logs/own_logs.html:123
+#, fuzzy
+#| msgid "Select a File"
+msgid "Select a Module"
+msgstr "Bir Dosya Seçin"
+
+#: templates/modules/system_logs/own_logs.html:124
+msgid "Choose a module from the dropdown to view its logs"
+msgstr ""
+
+#: templates/modules/system_logs/own_logs.html:130
+msgid "Select a module to view logs"
+msgstr "Logları görüntülemek için bir modül seçin"
+
+#: templates/modules/user_management/create_user_modal.html:9
+msgid "Create New User"
+msgstr "Yeni Kullanıcı Oluştur"
+
+#: templates/modules/user_management/create_user_modal.html:32
+msgid "Enter username"
+msgstr "Kullanıcı adını girin"
+
+#: templates/modules/user_management/create_user_modal.html:35
+#: templates/modules/user_management/index.html:281
+msgid "Username can only contain letters, numbers, underscores, and hyphens"
+msgstr "Kullanıcı adı sadece harf, rakam, alt çizgi ve tire içerebilir"
+
+#: templates/modules/user_management/create_user_modal.html:36
+msgid ""
+"Username must be unique and contain only letters, numbers, underscores, and "
+"hyphens"
+msgstr ""
+"Kullanıcı adı benzersiz olmalı ve sadece harf, rakam, alt çizgi ve tire "
+"içermeli"
+
+#: templates/modules/user_management/create_user_modal.html:41
+#: templates/pages/settings/settings.html:1038
+msgid "Password"
+msgstr "Şifre"
+
+#: templates/modules/user_management/create_user_modal.html:47
+msgid "Enter password"
+msgstr "Şifreyi girin"
+
+#: templates/modules/user_management/create_user_modal.html:49
+msgid "Password will be set using chpasswd command"
+msgstr "Şifre chpasswd komutu ile ayarlanacak"
+
+#: templates/modules/user_management/create_user_modal.html:57
+msgid "Advanced Options"
+msgstr "Gelişmiş Seçenekler"
+
+#: templates/modules/user_management/create_user_modal.html:69
+msgid "Leave empty to use default /home/username"
+msgstr "Varsayılan /home/kullanıcıadı kullanmak için boş bırakın"
+
+#: templates/modules/user_management/create_user_modal.html:74
+msgid "Root Directory"
+msgstr "Root Dizini"
+
+#: templates/modules/user_management/create_user_modal.html:81
+msgid "Different mount point for root directory (optional)"
+msgstr "Root dizini için farklı mount noktası (isteğe bağlı)"
+
+#: templates/modules/user_management/create_user_modal.html:89
+msgid "Grant Sudo Privileges"
+msgstr "Sudo Ayrıcalıkları Ver"
+
+#: templates/modules/user_management/create_user_modal.html:92
+msgid "Give this user administrative privileges (sudo access)"
+msgstr "Bu kullanıcıya yönetici ayrıcalıkları ver (sudo erişimi)"
+
+#: templates/modules/user_management/create_user_modal.html:104
+#: templates/modules/user_management/index.html:48
+msgid "Create User"
+msgstr "Kullanıcı Oluştur"
+
+#: templates/modules/user_management/delete_user_modal.html:9
+#: templates/modules/user_management/delete_user_modal.html:50
+#: templates/modules/user_management/index.html:156
+#: templates/modules/user_management/index.html:226
+msgid "Delete User"
+msgstr "Kullanıcıyı Sil"
+
+#: templates/modules/user_management/delete_user_modal.html:21
+msgid "Are you sure you want to delete this user?"
+msgstr "Bu kullanıcıyı silmek istediğinizden emin misiniz?"
+
+#: templates/modules/user_management/delete_user_modal.html:23
+msgid "This action will permanently delete the user"
+msgstr "Bu işlem kullanıcıyı kalıcı olarak silecek"
+
+#: templates/modules/user_management/delete_user_modal.html:24
+msgid "and remove their home directory. This action cannot be undone."
+msgstr "ve ana dizinini kaldıracak. Bu işlem geri alınamaz."
+
+#: templates/modules/user_management/delete_user_modal.html:33
+msgid "Home directory will be removed"
+msgstr "Ana dizin kaldırılacak"
+
+#: templates/modules/user_management/delete_user_modal.html:37
+msgid "User data will be permanently deleted"
+msgstr "Kullanıcı verileri kalıcı olarak silinecek"
+
+# User Management translations
+#: templates/modules/user_management/index.html:43
+msgid "Manage system users, permissions, and monitor user activities"
+msgstr ""
+"Sistem kullanıcılarını, izinleri yönetin ve kullanıcı etkinliklerini izleyin"
+
+#: templates/modules/user_management/index.html:52
+msgid "Sync Users"
+msgstr "Kullanıcıları Senkronize Et"
+
+#: templates/modules/user_management/index.html:84
+msgid "All Users"
+msgstr "Tüm Kullanıcılar"
+
+#: templates/modules/user_management/index.html:92
+#: templates/modules/user_management/index.html:232
+msgid "Real Users"
+msgstr "Gerçek Kullanıcılar"
+
+#: templates/modules/user_management/index.html:96
+msgid "users"
+msgstr "kullanıcılar"
+
+#: templates/modules/user_management/index.html:107
+#: templates/modules/user_management/index.html:240
+msgid "GID"
+msgstr "GID"
+
+#: templates/modules/user_management/index.html:109
+#: templates/modules/user_management/index.html:243
+msgid "Shell"
+msgstr "Shell"
+
+#: templates/modules/user_management/index.html:112
+#: templates/modules/user_management/index.html:246
+msgid "Last Login"
+msgstr "Son Giriş"
+
+#: templates/modules/user_management/index.html:131
+#: templates/modules/user_management/index.html:221
+msgid "Real"
+msgstr "Gerçek"
+
+#: templates/modules/user_management/index.html:143
+#: templates/modules/user_management/index.html:224
+#: templates/pages/settings/settings.html:57
+msgid "Never"
+msgstr "Hiç"
+
+#: templates/modules/user_management/index.html:215
+msgid "Syncing users..."
+msgstr "Kullanıcılar senkronize ediliyor..."
+
+#: templates/modules/user_management/index.html:216
+msgid "Sync failed"
+msgstr "Senkronizasyon başarısız"
+
+#: templates/modules/user_management/index.html:217
+msgid "Users synchronized successfully"
+msgstr "Kullanıcılar başarıyla senkronize edildi"
+
+#: templates/modules/user_management/index.html:218
+msgid "Failed to synchronize users"
+msgstr "Kullanıcılar senkronize edilemedi"
+
+#: templates/modules/user_management/index.html:228
+msgid "Error loading stats"
+msgstr "İstatistikler yüklenirken hata"
+
+#: templates/modules/user_management/index.html:229
+msgid "Total Users"
+msgstr "Toplam Kullanıcılar"
+
+#: templates/modules/user_management/index.html:233
+#: templates/modules/user_management/index.html:267
+#: templates/modules/user_management/user_sessions.html:9
+#: templates/pages/settings/settings.html:469
+msgid "Active Sessions"
+msgstr "Aktif Oturumlar"
+
+#: templates/modules/user_management/index.html:234
+#: templates/modules/user_management/index.html:266
+msgid "Recent Activities"
+msgstr "Son Etkinlikler"
+
+#: templates/modules/user_management/index.html:235
+msgid "Loading user details..."
+msgstr "Kullanıcı detayları yükleniyor..."
+
+#: templates/modules/user_management/index.html:236
+msgid "Error loading data"
+msgstr "Veri yüklenirken hata"
+
+#: templates/modules/user_management/index.html:241
+msgid "Group"
+msgstr "Grup"
+
+#: templates/modules/user_management/index.html:247
+msgid "System User"
+msgstr "Sistem Kullanıcısı"
+
+#: templates/modules/user_management/index.html:248
+msgid "Real User"
+msgstr "Gerçek Kullanıcı"
+
+#: templates/modules/user_management/index.html:249
+msgid "Permissions & Groups"
+msgstr "İzinler ve Gruplar"
+
+#: templates/modules/user_management/index.html:250
+msgid "Group Memberships"
+msgstr "Grup Üyelikleri"
+
+#: templates/modules/user_management/index.html:251
+msgid "Primary"
+msgstr "Birincil"
+
+#: templates/modules/user_management/index.html:252
+msgid "Sudo Access"
+msgstr "Sudo Erişimi"
+
+#: templates/modules/user_management/index.html:253
+msgid "Has sudo privileges"
+msgstr "Sudo ayrıcalıklarına sahip"
+
+#: templates/modules/user_management/index.html:254
+msgid "Allowed Commands"
+msgstr "İzin Verilen Komutlar"
+
+#: templates/modules/user_management/index.html:255
+msgid "Special Permissions"
+msgstr "Özel İzinler"
+
+#: templates/modules/user_management/index.html:256
+msgid "System Permissions"
+msgstr "Sistem İzinleri"
+
+#: templates/modules/user_management/index.html:257
+msgid "Network Permissions"
+msgstr "Ağ İzinleri"
+
+#: templates/modules/user_management/index.html:258
+msgid "Root Access"
+msgstr "Root Erişimi"
+
+#: templates/modules/user_management/index.html:259
+msgid "System Modification"
+msgstr "Sistem Değişikliği"
+
+#: templates/modules/user_management/index.html:260
+msgid "Package Installation"
+msgstr "Paket Kurulumu"
+
+#: templates/modules/user_management/index.html:261
+msgid "Service Management"
+msgstr "Hizmet Yönetimi"
+
+#: templates/modules/user_management/index.html:262
+msgid "Log Access"
+msgstr "Log Erişimi"
+
+#: templates/modules/user_management/index.html:263
+msgid "Port Binding"
+msgstr "Port Bağlama"
+
+#: templates/modules/user_management/index.html:264
+msgid "Raw Sockets"
+msgstr "Ham Soketler"
+
+#: templates/modules/user_management/index.html:265
+msgid "Privileged Ports"
+msgstr "Ayrıcalıklı Portlar"
+
+#: templates/modules/user_management/index.html:268
+msgid "Session ID"
+msgstr "Oturum ID"
+
+#: templates/modules/user_management/index.html:270
+msgid "Login Time"
+msgstr "Giriş Zamanı"
+
+#: templates/modules/user_management/index.html:271
+msgid "Last Activity"
+msgstr "Son Etkinlik"
+
+#: templates/modules/user_management/index.html:272
+msgid "Deleting..."
+msgstr "Siliniyor..."
+
+#: templates/modules/user_management/index.html:273
+msgid "User created successfully!"
+msgstr "Kullanıcı başarıyla oluşturuldu!"
+
+#: templates/modules/user_management/index.html:274
+msgid "Failed to create user"
+msgstr "Kullanıcı oluşturulamadı"
+
+#: templates/modules/user_management/index.html:275
+msgid "Server returned invalid response"
+msgstr "Sunucu geçersiz yanıt döndürdü"
+
+#: templates/modules/user_management/index.html:276
+msgid "Server error occurred"
+msgstr "Sunucu hatası oluştu"
+
+#: templates/modules/user_management/index.html:277
+msgid "Error creating user"
+msgstr "Kullanıcı oluşturulurken hata"
+
+#: templates/modules/user_management/index.html:278
+msgid "Username is required"
+msgstr "Kullanıcı adı gerekli"
+
+#: templates/modules/user_management/index.html:279
+msgid "Password is required"
+msgstr "Şifre gerekli"
+
+#: templates/modules/user_management/index.html:280
+msgid "Username must be at least 2 characters long"
+msgstr "Kullanıcı adı en az 2 karakter olmalı"
+
+#: templates/modules/user_management/index.html:282
+msgid "Password must be at least 6 characters long"
+msgstr "Şifre en az 6 karakter olmalı"
+
+#: templates/modules/user_management/index.html:283
+msgid "User deleted successfully"
+msgstr "Kullanıcı başarıyla silindi"
+
+#: templates/modules/user_management/index.html:284
+msgid "Failed to delete user"
+msgstr "Kullanıcı silinemedi"
+
+#: templates/modules/user_management/index.html:285
+msgid "An unexpected error occurred"
+msgstr "Beklenmeyen bir hata oluştu"
+
+#: templates/modules/user_management/index.html:286
+msgid "Cannot delete root user"
+msgstr "Root kullanıcısı silinemez"
+
+#: templates/modules/user_management/index.html:287
+msgid "User does not exist"
+msgstr "Kullanıcı mevcut değil"
+
+#: templates/modules/user_management/user_activities.html:9
+#, fuzzy
+#| msgid "Recent Activities"
+msgid "User Activities"
+msgstr "Son Etkinlikler"
+
+#: templates/modules/user_management/user_activities.html:18
+#: templates/pages/security/activity-history.html:96
+msgid "Loading activities..."
+msgstr "Aktiviteler yükleniyor..."
+
+#: templates/modules/user_management/user_details_modal.html:8
+msgid "User Details"
+msgstr "Kullanıcı Detayları"
+
+#: templates/modules/user_management/user_sessions.html:18
+msgid "Loading sessions..."
+msgstr "Oturumlar yükleniyor..."
+
+# Dashboard
+#: templates/pages/dashboard.html:7
+msgid "Command Center"
+msgstr "Komut Merkezi"
+
+# Dashboard JavaScript translation keys
+#: templates/pages/dashboard.html:24
+msgid "system_status_online"
+msgstr "SİSTEM DURUMU: ÇEVRİMİÇİ"
+
+#: templates/pages/dashboard.html:25
+msgid "system_status_warning"
+msgstr "SİSTEM DURUMU: UYARI"
+
+#: templates/pages/dashboard.html:26
+msgid "system_status_offline"
+msgstr "SİSTEM DURUMU: ÇEVRİMDIŞI"
+
+#: templates/pages/dashboard.html:27
+msgid "system_status_checking"
+msgstr "SİSTEM DURUMU: KONTROL EDİLİYOR..."
+
+#: templates/pages/dashboard.html:28
+msgid "last_check"
+msgstr "Son Kontrol: "
+
+#: templates/pages/dashboard.html:29
+msgid "failed_to_load_system_metrics"
+msgstr "Sistem metrikleri yüklenemedi"
+
+#: templates/pages/dashboard.html:30
+msgid "system_metrics_unavailable"
+msgstr "Sistem metrikleri kullanılamıyor"
+
+#: templates/pages/dashboard.html:31
+msgid "no_ports_in_use"
+msgstr "Kullanımda port yok"
+
+#: templates/pages/dashboard.html:32
+msgid "user_logged_in"
+msgstr "Kullanıcı giriş yaptı"
+
+#: templates/pages/dashboard.html:33
+msgid "system_monitoring_started"
+msgstr "Sistem izleme başlatıldı"
+
+#: templates/pages/dashboard.html:34
+msgid "just_now"
+msgstr "Az önce"
+
+#: templates/pages/dashboard.html:35
+msgid "minutes_ago"
+msgstr "dk önce"
+
+#: templates/pages/dashboard.html:36
+msgid "hours_ago"
+msgstr "saat önce"
+
+#: templates/pages/dashboard.html:37
+msgid "running"
+msgstr "Çalışıyor"
+
+#: templates/pages/dashboard.html:38
+msgid "stopped"
+msgstr "Durduruldu"
+
+#: templates/pages/dashboard.html:39
+msgid "exited"
+msgstr "Çıkış Yaptı"
+
+#: templates/pages/dashboard.html:40
+#, fuzzy
+#| msgid "Unknown"
+msgid "unknown"
+msgstr "Bilinmeyen"
+
+#: templates/pages/dashboard.html:56
+msgid "SYSTEM STATUS: CHECKING..."
+msgstr "SİSTEM DURUMU: KONTROL EDİLİYOR..."
+
+#: templates/pages/dashboard.html:60
+msgid "Last Check: --"
+msgstr "Son Kontrol: --"
+
+#: templates/pages/dashboard.html:67
+msgid "CPU:"
+msgstr "İşlemci:"
+
+#: templates/pages/dashboard.html:74
+msgid "RAM:"
+msgstr "Bellek:"
+
+#: templates/pages/dashboard.html:81
+msgid "Disk:"
+msgstr "Disk:"
+
+#: templates/pages/dashboard.html:88
+msgid "Network:"
+msgstr "Ağ:"
+
+#: templates/pages/dashboard.html:95
+msgid "Temp:"
+msgstr "Sıcaklık:"
+
+#: templates/pages/dashboard.html:99 templates/pages/dashboard.html:263
+msgid "Uptime:"
+msgstr "Çalışma Süresi:"
+
+#: templates/pages/dashboard.html:111
+msgid "QUICK ACTIONS"
+msgstr "HIZLI İŞLEMLER"
+
+#: templates/pages/dashboard.html:120
+msgid "System Monitor"
+msgstr "Sistem İzleyici"
+
+#: templates/pages/dashboard.html:144
+msgid "Log Viewer"
+msgstr "Log Görüntüleyici"
+
+#: templates/pages/dashboard.html:164
+msgid "ALERT CENTER"
+msgstr "UYARI MERKEZİ"
+
+#: templates/pages/dashboard.html:165
+msgid "View All Alerts"
+msgstr "Tüm Uyarıları Görüntüle"
+
+#: templates/pages/dashboard.html:172
+#: templates/pages/security/alert-management.html:145
+#: templates/pages/security/alert-management.html:205
+#, fuzzy
+#| msgid "Loading rules..."
+msgid "Loading alerts..."
+msgstr "Kurallar yükleniyor..."
+
+#: templates/pages/dashboard.html:173
+msgid "Please wait"
+msgstr ""
+
+#: templates/pages/dashboard.html:181
+msgid "LIVE CONTROL"
+msgstr ""
+
+#: templates/pages/dashboard.html:210
+msgid "DOCKER CONTAINERS"
+msgstr "DOCKER KONTEYNERLERİ"
+
+#: templates/pages/dashboard.html:215
+msgid "Running:"
+msgstr "Çalışıyor:"
+
+#: templates/pages/dashboard.html:219
+msgid "Stopped:"
+msgstr "Durduruldu:"
+
+#: templates/pages/dashboard.html:223
+msgid "Total:"
+msgstr "Toplam:"
+
+#: templates/pages/dashboard.html:233
+msgid "MOST USED PORTS"
+msgstr "EN ÇOK KULLANILAN PORTLAR"
+
+#: templates/pages/dashboard.html:247
+msgid "PERFORMANCE METRICS"
+msgstr "PERFORMANS METRİKLERİ"
+
+#: templates/pages/dashboard.html:251
+msgid "Response Time:"
+msgstr "Yanıt Süresi:"
+
+#: templates/pages/dashboard.html:255
+msgid "Error Rate:"
+msgstr "Hata Oranı:"
+
+#: templates/pages/dashboard.html:259
+msgid "Throughput:"
+msgstr "Verim:"
+
+#: templates/pages/security/activity-history.html:7
+#: templates/pages/security/activity-history.html:34
+#: templates/pages/settings/settings.html:442
+msgid "Account Activity History"
+msgstr "Hesap Aktivite Geçmişi"
+
+#: templates/pages/security/activity-history.html:36
+msgid "View all activities that occurred on your account"
+msgstr "Hesabınızda gerçekleşen tüm aktiviteleri görüntüleyin"
+
+#: templates/pages/security/activity-history.html:49
+msgid "Activity Type"
+msgstr "Aktivite Türü"
+
+#: templates/pages/security/activity-history.html:52
+msgid "Login"
+msgstr "Giriş"
+
+#: templates/pages/security/activity-history.html:53
+msgid "Logout"
+msgstr "Çıkış"
+
+#: templates/pages/security/activity-history.html:54
+msgid "Password Change"
+msgstr "Şifre Değişikliği"
+
+#: templates/pages/security/activity-history.html:55
+msgid "2FA Enable"
+msgstr "2FA Etkinleştir"
+
+#: templates/pages/security/activity-history.html:56
+msgid "2FA Disable"
+msgstr "2FA Devre Dışı Bırak"
+
+#: templates/pages/security/activity-history.html:57
+msgid "2FA Verify"
+msgstr "2FA Doğrula"
+
+#: templates/pages/security/activity-history.html:58
+msgid "Profile Update"
+msgstr "Profil Güncelleme"
+
+#: templates/pages/security/activity-history.html:59
+msgid "Profile Image Upload"
+msgstr "Profil Resmi Yükleme"
+
+#: templates/pages/security/activity-history.html:60
+msgid "Profile Image Remove"
+msgstr "Profil Resmi Kaldırma"
+
+#: templates/pages/security/activity-history.html:61
+msgid "Email Change"
+msgstr "E-posta Değişikliği"
+
+#: templates/pages/security/activity-history.html:62
+msgid "Name Change"
+msgstr "İsim Değişikliği"
+
+#: templates/pages/security/activity-history.html:63
+msgid "Language Change"
+msgstr "Dil Değişikliği"
+
+#: templates/pages/security/activity-history.html:64
+msgid "Timezone Change"
+msgstr "Saat Dilimi Değişikliği"
+
+#: templates/pages/security/activity-history.html:65
+msgid "API Key Regenerate"
+msgstr "API Anahtarı Yenile"
+
+#: templates/pages/security/activity-history.html:66
+msgid "Failed Login"
+msgstr "Başarısız Giriş"
+
+#: templates/pages/security/activity-history.html:67
+msgid "Security Event"
+msgstr "Güvenlik Olayı"
+
+#: templates/pages/security/activity-history.html:71
+#: templates/pages/security/alert-management.html:125
+msgid "Date Range"
+msgstr "Tarih Aralığı"
+
+#: templates/pages/security/activity-history.html:73
+msgid "Last 7 Days"
+msgstr "Son 7 Gün"
+
+#: templates/pages/security/activity-history.html:74
+msgid "Last 30 Days"
+msgstr "Son 30 Gün"
+
+#: templates/pages/security/activity-history.html:75
+msgid "Last 3 Months"
+msgstr "Son 3 Ay"
+
+#: templates/pages/security/activity-history.html:76
+msgid "Last 1 Year"
+msgstr "Son 1 Yıl"
+
+#: templates/pages/security/activity-history.html:83
+#: templates/pages/security/activity-history.html:134
+msgid "Successful"
+msgstr "Başarılı"
+
+#: templates/pages/security/activity-history.html:84
+#: templates/pages/security/activity-history.html:135
+msgid "Failed"
+msgstr "Başarısız"
+
+#: templates/pages/security/activity-history.html:102
+msgid "No activity yet"
+msgstr "Henüz aktivite yok"
+
+#: templates/pages/security/activity-history.html:103
+msgid "There are no recorded activities in your account yet."
+msgstr "Hesabınızda henüz kayıtlı aktivite bulunmuyor."
+
+#: templates/pages/security/activity-history.html:113
+#: templates/pages/security/alert-management.html:162
+#: templates/pages/security/alert-management.html:208
+msgid "Load More"
+msgstr "Daha Fazla Yükle"
+
+#: templates/pages/security/activity-history.html:139
+msgid "No activities found with the selected filters"
+msgstr "Seçilen filtrelerle aktivite bulunamadı"
+
+#: templates/pages/security/activity-history.html:140
+msgid "An error occurred while loading activities"
+msgstr "Aktiviteler yüklenirken bir hata oluştu"
+
+#: templates/pages/security/activity-history.html:141
+msgid "Refreshing activity history..."
+msgstr "Aktivite geçmişi yenileniyor..."
+
+#: templates/pages/security/activity-history.html:142
+msgid "Exporting activity history..."
+msgstr "Aktivite geçmişi dışa aktarılıyor..."
+
+#: templates/pages/security/activity-history.html:143
+msgid "Activity history exported successfully"
+msgstr "Aktivite geçmişi başarıyla dışa aktarıldı"
+
+#: templates/pages/security/activity-history.html:144
+msgid "An error occurred during export"
+msgstr "Dışa aktarma sırasında bir hata oluştu"
+
+#: templates/pages/security/activity-history.html:145
+msgid "Page"
+msgstr "Sayfa"
+
+#: templates/pages/security/activity-history.html:147
+msgid "activities"
+msgstr "aktivite"
+
+#: templates/pages/security/alert-management.html:39
+#: templates/pages/settings/settings.html:456
+msgid "Monitor and manage all system alerts"
+msgstr "Tüm sistem uyarılarını izleyin ve yönetin"
+
+#: templates/pages/security/alert-management.html:97
+#: templates/pages/security/alert-management.html:120
+#: templates/pages/security/alert-management.html:209
+msgid "Resolved"
+msgstr "Çözüldü"
+
+#: templates/pages/security/alert-management.html:105
+msgid "Alert Type"
+msgstr "Uyarı Türü"
+
+#: templates/pages/security/alert-management.html:107
+msgid "All Types"
+msgstr "Tüm Türler"
+
+#: templates/pages/security/alert-management.html:119
+#: templates/pages/security/alert-management.html:210
+msgid "Unresolved"
+msgstr "Çözülmemiş"
+
+#: templates/pages/security/alert-management.html:127
+msgid "Last 7 days"
+msgstr "Son 7 gün"
+
+#: templates/pages/security/alert-management.html:128
+msgid "Last 30 days"
+msgstr "Son 30 gün"
+
+#: templates/pages/security/alert-management.html:129
+msgid "Last 90 days"
+msgstr "Son 90 gün"
+
+#: templates/pages/security/alert-management.html:130
+msgid "Last year"
+msgstr "Son yıl"
+
+#: templates/pages/security/alert-management.html:136
+msgid "Search alerts..."
+msgstr "Uyarıları ara..."
+
+#: templates/pages/security/alert-management.html:151
+#: templates/pages/security/alert-management.html:206
+msgid "No alerts found"
+msgstr "Uyarı bulunamadı"
+
+#: templates/pages/security/alert-management.html:152
+#: templates/pages/security/alert-management.html:207
+msgid "There are no alerts matching your current filters."
+msgstr "Mevcut filtrelerinize uygun uyarı bulunmuyor."
+
+#: templates/pages/security/alert-management.html:177
+msgid "Add Note to Alert"
+msgstr "Uyarıya Not Ekle"
+
+#: templates/pages/security/alert-management.html:184
+msgid "Note"
+msgstr "Not"
+
+#: templates/pages/security/alert-management.html:185
+msgid "Enter your note about this alert..."
+msgstr "Bu uyarı hakkında notunuzu girin..."
+
+#: templates/pages/security/alert-management.html:190
+msgid "Save Note"
+msgstr "Notu Kaydet"
+
+#: templates/pages/security/alert-management.html:215
+msgid "Mark as Resolved"
+msgstr "Çözüldü Olarak İşaretle"
+
+#: templates/pages/security/alert-management.html:216
+msgid "Mark as Unresolved"
+msgstr "Çözülmemiş Olarak İşaretle"
+
+#: templates/pages/security/alert-management.html:217
+msgid "Just now"
+msgstr "Az önce"
+
+#: templates/pages/security/alert-management.html:218
+msgid "m ago"
+msgstr "dk önce"
+
+#: templates/pages/security/alert-management.html:219
+msgid "h ago"
+msgstr "sa önce"
+
+#: templates/pages/security/alert-management.html:220
+msgid "d ago"
+msgstr "gün önce"
+
+#: templates/pages/security/alert-management.html:221
+msgid "Export Alerts"
+msgstr "Uyarıları Dışa Aktar"
+
+#: templates/pages/security/alert-management.html:222
+msgid "Refresh Alerts"
+msgstr "Uyarıları Yenile"
+
+#: templates/pages/security/alert-management.html:223
+msgid "Alert resolved successfully"
+msgstr "Uyarı başarıyla çözüldü"
+
+#: templates/pages/security/alert-management.html:224
+msgid "Alert marked as unresolved"
+msgstr "Uyarı çözülmemiş olarak işaretlendi"
+
+#: templates/pages/security/alert-management.html:225
+msgid "An error occurred"
+msgstr "Bir hata oluştu"
+
+#: templates/pages/security/alert-management.html:226
+msgid "Are you sure you want to mark this alert as resolved?"
+msgstr "Bu uyarıyı çözüldü olarak işaretlemek istediğinizden emin misiniz?"
+
+#: templates/pages/security/alert-management.html:227
+msgid "Are you sure you want to mark this alert as unresolved?"
+msgstr "Bu uyarıyı çözülmemiş olarak işaretlemek istediğinizden emin misiniz?"
+
+# Settings page translations
+#: templates/pages/settings/settings.html:7
+msgid "Ophiron Settings"
+msgstr "Ophiron Ayarları"
+
+#: templates/pages/settings/settings.html:29
+msgid "Online"
+msgstr "Çevrimiçi"
+
+#: templates/pages/settings/settings.html:30
+msgid "Offline"
+msgstr "Çevrimdışı"
+
+#: templates/pages/settings/settings.html:38
+msgid "Please enter SMTP host"
+msgstr ""
+
+#: templates/pages/settings/settings.html:39
+#, fuzzy
+#| msgid "One email address per line"
+msgid "Please enter email address"
+msgstr "Satır başına bir e-posta adresi"
+
+#: templates/pages/settings/settings.html:40
+msgid "Please enter a valid email address"
+msgstr ""
+
+#: templates/pages/settings/settings.html:41
+msgid "Please configure SMTP settings first (host and email)"
+msgstr ""
+
+#: templates/pages/settings/settings.html:42
+#, fuzzy
+#| msgid "System initialized successfully"
+msgid "SMTP configuration saved successfully"
+msgstr "Sistem başarıyla başlatıldı"
+
+#: templates/pages/settings/settings.html:43
+#, fuzzy
+#| msgid "Failed to copy"
+msgid "Failed to save"
+msgstr "Kopyalama başarısız"
+
+#: templates/pages/settings/settings.html:44
+#, fuzzy
+#| msgid "SMTP Configuration"
+msgid "Failed to save SMTP configuration"
+msgstr "SMTP Yapılandırması"
+
+#: templates/pages/settings/settings.html:45
+#, fuzzy
+#| msgid "Operation successful"
+msgid "SMTP connection test successful"
+msgstr "İşlem başarılı"
+
+#: templates/pages/settings/settings.html:46
+#, fuzzy
+#| msgid "No connections found"
+msgid "SMTP connection test failed"
+msgstr "Bağlantı bulunamadı"
+
+#: templates/pages/settings/settings.html:47
+#, fuzzy
+#| msgid "Connection Statistics"
+msgid "Connection test failed"
+msgstr "Bağlantı İstatistikleri"
+
+#: templates/pages/settings/settings.html:48
+msgid "Failed to test SMTP connection"
+msgstr ""
+
+#: templates/pages/settings/settings.html:49
+#, fuzzy
+#| msgid "Test Connection"
+msgid "Error testing connection"
+msgstr "Bağlantıyı Test Et"
+
+#: templates/pages/settings/settings.html:50
+#, fuzzy
+#| msgid "Searching..."
+msgid "Saving..."
+msgstr "Aranıyor..."
+
+#: templates/pages/settings/settings.html:51
+#, fuzzy
+#| msgid "Deleting..."
+msgid "Testing..."
+msgstr "Siliniyor..."
+
+#: templates/pages/settings/settings.html:52
+#, fuzzy
+#| msgid "System initialized successfully"
+msgid "CVE automation settings saved successfully"
+msgstr "Sistem başarıyla başlatıldı"
+
+#: templates/pages/settings/settings.html:53
+msgid "Failed to save CVE automation settings"
+msgstr ""
+
+#: templates/pages/settings/settings.html:54
+#, fuzzy
+#| msgid "Refresh completed!"
+msgid "Test completed"
+msgstr "Yenileme tamamlandı!"
+
+#: templates/pages/settings/settings.html:55
+#, fuzzy
+#| msgid "Refresh failed"
+msgid "Test failed"
+msgstr "Yenileme başarısız"
+
+#: templates/pages/settings/settings.html:56
+msgid "Failed to run CVE automation test"
+msgstr ""
+
+#: templates/pages/settings/settings.html:58
+msgid "Not scheduled"
+msgstr "Zamanlanmamış"
+
+#: templates/pages/settings/settings.html:59
+#, fuzzy, python-brace-format
+#| msgid "Application Settings"
+msgid "Applied {description} settings"
+msgstr "Uygulama Ayarları"
+
+#: templates/pages/settings/settings.html:60
+#, fuzzy
+#| msgid "Unknown"
+msgid "unknown error"
+msgstr "Bilinmeyen"
+
+#: templates/pages/settings/settings.html:75
+msgid "Manage system settings"
+msgstr "Sistem ayarlarını yönet"
+
+#: templates/pages/settings/settings.html:106
+msgid "SMTP"
+msgstr ""
+
+#: templates/pages/settings/settings.html:115
+msgid "Profile Image"
+msgstr "Profil Resmi"
+
+#: templates/pages/settings/settings.html:127
+msgid "Upload Image"
+msgstr "Resim Yükle"
+
+#: templates/pages/settings/settings.html:131
+msgid "Remove"
+msgstr "Kaldır"
+
+#: templates/pages/settings/settings.html:158
+msgid "Email"
+msgstr "E-posta"
+
+#: templates/pages/settings/settings.html:162
+msgid "Full Name"
+msgstr "Tam Adı"
+
+#: templates/pages/settings/settings.html:166
+msgid "Roles & Permissions"
+msgstr "Roller ve İzinler"
+
+#: templates/pages/settings/settings.html:176
+msgid "Granted Permissions"
+msgstr "Verilen İzinler"
+
+#: templates/pages/settings/settings.html:188
+msgid "System Preferences"
+msgstr "Sistem Tercihleri"
+
+#: templates/pages/settings/settings.html:193
+msgid "English"
+msgstr "İngilizce"
+
+#: templates/pages/settings/settings.html:194
+msgid "Türkçe"
+msgstr "Türkçe"
+
+#: templates/pages/settings/settings.html:195
+msgid "German"
+msgstr "Almanca"
+
+# Time Zone
+#: templates/pages/settings/settings.html:199
+msgid "Time Zone"
+msgstr "Saat Dilimi"
+
+#: templates/pages/settings/settings.html:199
+msgid ""
+"Controls how dates and times are displayed in the UI. It does not change "
+"server time or database storage."
+msgstr ""
+"Tarih ve saatlerin arayüzde nasıl görüntüleneceğini kontrol eder. Sunucu "
+"saati veya veritabanı depolamasını değiştirmez."
+
+#: templates/pages/settings/settings.html:201
+msgid "Loading timezones..."
+msgstr "Saat dilimleri yükleniyor..."
+
+# Password Change
+#: templates/pages/settings/settings.html:214
+#: templates/pages/settings/settings.html:365
+msgid "Current Password"
+msgstr "Mevcut Şifre"
+
+#: templates/pages/settings/settings.html:215
+msgid "Enter your current password"
+msgstr "Mevcut şifrenizi girin"
+
+#: templates/pages/settings/settings.html:218
+msgid "New Password"
+msgstr "Yeni Şifre"
+
+#: templates/pages/settings/settings.html:219
+msgid "Enter your new password"
+msgstr "Yeni şifrenizi girin"
+
+#: templates/pages/settings/settings.html:229
+msgid "Confirm Password"
+msgstr "Şifreyi Onayla"
+
+#: templates/pages/settings/settings.html:230
+msgid "Re-enter your new password"
+msgstr "Yeni şifrenizi tekrar girin"
+
+#: templates/pages/settings/settings.html:232
+msgid "Update Password"
+msgstr "Şifreyi Güncelle"
+
+# 2FA
+#: templates/pages/settings/settings.html:240
+msgid "Two-Factor Authentication"
+msgstr "İki Faktörlü Kimlik Doğrulama"
+
+#: templates/pages/settings/settings.html:267
+msgid "2FA Setup"
+msgstr "2FA Kurulumu"
+
+#: templates/pages/settings/settings.html:274
+msgid "Download an Authenticator App"
+msgstr "Bir Kimlik Doğrulayıcı Uygulaması İndirin"
+
+#: templates/pages/settings/settings.html:275
+msgid ""
+"Download Google Authenticator, Microsoft Authenticator, or a similar app."
+msgstr ""
+"Google Authenticator, Microsoft Authenticator veya benzeri bir uygulama "
+"indirin."
+
+#: templates/pages/settings/settings.html:277
+msgid "Scan the QR Code"
+msgstr "QR Kodu Tarayın"
+
+#: templates/pages/settings/settings.html:278
+msgid "Open the app on your phone and scan the QR code below:"
+msgstr "Telefonunuzda uygulamayı açın ve aşağıdaki QR kodu tarayın:"
+
+#: templates/pages/settings/settings.html:281
+msgid "QR Code"
+msgstr "QR Kod"
+
+#: templates/pages/settings/settings.html:284
+msgid "Generating QR code..."
+msgstr "QR kodu oluşturuluyor..."
+
+#: templates/pages/settings/settings.html:289
+msgid "Manual Setup"
+msgstr "Manuel Kurulum"
+
+#: templates/pages/settings/settings.html:290
+msgid "If you cannot scan the QR code, enter the following key manually:"
+msgstr "QR kodu tarayamıyorsanız, aşağıdaki anahtarı manuel olarak girin:"
+
+#: templates/pages/settings/settings.html:300
+msgid "Next Step"
+msgstr "Sonraki Adım"
+
+#: templates/pages/settings/settings.html:305
+msgid "Enter Verification Code"
+msgstr "Doğrulama Kodunu Girin"
+
+#: templates/pages/settings/settings.html:306
+msgid "Enter the 6-digit code from your authenticator app:"
+msgstr "Kimlik doğrulayıcı uygulamanızdan 6 haneli kodu girin:"
+
+#: templates/pages/settings/settings.html:312
+msgid "Verify"
+msgstr "Doğrula"
+
+#: templates/pages/settings/settings.html:318
+msgid "2FA Enabled Successfully!"
+msgstr "2FA Başarıyla Etkinleştirildi!"
+
+#: templates/pages/settings/settings.html:319
+msgid ""
+"Store your backup codes in a safe place. These codes allow access if you "
+"lose your phone."
+msgstr ""
+"Yedek kodlarınızı güvenli bir yerde saklayın. Bu kodlar telefonunuzu "
+"kaybettiğinizde erişim sağlar."
+
+#: templates/pages/settings/settings.html:322
+msgid "Backup Codes:"
+msgstr "Yedek Kodlar:"
+
+#: templates/pages/settings/settings.html:326
+msgid "Download Codes"
+msgstr "Kodları İndir"
+
+#: templates/pages/settings/settings.html:331
+msgid "Done"
+msgstr "Tamam"
+
+#: templates/pages/settings/settings.html:344
+#: templates/pages/settings/settings.html:401
+msgid "Disable 2FA"
+msgstr "2FA'yı Devre Dışı Bırak"
+
+#: templates/pages/settings/settings.html:356
+msgid "Security Notice"
+msgstr "Güvenlik Uyarısı"
+
+#: templates/pages/settings/settings.html:357
+msgid ""
+"Disabling 2FA reduces your account security. To proceed, enter your password "
+"and your 2FA code."
+msgstr ""
+"2FA'yı devre dışı bırakmak hesap güvenliğinizi azaltır. Devam etmek için "
+"şifrenizi ve 2FA kodunuzu girin."
+
+#: templates/pages/settings/settings.html:367
+msgid "Enter your password"
+msgstr "Şifrenizi girin"
+
+#: templates/pages/settings/settings.html:373
+msgid "2FA Verification"
+msgstr "2FA Doğrulaması"
+
+#: templates/pages/settings/settings.html:376
+msgid "6-digit code or backup code"
+msgstr "6 haneli kod veya yedek kod"
+
+#: templates/pages/settings/settings.html:380
+msgid "Code"
+msgstr "Kod"
+
+#: templates/pages/settings/settings.html:384
+msgid "Backup"
+msgstr "Yedek"
+
+#: templates/pages/settings/settings.html:390
+msgid "Enter the 6-digit code from your app or one of your backup codes"
+msgstr "Uygulamanızdan 6 haneli kodu veya yedek kodlarınızdan birini girin"
+
+# Security History
+#: templates/pages/settings/settings.html:413
+msgid "Security History"
+msgstr "Güvenlik Geçmişi"
+
+#: templates/pages/settings/settings.html:420
+msgid "Password Changed"
+msgstr "Şifre Değiştirildi"
+
+#: templates/pages/settings/settings.html:421
+msgid "Last password change: Today"
+msgstr "Son şifre değişikliği: Bugün"
+
+#: templates/pages/settings/settings.html:430
+msgid "Last Sign-in"
+msgstr "Son Giriş"
+
+#: templates/pages/settings/settings.html:431
+msgid "Today 14:30"
+msgstr "Bugün 14:30"
+
+#: templates/pages/settings/settings.html:443
+msgid "View all your account activities"
+msgstr "Tüm hesap aktivitelerinizi görüntüleyin"
+
+#: templates/pages/settings/settings.html:470
+msgid "Manage signed-in devices"
+msgstr "Giriş yapılan cihazları yönet"
+
+#: templates/pages/settings/settings.html:488
+msgid ""
+"Background monitoring service. When enabled, Process Monitor will "
+"continuously run in the background and cache data for instant access."
+msgstr ""
+"Arka plan izleme hizmeti. Etkinleştirildiğinde, Süreç İzleyici arka planda "
+"sürekli çalışır ve anında erişim için verileri önbelleğe alır."
+
+#: templates/pages/settings/settings.html:494
+#: templates/pages/settings/settings.html:607
+#: templates/pages/settings/settings.html:720
+#: templates/pages/settings/settings.html:774
+msgid "Live Mode (Global)"
+msgstr "Canlı Mod (Global)"
+
+#: templates/pages/settings/settings.html:495
+msgid ""
+"Continuously monitor network processes in the background (Shared by all "
+"admins)"
+msgstr ""
+"Arka planda ağ süreçlerini sürekli izle (Tüm yöneticiler tarafından "
+"paylaşılır)"
+
+#: templates/pages/settings/settings.html:507
+#: templates/pages/settings/settings.html:620
+#: templates/pages/settings/settings.html:787
+msgid "Monitoring Interval:"
+msgstr "İzleme Aralığı:"
+
+#: templates/pages/settings/settings.html:507
+#: templates/pages/settings/settings.html:524
+#: templates/pages/settings/settings.html:620
+#: templates/pages/settings/settings.html:637
+#: templates/pages/settings/settings.html:733
+#: templates/pages/settings/settings.html:787
+msgid "seconds"
+msgstr "saniye"
+
+#: templates/pages/settings/settings.html:513
+msgid "Very Fast"
+msgstr "Çok Hızlı"
+
+#: templates/pages/settings/settings.html:514
+#: templates/pages/settings/settings.html:627
+#: templates/pages/settings/settings.html:740
+#: templates/pages/settings/settings.html:794
+msgid "Slow"
+msgstr "Yavaş"
+
+#: templates/pages/settings/settings.html:517
+msgid ""
+"Data update frequency when live mode is enabled. Lower = More real-time "
+"(higher CPU usage)"
+msgstr ""
+"Canlı mod etkinleştirildiğinde veri güncelleme sıklığı. Düşük = Daha gerçek "
+"zamanlı (daha yüksek CPU kullanımı)"
+
+#: templates/pages/settings/settings.html:524
+#: templates/pages/settings/settings.html:637
+msgid "Cache Duration:"
+msgstr "Önbellek Süresi:"
+
+#: templates/pages/settings/settings.html:530
+#: templates/pages/settings/settings.html:643
+msgid "Short"
+msgstr "Kısa"
+
+#: templates/pages/settings/settings.html:531
+#: templates/pages/settings/settings.html:644
+msgid "10min - Long"
+msgstr "10dk - Uzun"
+
+#: templates/pages/settings/settings.html:534
+msgid "How long data stays in cache. Longer = Less database usage"
+msgstr ""
+"Verilerin önbellekte ne kadar kalacağı. Uzun = Daha az veritabanı kullanımı"
+
+#: templates/pages/settings/settings.html:543
+#: templates/pages/settings/settings.html:656
+msgid "Service Status:"
+msgstr "Hizmet Durumu:"
+
+#: templates/pages/settings/settings.html:550
+#: templates/pages/settings/settings.html:663
+msgid "Cache Status:"
+msgstr "Önbellek Durumu:"
+
+#: templates/pages/settings/settings.html:557
+#: templates/pages/settings/settings.html:670
+msgid "Last Update:"
+msgstr "Son Güncelleme:"
+
+#: templates/pages/settings/settings.html:564
+#: templates/pages/settings/settings.html:677
+msgid "Last Modified By:"
+msgstr "Son Değiştiren:"
+
+#: templates/pages/settings/settings.html:573
+#: templates/pages/settings/settings.html:686
+msgid "Force Refresh"
+msgstr "Zorla Yenile"
+
+#: templates/pages/settings/settings.html:577
+#: templates/pages/settings/settings.html:690
+#: templates/pages/settings/settings.html:751
+#: templates/pages/settings/settings.html:805
+msgid "Save Settings"
+msgstr "Ayarları Kaydet"
+
+#: templates/pages/settings/settings.html:581
+#: templates/pages/settings/settings.html:694
+msgid "Open Monitor"
+msgstr "İzleyiciyi Aç"
+
+#: templates/pages/settings/settings.html:589
+#: templates/pages/settings/settings.html:702
+msgid "Note:"
+msgstr "Not:"
+
+#: templates/pages/settings/settings.html:589
+msgid ""
+"When Live Mode is enabled, the system will continuously monitor processes "
+"and update the cache. This ensures instant page load when you access Process "
+"Monitor, but may increase system resource usage slightly."
+msgstr ""
+"Canlı Mod etkinleştirildiğinde, sistem süreçleri sürekli izler ve önbelleği "
+"günceller. Bu, Süreç İzleyici'ye eriştiğinizde anında sayfa yüklemesini "
+"sağlar, ancak sistem kaynak kullanımını hafifçe artırabilir."
+
+#: templates/pages/settings/settings.html:601
+msgid ""
+"Background system metrics monitoring. When enabled, System Information will "
+"continuously collect hardware and system data for instant dashboard access."
+msgstr ""
+"Arka plan sistem metrikleri izleme. Etkinleştirildiğinde, Sistem Bilgileri "
+"anında dashboard erişimi için donanım ve sistem verilerini sürekli toplar."
+
+#: templates/pages/settings/settings.html:608
+msgid ""
+"Continuously monitor system metrics in the background (Shared by all admins)"
+msgstr ""
+"Arka planda sistem metriklerini sürekli izle (Tüm yöneticiler tarafından "
+"paylaşılır)"
+
+#: templates/pages/settings/settings.html:626
+#: templates/pages/settings/settings.html:739
+#: templates/pages/settings/settings.html:793
+msgid "Fast"
+msgstr "Hızlı"
+
+#: templates/pages/settings/settings.html:630
+msgid ""
+"Data collection frequency when live mode is enabled. Lower = More frequent "
+"updates"
+msgstr ""
+"Canlı mod etkinleştirildiğinde veri toplama sıklığı. Düşük = Daha sık "
+"güncellemeler"
+
+#: templates/pages/settings/settings.html:647
+msgid "How long data stays in cache. Longer = Less CPU usage"
+msgstr "Verilerin önbellekte ne kadar kalacağı. Uzun = Daha az CPU kullanımı"
+
+#: templates/pages/settings/settings.html:702
+msgid ""
+"When Live Mode is enabled, the system will continuously collect CPU, memory, "
+"disk, and network metrics. This ensures instant dashboard loading with real-"
+"time data visualization."
+msgstr ""
+"Canlı Mod etkinleştirildiğinde, sistem CPU, bellek, disk ve ağ metriklerini "
+"sürekli toplar. Bu, gerçek zamanlı veri görselleştirmesi ile anında "
+"dashboard yüklemesini sağlar."
+
+#: templates/pages/settings/settings.html:714
+msgid ""
+"Controls live refresh for Application Logs (Own Logs). When enabled, the "
+"logs page auto-refreshes using the configured interval."
+msgstr ""
+"Uygulama Logları (Kendi Logları) için canlı yenilemeyi kontrol eder. "
+"Etkinleştirildiğinde, loglar sayfası yapılandırılan aralık kullanarak "
+"otomatik olarak yenilenir."
+
+#: templates/pages/settings/settings.html:721
+msgid "Auto-refresh logs periodically (shared by all admins)"
+msgstr ""
+"Logları periyodik olarak otomatik yenile (tüm yöneticiler tarafından "
+"paylaşılır)"
+
+#: templates/pages/settings/settings.html:733
+msgid "Refresh Interval:"
+msgstr "Yenileme Aralığı:"
+
+#: templates/pages/settings/settings.html:743
+msgid "How often Own Logs page refreshes when live mode is enabled."
+msgstr ""
+"Canlı mod etkinleştirildiğinde Kendi Logları sayfasının ne sıklıkla "
+"yenilendiği."
+
+#: templates/pages/settings/settings.html:755
+msgid "Open Application Logs"
+msgstr "Uygulama Loglarını Aç"
+
+#: templates/pages/settings/settings.html:768
+msgid ""
+"Live monitoring for system services. When enabled, Service Monitoring will "
+"continuously update service status in real-time."
+msgstr ""
+"Sistem hizmetleri için canlı izleme. Etkinleştirildiğinde, Hizmet İzleme "
+"hizmet durumunu gerçek zamanlı olarak sürekli güncelleyecektir."
+
+#: templates/pages/settings/settings.html:775
+msgid ""
+"Continuously monitor system services in real-time (Shared by all admins)"
+msgstr ""
+"Sistem hizmetlerini gerçek zamanlı olarak sürekli izle (Tüm yöneticiler "
+"tarafından paylaşılır)"
+
+#: templates/pages/settings/settings.html:797
+msgid "How often service status is updated when live mode is enabled."
+msgstr ""
+"Canlı mod etkinleştirildiğinde hizmet durumunun ne sıklıkla güncellendiği."
+
+#: templates/pages/settings/settings.html:809
+msgid "Open Service Monitoring"
+msgstr "Hizmet İzlemeyi Aç"
+
+# API Settings
+#: templates/pages/settings/settings.html:819
+msgid "API Keys"
+msgstr "API Anahtarları"
+
+#: templates/pages/settings/settings.html:822
+msgid "API Key"
+msgstr "API Anahtarı"
+
+#: templates/pages/settings/settings.html:834
+msgid "API Secret"
+msgstr "API Gizli Anahtarı"
+
+#: templates/pages/settings/settings.html:846
+msgid "API Permissions"
+msgstr "API İzinleri"
+
+#: templates/pages/settings/settings.html:852
+msgid "System Monitoring"
+msgstr "Sistem İzleme"
+
+#: templates/pages/settings/settings.html:857
+msgid "Security Management"
+msgstr "Güvenlik Yönetimi"
+
+#: templates/pages/settings/settings.html:877
+msgid ""
+"Enable detailed logging for different system modules. Logs are stored daily "
+"in"
+msgstr ""
+"Farklı sistem modülleri için detaylı loglamayı etkinleştir. Loglar günlük "
+"olarak"
+
+#: templates/pages/settings/settings.html:877
+msgid "directory."
+msgstr "dizinine kaydedilir."
+
+#: templates/pages/settings/settings.html:884
+msgid "Process Monitor Logs"
+msgstr "Süreç İzleyici Logları"
+
+#: templates/pages/settings/settings.html:885
+msgid ""
+"Log all Process Monitor operations including API calls, connections, process "
+"details, port queries, and errors. Logs are stored daily in logger/process-"
+"monitor/ directory (format: process_monitor_YYYY-MM-DD.log). Note: Logging "
+"may slightly impact performance."
+msgstr ""
+"API çağrıları, bağlantılar, süreç detayları, port sorguları ve hatalar dahil "
+"olmak üzere tüm Süreç İzleyici işlemlerini logla. Loglar günlük olarak "
+"logger/process-monitor/ dizinine kaydedilir (format: process_monitor_YYYY-MM-"
+"DD.log). Not: Loglama performansı hafifçe etkileyebilir."
+
+#: templates/pages/settings/settings.html:908
+msgid "Docker Manager Logs"
+msgstr "Docker Yöneticisi Logları"
+
+#: templates/pages/settings/settings.html:909
+msgid ""
+"Log all Docker operations including container start/stop, image pull/push, "
+"build operations, exec commands, logs viewing, container inspection, and "
+"statistics. Logs are stored in database with detailed operation tracking "
+"including user, timestamp, IP address, and operation details. Note: Logging "
+"may slightly impact performance."
+msgstr ""
+"Konteyner başlatma/durdurma, görüntü çekme/gönderme, build işlemleri, exec "
+"komutları, log görüntüleme, konteyner inceleme ve istatistikler dahil olmak "
+"üzere tüm Docker işlemlerini logla. Loglar kullanıcı, zaman damgası, IP "
+"adresi ve işlem detayları dahil olmak üzere detaylı işlem takibi ile "
+"veritabanında saklanır. Not: Loglama performansı hafifçe etkileyebilir."
+
+# System Information
+#: templates/pages/settings/settings.html:932
+#, fuzzy
+#| msgid "System Information"
+msgid "System Information Logs"
+msgstr "Sistem Bilgileri"
+
+#: templates/pages/settings/settings.html:933
+msgid ""
+"Log all System Information operations including hardware monitoring, system "
+"health checks, performance metrics, system scans, update checks, backup "
+"operations, and maintenance tasks. Logs are stored in database with detailed "
+"operation tracking including user, timestamp, IP address, execution time, "
+"and operation details. Note: Logging may slightly impact performance."
+msgstr ""
+"Donanım izleme, sistem sağlık kontrolleri, performans metrikleri, sistem "
+"taramaları, güncelleme kontrolleri, yedekleme işlemleri ve bakım görevleri "
+"dahil olmak üzere tüm Sistem Bilgileri işlemlerini logla. Loglar kullanıcı, "
+"zaman damgası, IP adresi, yürütme süresi ve işlem detayları dahil olmak "
+"üzere detaylı işlem takibi ile veritabanında saklanır. Not: Loglama "
+"performansı hafifçe etkileyebilir."
+
+# Service Monitoring
+#: templates/pages/settings/settings.html:956
+#, fuzzy
+#| msgid "Service Monitoring"
+msgid "Service Monitoring Logs"
+msgstr "Hizmet İzleme"
+
+#: templates/pages/settings/settings.html:957
+msgid ""
+"Log all Service Monitoring operations including service start/stop/restart/"
+"enable/disable, service creation/deletion, service status checks, and live "
+"mode operations. Logs are stored in database with detailed operation "
+"tracking including user, timestamp, IP address, and operation details. Note: "
+"Logging may slightly impact performance."
+msgstr ""
+"Hizmet başlatma/durdurma/yeniden başlatma/etkinleştirme/devre dışı bırakma, "
+"hizmet oluşturma/silme, hizmet durum kontrolleri ve canlı mod işlemleri "
+"dahil olmak üzere tüm Hizmet İzleme işlemlerini logla. Loglar kullanıcı, "
+"zaman damgası, IP adresi ve işlem detayları dahil olmak üzere detaylı işlem "
+"takibi ile veritabanında saklanır. Not: Loglama performansı hafifçe "
+"etkileyebilir."
+
+#: templates/pages/settings/settings.html:985
+msgid "SMTP Configuration"
+msgstr "SMTP Yapılandırması"
+
+#: templates/pages/settings/settings.html:994
+#, fuzzy
+#| msgid "Email Provider"
+msgid "Provider"
+msgstr "E-posta Sağlayıcısı"
+
+#: templates/pages/settings/settings.html:996
+msgid "Custom"
+msgstr "Özel"
+
+#: templates/pages/settings/settings.html:997
+msgid "Gmail"
+msgstr "Gmail"
+
+#: templates/pages/settings/settings.html:998
+msgid "Outlook / Hotmail"
+msgstr "Outlook / Hotmail"
+
+#: templates/pages/settings/settings.html:999
+msgid "Yahoo Mail"
+msgstr "Yahoo Mail"
+
+#: templates/pages/settings/settings.html:1000
+msgid "Office 365"
+msgstr "Office 365"
+
+#: templates/pages/settings/settings.html:1019
+msgid "Use TLS"
+msgstr "TLS Kullan"
+
+#: templates/pages/settings/settings.html:1023
+msgid "Use SSL"
+msgstr "SSL Kullan"
+
+#: templates/pages/settings/settings.html:1027
+msgid "Enable SMTP"
+msgstr "SMTP'yi Etkinleştir"
+
+#: templates/pages/settings/settings.html:1034
+msgid "Email Address"
+msgstr "E-posta Adresi"
+
+#: templates/pages/settings/settings.html:1039
+msgid "Your SMTP password or App Password"
+msgstr "SMTP şifreniz veya Uygulama Şifresi"
+
+#: templates/pages/settings/settings.html:1047
+msgid "Test Connection"
+msgstr "Bağlantıyı Test Et"
+
+#: templates/pages/settings/settings.html:1051
+msgid "Save Configuration"
+msgstr "Yapılandırmayı Kaydet"
+
+#: templates/pages/settings/settings.html:1065
+msgid "CVE Email Automation"
+msgstr "CVE E-posta Otomasyonu"
+
+#: templates/pages/settings/settings.html:1078
+msgid "Schedule"
+msgstr "Zamanlama"
+
+#: templates/pages/settings/settings.html:1080
+msgid "Daily"
+msgstr "Günlük"
+
+#: templates/pages/settings/settings.html:1081
+msgid "Weekly"
+msgstr "Haftalık"
+
+#: templates/pages/settings/settings.html:1082
+msgid "Monthly"
+msgstr "Aylık"
+
+#: templates/pages/settings/settings.html:1083
+msgid "Custom Cron"
+msgstr "Özel Cron"
+
+#: templates/pages/settings/settings.html:1095
+msgid "Days (0=Mon, 6=Sun)"
+msgstr "Günler (0=Pzt, 6=Paz)"
+
+#: templates/pages/settings/settings.html:1102
+msgid "Cron Expression"
+msgstr "Cron İfadesi"
+
+#: templates/pages/settings/settings.html:1110
+msgid "Min CVEs"
+msgstr "Min CVE"
+
+#: templates/pages/settings/settings.html:1115
+msgid "Always Send"
+msgstr "Her Zaman Gönder"
+
+#: templates/pages/settings/settings.html:1122
+msgid "Status:"
+msgstr "Durum:"
+
+#: templates/pages/settings/settings.html:1126
+msgid "Last:"
+msgstr "Son:"
+
+#: templates/pages/settings/settings.html:1130
+msgid "Next:"
+msgstr "Sonraki:"
+
+#: templates/pages/settings/settings.html:1139
+msgid "Test Now"
+msgstr "Şimdi Test Et"
+
+#: templates/pages/settings/settings.html:1143
+msgid "Save"
+msgstr "Kaydet"
+
+#~ msgid ""
+#~ "Configure SMTP server settings for email notifications and automated "
+#~ "reports."
+#~ msgstr ""
+#~ "E-posta bildirimleri ve otomatik raporlar için SMTP sunucu ayarlarını "
+#~ "yapılandırın."
+
+#~ msgid "Select a preset provider or choose Custom to configure manually"
+#~ msgstr ""
+#~ "Önceden hazırlanmış bir sağlayıcı seçin veya manuel olarak yapılandırmak "
+#~ "için Özel'i seçin"
+
+#~ msgid "SMTP Host"
+#~ msgstr "SMTP Sunucu"
+
+#~ msgid "SMTP Port"
+#~ msgstr "SMTP Port"
+
+#~ msgid "Your email address (used for sending emails)"
+#~ msgstr "E-posta adresiniz (e-posta göndermek için kullanılır)"
+
+#~ msgid "SMTP password or App Password (for Gmail, use App Password)"
+#~ msgstr ""
+#~ "SMTP şifresi veya Uygulama Şifresi (Gmail için Uygulama Şifresi kullanın)"
+
+#~ msgid ""
+#~ "Emails will be sent from your email address above and delivered to your "
+#~ "account's registered email address."
+#~ msgstr ""
+#~ "E-postalar yukarıdaki e-posta adresinizden gönderilecek ve hesabınızın "
+#~ "kayıtlı e-posta adresine teslim edilecektir."
+
+#~ msgid "Automatically send email reports about CVEs found in your system."
+#~ msgstr ""
+#~ "Sisteminizde bulunan CVE'ler hakkında otomatik olarak e-posta raporları "
+#~ "gönderin."
+
+#~ msgid "CVE Email Reports"
+#~ msgstr "CVE E-posta Raporları"
+
+#~ msgid "Schedule automated CVE scan reports"
+#~ msgstr "Otomatik CVE tarama raporlarını zamanla"
+
+#~ msgid ""
+#~ "Format: minute hour day month weekday (e.g., '0 6 * * *' for daily at 6 "
+#~ "AM)"
+#~ msgstr ""
+#~ "Format: dakika saat gün ay haftanın günü (örn., sabah 6'da günlük için '0 "
+#~ "6 * * *')"
+
+#~ msgid "Recipients"
+#~ msgstr "Alıcılar"
+
+#~ msgid ""
+#~ "Emails will be sent to your account's registered email address "
+#~ "automatically."
+#~ msgstr ""
+#~ "E-postalar hesabınızın kayıtlı e-posta adresine otomatik olarak "
+#~ "gönderilecektir."
+
+#~ msgid "Minimum CVEs to Send"
+#~ msgstr "Gönderilecek Minimum CVE Sayısı"
+
+#~ msgid ""
+#~ "Only send email if at least this many CVEs are found (0 = always send)"
+#~ msgstr ""
+#~ "Yalnızca bu kadar CVE bulunduğunda e-posta gönderin (0 = her zaman gönder)"
+
+#~ msgid "Send email even if no CVEs are found"
+#~ msgstr "CVE bulunmasa bile e-posta gönder"
+
+#~ msgid "Next Run:"
+#~ msgstr "Sonraki Çalıştırma:"
+
+#~ msgid "No processes found"
+#~ msgstr "Süreç bulunamadı"
+
+#~ msgid "RECENT ACTIVITIES"
+#~ msgstr "SON AKTİVİTELER"
+
+#~ msgid "logged in"
+#~ msgstr "giriş yaptı"
+
+#~ msgid "CSV"
+#~ msgstr "CSV"
+
+#~ msgid "SYSLOG"
+#~ msgstr "SYSLOG"
+
+#~ msgid "An error occurred during log analysis."
+#~ msgstr "Log analizi sırasında bir hata oluştu."
+
+#~ msgid "Back to Images"
+#~ msgstr "Görüntülere Geri Dön"

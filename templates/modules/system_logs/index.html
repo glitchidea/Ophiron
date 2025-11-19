@@ -1,0 +1,115 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "System Logs" %} - Ophiron</title>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap CSS for modals -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Base styles to match dashboard -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+    <!-- Page specific styles -->
+    <link rel="stylesheet" href="{% static 'css/system_logs/system_logs.css' %}">
+
+    <!-- Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Bootstrap JS for modals -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Header and Navigation Scripts -->
+    <script defer src="{% static 'js/components/header.js' %}"></script>
+    <!-- Page script -->
+    <script defer src="{% static 'js/system_logs/system_logs.js' %}"></script>
+    <script defer>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof refreshLogs === 'function') {
+                refreshLogs();
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="dashboard-container">
+        {% include 'components/header.html' %}
+
+        <main class="dashboard-main">
+            <!-- Enhanced Header Section -->
+            <section class="logs-shell">
+                <header class="logs-head">
+                    <div class="logs-titles">
+                        <div class="logs-title-wrapper">
+                            <h1 class="logs-title">
+                                <div class="logs-icon">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <span class="logs-title-text">{% trans "System Logs" %}</span>
+                            </h1>
+                            <p class="logs-subtitle">{% trans "Real-time monitoring of system activities and events" %}</p>
+                        </div>
+                    </div>
+        <div class="logs-actions">
+            <button id="refreshLogs" class="btn-primary">{% trans "Refresh" %}</button>
+            <button id="exportLogs" class="btn-secondary">{% trans "Export" %}</button>
+            <button id="analyzePatterns" class="btn-secondary">{% trans "Analyze" %}</button>
+            <button id="detailedAnalysis" class="btn-secondary" data-bs-target="#detailedAnalysisModal">{% trans "Detailed Analysis" %}</button>
+            <a href="{% url 'system_logs:own_page' %}" class="btn-secondary">{% trans "App Logs" %}</a>
+        </div>
+                </header>
+
+
+                <!-- Enhanced Tabs -->
+                <nav class="logs-tabs-bar">
+                    <div class="logs-tabs" id="logsTabs"></div>
+                    <div class="logs-controls">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="logSearch" placeholder="{% trans 'Search logs...' %}" class="search-input">
+                        </div>
+                        <div class="filter-controls">
+                            <select id="logLevel" class="filter-select">
+                                <option value="all">{% trans "All Levels" %}</option>
+                                <option value="error">{% trans "Errors" %}</option>
+                                <option value="warning">{% trans "Warnings" %}</option>
+                                <option value="info">{% trans "Info" %}</option>
+                                <option value="debug">{% trans "Debug" %}</option>
+                            </select>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Simple Log Panel -->
+                <section class="logs-panel">
+                    <div class="logs-panel-header">
+                        <span class="logs-panel-title">{% trans "Log Output" %}</span>
+                        <div class="logs-panel-actions">
+                            <button id="clearLogs" class="btn-icon" title="{% trans 'Clear' %}">{% trans "Clear" %}</button>
+                            <button id="autoScroll" class="btn-icon active" title="{% trans 'Auto scroll' %}">{% trans "Auto" %}</button>
+                        </div>
+                    </div>
+                    <div id="logsContainer" class="logs-container" aria-live="polite"></div>
+                    <footer class="logs-foot">
+                        <span class="logs-meta">
+                            {% trans "Last update" %}: <span id="lastUpdate">-</span> | 
+                            <span id="logCount">0</span> {% trans "entries" %}
+                        </span>
+                    </footer>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    {% include 'modules/system_logs/analysis_modal.html' %}
+    {% include 'modules/system_logs/export_modal.html' %}
+    {% include 'modules/system_logs/detailed_analysis_modal.html' %}
+</body>
+</html>
+

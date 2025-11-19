@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "System Information" %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+    
+    <!-- System Information CSS -->
+    <link rel="stylesheet" href="{% static 'css/system_information/style.css' %}">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="system-info-main">
+            <!-- Page Header -->
+            <div class="system-header">
+                <div class="system-header-top">
+                    <div class="system-title-section">
+                        <h1>
+                            <i class="fas fa-server"></i>
+                            {% trans "System Information" %}
+                            <span id="wsIndicator" class="ws-indicator" title="{% trans 'Connecting...' %}"></span>
+                        </h1>
+                        <p>{% trans "Monitor system hardware, performance metrics and network information" %}</p>
+                    </div>
+                    <div class="system-header-actions">
+                        <button id="refreshSystemInfo" class="btn-primary">
+                            <i class="fas fa-sync-alt"></i>
+                            {% trans "Refresh" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            {% if error %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>{{ error }}</span>
+            </div>
+            {% endif %}
+            
+            <!-- Metrics Overview -->
+            <div class="metrics-grid">
+                <!-- CPU Usage -->
+                <div class="metric-card cpu-card">
+                    <div class="metric-header">
+                        <div class="metric-title">
+                            <i class="fas fa-microchip"></i>
+                            {% trans "CPU Usage" %}
+                        </div>
+                    </div>
+                    <div class="metric-value" id="cpuUsage">{{ cpu_info.usage_percent|default:0 }}%</div>
+                    <p class="metric-subtitle">{{ cpu_info.model|default:"Unknown" }}</p>
+                </div>
+                
+                <!-- Memory Usage -->
+                <div class="metric-card memory-card">
+                    <div class="metric-header">
+                        <div class="metric-title">
+                            <i class="fas fa-memory"></i>
+                            {% trans "Memory Usage" %}
+                        </div>
+                    </div>
+                    <div class="metric-value" id="memoryUsage">{{ memory_info.percent|default:0 }}%</div>
+                    <p class="metric-subtitle">{{ memory_info.available|filesizeformat }} {% trans "available" %}</p>
+                </div>
+                
+                <!-- Disk Usage -->
+                <div class="metric-card disk-card">
+                    <div class="metric-header">
+                        <div class="metric-title">
+                            <i class="fas fa-hdd"></i>
+                            {% trans "Disk Usage" %}
+                        </div>
+                    </div>
+                    <div class="metric-value" id="diskUsage">{{ disk_summary.total_percent|default:0 }}%</div>
+                    <p class="metric-subtitle">{{ disk_summary.free_space|filesizeformat }} {% trans "free" %}</p>
+                </div>
+                
+                <!-- Network Activity -->
+                <div class="metric-card network-card">
+                    <div class="metric-header">
+                        <div class="metric-title">
+                            <i class="fas fa-network-wired"></i>
+                            {% trans "Network" %}
+                        </div>
+                    </div>
+                    <div class="metric-value" id="networkActivity">{{ network_info.interfaces|length }} {% trans "interfaces" %}</div>
+                    <p class="metric-subtitle">{% trans "Active connections" %}</p>
+                </div>
+            </div>
+            
+            <!-- Charts Section -->
+            <div class="charts-section">
+                <!-- CPU Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div class="chart-title">
+                            <i class="fas fa-microchip"></i>
+                            {% trans "CPU Performance" %}
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="cpuChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Memory Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div class="chart-title">
+                            <i class="fas fa-memory"></i>
+                            {% trans "Memory Usage" %}
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="memoryChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Disk Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <div class="chart-title">
+                            <i class="fas fa-hdd"></i>
+                            {% trans "Disk Usage" %}
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="diskChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Information -->
+            <div class="info-section">
+                <div class="section-header">
+                    <h2>
+                        <i class="fas fa-info-circle"></i>
+                        {% trans "System Information" %}
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <div class="info-list">
+                        <div class="info-list-item">
+                            <span class="info-list-label">{% trans "OS" %}</span>
+                            <span class="info-list-value">{{ os_info.os_display_name|default:"Unknown" }}</span>
+                        </div>
+                        <div class="info-list-item">
+                            <span class="info-list-label">{% trans "Platform" %}</span>
+                            <span class="info-list-value">
+                                <span class="badge badge-{% if os_info.platform_type == 'Windows' %}primary{% elif os_info.platform_type == 'Linux' %}success{% else %}info{% endif %}">
+                                    {{ os_info.platform_type|default:"Unknown" }}
+                                </span>
+                            </span>
+                        </div>
+                        <div class="info-list-item">
+                            <span class="info-list-label">{% trans "Distribution Family" %}</span>
+                            <span class="info-list-value">{{ os_info.distro_family|default:"N/A"|title }}</span>
+                        </div>
+                        <div class="info-list-item">
+                            <span class="info-list-label">{% trans "Package Manager" %}</span>
+                            <span class="info-list-value"><code>{{ os_info.package_manager|default:"N/A" }}</code></span>
+                        </div>
+                        <div class="info-list-item">
+                            <span class="info-list-label">{% trans "Architecture" %}</span>
+                            <span class="info-list-value">{{ os_info.architecture|default:"Unknown" }}</span>
+                        </div>
+                        <div class="info-list-item">
+                            <span class="info-list-label">{% trans "Hostname" %}</span>
+                            <span class="info-list-value">{{ os_info.hostname|default:"Unknown" }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Users -->
+            <div class="info-section">
+                <div class="section-header">
+                    <h2>
+                        <i class="fas fa-users"></i>
+                        {% trans "System Users" %}
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <div class="table-container">
+                        <table class="info-table">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Username" %}</th>
+                                    <th>{% trans "UID" %}</th>
+                                    <th>{% trans "Home Directory" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
+                                <tr>
+                                    <td><strong>{{ user.username }}</strong></td>
+                                    <td>{{ user.uid }}</td>
+                                    <td><code>{{ user.home }}</code></td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3" class="text-center">{% trans "No users found" %}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Network Information -->
+            <div class="info-section">
+                <div class="section-header">
+                    <h2>
+                        <i class="fas fa-network-wired"></i>
+                        {% trans "Network Information" %}
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <!-- Network Interfaces -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">{% trans "Network Interfaces" %}</h3>
+                        <div class="table-container">
+                            <table class="info-table">
+                                <thead>
+                                    <tr>
+                                        <th>{% trans "Interface" %}</th>
+                                        <th>{% trans "IP Address" %}</th>
+                                        <th>{% trans "Netmask" %}</th>
+                                        <th>{% trans "Sent" %}</th>
+                                        <th>{% trans "Received" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for interface in network_info.interfaces %}
+                                    <tr>
+                                        <td><span class="badge badge-primary">{{ interface.name }}</span></td>
+                                        <td><code>{{ interface.ip }}</code></td>
+                                        <td>{{ interface.netmask }}</td>
+                                        <td>{{ interface.bytes_sent|filesizeformat }}</td>
+                                        <td>{{ interface.bytes_recv|filesizeformat }}</td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="5" class="text-center">{% trans "No network interfaces found" %}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- DNS Configuration -->
+                    <div class="subsection">
+                        <h3 class="subsection-title">{% trans "DNS Configuration" %}</h3>
+                        <div class="info-list">
+                            <div class="info-list-item">
+                                <span class="info-list-label">{% trans "Nameserver" %}</span>
+                                <span class="info-list-value"><code>{{ network_info.dns.nameserver|default:"N/A" }}</code></span>
+                            </div>
+                            <div class="info-list-item">
+                                <span class="info-list-label">{% trans "Search Domain" %}</span>
+                                <span class="info-list-value">{{ network_info.dns.search|default:"N/A" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Network Routes -->
+                    {% if network_info.routes %}
+                    <div class="subsection">
+                        <h3 class="subsection-title">{% trans "Network Routes" %} ({{ network_info.routes|length }} {% trans "routes" %})</h3>
+                        <div class="table-container">
+                            <table class="info-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>{% trans "Type" %}</th>
+                                        <th>{% trans "Interface" %}</th>
+                                        <th>{% trans "Protocol" %}</th>
+                                        <th>{% trans "Details" %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for route in network_info.routes %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td><span class="badge badge-{{ route.type }}">{{ route.type }}</span></td>
+                                        <td>{{ route.interface }}</td>
+                                        <td>{{ route.protocol }}</td>
+                                        <td><code style="font-size: 12px;">{{ route.details }}</code></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Security Information -->
+            <div class="info-section">
+                <div class="section-header">
+                    <h2>
+                        <i class="fas fa-shield-alt"></i>
+                        {% trans "Security Information" %}
+                    </h2>
+                </div>
+                <div class="section-body">
+                    <div class="security-grid">
+                        <!-- Active Users -->
+                        <div class="security-card">
+                            <div class="security-card-header">
+                                <h3 class="security-card-title">
+                                    <i class="fas fa-users"></i>
+                                    {% trans "Active Users" %}
+                                </h3>
+                                <div class="security-card-badge">
+                                    <span class="badge badge-primary">{% trans "Live" %}</span>
+                                </div>
+                            </div>
+                            <div class="security-card-content">
+                                {% if security.active_users %}
+                                    <div class="user-list">
+                                        {% for user in security.active_users %}
+                                        <div class="user-item">
+                                            <div class="user-info">
+                                                <div class="user-name">{{ user.username|default:"Unknown" }}</div>
+                                                <div class="user-session">{{ user.session|default:"{% trans 'No session' %}" }}</div>
+                                            </div>
+                                            <div class="user-status">
+                                                <span class="status-badge status-{{ user.state|lower|default:'inactive' }}">
+                                                    {{ user.state|default:"Unknown" }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="empty-state">
+                                        <i class="fas fa-user-slash"></i>
+                                        <p>{% trans "No active users found" %}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <!-- Active Connections -->
+                        <div class="security-card">
+                            <div class="security-card-header">
+                                <h3 class="security-card-title">
+                                    <i class="fas fa-plug"></i>
+                                    {% trans "Active Connections" %}
+                                </h3>
+                                <div class="security-card-badge">
+                                    <span class="badge badge-success">{% trans "Live" %}</span>
+                                </div>
+                            </div>
+                            <div class="security-card-content">
+                                {% if security.active_connections %}
+                                    <div class="connection-list">
+                                        {% for connection in security.active_connections %}
+                                        <div class="connection-item">
+                                            <div class="connection-info">
+                                                <div class="connection-type">{{ connection.type|default:"Unknown" }}</div>
+                                                <div class="connection-details">{{ connection.details|default:"{% trans 'No details' %}" }}</div>
+                                            </div>
+                                            <div class="connection-status">
+                                                <span class="status-badge status-{{ connection.status|lower|default:'inactive' }}">
+                                                    {{ connection.status|default:"Unknown" }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                {% else %}
+                                    <div class="empty-state">
+                                        <i class="fas fa-plug"></i>
+                                        <p>{% trans "No active connections found" %}</p>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = {
+            'Refreshing...': '{% trans "Refreshing..." %}',
+            'Refresh': '{% trans "Refresh" %}',
+            'Live Mode: Active': '{% trans "Live Mode: Active" %}',
+            'Live Mode: Inactive': '{% trans "Live Mode: Inactive" %}',
+            'Live Mode: Error': '{% trans "Live Mode: Error" %}',
+            'Used': '{% trans "Used" %}',
+            'Free': '{% trans "Free" %}',
+            'Connecting...': '{% trans "Connecting..." %}',
+            'Unknown': '{% trans "Unknown" %}',
+            'No session': '{% trans "No session" %}',
+            'No details': '{% trans "No details" %}',
+            'No active users found': '{% trans "No active users found" %}',
+            'No active connections found': '{% trans "No active connections found" %}',
+            'No users found': '{% trans "No users found" %}',
+            'No network interfaces found': '{% trans "No network interfaces found" %}',
+            'available': '{% trans "available" %}',
+            'interfaces': '{% trans "interfaces" %}',
+            'Active connections': '{% trans "Active connections" %}',
+            'routes': '{% trans "routes" %}',
+            'Live': '{% trans "Live" %}'
+        };
+    </script>
+    
+    <!-- Initial Data -->
+    <script>
+        window.SYSTEM_DATA = {
+            cpu: {
+                usage_percent: {{ cpu_info.usage_percent|default:0 }},
+                model: '{{ cpu_info.model|default:"Unknown"|escapejs }}',
+                cores: {{ cpu_info.cores|default:0 }},
+                frequency: {{ cpu_info.frequency|default:0 }}
+            },
+            memory: {
+                percent: {{ memory_info.percent|default:0 }},
+                total: {{ memory_info.total|default:0 }},
+                used: {{ memory_info.used|default:0 }},
+                available: {{ memory_info.available|default:0 }}
+            },
+            disk: {
+                total_percent: {{ disk_summary.total_percent|default:0 }},
+                total_space: {{ disk_summary.total_space|default:0 }},
+                used_space: {{ disk_summary.used_space|default:0 }},
+                free_space: {{ disk_summary.free_space|default:0 }}
+            }
+        };
+    </script>
+    
+    <!-- Header JavaScript -->
+    <script src="{% static 'js/components/header.js' %}"></script>
+    
+    <!-- System Information JavaScript -->
+    <script src="{% static 'js/system_information/script.js' %}"></script>
+</body>
+</html>

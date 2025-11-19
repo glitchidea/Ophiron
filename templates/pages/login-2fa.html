@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ophiron - 2FA Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../static/css/login/style.css">
+    <link rel="stylesheet" href="../../static/css/login/2fa.css">
+    <link rel="stylesheet" href="../../static/css/login/snake-animations.css">
+</head>
+<body>
+    <!-- Left Panel - Advanced Design -->
+    <div class="left-panel">
+        <div class="floating-snake">
+            <div class="snake">
+                <div class="snake-head">
+                    <div class="snake-eyes"></div>
+                    <div class="snake-tongue"></div>
+                </div>
+                <div class="snake-body body-1"></div>
+                <div class="snake-body body-2"></div>
+                <div class="snake-body body-3"></div>
+                <div class="snake-body body-4"></div>
+                <div class="snake-body body-5"></div>
+                <div class="snake-body body-6"></div>
+                <div class="snake-body body-7"></div>
+                <div class="snake-tail"></div>
+            </div>
+        </div>
+        <div class="left-content">
+            <div class="logo-section">
+                <div class="logo-container">
+                    <div class="rotating-snake">
+                        <img src="../../static/images/ophiron.svg" alt="Ophiron Logo" style="width: 100%; height: 100%;">
+                    </div>
+                </div>
+
+                <h1 class="system-title">Ophiron</h1>
+                <p class="system-desc">
+                    Two-factor authentication
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel - 2FA Verification -->
+    <div class="right-panel">
+        <div class="login-container">
+            <div class="login-header">
+                <h2 class="login-title">2FA Verification</h2>
+                <p class="login-subtitle">Enter your security code</p>
+                <div class="status-line">
+                    <div class="status-indicator"></div>
+                    <span class="status-text">2FA SECURE</span>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="alert" id="alert">
+                    <i class="fas fa-exclamation-triangle alert-icon"></i>
+                    <span class="alert-text">Invalid verification code</span>
+                </div>
+
+                <form id="twoFactorForm" method="post">
+                    {% csrf_token %}
+                    
+                    <!-- Normal 2FA Code Input -->
+                    <div class="field">
+                        <div class="field-label">
+                            <label class="label">2FA Code</label>
+                        </div>
+                        <div class="input-box">
+                            <input 
+                                type="text" 
+                                id="twoFactorCode"
+                                name="two_factor_code"
+                                class="input-field" 
+                                placeholder="000000"
+                                maxlength="6"
+                                autocomplete="one-time-code"
+                                required
+                            >
+                            <div class="input-underline"></div>
+                        </div>
+                        <div class="field-help">
+                            <i class="fas fa-mobile-alt"></i>
+                            Enter the 6-digit code from your authenticator app
+                        </div>
+                    </div>
+
+                    <!-- Backup Code Input (Hidden by default) -->
+                    <div class="field" id="backupCodeGroup" style="display: none;">
+                        <div class="field-label">
+                            <label class="label">Backup Code</label>
+                        </div>
+                        <div class="input-box">
+                            <input 
+                                type="text" 
+                                id="backupCode"
+                                name="backup_code"
+                                class="input-field" 
+                                placeholder="XXXXXXXX"
+                                maxlength="8"
+                                autocomplete="off"
+                            >
+                            <div class="input-underline"></div>
+                        </div>
+                        <div class="field-help">
+                            <i class="fas fa-key"></i>
+                            Enter your 8-character backup code
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="verifyBtn">
+                        <span class="btn-content">VERIFY</span>
+                        <div class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                </form>
+
+                <!-- Toggle between normal and backup code -->
+                <div class="backup-toggle">
+                    <button type="button" class="backup-toggle-btn" onclick="toggleBackupCode()">
+                        <i class="fas fa-key"></i>
+                        Use backup code
+                    </button>
+                </div>
+
+                <!-- Help section -->
+                <div class="help-section">
+                    <div class="help-item">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Can't find your authenticator app?</span>
+                    </div>
+                    <div class="help-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Use Google Authenticator, Authy, or Microsoft Authenticator</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <div class="footer-text">Secure connection active</div>
+                <div class="footer-links">
+                    <a href="/login/" class="footer-link">Go Back</a>
+                    <a href="#" class="footer-link">Help</a>
+                </div>
+                <div class="footer-text" style="margin-top: 10px; font-size: 10px; color: rgba(255, 255, 255, 0.3);">
+                    Made by <a href="https://glitchidea.com" target="_blank" style="color: rgba(255, 255, 255, 0.5); text-decoration: none; transition: color 0.3s ease;">glitchidea</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../static/js/login/2fa.js"></script>
+</body>
+</html>

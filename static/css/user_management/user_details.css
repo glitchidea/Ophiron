@@ -1,0 +1,649 @@
+/* ===== USER DETAILS MODAL - MINIMAL OPHIRON THEME ===== */
+
+/* ===== ROOT VARIABLES ===== */
+:root {
+    /* Minimal Ophiron Color Palette */
+    --primary-black: #000000;
+    --primary-white: #ffffff;
+    --primary-gray: #f8f9fa;
+    --primary-dark: #1a202c;
+    --primary-medium: #4a5568;
+    --primary-light: #718096;
+    
+    /* Background Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-dark: #000000;
+    
+    /* Text Colors */
+    --text-primary: #1a202c;
+    --text-secondary: #4a5568;
+    --text-light: #718096;
+    --text-white: #ffffff;
+    
+    /* Shadow Colors */
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    
+    /* Border Colors */
+    --border-light: #e2e8f0;
+    --border-medium: #cbd5e0;
+    --border-dark: #a0aec0;
+    
+    /* Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ===== MODAL CONTAINER ===== */
+.user-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.user-details-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.user-details-modal-dialog {
+    background: var(--bg-primary);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 6px -1px var(--shadow-light);
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: hidden;
+    transform: scale(0.95);
+    transition: transform 0.2s ease;
+    border: 1px solid var(--border-light);
+}
+
+.user-details-modal.active .user-details-modal-dialog {
+    transform: scale(1);
+}
+
+/* ===== MODAL HEADER - MINIMAL ===== */
+.user-details-modal-header {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.user-details-modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-primary);
+}
+
+.user-details-modal-title i {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.user-details-modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-size: 1rem;
+}
+
+.user-details-modal-close:hover {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* ===== MODAL BODY - MINIMAL ===== */
+.user-details-modal-body {
+    padding: 1.5rem;
+    max-height: calc(80vh - 80px);
+    overflow-y: auto;
+    background: var(--bg-primary);
+}
+
+.user-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ===== INFO SECTIONS ===== */
+.user-details-info-section {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    border: 1px solid var(--border-light);
+}
+
+.user-details-info-section-title {
+    color: var(--text-primary);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-light);
+}
+
+.user-details-info-section-title i {
+    color: var(--accent-blue);
+    font-size: 14px;
+}
+
+/* ===== USER INFO GRID ===== */
+.user-details-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.user-details-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+}
+
+.user-details-info-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.user-details-info-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    word-break: break-all;
+}
+
+/* ===== BADGE STYLES ===== */
+.user-details-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.user-details-badge-system {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-medium);
+}
+
+.user-details-badge-user {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+}
+
+.user-details-badge-active {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+}
+
+.user-details-badge-inactive {
+    background: var(--bg-secondary);
+    color: var(--text-light);
+    border: 1px solid var(--border-light);
+}
+
+/* ===== PERMISSIONS SECTION ===== */
+.user-details-permissions-section {
+    background: var(--bg-primary);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    border: 1px solid var(--border-light);
+}
+
+.user-details-permissions-subsection {
+    margin-bottom: 20px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+}
+
+.user-details-permissions-subtitle {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-details-permissions-subtitle i {
+    color: var(--accent-blue);
+    font-size: 12px;
+}
+
+/* ===== GROUPS CONTAINER ===== */
+.user-details-groups-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.user-details-group-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+}
+
+.user-details-group-badge.primary {
+    background: var(--bg-secondary);
+    border-color: var(--border-dark);
+    color: var(--text-primary);
+}
+
+.user-details-group-badge i {
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+.user-details-group-name {
+    font-weight: 500;
+}
+
+.user-details-group-gid {
+    color: var(--text-light);
+    font-size: 11px;
+}
+
+.user-details-primary-indicator {
+    background: var(--primary-dark);
+    color: var(--text-white);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/* ===== SUDO INFO ===== */
+.user-details-sudo-info {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 12px;
+}
+
+.user-details-sudo-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.user-details-sudo-status i {
+    color: var(--text-primary);
+}
+
+.user-details-sudo-commands {
+    margin-top: 8px;
+}
+
+.user-details-sudo-commands ul {
+    margin: 4px 0 0 0;
+    padding-left: 16px;
+}
+
+.user-details-sudo-commands li {
+    margin: 2px 0;
+    font-size: 12px;
+}
+
+.user-details-sudo-commands code {
+    background: var(--bg-secondary);
+    padding: 2px 4px;
+    border-radius: var(--radius-sm);
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 11px;
+}
+
+/* ===== SPECIAL PERMISSIONS ===== */
+.user-details-special-permissions-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.user-details-special-permission-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    transition: all var(--transition-fast);
+    min-width: 200px;
+}
+
+.user-details-special-permission-badge.group_membership {
+    border-color: var(--border-medium);
+    background: var(--bg-secondary);
+}
+
+.user-details-special-permission-badge.privilege {
+    border-color: var(--border-dark);
+    background: var(--bg-secondary);
+}
+
+.user-details-special-permission-badge.capability {
+    border-color: var(--border-medium);
+    background: var(--bg-secondary);
+}
+
+.user-details-special-permission-badge i {
+    font-size: 14px;
+}
+
+.user-details-special-permission-badge.group_membership i {
+    color: var(--text-secondary);
+}
+
+.user-details-special-permission-badge.privilege i {
+    color: var(--text-primary);
+}
+
+.user-details-special-permission-badge.capability i {
+    color: var(--text-secondary);
+}
+
+.user-details-permission-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.user-details-permission-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.user-details-permission-description {
+    font-size: 11px;
+    color: var(--text-light);
+}
+
+/* ===== SYSTEM PERMISSIONS GRID ===== */
+.user-details-system-permissions-grid,
+.user-details-network-permissions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 8px;
+}
+
+.user-details-permission-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 13px;
+    transition: all var(--transition-fast);
+}
+
+.user-details-permission-item.granted {
+    border-color: var(--border-dark);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.user-details-permission-item.denied {
+    border-color: var(--border-light);
+    background: var(--bg-secondary);
+    color: var(--text-light);
+}
+
+.user-details-permission-item i {
+    font-size: 12px;
+}
+
+.user-details-permission-item.granted i {
+    color: var(--text-primary);
+}
+
+.user-details-permission-item.denied i {
+    color: var(--text-light);
+}
+
+/* ===== ACTIVITIES TABLE ===== */
+.user-details-activities-table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+}
+
+.user-details-activities-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-primary);
+}
+
+.user-details-activities-table th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.user-details-activities-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.user-details-activities-table tr:hover {
+    background: var(--bg-secondary);
+}
+
+.user-details-badge-activity {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+}
+
+/* ===== SESSIONS TABLE ===== */
+.user-details-sessions-table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-light);
+}
+
+.user-details-sessions-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-primary);
+}
+
+.user-details-sessions-table th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.user-details-sessions-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.user-details-sessions-table tr:hover {
+    background: var(--bg-secondary);
+}
+
+.user-details-sessions-table code {
+    background: var(--bg-secondary);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 11px;
+    color: var(--text-primary);
+}
+
+/* ===== LOADING STATE ===== */
+.user-details-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.user-details-loading i {
+    font-size: 16px;
+    animation: spin 1s linear infinite;
+}
+
+/* ===== ERROR STATE ===== */
+.user-details-error {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-light);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    margin: 20px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .user-details-modal-dialog {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .user-details-container {
+        padding: 16px;
+        gap: 16px;
+    }
+    
+    .user-details-info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .user-details-groups-container {
+        flex-direction: column;
+    }
+    
+    .user-details-special-permissions-container {
+        flex-direction: column;
+    }
+    
+    .user-details-special-permission-badge {
+        min-width: auto;
+    }
+    
+    .user-details-system-permissions-grid,
+    .user-details-network-permissions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+.user-details-modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.user-details-modal-body::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+.user-details-modal-body::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: 3px;
+}
+
+.user-details-modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--border-dark);
+}

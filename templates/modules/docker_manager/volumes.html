@@ -1,0 +1,177 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Docker Volumes" %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/components/header.css' %}">
+    
+    <!-- Docker Manager CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/main.css' %}">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/volumes.css' %}">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/purge_modal.css' %}">
+    
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="docker-manager">
+                <!-- Header -->
+                <div class="docker-header">
+                    <div class="header-left">
+                        <h1 class="docker-title">{% trans "Docker Manager" %}</h1>
+                        <span class="feedback-link">{% trans "Give feedback" %}</span>
+                    </div>
+                </div>
+
+                <!-- Docker Navigation -->
+                <div class="docker-nav">
+                    <div class="docker-nav-container">
+                        <a href="{% url 'docker_manager:index' %}" class="docker-nav-item">
+                            <i class="fas fa-cube"></i>
+                            <span>{% trans "Containers" %}</span>
+                        </a>
+                        <a href="{% url 'docker_manager:images' %}" class="docker-nav-item">
+                            <i class="fas fa-images"></i>
+                            <span>Images</span>
+                        </a>
+                        <a href="{% url 'docker_manager:volumes' %}" class="docker-nav-item active">
+                            <i class="fas fa-database"></i>
+                            <span>{% trans "Volumes" %}</span>
+                        </a>
+                        <a href="{% url 'docker_manager:hubs' %}" class="docker-nav-item">
+                            <i class="fas fa-cube"></i>
+                            <span>{% trans "Hubs" %}</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Volumes Content -->
+                <div class="docker-content">
+                    <div class="content-header">
+                        <h2>{% trans "Volumes" %}</h2>
+                        <p>{% trans "Manage your Docker volumes" %}</p>
+                    </div>
+                    
+                    <!-- Search and Filter -->
+                    <div class="search-filter">
+                        <div class="search-bar">
+                            <input type="text" id="volumeSearch" placeholder="{% trans 'Search volumes by name...' %}">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="filter-options">
+                            <label for="danglingOnly">
+                                <input type="checkbox" id="danglingOnly"> {% trans "Show dangling volumes" %}
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Volumes Table -->
+                    <div class="volumes-table-container">
+                        <div class="table-header">
+                            <div class="table-title">
+                                <h3>{% trans "Volumes" %}</h3>
+                                <span class="items-count">{% trans "Showing" %} {{ volumes|length }} {% trans "items" %}</span>
+                            </div>
+                            <div class="table-actions">
+                                <button class="action-btn create" onclick="showCreateVolumeModal()">
+                                    <i class="fas fa-plus"></i>
+                                    {% trans "Create" %}
+                                </button>
+                                <button class="action-btn prune" onclick="showPurgeModal()">
+                                    <i class="fas fa-broom"></i>
+                                    {% trans "Prune" %}
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="volumes-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="checkbox-col"><input type="checkbox" id="selectAllVolumes"></th>
+                                        <th>Name</th>
+                                        <th>Driver</th>
+                                        <th>Size</th>
+                                        <th>Created</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="volumesTableBody">
+                                    {% for volume in volumes %}
+                                    <tr data-volume-name="{{ volume.name }}">
+                                        <td class="checkbox-col">
+                                            <input type="checkbox" class="volume-checkbox" data-volume-name="{{ volume.name }}">
+                                        </td>
+                                        <td class="name-col">
+                                            <div class="volume-info">
+                                                <a href="{% url 'docker_manager:volume_detail' volume.name %}" class="volume-name">{{ volume.name }}</a>
+                                                <div class="volume-id">{{ volume.name }}</div>
+                                            </div>
+                                        </td>
+                                        <td class="driver-col">
+                                            <span class="volume-driver">{{ volume.driver }}</span>
+                                        </td>
+                                        <td class="size-col">
+                                            <span class="volume-size">{{ volume.size }}</span>
+                                        </td>
+                                        <td class="created-col">{{ volume.created }}</td>
+                                        <td class="actions-col">
+                                            <div class="actions">
+                                                <button class="action-btn inspect" onclick="inspectVolume('{{ volume.name }}')" title="Inspect">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                                <button class="action-btn delete" onclick="deleteVolume('{{ volume.name }}')" title="Delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; padding: 40px; color: #718096;">
+                                            {% if docker_running %}
+                                                No volumes found.
+                                            {% else %}
+                                                Docker is not running or not accessible.
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Include Modals -->
+    {% include 'modules/docker_manager/modals/purge_modal.html' %}
+    {% include 'modules/docker_manager/modals/create_volume_modal.html' %}
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/main.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/volumes.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/purge_modal.js' %}"></script>
+    
+</body>
+</html>

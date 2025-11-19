@@ -1,0 +1,201 @@
+<!-- Snapshot Loader Popup Component -->
+{% load i18n %}
+<div id="snapshot-loader-modal" class="snapshot-loader-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-title">
+                <i class="fas fa-folder-open"></i>
+                <span>{% trans "Load Snapshot" %}</span>
+            </div>
+            <button type="button" class="modal-close" id="close-snapshot-loader">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            <!-- File Upload Section -->
+            <div class="upload-section">
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h4>{% trans "Drop JSON file here" %}</h4>
+                        <p>{% trans "or click to browse" %}</p>
+                        <input type="file" id="file-input" accept=".json" style="display: none;">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Loading Section -->
+            <div class="loading-section" id="loading-section" style="display: none;">
+                <div class="loading-content">
+                    <div class="loading-spinner"></div>
+                    <h4>{% trans "Loading Snapshot..." %}</h4>
+                    <p id="loading-message">{% trans "Processing snapshot data..." %}</p>
+                </div>
+            </div>
+            
+            <!-- Snapshot Preview Section -->
+            <div class="preview-section" id="preview-section" style="display: none;">
+                <div class="preview-header">
+                    <h4>{% trans "Snapshot Preview" %}</h4>
+                    <div class="snapshot-info">
+                        <span class="info-item">
+                            <i class="fas fa-calendar"></i>
+                            <span id="snapshot-date">-</span>
+                        </span>
+                        <span class="info-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <span id="snapshot-processes">-</span>
+                        </span>
+                        <span class="info-item">
+                            <i class="fas fa-link"></i>
+                            <span id="snapshot-connections">-</span>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="preview-content">
+                    <!-- Basic Info Section -->
+                    <div class="snapshot-details">
+                        <h5>{% trans "Basic Information" %}</h5>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>{% trans "Filename" %}:</label>
+                                <span id="snapshot-filename">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Created" %}:</label>
+                                <span id="snapshot-created-date">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "File Size" %}:</label>
+                                <span id="snapshot-file-size">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Version" %}:</label>
+                                <span id="snapshot-version">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Process Statistics Section -->
+                    <div class="snapshot-details">
+                        <h5>{% trans "Process Statistics" %}</h5>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>{% trans "Total Processes" %}:</label>
+                                <span id="snapshot-total-processes">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Running Processes" %}:</label>
+                                <span id="snapshot-running-processes">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Sleeping Processes" %}:</label>
+                                <span id="snapshot-sleeping-processes">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Zombie Processes" %}:</label>
+                                <span id="snapshot-zombie-processes">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Connection Statistics Section -->
+                    <div class="snapshot-details">
+                        <h5>{% trans "Connection Statistics" %}</h5>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>{% trans "Total Connections" %}:</label>
+                                <span id="snapshot-total-connections">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Parent-Child Links" %}:</label>
+                                <span id="snapshot-parent-child-links">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Network Links" %}:</label>
+                                <span id="snapshot-network-links">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "System Links" %}:</label>
+                                <span id="snapshot-system-links">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Information Section -->
+                    <div class="snapshot-details">
+                        <h5>{% trans "System Information" %}</h5>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>{% trans "Platform" %}:</label>
+                                <span id="snapshot-platform">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Language" %}:</label>
+                                <span id="snapshot-language">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "User Agent" %}:</label>
+                                <span id="snapshot-user-agent">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Browser" %}:</label>
+                                <span id="snapshot-browser">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Information Section -->
+                    <div class="snapshot-details">
+                        <h5>{% trans "Snapshot Settings" %}</h5>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <label>{% trans "Node Size" %}:</label>
+                                <span id="snapshot-node-size">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Canvas Size" %}:</label>
+                                <span id="snapshot-canvas-size">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Force Settings" %}:</label>
+                                <span id="snapshot-force-settings">-</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>{% trans "Color Scheme" %}:</label>
+                                <span id="snapshot-color-scheme">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="snapshot-actions">
+                        <button type="button" class="btn-load" id="load-snapshot">
+                            <i class="fas fa-play"></i>
+                            {% trans "Load Snapshot" %}
+                        </button>
+                        <button type="button" class="btn-cancel" id="cancel-snapshot">
+                            <i class="fas fa-times"></i>
+                            {% trans "Cancel" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Error Section -->
+            <div class="error-section" id="error-section" style="display: none;">
+                <div class="error-content">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h4>{% trans "Error Loading Snapshot" %}</h4>
+                    <p id="error-message">{% trans "Invalid snapshot file format" %}</p>
+                    <button type="button" class="btn-retry" id="retry-upload">
+                        <i class="fas fa-redo"></i>
+                        {% trans "Try Again" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

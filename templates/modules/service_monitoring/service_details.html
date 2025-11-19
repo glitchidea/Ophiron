@@ -1,0 +1,76 @@
+<!-- Service Details Modal -->
+<div class="modal" id="serviceDetailsModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-info-circle"></i>
+                    <span id="serviceDetailsTitle">Service Details</span>
+                </h3>
+                <button class="modal-close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="serviceDetailsBody">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>Loading service details...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Service Control Modal -->
+<div class="modal" id="serviceControlModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-cogs"></i>
+                    Service Control
+                </h3>
+                <button class="modal-close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="service-control-info">
+                    <div class="service-name" id="controlServiceName"></div>
+                    <div class="service-status" id="controlServiceStatus"></div>
+                </div>
+                
+                <div class="control-actions">
+                    <button class="btn-control start" data-action="start">
+                        <i class="fas fa-play"></i>
+                        Start
+                    </button>
+                    <button class="btn-control stop" data-action="stop">
+                        <i class="fas fa-stop"></i>
+                        Stop
+                    </button>
+                    <button class="btn-control restart" data-action="restart">
+                        <i class="fas fa-redo"></i>
+                        Restart
+                    </button>
+                    <button class="btn-control enable" data-action="enable">
+                        <i class="fas fa-check"></i>
+                        Enable
+                    </button>
+                    <button class="btn-control disable" data-action="disable">
+                        <i class="fas fa-times"></i>
+                        Disable
+                    </button>
+                    <button class="btn-control reload" data-action="reload">
+                        <i class="fas fa-sync"></i>
+                        Reload
+                    </button>
+                </div>
+                
+                <div class="control-result" id="controlResult" style="display: none;">
+                    <div class="result-message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

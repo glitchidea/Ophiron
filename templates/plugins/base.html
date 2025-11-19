@@ -1,0 +1,54 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block plugin_title %}{% trans "Plugin" %}{% endblock %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    
+    <!-- Plugin Specific CSS -->
+    {% block plugin_css %}{% endblock %}
+    {% block plugin_styles %}{% endblock %}
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component - Otomatik eklenir -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="plugin-main {% block plugin_class %}{% endblock %}">
+            {% block plugin_header %}{% endblock %}
+            
+            <div class="plugin-content">
+                {% block plugin_content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- CSRF Token for JavaScript -->
+    <script>
+        window.CSRF_TOKEN = '{{ csrf_token }}';
+    </script>
+    
+    <!-- Header JavaScript - Otomatik eklenir -->
+    <script src="{% static 'js/components/header.js' %}"></script>
+    
+    <!-- Plugin Specific JavaScript -->
+    {% block plugin_js %}{% endblock %}
+    {% block plugin_scripts %}{% endblock %}
+</body>
+</html>
+

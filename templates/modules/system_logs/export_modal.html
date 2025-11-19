@@ -1,0 +1,125 @@
+{% load static %}
+{% load i18n %}
+<link rel="stylesheet" href="{% static 'css/system_logs/export.css' %}">
+
+<div class="modal fade" id="exportModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-file-export"></i> {% trans "Export Logs" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Close' %}"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Log Categories Selection -->
+                <div class="export-section">
+                    <h6 class="section-title">
+                        <i class="fas fa-list"></i>
+                        {% trans "Which logs do you want to export?" %}
+                    </h6>
+                    <div class="category-controls">
+                        <button type="button" id="selectAllCategories" class="btn-sm btn-outline-primary">
+                            <i class="fas fa-check-square"></i>
+                            {% trans "Select All" %}
+                        </button>
+                        <button type="button" id="deselectAllCategories" class="btn-sm btn-outline-secondary">
+                            <i class="fas fa-square"></i>
+                            {% trans "Deselect All" %}
+                        </button>
+                    </div>
+                    <div class="log-categories">
+                        <label class="category-option">
+                            <input type="checkbox" name="logCategories" value="system" checked>
+                            <span class="category-label">
+                                <i class="fas fa-cog"></i>
+                                {% trans "System Logs" %}
+                            </span>
+                        </label>
+                        <label class="category-option">
+                            <input type="checkbox" name="logCategories" value="kernel" checked>
+                            <span class="category-label">
+                                <i class="fas fa-microchip"></i>
+                                {% trans "Kernel Logs" %}
+                            </span>
+                        </label>
+                        <label class="category-option">
+                            <input type="checkbox" name="logCategories" value="auth" checked>
+                            <span class="category-label">
+                                <i class="fas fa-shield-alt"></i>
+                                {% trans "Auth Logs" %}
+                            </span>
+                        </label>
+                        <label class="category-option">
+                            <input type="checkbox" name="logCategories" value="daemon" checked>
+                            <span class="category-label">
+                                <i class="fas fa-server"></i>
+                                {% trans "Daemon Logs" %}
+                            </span>
+                        </label>
+                        <label class="category-option">
+                            <input type="checkbox" name="logCategories" value="cron" checked>
+                            <span class="category-label">
+                                <i class="fas fa-clock"></i>
+                                {% trans "Cron Logs" %}
+                            </span>
+                        </label>
+                        <label class="category-option">
+                            <input type="checkbox" name="logCategories" value="boot" checked>
+                            <span class="category-label">
+                                <i class="fas fa-power-off"></i>
+                                {% trans "Boot Logs" %}
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Export Format Selection -->
+                <div class="export-section">
+                    <h6 class="section-title">
+                        <i class="fas fa-file"></i>
+                        {% trans "Export Format" %}
+                    </h6>
+                    <div class="export-options">
+                        <label class="option">
+                            <input type="radio" name="exportFormat" value="csv" checked>
+                            <span>CSV</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="exportFormat" value="json">
+                            <span>JSON</span>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="exportFormat" value="syslog">
+                            <span>SYSLOG</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Log Level Filter -->
+                <div class="export-section">
+                    <h6 class="section-title">
+                        <i class="fas fa-filter"></i>
+                        {% trans "Log Level Filter" %}
+                    </h6>
+                    <select id="logLevelFilter" class="form-select">
+                        <option value="all">{% trans "All Levels" %}</option>
+                        <option value="error">{% trans "Errors Only" %}</option>
+                        <option value="warning">{% trans "Warnings Only" %}</option>
+                        <option value="info">{% trans "Info Only" %}</option>
+                        <option value="debug">{% trans "Debug Only" %}</option>
+                    </select>
+                </div>
+
+                <div class="export-actions">
+                    <button id="startExport" class="btn-primary">
+                        <i class="fas fa-download"></i>
+                        {% trans "Export Selected Logs" %}
+                    </button>
+                    <div id="exportStatus" class="export-status" aria-live="polite"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script defer src="{% static 'js/system_logs/export.js' %}"></script>
+

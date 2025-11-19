@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Hubs - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/components/header.css' %}">
+    
+    <!-- Docker Manager CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/main.css' %}">
+    
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="docker-manager">
+                <!-- Header -->
+                <div class="docker-header">
+                    <div class="header-left">
+                        <h1 class="docker-title">Docker Manager</h1>
+                        <span class="feedback-link">Give feedback</span>
+                    </div>
+                </div>
+
+                <!-- Docker Navigation -->
+                <div class="docker-nav">
+                    <div class="docker-nav-container">
+                        <a href="{% url 'docker_manager:index' %}" class="docker-nav-item">
+                            <i class="fas fa-cube"></i>
+                            <span>Containers</span>
+                        </a>
+                        <a href="{% url 'docker_manager:images' %}" class="docker-nav-item">
+                            <i class="fas fa-images"></i>
+                            <span>Images</span>
+                        </a>
+                        <a href="{% url 'docker_manager:volumes' %}" class="docker-nav-item">
+                            <i class="fas fa-database"></i>
+                            <span>Volumes</span>
+                        </a>
+                        <a href="{% url 'docker_manager:hubs' %}" class="docker-nav-item active">
+                            <i class="fas fa-hub"></i>
+                            <span>Hubs</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hubs Content -->
+                <div class="docker-content">
+                    <div class="content-header">
+                        <h2>Hubs</h2>
+                        <p>Manage your Docker image plugins and repositories</p>
+                    </div>
+                    
+                    <div class="images-placeholder">
+                        <div class="placeholder-content">
+                            <i class="fas fa-hub" style="font-size: 48px; color: #718096; margin-bottom: 16px;"></i>
+                            <h3>Docker Hubs Management</h3>
+                            <p>This section will contain Docker image plugins and repository management functionality.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- Header JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+    
+</body>
+</html>

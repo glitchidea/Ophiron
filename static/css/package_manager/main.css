@@ -1,0 +1,9 @@
+.pkgmgr { padding: 16px; }
+.pkgmgr-summary { margin-bottom: 16px; }
+.pkgmgr-summary-item { margin: 4px 0; }
+.pkgmgr-tabs { display: flex; gap: 8px; margin-bottom: 8px; }
+.pkgmgr-tab { padding: 6px 10px; }
+.pkgmgr-table { width: 100%; border-collapse: collapse; }
+.pkgmgr-table th, .pkgmgr-table td { border-bottom: 1px solid #ddd; padding: 6px; text-align: left; }
+.pkgmgr-raw { background: #0b0b0b; color: #cfe3cf; padding: 12px; overflow: auto; }
+

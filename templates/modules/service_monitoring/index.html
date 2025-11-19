@@ -1,0 +1,235 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Service Monitoring" %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+    
+    <!-- Service Monitoring CSS -->
+    <link rel="stylesheet" href="{% static 'css/service_monitoring/style.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="service-monitoring-main">
+            <!-- Page Header -->
+            <div class="service-header">
+                <div class="service-header-top">
+                    <div class="service-title-section">
+                        <h1>
+                            <i class="fas fa-server"></i>
+                            {% trans "Service Monitoring" %}
+                            <span id="liveIndicator" class="live-indicator" title="{% trans 'Live Mode Status' %}"></span>
+                        </h1>
+                        <p>{% trans "Monitor and manage system services" %}</p>
+                    </div>
+                    <div class="service-header-actions">
+                        <button id="refreshServicesBtn" class="btn-primary">
+                            <i class="fas fa-sync-alt"></i>
+                            {% trans "Refresh" %}
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="service-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalServices">-</div>
+                            <div class="stat-label">{% trans "Total Services" %}</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon active">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="activeServices">-</div>
+                            <div class="stat-label">{% trans "Active Services" %}</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon inactive">
+                            <i class="fas fa-pause-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="inactiveServices">-</div>
+                            <div class="stat-label">{% trans "Inactive Services" %}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters and Search -->
+            <div class="service-filters">
+                <div class="filter-group">
+                    <label for="categoryFilter">{% trans "Category" %}:</label>
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="">{% trans "All Categories" %}</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="statusFilter">{% trans "Status" %}:</label>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">{% trans "All Status" %}</option>
+                        <option value="active">{% trans "Active" %}</option>
+                        <option value="inactive">{% trans "Inactive" %}</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="searchInput">{% trans "Search" %}:</label>
+                    <input type="text" id="searchInput" class="filter-input" placeholder="{% trans 'Search services...' %}">
+                </div>
+            </div>
+
+            <!-- Services Table -->
+            <div class="service-content">
+                <div class="service-table-container">
+                    <table class="service-table" id="servicesTable">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Service Name" %}</th>
+                                <th>{% trans "Status" %}</th>
+                                <th>{% trans "Category" %}</th>
+                                <th>{% trans "Description" %}</th>
+                                <th>{% trans "Actions" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody id="servicesTableBody">
+                            <tr>
+                                <td colspan="5" class="loading-cell">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    {% trans "Loading services..." %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Service Details Modal -->
+    <div id="serviceDetailsModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalServiceName">{% trans "Service Details" %}</h3>
+                <button class="modal-close" onclick="closeModal('serviceDetailsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="serviceDetailsContent">
+                <!-- Service details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Logs Modal -->
+    <div id="serviceLogsModal" class="modal" style="display: none;">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 id="modalLogsServiceName">{% trans "Service Logs" %}</h3>
+                <button class="modal-close" onclick="closeModal('serviceLogsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="logs-container" id="serviceLogsContent">
+                    <!-- Service logs will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- JavaScript translations -->
+    <script>
+        window.jsTranslations = {
+            'service_monitoring': '{% trans "Service Monitoring" %}',
+            'monitor_and_manage_system_services': '{% trans "Monitor and manage system services" %}',
+            'live_mode_status': '{% trans "Live Mode Status" %}',
+            'refresh': '{% trans "Refresh" %}',
+            'total_services': '{% trans "Total Services" %}',
+            'active_services': '{% trans "Active Services" %}',
+            'inactive_services': '{% trans "Inactive Services" %}',
+            'category': '{% trans "Category" %}',
+            'all_categories': '{% trans "All Categories" %}',
+            'status': '{% trans "Status" %}',
+            'all_status': '{% trans "All Status" %}',
+            'active': '{% trans "Active" %}',
+            'inactive': '{% trans "Inactive" %}',
+            'search': '{% trans "Search" %}',
+            'search_services': '{% trans "Search services..." %}',
+            'service_name': '{% trans "Service Name" %}',
+            'description': '{% trans "Description" %}',
+            'actions': '{% trans "Actions" %}',
+            'loading_services': '{% trans "Loading services..." %}',
+            'service_details': '{% trans "Service Details" %}',
+            'service_logs': '{% trans "Service Logs" %}',
+            'no_services_found': '{% trans "No services found" %}',
+            'error_loading_services': '{% trans "Error loading services" %}',
+            'start': '{% trans "Start" %}',
+            'stop': '{% trans "Stop" %}',
+            'restart': '{% trans "Restart" %}',
+            'enable': '{% trans "Enable" %}',
+            'disable': '{% trans "Disable" %}',
+            'view_details': '{% trans "View Details" %}',
+            'view_logs': '{% trans "View Logs" %}',
+            'loading': '{% trans "Loading..." %}',
+            'error': '{% trans "Error" %}',
+            'success': '{% trans "Success" %}',
+            'operation_successful': '{% trans "Operation successful" %}',
+            'operation_failed': '{% trans "Operation failed" %}',
+            'confirm_action': '{% trans "Are you sure you want to {action} this service?" %}',
+            'action_start': '{% trans "start" %}',
+            'action_stop': '{% trans "stop" %}',
+            'action_restart': '{% trans "restart" %}',
+            'action_enable': '{% trans "enable" %}',
+            'action_disable': '{% trans "disable" %}',
+            'try_adjusting_filters': '{% trans "Try adjusting your filters or search terms" %}',
+            'other': '{% trans "Other" %}',
+            'no_description_available': '{% trans "No description available" %}',
+            'details': '{% trans "Details" %}',
+            'enabled': '{% trans "Enabled" %}',
+            'active': '{% trans "Active" %}',
+            'yes': '{% trans "Yes" %}',
+            'no': '{% trans "No" %}',
+            'uptime': '{% trans "Uptime" %}',
+            'memory_usage': '{% trans "Memory Usage" %}',
+            'cpu_usage': '{% trans "CPU Usage" %}',
+            'logs': '{% trans "Logs" %}',
+            'no_logs_available': '{% trans "No logs available" %}',
+            'live_mode_active': '{% trans "Live Mode: Active" %}',
+            'live_mode_inactive': '{% trans "Live Mode: Inactive" %}',
+            'pid': '{% trans "PID" %}',
+            'system_service': '{% trans "System Service" %}'
+        };
+    </script>
+
+    <!-- Scripts -->
+    <script src="{% static 'js/components/header.js' %}"></script>
+    <script src="{% static 'js/service_monitoring/main.js' %}"></script>
+</body>
+</html>

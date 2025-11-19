@@ -1,0 +1,217 @@
+/*
+Process Topology Info Panel Component CSS
+Modern design matching dashboard style
+*/
+
+/* ===== INFO PANEL ===== */
+.info-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 320px;
+    max-height: 60vh;
+    background: var(--primary-white);
+    border: 1px solid var(--border-medium);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px var(--shadow-medium);
+    z-index: 9999;
+    overflow: hidden;
+    display: none;
+    animation: slideInLeft 0.3s ease-out;
+}
+
+.info-panel.show {
+    display: block;
+}
+
+/* ===== PANEL HEADER ===== */
+.info-panel .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: var(--primary-gray);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.info-panel .panel-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.info-panel .panel-title i {
+    color: var(--accent-blue);
+}
+
+.info-panel .panel-close {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.info-panel .panel-close:hover {
+    background: var(--border-light);
+    color: var(--text-primary);
+}
+
+/* ===== PANEL BODY ===== */
+.info-panel .panel-body {
+    padding: 20px;
+    max-height: calc(60vh - 60px);
+    overflow-y: auto;
+}
+
+/* ===== INFO GRID ===== */
+.info-grid {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.info-value {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+/* ===== STATUS BADGE ===== */
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-badge.running {
+    background: rgba(40, 167, 69, 0.1);
+    color: var(--accent-green);
+}
+
+.status-badge.sleeping {
+    background: rgba(23, 162, 184, 0.1);
+    color: var(--accent-cyan);
+}
+
+.status-badge.stopped {
+    background: rgba(108, 117, 125, 0.1);
+    color: #6c757d;
+}
+
+.status-badge.zombie {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--accent-red);
+}
+
+/* ===== INFO ACTIONS ===== */
+.info-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.action-btn.danger {
+    background: var(--accent-red);
+    color: var(--primary-white);
+}
+
+.action-btn.danger:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+}
+
+.action-btn.info {
+    background: var(--accent-blue);
+    color: var(--primary-white);
+}
+
+.action-btn.info:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.action-btn.warning {
+    background: var(--accent-yellow);
+    color: var(--text-primary);
+}
+
+.action-btn.warning:hover {
+    background: #e0a800;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .info-panel {
+        left: 10px;
+        right: 10px;
+        width: auto;
+        bottom: 10px;
+    }
+    
+    .info-actions {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        justify-content: center;
+    }
+}

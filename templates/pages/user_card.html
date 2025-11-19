@@ -1,0 +1,26 @@
+<!-- User Card Component -->
+{% load static %}
+<div class="user-card">
+    <div class="user-avatar">
+        {% if user.profile.has_profile_image %}
+            <img src="{{ user.profile.profile_image_url }}" alt="{{ user.username }}" class="user-avatar-img">
+        {% else %}
+            <img src="{% static 'images/demo-avatar.svg' %}" alt="{{ user.username }}" class="user-avatar-img">
+        {% endif %}
+    </div>
+    <div class="user-info">
+        <h3 class="user-name">{{ user.get_full_name|default:user.username }}</h3>
+        <p class="user-role">
+            {% if user.is_superuser %}
+                <i class="fas fa-crown"></i>
+                Super Admin
+            {% elif user.is_staff %}
+                <i class="fas fa-user-shield"></i>
+                Admin
+            {% else %}
+                <i class="fas fa-user"></i>
+                User
+            {% endif %}
+        </p>
+    </div>
+</div>

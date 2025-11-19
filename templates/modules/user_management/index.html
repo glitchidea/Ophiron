@@ -1,0 +1,309 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "User Management" %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+    
+    <!-- User Management CSS -->
+    <link rel="stylesheet" href="{% static 'css/user_management/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user_management/user_details.css' %}">
+    <link rel="stylesheet" href="{% static 'css/user_management/create_user.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="user-management-main">
+            <!-- Page Header -->
+            <div class="user-management-header">
+                <div class="user-management-header-top">
+                    <div class="user-management-title-section">
+                        <h1>
+                            <i class="fas fa-users"></i>
+                            {% trans "User Management" %}
+                            <span id="syncIndicator" class="sync-indicator" title="{% trans 'Ready' %}"></span>
+                        </h1>
+                        <p>{% trans "Manage system users, permissions, and monitor user activities" %}</p>
+                    </div>
+                    <div class="user-management-header-actions">
+                        <button id="createUserBtn" class="btn-primary">
+                            <i class="fas fa-user-plus"></i>
+                            {% trans "Create User" %}
+                        </button>
+                        <button id="syncUsersBtn" class="btn-secondary">
+                            <i class="fas fa-sync-alt"></i>
+                            {% trans "Sync Users" %}
+                        </button>
+                        <button id="refreshDataBtn" class="btn-secondary">
+                            <i class="fas fa-refresh"></i>
+                            {% trans "Refresh" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            {% if error %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+                {% trans "Error" %}: {{ error }}
+            </div>
+            {% endif %}
+            
+            <!-- Main Content Grid -->
+            <div class="user-management-content-grid">
+                <!-- Left Column: Users Table -->
+                <div class="user-management-main-column">
+                    <!-- Users Card -->
+                    <div class="user-management-card">
+                        <div class="user-management-card-header">
+                            <h3 class="user-management-card-title">
+                                <i class="fas fa-users"></i>
+                                {% trans "System Users" %}
+                            </h3>
+                            <div class="user-management-card-actions">
+                                <div class="user-filter-tabs">
+                                    <button class="filter-tab active" data-filter="all">
+                                        <i class="fas fa-list"></i>
+                                        {% trans "All Users" %}
+                                    </button>
+                                    <button class="filter-tab" data-filter="system">
+                                        <i class="fas fa-cog"></i>
+                                        {% trans "System Users" %}
+                                    </button>
+                                    <button class="filter-tab" data-filter="real">
+                                        <i class="fas fa-user"></i>
+                                        {% trans "Real Users" %}
+                                    </button>
+                                </div>
+                                <span style="color: #718096; font-size: 14px;">
+                                    {% trans "Total" %}: <strong id="totalUsers">{{ system_users|length }}</strong> {% trans "users" %}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="user-management-card-body">
+                            <div class="table-wrapper">
+                                <table class="user-management-table" id="usersTable">
+                                    <thead>
+                                        <tr>
+                                            <th>{% trans "Username" %}</th>
+                                            <th>{% trans "UID" %}</th>
+                                            <th>{% trans "GID" %}</th>
+                                            <th>{% trans "Home Directory" %}</th>
+                                            <th>{% trans "Shell" %}</th>
+                                            <th>{% trans "Type" %}</th>
+                                            <th>{% trans "Status" %}</th>
+                                            <th>{% trans "Last Login" %}</th>
+                                            <th>{% trans "Actions" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="usersBody">
+                                        {% for user in system_users %}
+                                        <tr data-user-type="{% if user.is_system_user %}system{% else %}real{% endif %}">
+                                            <td class="username-cell">
+                                                <div class="user-info">
+                                                    <i class="fas fa-user"></i>
+                                                    <span>{{ user.username }}</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="uid-badge">{{ user.uid }}</span></td>
+                                            <td><span class="gid-badge">{{ user.gid }}</span></td>
+                                            <td class="directory-cell">{{ user.home_directory }}</td>
+                                            <td class="shell-cell">{{ user.shell }}</td>
+                                            <td>
+                                                <span class="badge badge-{% if user.is_system_user %}system{% else %}user{% endif %}">
+                                                    {% if user.is_system_user %}{% trans "System" %}{% else %}{% trans "Real" %}{% endif %}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-status badge-{% if user.is_active %}active{% else %}inactive{% endif %}">
+                                                    {% if user.is_active %}{% trans "Active" %}{% else %}{% trans "Inactive" %}{% endif %}
+                                                </span>
+                                            </td>
+                                            <td class="last-login-cell">
+                                                {% if user.last_login %}
+                                                    {{ user.last_login|date:"M d, Y H:i" }}
+                                                {% else %}
+                                                    {% trans "Never" %}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon btn-view-details" 
+                                                            data-user-id="{{ user.id }}"
+                                                            title="{% trans 'View Details' %}">
+                                                        <i class="fas fa-info-circle"></i>
+                                                    </button>
+                                                    {% if user.username != 'root' %}
+                                                    <button class="btn-icon btn-delete-user" 
+                                                            data-username="{{ user.username }}"
+                                                            title="{% trans 'Delete User' %}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                    {% endif %}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="9" class="empty-state">
+                                                <i class="fas fa-inbox"></i>
+                                                <span>{% trans "No users found" %}</span>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Column: Stats and Activities -->
+                <div class="user-management-sidebar-column">
+                    <!-- System Stats Widget -->
+                    <div class="stats-widget">
+                        <div class="stats-widget-header">
+                            <h3 class="stats-widget-title">
+                                <i class="fas fa-chart-bar"></i>
+                                {% trans "System Statistics" %}
+                            </h3>
+                        </div>
+                        <div class="stats-widget-body" id="statsWidgetBody">
+                            <div class="loading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>{% trans "Loading..." %}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+    
+<!-- Include Modal Templates -->
+{% include 'modules/user_management/user_details_modal.html' %}
+{% include 'modules/user_management/user_activities.html' %}
+{% include 'modules/user_management/user_sessions.html' %}
+{% include 'modules/user_management/create_user_modal.html' %}
+{% include 'modules/user_management/delete_user_modal.html' %}
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = {
+            'Ready': '{% trans "Ready" %}',
+            'Syncing users...': '{% trans "Syncing users..." %}',
+            'Sync failed': '{% trans "Sync failed" %}',
+            'Users synchronized successfully': '{% trans "Users synchronized successfully" %}',
+            'Failed to synchronize users': '{% trans "Failed to synchronize users" %}',
+            'No users found': '{% trans "No users found" %}',
+            'System': '{% trans "System" %}',
+            'Real': '{% trans "Real" %}',
+            'Active': '{% trans "Active" %}',
+            'Inactive': '{% trans "Inactive" %}',
+            'Never': '{% trans "Never" %}',
+            'View Details': '{% trans "View Details" %}',
+            'Delete User': '{% trans "Delete User" %}',
+            'Loading...': '{% trans "Loading..." %}',
+            'Error loading stats': '{% trans "Error loading stats" %}',
+            'Total Users': '{% trans "Total Users" %}',
+            'Active Users': '{% trans "Active Users" %}',
+            'System Users': '{% trans "System Users" %}',
+            'Real Users': '{% trans "Real Users" %}',
+            'Active Sessions': '{% trans "Active Sessions" %}',
+            'Recent Activities': '{% trans "Recent Activities" %}',
+            'Loading user details...': '{% trans "Loading user details..." %}',
+            'Error loading data': '{% trans "Error loading data" %}',
+            'Basic Information': '{% trans "Basic Information" %}',
+            'Username': '{% trans "Username" %}',
+            'UID': '{% trans "UID" %}',
+            'GID': '{% trans "GID" %}',
+            'Group': '{% trans "Group" %}',
+            'Home Directory': '{% trans "Home Directory" %}',
+            'Shell': '{% trans "Shell" %}',
+            'Type': '{% trans "Type" %}',
+            'Status': '{% trans "Status" %}',
+            'Last Login': '{% trans "Last Login" %}',
+            'System User': '{% trans "System User" %}',
+            'Real User': '{% trans "Real User" %}',
+            'Permissions & Groups': '{% trans "Permissions & Groups" %}',
+            'Group Memberships': '{% trans "Group Memberships" %}',
+            'Primary': '{% trans "Primary" %}',
+            'Sudo Access': '{% trans "Sudo Access" %}',
+            'Has sudo privileges': '{% trans "Has sudo privileges" %}',
+            'Allowed Commands': '{% trans "Allowed Commands" %}',
+            'Special Permissions': '{% trans "Special Permissions" %}',
+            'System Permissions': '{% trans "System Permissions" %}',
+            'Network Permissions': '{% trans "Network Permissions" %}',
+            'Root Access': '{% trans "Root Access" %}',
+            'System Modification': '{% trans "System Modification" %}',
+            'Package Installation': '{% trans "Package Installation" %}',
+            'Service Management': '{% trans "Service Management" %}',
+            'Log Access': '{% trans "Log Access" %}',
+            'Port Binding': '{% trans "Port Binding" %}',
+            'Raw Sockets': '{% trans "Raw Sockets" %}',
+            'Privileged Ports': '{% trans "Privileged Ports" %}',
+            'Recent Activities': '{% trans "Recent Activities" %}',
+            'Active Sessions': '{% trans "Active Sessions" %}',
+            'Session ID': '{% trans "Session ID" %}',
+            'IP Address': '{% trans "IP Address" %}',
+            'Login Time': '{% trans "Login Time" %}',
+            'Last Activity': '{% trans "Last Activity" %}',
+            'Deleting...': '{% trans "Deleting..." %}',
+            'User created successfully!': '{% trans "User created successfully!" %}',
+            'Failed to create user': '{% trans "Failed to create user" %}',
+            'Server returned invalid response': '{% trans "Server returned invalid response" %}',
+            'Server error occurred': '{% trans "Server error occurred" %}',
+            'Error creating user': '{% trans "Error creating user" %}',
+            'Username is required': '{% trans "Username is required" %}',
+            'Password is required': '{% trans "Password is required" %}',
+            'Username must be at least 2 characters long': '{% trans "Username must be at least 2 characters long" %}',
+            'Username can only contain letters, numbers, underscores, and hyphens': '{% trans "Username can only contain letters, numbers, underscores, and hyphens" %}',
+            'Password must be at least 6 characters long': '{% trans "Password must be at least 6 characters long" %}',
+            'User deleted successfully': '{% trans "User deleted successfully" %}',
+            'Failed to delete user': '{% trans "Failed to delete user" %}',
+            'An unexpected error occurred': '{% trans "An unexpected error occurred" %}',
+            'Cannot delete root user': '{% trans "Cannot delete root user" %}',
+            'User does not exist': '{% trans "User does not exist" %}'
+        };
+    </script>
+    
+    <!-- Initial Data (Server-Side) -->
+    <script>
+        // Initial data from server
+        window.INITIAL_USERS = {{ system_users|safe }};
+        window.INITIAL_ACTIVITIES = {{ recent_activities|safe }};
+        window.INITIAL_SESSIONS = {{ active_sessions|safe }};
+        window.INITIAL_SYSTEM_INFO = {{ system_info|safe }};
+        
+        console.log('📦 Initial data loaded:', window.INITIAL_USERS.length + ' users');
+    </script>
+    
+    <!-- Header JavaScript -->
+    <script src="{% static 'js/components/header.js' %}"></script>
+    
+    <!-- User Management JavaScript -->
+    <script src="{% static 'js/user_management/script.js' %}"></script>
+    <script src="{% static 'js/user_management/create_user.js' %}"></script>
+</body>
+</html>

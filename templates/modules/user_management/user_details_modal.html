@@ -1,0 +1,21 @@
+{% load i18n %}
+<!-- User Details Modal - Minimal Design -->
+<div class="user-details-modal" id="userDetailsModal">
+    <div class="user-details-modal-dialog">
+        <div class="user-details-modal-header">
+            <h3 class="user-details-modal-title">
+                <i class="fas fa-user"></i>
+                {% trans "User Details" %}
+            </h3>
+            <button class="user-details-modal-close" onclick="closeModal(document.getElementById('userDetailsModal'))">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="user-details-modal-body" id="userDetailsBody">
+            <div class="user-details-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>{% trans "Loading..." %}</span>
+            </div>
+        </div>
+    </div>
+</div>

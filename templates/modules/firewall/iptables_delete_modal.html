@@ -1,0 +1,90 @@
+<!-- iptables Rule Delete Confirmation Modal -->
+<div class="modal fade" id="iptablesDeleteModal" tabindex="-1" aria-labelledby="iptablesDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="iptablesDeleteModalLabel">
+                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                    Kural Silme Onayı
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Dikkat!</strong> Bu işlem geri alınamaz!
+                </div>
+                
+                <div class="rule-details">
+                    <h6>Silinecek Kural Detayları:</h6>
+                    <table class="table table-sm">
+                        <tr>
+                            <td><strong>Tablo:</strong></td>
+                            <td id="deleteTableName">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Chain:</strong></td>
+                            <td id="deleteChainName">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kural Numarası:</strong></td>
+                            <td id="deleteRuleNumber">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Target:</strong></td>
+                            <td id="deleteRuleTarget">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Protocol:</strong></td>
+                            <td id="deleteRuleProtocol">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Source:</strong></td>
+                            <td id="deleteRuleSource">-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Destination:</strong></td>
+                            <td id="deleteRuleDestination">-</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" id="confirmDelete">
+                    <label class="form-check-label" for="confirmDelete">
+                        Bu kuralı silmek istediğimi onaylıyorum
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> İptal
+                </button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn" disabled>
+                    <i class="fas fa-trash"></i> Kuralı Sil
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.rule-details table td {
+    padding: 4px 8px;
+    border: none;
+}
+
+.rule-details table td:first-child {
+    width: 120px;
+    font-weight: 600;
+}
+
+#confirmDeleteBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.alert-warning {
+    border-left: 4px solid #ffc107;
+}
+</style>

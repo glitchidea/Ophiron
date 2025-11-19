@@ -1,0 +1,102 @@
+{% load i18n %}
+<!-- Purge System Modal -->
+<div class="modal-overlay" id="purgeModal">
+    <div class="modal-content purge-modal">
+        <div class="modal-header">
+            <div class="modal-icon danger">
+                <i class="fas fa-broom"></i>
+            </div>
+            <h3>{% trans "Purge System" %}</h3>
+            <button class="close-btn" onclick="closePurgeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="warning-section">
+                <div class="warning-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="warning-content">
+                    <h4>{% trans "Warning" %}</h4>
+                    <p>{% trans "This action will permanently remove unused images and volumes. This action cannot be undone." %}</p>
+                </div>
+            </div>
+            
+            <div class="purge-options">
+                <h4>{% trans "Purge Options" %}</h4>
+                <div class="options-grid">
+                    <label class="option-item">
+                        <input type="checkbox" id="purgeImages" checked>
+                        <span class="checkmark"></span>
+                        <div class="option-content">
+                            <span class="option-title">{% trans "Remove dangling images" %}</span>
+                            <span class="option-description">{% trans "Unused images only" %}</span>
+                        </div>
+                    </label>
+                    
+                    <label class="option-item">
+                        <input type="checkbox" id="purgeVolumes" checked>
+                        <span class="checkmark"></span>
+                        <div class="option-content">
+                            <span class="option-title">{% trans "Remove unused volumes" %}</span>
+                            <span class="option-description">{% trans "Unused volumes only" %}</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="confirmation-section">
+                <div class="confirmation-input">
+                    <label for="purgeConfirmation">{% trans "Type 'PURGE' to confirm this action" %}</label>
+                    <input type="text" id="purgeConfirmation" placeholder="{% trans 'Type PURGE here' %}" autocomplete="off">
+                </div>
+            </div>
+            
+            <div class="estimated-cleanup" id="estimatedCleanup" style="display: none;">
+                <h4>{% trans "Estimated Cleanup" %}</h4>
+                <div class="cleanup-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">{% trans "Dangling Images" %}:</span>
+                        <span class="stat-value" id="cleanupImages">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">{% trans "Unused Volumes" %}:</span>
+                        <span class="stat-value" id="cleanupVolumes">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closePurgeModal()">{% trans "Cancel" %}</button>
+            <button type="button" class="btn btn-info" onclick="estimateCleanup()" id="estimateBtn">{% trans "Estimate Cleanup" %}</button>
+            <button type="button" class="btn btn-danger" onclick="executePurge()" id="executeBtn" disabled>{% trans "Execute Purge" %}</button>
+        </div>
+    </div>
+</div>
+
+<!-- Purge Progress Modal -->
+<div class="modal-overlay" id="purgeProgressModal">
+    <div class="modal-content progress-modal">
+        <div class="modal-header">
+            <div class="modal-icon danger">
+                <i class="fas fa-broom fa-spin"></i>
+            </div>
+            <h3>{% trans "Purging System" %}</h3>
+        </div>
+        <div class="modal-body">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="purgeProgress"></div>
+                </div>
+                <div class="progress-text" id="purgeProgressText">{% trans "Preparing purge..." %}</div>
+            </div>
+            <div class="purge-logs" id="purgeLogs">
+                <div class="log-line">{% trans "Starting purge process..." %}</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" onclick="cancelPurge()">
+                <i class="fas fa-times"></i>
+                {% trans "Cancel Purge" %}
+            </button>
+        </div>
+    </div>
+</div>

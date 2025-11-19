@@ -1,0 +1,100 @@
+<!-- Service Logs Modal -->
+<div class="modal" id="serviceLogsModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-file-alt"></i>
+                    Service Logs
+                </h3>
+                <button class="modal-close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="logs-controls">
+                    <div class="logs-filter">
+                        <label for="logsServiceFilter">Service:</label>
+                        <select id="logsServiceFilter" class="form-control">
+                            <option value="">All Services</option>
+                        </select>
+                    </div>
+                    <div class="logs-filter">
+                        <label for="logsLines">Lines:</label>
+                        <select id="logsLines" class="form-control">
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                            <option value="500">500</option>
+                        </select>
+                    </div>
+                    <button class="btn-refresh-logs" id="refreshLogs">
+                        <i class="fas fa-sync"></i>
+                        Refresh
+                    </button>
+                    <button class="btn-clear-logs" id="clearLogs">
+                        <i class="fas fa-trash"></i>
+                        Clear
+                    </button>
+                </div>
+                
+                <div class="logs-container">
+                    <div class="logs-content" id="logsContent">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Loading logs...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Logs Modal -->
+<div class="modal" id="systemLogsModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-clipboard-list"></i>
+                    System Logs
+                </h3>
+                <button class="modal-close" data-dismiss="modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="system-logs-controls">
+                    <div class="logs-filter">
+                        <label for="logPage">Page:</label>
+                        <select id="logPage" class="form-control">
+                            <option value="1">Page 1</option>
+                        </select>
+                    </div>
+                    <div class="logs-filter">
+                        <label for="logPerPage">Per Page:</label>
+                        <select id="logPerPage" class="form-control">
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="200">200</option>
+                        </select>
+                    </div>
+                    <button class="btn-refresh-logs" id="refreshSystemLogs">
+                        <i class="fas fa-sync"></i>
+                        Refresh
+                    </button>
+                </div>
+                
+                <div class="system-logs-container">
+                    <div class="system-logs-content" id="systemLogsContent">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Loading system logs...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

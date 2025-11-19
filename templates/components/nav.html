@@ -1,0 +1,487 @@
+<!-- Top Navigation (Centered, Header-compatible) -->
+{% load i18n %}
+<nav class="top-nav">
+    <ul class="top-nav-root">
+        <li class="top-nav-item has-dropdown" data-section="security">
+            <button class="top-nav-link" type="button" aria-expanded="false" title="{% trans 'Security' %}">
+                <span>{% trans "Security" %}</span>
+            </button>
+            <ul class="dropdown" hidden>
+                <li><a href="/package-manager/" class="dropdown-link">{% trans "Package Manager" %}</a></li>
+                <li><a href="/dev-packages/" class="dropdown-link">{% trans "Developer Packages" %}</a></li>
+                <li><a href="{% url 'cve_scanner:index' %}" class="dropdown-link">{% trans "CVE Scanner" %}</a></li>
+            </ul>
+        </li>
+
+        <li class="top-nav-item has-dropdown" data-section="network">
+            <button class="top-nav-link" type="button" aria-expanded="false" title="{% trans 'Network' %}">
+                <span>{% trans "Network" %}</span>
+            </button>
+            <ul class="dropdown" hidden>
+                <li><a href="{% url 'process_monitor:index' %}" class="dropdown-link">{% trans "Process Monitor" %}</a></li>
+                <li><a href="{% url 'service_monitoring:index' %}" class="dropdown-link">{% trans "Service Monitor" %}</a></li>
+                <li><a href="{% url 'service_builder:index' %}" class="dropdown-link">{% trans "Service Builder" %}</a></li>
+            </ul>
+        </li>
+
+        <li class="top-nav-item has-dropdown" data-section="system">
+            <button class="top-nav-link" type="button" aria-expanded="false" title="{% trans 'System' %}">
+                <span>{% trans "System" %}</span>
+            </button>
+            <ul class="dropdown" hidden>
+                <li><a href="{% url 'process_topology:index' %}" class="dropdown-link">{% trans "Process Topology" %}</a></li>
+                <li><a href="{% url 'system_logs:page' %}" class="dropdown-link">{% trans "System Logs" %}</a></li>
+                <li><a href="{% url 'user_management:index' %}" class="dropdown-link">{% trans "User Management" %}</a></li>
+                <li><a href="{% url 'firewall:selection' %}" class="dropdown-link">{% trans "Firewall" %}</a></li>
+                <li><a href="{% url 'system_information:index' %}" class="dropdown-link">{% trans "System Information" %}</a></li>
+                <li><a href="{% url 'docker_manager:index' %}" class="dropdown-link">{% trans "Docker Manager" %}</a></li>
+            </ul>
+        </li>
+
+        {% if plugins_by_category %}
+        <li class="top-nav-item has-dropdown" data-section="plugins">
+            <button class="top-nav-link" type="button" aria-expanded="false" title="{% trans 'Plugins' %}">
+                <span>{% trans "Plugins" %}</span>
+            </button>
+            <ul class="dropdown plugins-category-dropdown" hidden>
+                <li>
+                    <a href="{% url 'plugins:list' %}" class="dropdown-link dropdown-link-strong">
+                        <span>{% trans "Plugin Management" %}</span>
+                    </a>
+                </li>
+                <li class="dropdown-divider"></li>
+                {% for category in plugins_by_category %}
+                <li class="dropdown-category" data-category="{{ category.key }}" data-category-url="{% url 'plugins:list' %}?category={{ category.key }}">
+                    <button type="button" class="dropdown-category-link">
+                        <span class="category-name">{{ category.name }}</span>
+                        <span class="category-count">{{ category.count }}</span>
+                        {% if category.plugins|length > 0 %}
+                        <span class="category-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                        {% endif %}
+                    </button>
+                    {% if category.plugins|length > 0 %}
+                    <ul class="dropdown-submenu" hidden>
+                        {% for plugin in category.plugins %}
+                        <li>
+                            <a href="/{{ plugin.route }}/" class="dropdown-link dropdown-link-sub">
+                                <span>{{ plugin.display_name }}</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </li>
+                {% empty %}
+                <li><span class="dropdown-link" style="color: #9ca3af; cursor: default;">{% trans "No plugins installed" %}</span></li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<script>
+(function(){
+    const nav = document.currentScript && document.currentScript.previousElementSibling;
+    const root = nav ? nav : document;
+    const topNav = document.querySelector('.top-nav');
+    const mobileToggle = document.getElementById('mobileMenuToggle');
+    
+    // Mobile menu toggle
+    if (mobileToggle && topNav) {
+        mobileToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            topNav.classList.toggle('mobile-open');
+            mobileToggle.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            if (icon) {
+                if (topNav.classList.contains('mobile-open')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (topNav && topNav.classList.contains('mobile-open')) {
+                if (!topNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    topNav.classList.remove('mobile-open');
+                    mobileToggle.classList.remove('active');
+                    const icon = mobileToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+            }
+        });
+    }
+    
+    const closePluginSubmenus = () => {
+        root.querySelectorAll('.plugins-category-dropdown .dropdown-submenu').forEach(sub => {
+            sub.hidden = true;
+        });
+        root.querySelectorAll('.plugins-category-dropdown .dropdown-category').forEach(cat => {
+            cat.classList.remove('submenu-open');
+        });
+    };
+    
+    // Plugin menüsü için click ile açılma
+    root.querySelectorAll('.has-dropdown[data-section="plugins"] > .top-nav-link').forEach(btn => {
+        btn.addEventListener('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Close other open dropdowns first
+            const allOpen = root.querySelectorAll('.has-dropdown.open');
+            allOpen.forEach(item => {
+                if (item !== this.closest('.has-dropdown')) {
+                    item.classList.remove('open');
+                    const otherBtn = item.querySelector('.top-nav-link');
+                    const otherMenu = item.querySelector('.dropdown');
+                    if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                    if (otherMenu) otherMenu.hidden = true;
+                }
+            });
+            
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', String(!expanded));
+            const parent = this.closest('.has-dropdown');
+            const menu = parent && parent.querySelector('.dropdown');
+            if (menu) {
+                if (window.innerWidth > 900) {
+                    // Desktop: use hidden attribute
+                    menu.hidden = expanded;
+                } else {
+                    // Mobile: use hidden attribute for proper toggle
+                    if (expanded) {
+                        menu.hidden = true;
+                    } else {
+                        menu.hidden = false;
+                    }
+                }
+                parent.classList.toggle('open', !expanded);
+                
+                if (expanded) {
+                    closePluginSubmenus();
+                }
+            }
+        });
+    });
+    
+    // Plugin kategorilerinde click ile alt menüyü göster
+    root.querySelectorAll('.plugins-category-dropdown .dropdown-category-link').forEach(btn => {
+        btn.addEventListener('click', function(e){
+            const parent = this.closest('.dropdown-category');
+            const submenu = parent && parent.querySelector('.dropdown-submenu');
+            if (!submenu || submenu.children.length === 0) {
+                // Alt menü yoksa kategori sayfasına yönlendir
+                const targetUrl = parent ? parent.getAttribute('data-category-url') : null;
+                if (targetUrl) {
+                    window.location.href = targetUrl;
+                }
+                return;
+            }
+            
+            e.preventDefault();
+            const isOpen = parent.classList.contains('submenu-open');
+            closePluginSubmenus();
+            if (!isOpen) {
+                submenu.hidden = false;
+                parent.classList.add('submenu-open');
+            }
+        });
+    });
+    
+    // Diğer menüler için hover ile açılma (desktop only)
+    if (window.innerWidth > 900) {
+        root.querySelectorAll('.has-dropdown:not([data-section="plugins"])').forEach(item => {
+            const btn = item.querySelector('.top-nav-link');
+            const menu = item.querySelector('.dropdown');
+            
+            if (btn && menu) {
+                item.addEventListener('mouseenter', function() {
+                    menu.hidden = false;
+                    btn.setAttribute('aria-expanded', 'true');
+                    item.classList.add('open');
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    menu.hidden = true;
+                    btn.setAttribute('aria-expanded', 'false');
+                    item.classList.remove('open');
+                });
+            }
+        });
+    }
+    
+    // Close on outside click (desktop only)
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth > 900) {
+            const open = root.querySelectorAll('.has-dropdown.open');
+            open.forEach(item => {
+                if (!item.contains(e.target)) {
+                    item.classList.remove('open');
+                    const btn = item.querySelector('.top-nav-link');
+                    const dd = item.querySelector('.dropdown');
+                    if (btn) btn.setAttribute('aria-expanded', 'false');
+                    if (dd) dd.hidden = true;
+                    if (item.dataset.section === 'plugins') {
+                        closePluginSubmenus();
+                    }
+                }
+            });
+        }
+    });
+})();
+</script>
+
+<style>
+/* Minimal, clean navigation */
+.top-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; justify-content: center; width: auto; }
+.top-nav-root { display: flex; align-items: center; gap: 0; list-style: none; margin: 0; padding: 0; }
+.top-nav-item { position: relative; }
+
+/* Clean button styling */
+.top-nav-link { display: flex; align-items: center; padding: 12px 20px; background: transparent; border: none; color: var(--header-fg, #ffffff); cursor: pointer; font-weight: 500; font-size: 14px; letter-spacing: 0.3px; transition: all 0.2s ease; position: relative; }
+.top-nav-link:hover { background: rgba(255,255,255,.08); }
+.top-nav-link:active,
+.top-nav-link:focus { background: transparent; outline: none; }
+.has-dropdown.open > .top-nav-link { background: transparent; }
+.has-dropdown.open > .top-nav-link:hover { background: rgba(255,255,255,.08); }
+
+/* Plugin badge */
+.plugin-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 6px;
+    margin-left: 6px;
+    background: rgba(102, 126, 234, 0.9);
+    color: #ffffff;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* Minimal dropdown */
+.dropdown { position: absolute; top: calc(100% + 4px); left: 50%; transform: translateX(-50%); min-width: 200px; background: rgba(0,0,0,.95); border: none; box-shadow: 0 4px 20px rgba(0,0,0,.4); border-radius: 6px; padding: 8px 0; z-index: 1000; backdrop-filter: blur(8px); opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-8px); transition: all 0.2s ease; }
+.has-dropdown.open .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+.dropdown-link { display: block; padding: 10px 16px; color: #e5e7eb; text-decoration: none; font-weight: 400; font-size: 13px; transition: all 0.15s ease; }
+.dropdown-link:hover { background: rgba(255,255,255,.06); color: #ffffff; }
+.dropdown-link-strong { font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.15); margin-bottom: 4px; }
+.dropdown-link-sub { padding-left: 32px; font-size: 12px; color: #cbd5e0; }
+.dropdown-link-sub:hover { color: #ffffff; }
+
+/* Plugin Category Dropdown Styles */
+.plugins-category-dropdown .dropdown-category {
+    position: relative;
+}
+
+.plugins-category-dropdown .dropdown-category-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    color: #e5e7eb;
+    background: none !important;
+    border: none;
+    font-weight: 500;
+    font-size: 13px;
+    transition: all 0.15s ease;
+    position: relative;
+    text-align: left;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.plugins-category-dropdown .dropdown-category-link:hover {
+    background: rgba(255,255,255,.08) !important;
+    color: #ffffff;
+}
+
+.plugins-category-dropdown .dropdown-category-link:active,
+.plugins-category-dropdown .dropdown-category-link:focus,
+.plugins-category-dropdown .dropdown-category-link:visited,
+.plugins-category-dropdown .dropdown-category-link:focus-visible {
+    background: rgba(255,255,255,.08) !important;
+    color: #ffffff !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Button için özel stiller */
+.plugins-category-dropdown .dropdown-category-link[type="button"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.plugins-category-dropdown .dropdown-category-link[type="button"]:active {
+    background: rgba(255,255,255,.08) !important;
+    color: #ffffff !important;
+    transform: none;
+}
+
+.plugins-category-dropdown .category-count {
+    background: rgba(102, 126, 234, 0.3);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.plugins-category-dropdown .category-toggle {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 10px;
+    transition: transform 0.2s ease;
+}
+
+.plugins-category-dropdown .dropdown-category.submenu-open .category-toggle i {
+    transform: rotate(180deg);
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 4px 0;
+}
+
+.plugins-category-dropdown .dropdown-submenu {
+    display: none;
+    padding-left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.plugins-category-dropdown .dropdown-submenu[hidden] {
+    display: none;
+}
+
+.plugins-category-dropdown .dropdown-category.submenu-open .dropdown-submenu {
+    display: block;
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 900px) {
+  .top-nav { 
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    transform: translateX(0);
+    width: 100%;
+    background: rgba(0, 0, 0, 0.98);
+    backdrop-filter: blur(10px);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .top-nav.mobile-open {
+    max-height: 80vh;
+    opacity: 1;
+    overflow-y: auto;
+  }
+  
+  .top-nav-root {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    padding: 8px 0;
+  }
+  
+  .top-nav-item {
+    width: 100%;
+  }
+  
+  .top-nav-link {
+    width: 100%;
+    padding: 14px 20px;
+    justify-content: space-between;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .top-nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .dropdown {
+    position: static;
+    transform: none;
+    width: 100%;
+    min-width: auto;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .has-dropdown.open .dropdown {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  
+  .has-dropdown .dropdown[hidden] {
+    display: none !important;
+    max-height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  
+  .has-dropdown.open .dropdown:not([hidden]) {
+    display: block;
+  }
+  
+  .dropdown-link {
+    padding: 12px 20px 12px 40px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .dropdown-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+@media (max-width: 768px) {
+  .top-nav {
+    top: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-nav {
+    top: 44px;
+  }
+}
+</style>
+

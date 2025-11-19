@@ -1,0 +1,335 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Process Monitor" %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+    
+    <!-- Process Monitor CSS -->
+    <link rel="stylesheet" href="{% static 'css/process_monitor/style.css' %}">
+    
+    <!-- IP Details CSS removed - not used -->
+    
+    <!-- IP Analysis CSS -->
+    <link rel="stylesheet" href="{% static 'css/process_monitor/ip_analysis.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="process-monitor-main">
+            <!-- Page Header -->
+            <div class="process-header">
+                <div class="process-header-top">
+                    <div class="process-title-section">
+                        <h1>
+                            <i class="fas fa-network-wired"></i>
+                            {% trans "Process Monitor" %}
+                            <span id="wsIndicator" class="ws-indicator" title="{% trans 'Connecting...' %}"></span>
+                        </h1>
+                        <p>{% trans "Monitor and manage network processes and port connections" %}</p>
+                    </div>
+                    <div class="process-header-actions">
+                        <button id="pidGroupViewBtn" class="btn-secondary">
+                            <i class="fas fa-sitemap"></i>
+                            {% trans "By PID" %}
+                        </button>
+                        <button id="interfaceViewBtn" class="btn-secondary">
+                            <i class="fas fa-network-wired"></i>
+                            {% trans "By Interface" %}
+                        </button>
+                        <button id="ipAnalysisBtn" class="btn-secondary">
+                            <i class="fas fa-globe"></i>
+                            {% trans "By IP" %}
+                        </button>
+                        <button id="groupViewBtn" class="btn-secondary">
+                            <i class="fas fa-layer-group"></i>
+                            {% trans "Group View" %}
+                        </button>
+                        <button id="refreshConnections" class="btn-primary">
+                            <i class="fas fa-sync-alt"></i>
+                            {% trans "Refresh" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            {% if error %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-triangle"></i>
+                {% trans "Error" %}: {{ error }}
+            </div>
+            {% endif %}
+            
+            <!-- Main Content Grid -->
+            <div class="process-content-grid">
+                <!-- Left Column: Main Table -->
+                <div class="process-main-column">
+                    <!-- Main Card -->
+                    <div class="process-card">
+                <div class="process-card-header">
+                    <h3 class="process-card-title">
+                        <i class="fas fa-plug"></i>
+                        {% trans "Active Connections" %}
+                    </h3>
+                    <div class="process-card-actions">
+                        <span style="color: #718096; font-size: 14px;">
+                            {% trans "Total" %}: <strong id="totalConnections">{{ connections|length }}</strong> {% trans "connections" %}
+                        </span>
+                    </div>
+                </div>
+                <div class="process-card-body">
+                    <div class="table-wrapper">
+                        <table class="process-table" id="connectionsTable">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "PID" %}</th>
+                                    <th>{% trans "Process" %}</th>
+                                    <th>{% trans "Protocol" %}</th>
+                                    <th>{% trans "Local Address" %}</th>
+                                    <th>{% trans "Remote Address" %}</th>
+                                    <th>{% trans "Status" %}</th>
+                                    <th>{% trans "Memory" %}</th>
+                                    <th>{% trans "CPU" %}</th>
+                                    <th>{% trans "Actions" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody id="connectionsBody">
+                                {% for conn in connections %}
+                                <tr>
+                                    <td><span class="pid-badge">{{ conn.pid|default:"-" }}</span></td>
+                                    <td class="process-name">{{ conn.process_name|default:"Unknown" }}</td>
+                                    <td><span class="badge badge-protocol">{{ conn.protocol }}</span></td>
+                                    <td class="address-cell">{{ conn.local_address }}</td>
+                                    <td class="address-cell">{{ conn.remote_address|default:"*:*" }}</td>
+                                    <td>
+                                        <span class="badge badge-status badge-{{ conn.status|lower }}">
+                                            {{ conn.status }}
+                                        </span>
+                                    </td>
+                                    <td>{{ conn.process_details.memory_percent|floatformat:1 }}%</td>
+                                    <td>{{ conn.process_details.cpu_percent|floatformat:1 }}%</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-icon btn-view-details" 
+                                                    data-pid="{{ conn.pid }}"
+                                                    title="{% trans 'View Details' %}">
+                                                <i class="fas fa-info-circle"></i>
+                                            </button>
+                                            {% if conn.pid and conn.pid != "-" %}
+                                            <button class="btn-icon btn-manage-process" 
+                                                    data-pid="{{ conn.pid }}"
+                                                    data-process-name="{{ conn.process_name|default:'Unknown' }}"
+                                                    title="{% trans 'Process Management' %}">
+                                                <i class="fas fa-cogs"></i>
+                                            </button>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="9" class="empty-state">
+                                        <i class="fas fa-inbox"></i>
+                                        <span>{% trans "No connections found" %}</span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+                </div>
+                
+                <!-- Right Column: Most Used Ports -->
+                <div class="process-sidebar-column">
+                    <div class="ports-widget">
+                        <div class="ports-widget-header">
+                            <h3 class="ports-widget-title">
+                                <i class="fas fa-chart-bar"></i>
+                                {% trans "Most Used Ports" %}
+                            </h3>
+                            <button id="showAllPortsBtn" class="btn-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                {% trans "View All" %}
+                            </button>
+                        </div>
+                        <div class="ports-widget-body" id="portsWidgetBody">
+                            <div class="loading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>{% trans "Loading..." %}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Connection Search Widget -->
+                    <div class="search-widget">
+                        <div class="search-widget-header">
+                            <h3 class="search-widget-title">
+                                <i class="fas fa-search"></i>
+                                {% trans "Connection Search" %}
+                            </h3>
+                        </div>
+                        <div class="search-widget-body">
+                            <div class="search-form">
+                                <div class="search-type-selector">
+                                    <button class="search-type-btn active" data-type="pid">
+                                        <i class="fas fa-hashtag"></i>
+                                        {% trans "PID" %}
+                                    </button>
+                                    <button class="search-type-btn" data-type="port">
+                                        <i class="fas fa-network-wired"></i>
+                                        {% trans "Port" %}
+                                    </button>
+                                    <button class="search-type-btn" data-type="ip">
+                                        <i class="fas fa-globe"></i>
+                                        {% trans "IP" %}
+                                    </button>
+                                </div>
+                                <div class="search-input-group">
+                                    <input type="text" 
+                                           id="searchInput" 
+                                           class="search-input" 
+                                           placeholder="{% trans 'Enter PID to search...' %}"
+                                           autocomplete="off">
+                                    <button id="searchBtn" class="btn-search">
+                                        <i class="fas fa-search"></i>
+                                        {% trans "Search" %}
+                                    </button>
+                                </div>
+                                <div class="search-help-text">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span id="searchHelpText">{% trans "Search for all connections related to a specific PID" %}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Include Modal Templates -->
+    {% include 'modules/process_monitor/process_details.html' %}
+    {% include 'modules/process_monitor/process_management.html' %}
+    {% include 'modules/process_monitor/group_view.html' %}
+    {% include 'modules/process_monitor/interface_view.html' %}
+    {% include 'modules/process_monitor/port_details.html' %}
+    {% include 'modules/process_monitor/all_ports.html' %}
+    {% include 'modules/process_monitor/connection_search.html' %}
+    {% include 'modules/process_monitor/pid_group_view.html' %}
+    {% include 'modules/process_monitor/ip_analysis.html' %}
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- Initial Data (Server-Side) -->
+    <script>
+        // Initial data from server (Cache-First Loading)
+        window.INITIAL_CONNECTIONS = {{ connections_json|safe }};
+        window.LIVE_MODE_ENABLED = {{ live_mode_enabled|yesno:"true,false" }};
+        console.log('📦 Initial data loaded:', window.INITIAL_CONNECTIONS.length + ' connections');
+        console.log('🔧 Live mode:', window.LIVE_MODE_ENABLED ? 'Enabled' : 'Disabled');
+        
+        // JavaScript translations
+        window.jsTranslations = {
+            'no_connections_found': '{% trans "No connections found" %}',
+            'loading': '{% trans "Loading..." %}',
+            'error': '{% trans "Error" %}',
+            'unknown': '{% trans "Unknown" %}',
+            'view_details': '{% trans "View Details" %}',
+            'process_management': '{% trans "Process Management" %}',
+            'total': '{% trans "Total" %}',
+            'connections': '{% trans "connections" %}',
+            'pid': '{% trans "PID" %}',
+            'process': '{% trans "Process" %}',
+            'protocol': '{% trans "Protocol" %}',
+            'local_address': '{% trans "Local Address" %}',
+            'remote_address': '{% trans "Remote Address" %}',
+            'status': '{% trans "Status" %}',
+            'memory': '{% trans "Memory" %}',
+            'cpu': '{% trans "CPU" %}',
+            'actions': '{% trans "Actions" %}',
+            'most_used_ports': '{% trans "Most Used Ports" %}',
+            'view_all': '{% trans "View All" %}',
+            'connection_search': '{% trans "Connection Search" %}',
+            'port': '{% trans "Port" %}',
+            'ip': '{% trans "IP" %}',
+            'search': '{% trans "Search" %}',
+            'enter_pid_to_search': '{% trans "Enter PID to search..." %}',
+            'search_for_connections': '{% trans "Search for all connections related to a specific PID" %}',
+            'by_pid': '{% trans "By PID" %}',
+            'by_interface': '{% trans "By Interface" %}',
+            'by_ip': '{% trans "By IP" %}',
+            'group_view': '{% trans "Group View" %}',
+            'refresh': '{% trans "Refresh" %}',
+            'connecting': '{% trans "Connecting..." %}',
+            'live_mode_real_time': '{% trans "Live Mode: Real-time data streaming" %}',
+            'live_mode_disabled': '{% trans "Live Mode disabled" %}',
+            // Process Management translations
+            'process_management_warning': '{% trans "Please use operations carefully. Terminating system processes may cause system instability." %}',
+            'process_information': '{% trans "Process Information" %}',
+            'available_actions': '{% trans "Available Actions" %}',
+            'thread_count': '{% trans "Thread Count" %}',
+            'na': '{% trans "N/A" %}',
+            'stop_sigterm': '{% trans "Stop (SIGTERM)" %}',
+            'stop_sigterm_desc': '{% trans "Gracefully stops the process" %}',
+            'force_kill_sigkill': '{% trans "Force Kill (SIGKILL)" %}',
+            'force_kill_sigkill_desc': '{% trans "Forcefully terminates the process" %}',
+            'suspend_sigstop': '{% trans "Suspend (SIGSTOP)" %}',
+            'suspend_sigstop_desc': '{% trans "Suspends the process" %}',
+            'resume_sigcont': '{% trans "Resume (SIGCONT)" %}',
+            'resume_sigcont_desc': '{% trans "Resumes suspended process" %}',
+            'restart': '{% trans "Restart" %}',
+            'restart_desc': '{% trans "Stops and restarts the process" %}',
+            'confirm_action': '{% trans "Are you sure you want to {action} this process?" %}',
+            'operation_successful': '{% trans "Operation successful" %}',
+            'operation_failed': '{% trans "Operation failed" %}',
+            'operation_could_not_complete': '{% trans "Operation could not be completed" %}',
+            'action_stop': '{% trans "stop" %}',
+            'action_kill': '{% trans "kill" %}',
+            'action_suspend': '{% trans "suspend" %}',
+            'action_resume': '{% trans "resume" %}',
+            'action_restart': '{% trans "restart" %}'
+        };
+    </script>
+    
+    <!-- Header JavaScript -->
+    <script src="{% static 'js/components/header.js' %}"></script>
+    
+    <!-- Process Monitor JavaScript (Main) -->
+    <script src="{% static 'js/process_monitor/script.js' %}"></script>
+    
+    <!-- Process Monitor JavaScript (Search Module) -->
+    <script src="{% static 'js/process_monitor/search.js' %}"></script>
+    
+    <!-- Process Monitor JavaScript (PID Group Module) -->
+    <script src="{% static 'js/process_monitor/pid-group.js' %}"></script>
+    
+    <!-- Chart.js (Required for IP Analysis) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- IP Analysis JavaScript -->
+    <script src="{% static 'js/process_monitor/ip_analysis.js' %}"></script>
+    
+    <!-- IP Details Modal removed - not used -->
+</body>
+</html>
+

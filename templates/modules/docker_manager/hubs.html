@@ -1,0 +1,247 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Docker Hubs" %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/components/header.css' %}">
+    
+    <!-- Hubs CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/hubs.css' %}">
+    
+    <!-- Image Details Modal CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/image_details_modal.css' %}">
+    
+    <!-- Docker Manager CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/main.css' %}">
+    
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="docker-manager">
+                <!-- Header -->
+                <div class="docker-header">
+                    <div class="header-left">
+                        <h1 class="docker-title">{% trans "Docker Manager" %}</h1>
+                        <span class="feedback-link">{% trans "Give feedback" %}</span>
+                    </div>
+                </div>
+
+                <!-- Docker Navigation -->
+                <div class="docker-nav">
+                    <div class="docker-nav-container">
+                        <a href="{% url 'docker_manager:index' %}" class="docker-nav-item">
+                            <i class="fas fa-cube"></i>
+                            <span>{% trans "Containers" %}</span>
+                        </a>
+                        <a href="{% url 'docker_manager:images' %}" class="docker-nav-item">
+                            <i class="fas fa-images"></i>
+                            <span>Images</span>
+                        </a>
+                        <a href="{% url 'docker_manager:volumes' %}" class="docker-nav-item">
+                            <i class="fas fa-database"></i>
+                            <span>{% trans "Volumes" %}</span>
+                        </a>
+                        <a href="{% url 'docker_manager:hubs' %}" class="docker-nav-item active">
+                            <i class="fas fa-cube"></i>
+                            <span>{% trans "Hubs" %}</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hubs Content -->
+                <div class="docker-content">
+                    <div class="content-header">
+                        <div class="header-left">
+                            <h2>{% trans "Docker Hub" %}</h2>
+                            <p>{% trans "Discover and manage Docker images, extensions, and plugins" %}</p>
+                            <div class="hub-stats">
+                                <div class="stat-item">
+                                    <i class="fas fa-database"></i>
+                                    <span>{% trans "Cache" %}: {{ cache_info.total_files }} {% trans "files" %}</span>
+                                </div>
+                                <div class="stat-item">
+                                    <i class="fas fa-images"></i>
+                                    <span>{{ total_images }} {% trans "official images" %}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-right">
+                            <div class="cache-actions">
+                                <button class="btn btn-sm btn-primary" onclick="refreshAllData()" title="{% trans 'Refresh All Data' %}">
+                                    <i class="fas fa-sync"></i>
+                                    {% trans "Refresh All" %}
+                                </button>
+                                <button class="btn btn-sm btn-outline" onclick="clearCache()" title="{% trans 'Clear Cache' %}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Search and Filters -->
+                    <div class="hub-search-section">
+                        <div class="search-container">
+                            <div class="search-input-group">
+                                <input type="text" id="hubSearch" placeholder="{% trans 'Search Docker Hub...' %}" class="search-input">
+                                <button class="search-btn" onclick="searchHub()" title="{% trans 'Search' %}">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <button class="clear-btn" onclick="clearSearch()" title="{% trans 'Clear Search' %}">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Content Tabs -->
+                    <div class="hub-tabs">
+                        <div class="tab-nav">
+                            <button class="tab-btn active" data-tab="images" onclick="switchTab('images')">
+                                <i class="fas fa-images"></i>
+                                <span>{% trans "Docker Images" %}</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Images Tab -->
+                        <div class="tab-content active" id="images-tab">
+                            <div class="hub-results">
+                                <div class="results-header">
+                                    <h3>{% trans "Docker Official Images" %}</h3>
+                                    <div class="results-count">
+                                        <span id="imagesCount">{{ total_images }}</span> {% trans "official images" %}
+                                    </div>
+                                </div>
+                                
+                                <div class="loading-indicator" id="imagesLoading">
+                                    <div class="loading-spinner"></div>
+                                    <p>{% trans "Loading..." %}</p>
+                                    <p>{% trans "Please wait while we fetch the data" %}</p>
+                                </div>
+                                
+                                <div class="images-grid" id="imagesGrid" style="display: none;">
+                                    <!-- Images will be loaded dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Progress Modal -->
+    <div id="progressModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{% trans "Refreshing Docker Hub Data" %}</h3>
+                <button class="modal-close" onclick="hideProgressModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">0%</div>
+                </div>
+                <div class="progress-details" id="progressDetails">
+                    <div class="progress-item">
+                        <span class="progress-label">{% trans "Status" %}:</span>
+                        <span class="progress-value" id="progressStatus">{% trans "Initializing..." %}</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="progress-label">{% trans "Images Loaded" %}:</span>
+                        <span class="progress-value" id="imagesLoaded">0</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="progress-label">{% trans "Categories Loaded" %}:</span>
+                        <span class="progress-value" id="categoriesLoaded">0</span>
+                    </div>
+                    <div class="progress-item">
+                        <span class="progress-label">{% trans "Time Elapsed" %}:</span>
+                        <span class="progress-value" id="timeElapsed">0s</span>
+                    </div>
+                </div>
+                <div class="progress-message" id="progressMessage">
+                    {% trans "Starting refresh process..." %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = {
+            'Official': '{% trans "Official" %}',
+            'No description available': '{% trans "No description available" %}',
+            'Pull': '{% trans "Pull" %}',
+            'Details': '{% trans "Details" %}',
+            'Image': '{% trans "Image" %}',
+            'is being pulled...': '{% trans "is being pulled..." %}',
+            'Pull failed': '{% trans "Pull failed" %}',
+            'Modal function not available': '{% trans "Modal function not available" %}',
+            'Failed to load image details': '{% trans "Failed to load image details" %}',
+            'Error loading image details': '{% trans "Error loading image details" %}',
+            'Cache refreshed': '{% trans "Cache refreshed" %}',
+            'Cache refresh failed': '{% trans "Cache refresh failed" %}',
+            'Cache refreshed!': '{% trans "Cache refreshed!" %}',
+            'Cache refreshed successfully!': '{% trans "Cache refreshed successfully!" %}',
+            'Refresh failed': '{% trans "Refresh failed" %}',
+            'Initializing refresh...': '{% trans "Initializing refresh..." %}',
+            'Loading categories...': '{% trans "Loading categories..." %}',
+            'Loading popular images...': '{% trans "Loading popular images..." %}',
+            'Optimizing cache...': '{% trans "Optimizing cache..." %}',
+            'Finalizing refresh...': '{% trans "Finalizing refresh..." %}',
+            'Refresh completed!': '{% trans "Refresh completed!" %}',
+            'Are you sure you want to clear the cache?': '{% trans "Are you sure you want to clear the cache?" %}',
+            'Cache cleared': '{% trans "Cache cleared" %}',
+            'Cache clear failed': '{% trans "Cache clear failed" %}',
+            'Loading...': '{% trans "Loading..." %}',
+            'Please wait while we fetch the data': '{% trans "Please wait while we fetch the data" %}',
+            'Starting refresh process...': '{% trans "Starting refresh process..." %}',
+            'Yes': '{% trans "Yes" %}',
+            'No': '{% trans "No" %}',
+            'Unknown': '{% trans "Unknown" %}',
+            'No image selected': '{% trans "No image selected" %}',
+            'Pulling...': '{% trans "Pulling..." %}',
+            'Pull error': '{% trans "Pull error" %}',
+            'Invalid date': '{% trans "Invalid date" %}',
+            'Pulling': '{% trans "Pulling" %}',
+            'pulled successfully': '{% trans "pulled successfully" %}',
+            'Failed to pull': '{% trans "Failed to pull" %}'
+        };
+    </script>
+    
+    <!-- Image Details Modal -->
+    {% include 'modules/docker_manager/image_details_modal.html' %}
+    
+    <!-- Header JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+    
+    <!-- Image Details Modal JavaScript -->
+    <script src="{% load static %}{% static 'js/docker_manager/image_details_modal.js' %}"></script>
+    
+    <!-- Hubs JavaScript -->
+    <script src="{% load static %}{% static 'js/docker_manager/hubs.js' %}"></script>
+    
+</body>
+</html>

@@ -1,0 +1,103 @@
+landing-pages
+venv
+testes-coder
+.cache
+cache/*
+logger/*
+
+celerybeat-schedule
+celerybeat-schedule-shm
+celerybeat-schedule-wal
+cookies.txt
+
+db.sqlite3  
+
+pids/*
+logs/
+venv/
+.venv/  
+
+# Django generated files
+staticfiles/*
+!staticfiles/.gitkeep
+*.pyc
+__pycache__/
+*.pyo
+*.log
+
+# Media files (user uploads)
+media/profiles/*
+!media/profiles/.gitkeep
+
+# Compiled translation files (auto-generated from .po files)
+*.mo
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Coverage and test files
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+coverage.xml
+*.cover
+
+# Celery
+celerybeat-schedule*
+celerybeat.pid
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.development
+.env.test
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-shm
+*.sqlite3-wal
+*.sqlite3-lock
+*.sqlite3-lock-shm
+*.sqlite3-lock-wal
+*.sqlite3-lock-shm-wal
+*.sqlite3-lock-shm-wal-lock
+*.sqlite3-lock-shm-wal-lock-shm
+
+# SDK - Closed Source (only binary and essential files are public)
+# Ignore all SDK source code
+sdk/*
+
+# But allow these public files
+!sdk/bin/
+!sdk/bin/ophiron-sdk
+!sdk/Makefile
+!sdk/README.md
+
+# Ignore SDK source files even if accidentally added
+sdk/**/*.go
+sdk/**/*.c
+sdk/**/*.cpp
+sdk/**/*.h
+sdk/**/*.hpp
+sdk/**/*.rs
+sdk/**/*.java
+sdk/**/*.py
+sdk/**/*.js
+sdk/**/*.ts
+
+# Downloaded plugins
+plugins/downloader/*
+!plugins/downloader/.gitkeep
+!plugins/downloader/README.md

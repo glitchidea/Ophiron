@@ -1,0 +1,109 @@
+{% load i18n %}
+<div class="modal fade" id="ownLogsAnalysisModal" tabindex="-1" aria-labelledby="ownLogsAnalysisLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content own-logs-analysis">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ownLogsAnalysisLabel"><i class="fas fa-chart-pie"></i> {% trans "Application Logs Analysis" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="ownLogsAnalysisLoading" class="analysis-loading">
+                    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+                    <span class="ms-2">{% trans "Collecting and analyzing logs..." %}</span>
+                </div>
+
+                <div id="ownLogsAnalysisContent" class="d-none">
+                    <div class="analysis-grid">
+                        <section class="analysis-card">
+                            <header class="analysis-card-header">
+                                <h6><i class="fas fa-info-circle"></i> {% trans "Overview" %}</h6>
+                            </header>
+                            <div class="analysis-card-body">
+                                <div class="overview-metrics">
+                                    <div class="metric"><span class="metric-label">{% trans "Total Lines" %}</span><span id="metricTotalLines" class="metric-value">0</span></div>
+                                    <div class="metric"><span class="metric-label">{% trans "Categories" %}</span><span id="metricCategories" class="metric-value">0</span></div>
+                                    <div class="metric"><span class="metric-label">{% trans "Files" %}</span><span id="metricFiles" class="metric-value">0</span></div>
+                                </div>
+                                <div class="overview-summaries">
+                                    <div class="summary">
+                                        <h6 class="summary-title">{% trans "Levels Summary" %}</h6>
+                                        <table class="table table-sm table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>{% trans "Level" %}</th>
+                                                    <th class="text-end">{% trans "Count" %}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableLevelsSummary"></tbody>
+                                        </table>
+                                    </div>
+                                    <div class="summary">
+                                        <h6 class="summary-title">{% trans "By Category Summary" %}</h6>
+                                        <table class="table table-sm table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>{% trans "Category" %}</th>
+                                                    <th class="text-end">{% trans "Lines" %}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tableByCategorySummary"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="analysis-card">
+                            <header class="analysis-card-header">
+                                <h6><i class="fas fa-dot-circle"></i> {% trans "Levels (Pie)" %}</h6>
+                            </header>
+                            <div class="analysis-card-body">
+                                <canvas id="chartLevelsPie" height="180"></canvas>
+                            </div>
+                        </section>
+
+                        <section class="analysis-card">
+                            <header class="analysis-card-header">
+                                <h6><i class="fas fa-list"></i> {% trans "By Category (Bar)" %}</h6>
+                            </header>
+                            <div class="analysis-card-body">
+                                <canvas id="chartByCategory" height="180"></canvas>
+                            </div>
+                        </section>
+
+                        <section class="analysis-card">
+                            <header class="analysis-card-header">
+                                <h6><i class="fas fa-clock"></i> {% trans "Timeline (Last 24h)" %}</h6>
+                            </header>
+                            <div class="analysis-card-body">
+                                <canvas id="chartTimeline" height="180"></canvas>
+                            </div>
+                        </section>
+
+                        <section class="analysis-card analysis-table">
+                            <header class="analysis-card-header">
+                                <h6><i class="fas fa-bug"></i> {% trans "Top Error Messages" %}</h6>
+                            </header>
+                            <div class="analysis-card-body">
+                                <table class="table table-sm table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:70%">{% trans "Message" %}</th>
+                                            <th class="text-end" style="width:30%">{% trans "Count" %}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableTopErrors"></tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

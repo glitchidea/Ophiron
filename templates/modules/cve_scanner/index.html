@@ -1,0 +1,186 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% trans "CVE Scanner" %} - Ophiron</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cve_scanner/style.css' %}">
+
+    <script defer src="{% static 'js/components/header.js' %}"></script>
+
+</head>
+<body>
+    <div class="dashboard-container">
+        {% include 'components/header.html' %}
+
+        <main class="cve-scanner-main">
+            <div class="cve-header">
+                <div class="cve-header-top">
+                    <div class="cve-title-section">
+                        <h1>
+                            <i class="fas fa-shield-alt"></i>
+                            {% trans "CVE Scanner" %}
+                        </h1>
+                        <p>{% trans "Scan installed packages against OS-specific CVE advisories" %}</p>
+                    </div>
+                    <div class="cve-header-actions">
+                        <button id="scanNowBtn" class="btn-primary">
+                            <i class="fas fa-magnifying-glass"></i>
+                            {% trans "Scan Now" %}
+                        </button>
+                        <button id="refreshBtn" class="btn-secondary">
+                            <i class="fas fa-sync-alt"></i>
+                            {% trans "Refresh" %}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="cve-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalInstalled">{{ totals.installed|default:0 }}</div>
+                            <div class="stat-label">{% trans "Installed Packages" %}</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon danger">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="totalMatched">{{ totals.matched|default:0 }}</div>
+                            <div class="stat-label">{% trans "Matched CVEs" %}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cve-content">
+                <div class="cve-table-container">
+                    <table class="cve-table" id="cveTable">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Package" %}</th>
+                                <th>{% trans "Installed Version" %}</th>
+                                <th>{% trans "Advisory" %}</th>
+                                <th>{% trans "Issues" %}</th>
+                                <th>{% trans "Severity" %}</th>
+                                <th>{% trans "Fixed" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cveTableBody">
+                            {% for m in matched %}
+                            <tr>
+                                <td><span class="package-name">{{ m.package }}</span></td>
+                                <td><span class="version-info">{{ m.installed_version }}</span></td>
+                                <td><span class="advisory-name">{{ m.advisory }}</span></td>
+                                <td>
+                                    <div class="issues-list">
+                                        {% for i in m.issues %}
+                                            <span class="badge badge-status">{{ i }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </td>
+                                <td>
+                                    {% if m.severity %}
+                                        <span class="badge badge-severity-{{ m.severity|lower }}">{{ m.severity }}</span>
+                                    {% else %}
+                                        <span class="badge badge-severity-unknown">Unknown</span>
+                                    {% endif %}
+                                </td>
+                                <td><span class="version-info">{{ m.fixed|default:"-" }}</span></td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="loading-cell">
+                                    <i class="fas fa-inbox"></i>
+                                    {% trans "No matched CVEs yet. Run a scan." %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const scanBtn = document.getElementById('scanNowBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const totalMatched = document.getElementById('totalMatched');
+        const totalInstalled = document.getElementById('totalInstalled');
+        const bodyEl = document.getElementById('cveTableBody');
+
+        function renderRows(items) {
+            if (!items || !items.length) {
+                bodyEl.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="loading-cell">
+                            <i class="fas fa-inbox"></i>
+                            {% trans "No matched CVEs yet. Run a scan." %}
+                        </td>
+                    </tr>`;
+                return;
+            }
+            bodyEl.innerHTML = items.map(m => `
+                <tr>
+                    <td><span class="package-name">${m.package}</span></td>
+                    <td><span class="version-info">${m.installed_version}</span></td>
+                    <td><span class="advisory-name">${m.advisory}</span></td>
+                    <td>
+                        <div class="issues-list">
+                            ${(m.issues || []).map(i => `<span class="badge badge-status">${i}</span>`).join('')}
+                        </div>
+                    </td>
+                    <td>
+                        <span class="badge badge-severity-${(m.severity || 'unknown').toLowerCase()}">${m.severity || 'Unknown'}</span>
+                    </td>
+                    <td><span class="version-info">${m.fixed || '-'}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        async function runScan(refresh=false) {
+            scanBtn.disabled = true;
+            scanBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {% trans "Scanning" %}';
+            try {
+                const resp = await fetch(window.location.pathname + 'scan/?refresh=' + (refresh ? '1' : '0'), {
+                    method: 'POST',
+                    headers: { 'X-Requested-With': 'XMLHttpRequest', 'X-CSRFToken': (document.querySelector('input[name=csrfmiddlewaretoken]')||{}).value }
+                });
+                const data = await resp.json();
+                if (data && data.ok) {
+                    totalMatched.textContent = data.total_matched;
+                    totalInstalled.textContent = data.total_installed;
+                    renderRows(data.matched);
+                } else {
+                    alert((data && data.error) || 'Error');
+                }
+            } catch (e) {
+                alert(String(e));
+            } finally {
+                scanBtn.disabled = false;
+                scanBtn.innerHTML = '<i class="fas fa-magnifying-glass"></i> {% trans "Scan Now" %}';
+            }
+        }
+
+        scanBtn.addEventListener('click', () => runScan(true));
+        refreshBtn.addEventListener('click', () => runScan(false));
+    </script>
+
+    {% csrf_token %}
+</body>
+</html>
+

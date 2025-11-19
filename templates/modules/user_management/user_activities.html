@@ -1,0 +1,24 @@
+{% load i18n %}
+<!-- User Activities Modal -->
+<div class="modal" id="userActivitiesModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-history"></i>
+                    {% trans "User Activities" %}
+                </h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="userActivitiesBody">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <span>{% trans "Loading activities..." %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

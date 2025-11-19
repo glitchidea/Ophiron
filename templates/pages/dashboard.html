@@ -1,0 +1,312 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ophiron - {% trans "Command Center" %}</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/components/header.css' %}">
+    
+    <!-- Command Center CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/dashboard/command_center.css' %}">
+    
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = {
+            'system_status_online': '{% trans "system_status_online" %}',
+            'system_status_warning': '{% trans "system_status_warning" %}',
+            'system_status_offline': '{% trans "system_status_offline" %}',
+            'system_status_checking': '{% trans "system_status_checking" %}',
+            'last_check': '{% trans "last_check" %}',
+            'failed_to_load_system_metrics': '{% trans "failed_to_load_system_metrics" %}',
+            'system_metrics_unavailable': '{% trans "system_metrics_unavailable" %}',
+            'no_ports_in_use': '{% trans "no_ports_in_use" %}',
+            'user_logged_in': '{% trans "user_logged_in" %}',
+            'system_monitoring_started': '{% trans "system_monitoring_started" %}',
+            'just_now': '{% trans "just_now" %}',
+            'minutes_ago': '{% trans "minutes_ago" %}',
+            'hours_ago': '{% trans "hours_ago" %}',
+            'running': '{% trans "running" %}',
+            'stopped': '{% trans "stopped" %}',
+            'exited': '{% trans "exited" %}',
+            'unknown': '{% trans "unknown" %}'
+        };
+    </script>
+    
+</head>
+<body class="command-center-body">
+    <div class="command-center-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="command-center-main">
+            <!-- System Status Header -->
+            <div class="system-status-header">
+                <div class="status-indicator">
+                    <span class="status-dot" id="systemStatusDot"></span>
+                    <span class="status-text" id="systemStatusText">{% trans "SYSTEM STATUS: CHECKING..." %}</span>
+                </div>
+                <div class="last-update">
+                    <i class="fas fa-sync-alt"></i>
+                    <span id="lastUpdate">{% trans "Last Check: --" %}</span>
+                </div>
+            </div>
+            
+            <!-- System Metrics Bar -->
+            <div class="system-metrics-bar">
+                <div class="metric-item">
+                    <span class="metric-label">{% trans "CPU:" %}</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="cpuBar" style="width: 0%"></div>
+                    </div>
+                    <span class="metric-value" id="cpuValue">0%</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">{% trans "RAM:" %}</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="ramBar" style="width: 0%"></div>
+                    </div>
+                    <span class="metric-value" id="ramValue">0GB/0GB</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">{% trans "Disk:" %}</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="diskBar" style="width: 0%"></div>
+                    </div>
+                    <span class="metric-value" id="diskValue">0%</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">{% trans "Network:" %}</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" id="networkBar" style="width: 0%"></div>
+                    </div>
+                    <span class="metric-value" id="networkValue">0MB/s</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">{% trans "Temp:" %}</span>
+                    <span class="metric-value" id="tempValue">--°C</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">{% trans "Uptime:" %}</span>
+                    <span class="metric-value" id="uptimeValue">--</span>
+                </div>
+            </div>
+            
+            <!-- Main Dashboard Grid -->
+            <div class="dashboard-grid">
+                <!-- Left Panel - Quick Actions & Alerts -->
+                <div class="left-panel">
+                    <!-- Quick Actions Hub -->
+                    <div class="command-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bolt"></i> {% trans "QUICK ACTIONS" %}</h3>
+                        </div>
+                        <div class="quick-actions-grid">
+                            <a href="{% url 'service_builder:index' %}" class="action-btn">
+                                <i class="fas fa-cogs"></i>
+                                <span>{% trans "Service Builder" %}</span>
+                            </a>
+                            <a href="{% url 'system_information:index' %}" class="action-btn">
+                                <i class="fas fa-chart-line"></i>
+                                <span>{% trans "System Monitor" %}</span>
+                            </a>
+                            <a href="{% url 'docker_manager:index' %}" class="action-btn">
+                                <i class="fas fa-server"></i>
+                                <span>{% trans "Docker Hub" %}</span>
+                            </a>
+                            <a href="{% url 'firewall:selection' %}" class="action-btn">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>{% trans "Firewall" %}</span>
+                            </a>
+                            <a href="{% url 'user_management:index' %}" class="action-btn">
+                                <i class="fas fa-users"></i>
+                                <span>{% trans "User Management" %}</span>
+                            </a>
+                            <a href="{% url 'service_monitoring:index' %}" class="action-btn">
+                                <i class="fas fa-list-alt"></i>
+                                <span>{% trans "Service Monitor" %}</span>
+                            </a>
+                            <a href="{% url 'process_monitor:index' %}" class="action-btn">
+                                <i class="fas fa-tasks"></i>
+                                <span>{% trans "Process Monitor" %}</span>
+                            </a>
+                            <a href="{% url 'system_logs:page' %}" class="action-btn">
+                                <i class="fas fa-file-alt"></i>
+                                <span>{% trans "Log Viewer" %}</span>
+                            </a>
+                            <a href="/package-manager/" class="action-btn">
+                                <i class="fas fa-boxes"></i>
+                                <span>{% trans "Package Manager" %}</span>
+                            </a>
+                            <a href="/dev-packages/" class="action-btn">
+                                <i class="fas fa-code"></i>
+                                <span>{% trans "Developer Packages" %}</span>
+                            </a>
+                            <a href="{% url 'cve_scanner:index' %}" class="action-btn">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>{% trans "CVE Scanner" %}</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Alert Center -->
+                    <div class="command-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-exclamation-triangle"></i> {% trans "ALERT CENTER" %}</h3>
+                    <a href="/security/alert-management/" class="header-link" title="{% trans 'View All Alerts' %}">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                        <div class="alert-list" id="alertList">
+                            <div class="alert-item info">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <span>{% trans "Loading alerts..." %}</span>
+                                <small>{% trans "Please wait" %}</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Live Control -->
+                    <div class="command-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-history"></i> {% trans "LIVE CONTROL" %}</h3>
+                        </div>
+                        <div class="activity-list" id="activityList" style="display:none;"></div>
+                        <div class="live-control-list" id="liveControl">
+                            <div class="live-item">
+                                <span class="live-dot" id="liveStatusProcessMonitor"></span>
+                                <span class="live-label">{% trans "Process Monitor" %}</span>
+                            </div>
+                            <div class="live-item">
+                                <span class="live-dot" id="liveStatusSystemInfo"></span>
+                                <span class="live-label">{% trans "System Information" %}</span>
+                            </div>
+                            <div class="live-item">
+                                <span class="live-dot" id="liveStatusAppLogs"></span>
+                                <span class="live-label">{% trans "Application Logs" %}</span>
+                            </div>
+                            <div class="live-item">
+                                <span class="live-dot" id="liveStatusServiceMonitoring"></span>
+                                <span class="live-label">{% trans "Service Monitoring" %}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Center Panel - Docker Status -->
+                <div class="center-panel">
+                    <!-- Docker Status -->
+                    <div class="command-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-server"></i> {% trans "DOCKER CONTAINERS" %}</h3>
+                        </div>
+                        <div class="docker-status" id="dockerStatus">
+                            <div class="docker-summary">
+                                <div class="summary-item">
+                                    <span class="summary-label">{% trans "Running:" %}</span>
+                                    <span class="summary-value" id="dockerRunning">0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">{% trans "Stopped:" %}</span>
+                                    <span class="summary-value" id="dockerStopped">0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span class="summary-label">{% trans "Total:" %}</span>
+                                    <span class="summary-value" id="dockerTotal">0</span>
+                                </div>
+                            </div>
+                            <div class="docker-list" id="dockerList">
+                                <!-- Docker containers will be populated by JavaScript -->
+                            </div>
+                            
+                            <!-- Most Used Ports Section -->
+                            <div class="top-ports-section">
+                                <h4 style="color: var(--cc-accent); font-size: 12px; margin: 15px 0 10px 0; text-align: center;">{% trans "MOST USED PORTS" %}</h4>
+                                <div class="ports-grid" id="topPorts">
+                                    <!-- Top ports will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Panel - Performance & Terminal -->
+                <div class="right-panel">
+                    <!-- Performance Metrics -->
+                    <div class="command-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-bar"></i> {% trans "PERFORMANCE METRICS" %}</h3>
+                        </div>
+                        <div class="performance-metrics">
+                            <div class="perf-item">
+                                <span class="perf-label">{% trans "Response Time:" %}</span>
+                                <span class="perf-value" id="responseTime">--ms</span>
+                            </div>
+                            <div class="perf-item">
+                                <span class="perf-label">{% trans "Error Rate:" %}</span>
+                                <span class="perf-value" id="errorRate">--%</span>
+                            </div>
+                            <div class="perf-item">
+                                <span class="perf-label">{% trans "Throughput:" %}</span>
+                                <span class="perf-value" id="throughput">--req/s</span>
+                            </div>
+                            <div class="perf-item">
+                                <span class="perf-label">{% trans "Uptime:" %}</span>
+                                <span class="perf-value" id="systemUptime">--%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SMTP Settings -->
+                    <div class="command-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-envelope"></i> {% trans "SMTP SETTINGS" %}</h3>
+                            <a href="{% url 'settings' %}?tab=smtp" class="header-link" title="{% trans 'Configure SMTP' %}">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="smtp-status" id="smtpStatus">
+                            <div class="smtp-item">
+                                <span class="smtp-label">{% trans "SMTP Status:" %}</span>
+                                <span class="smtp-value" id="smtpStatusValue">
+                                    <i class="fas fa-spinner fa-spin"></i> {% trans "Loading..." %}
+                                </span>
+                            </div>
+                            <div class="smtp-item">
+                                <span class="smtp-label">{% trans "SMTP Host:" %}</span>
+                                <span class="smtp-value" id="smtpHostValue">--</span>
+                            </div>
+                            <div class="smtp-item">
+                                <span class="smtp-label">{% trans "CVE Automation:" %}</span>
+                                <span class="smtp-value" id="cveAutomationValue">
+                                    <i class="fas fa-spinner fa-spin"></i> {% trans "Loading..." %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- Header JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+    
+    <!-- Command Center JavaScript -->
+    <script src="{% load static %}{% static 'js/dashboard/command_center.js' %}"></script>
+    
+</body>
+</html>

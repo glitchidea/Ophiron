@@ -1,0 +1,82 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Developer Packages" %} - Ophiron</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dev_packages/style.css' %}">
+</head>
+<body>
+  <div class="dashboard-container">
+    {% include 'components/header.html' %}
+    <main class="devpkg-main">
+      <div class="devpkg-header">
+        <div class="devpkg-header-top">
+          <div class="devpkg-title-section">
+            <h1><i class="fas fa-code"></i> {% trans "Developer Packages" %}</h1>
+            <p>{% trans "Project and global ecosystem packages with update status" %}</p>
+          </div>
+          <div class="devpkg-header-actions">
+            <button id="refreshDevBtn" class="btn-primary"><i class="fas fa-sync-alt"></i> {% trans "Refresh" %}</button>
+          </div>
+        </div>
+        <div class="devpkg-managers" id="devManagerSummary"></div>
+      </div>
+      <div class="devpkg-filters">
+        <div class="filter-group">
+          <label for="devManagerFilter">{% trans "Manager" %}:</label>
+          <select id="devManagerFilter" class="filter-select"><option value="">{% trans "All" %}</option></select>
+        </div>
+        <div class="filter-group">
+          <label for="devSearch">{% trans "Search" %}:</label>
+          <input id="devSearch" class="filter-input" placeholder="{% trans 'Search packages...' %}" />
+        </div>
+      </div>
+      <div class="devpkg-content">
+        <div class="devpkg-table-container">
+          <table class="pkg-table" id="devPkgTable">
+            <thead>
+              <tr>
+                <th>{% trans "Package" %}</th>
+                <th>{% trans "Version" %}</th>
+                <th>{% trans "Manager" %}</th>
+                <th>{% trans "CVE Status" %}</th>
+                <th>{% trans "Actions" %}</th>
+              </tr>
+            </thead>
+            <tbody id="devPkgTbody"><tr><td colspan="5" class="loading-cell"><i class="fas fa-spinner fa-spin"></i> {% trans "Loading..." %}</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+  {% csrf_token %}
+  <script>
+    window.jsTranslations = {
+      'no_managers_found': '{% trans "No managers found" %}',
+      'all': '{% trans "All" %}',
+      'details': '{% trans "Details" %}',
+      'no_results': '{% trans "No results" %}',
+      'no_dependencies': '{% trans "No dependencies" %}',
+      'no_data': '{% trans "No data" %}',
+      'manager': '{% trans "Manager" %}',
+      'package': '{% trans "Package" %}',
+      'version': '{% trans "Version" %}',
+      'description': '{% trans "Description" %}',
+      'homepage': '{% trans "Homepage" %}',
+      'license': '{% trans "License" %}',
+      'no_cves': '{% trans "No known vulnerabilities" %}',
+      'cve_error': '{% trans "Error loading CVE data" %}'
+    };
+  </script>
+  <script src="{% static 'js/components/header.js' %}"></script>
+  <script src="{% static 'js/dev_packages/main.js' %}"></script>
+  {% include 'modules/dev_packages/detail_modal.html' %}
+</body>
+</html>
+

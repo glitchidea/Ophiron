@@ -1,0 +1,267 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Service Builder" %} - Ophiron{% endblock %}
+
+{% block extra_css %}
+    <!-- Service Builder CSS -->
+    <link href="{% static 'css/service_builder/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/cards.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/stats.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/actions.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="service-builder-container">
+    <!-- Header Section -->
+    <div class="service-builder-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="service-builder-title">
+                    <i class="fas fa-cogs"></i>
+                    {% trans "Service Builder" %}
+                </h1>
+                <p class="service-builder-subtitle">
+                    {% trans "Create and manage Linux systemd services with ease. Build, deploy, and monitor your applications." %}
+                </p>
+            </div>
+            <div class="header-actions">
+                <a href="{% url 'service_builder:create_service' %}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    {% trans "Create Service" %}
+                </a>
+                <a href="{% url 'service_builder:templates' %}" class="btn btn-outline">
+                    <i class="fas fa-file-code"></i>
+                    {% trans "Templates" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="service-builder-stats">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-server"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ recent_services|length }}</h3>
+                <p>{% trans "Active Services" %}</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-file-code"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ templates|length }}</h3>
+                <p>{% trans "Available Templates" %}</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ recent_logs|length }}</h3>
+                <p>{% trans "Recent Operations" %}</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+                <h3>100%</h3>
+                <p>{% trans "System Ready" %}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="service-builder-content">
+        <div class="content-grid">
+            <!-- Recent Services -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-history"></i>
+                        {% trans "Recent Services" %}
+                    </h3>
+                    <a href="{% url 'service_builder:services' %}" class="card-action">
+                        {% trans "View All" %}
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="card-content">
+                    {% if recent_services %}
+                        <div class="service-list">
+                            {% for service in recent_services %}
+                            <div class="service-item">
+                                <div class="service-info">
+                                    <h4 class="service-name">{{ service.name }}</h4>
+                                    <p class="service-description">{{ service.description|truncatechars:50 }}</p>
+                                    <div class="service-meta">
+                                        <span class="service-type">{{ service.service_type }}</span>
+                                        <span class="service-user">{{ service.user }}</span>
+                                    </div>
+                                </div>
+                                <div class="service-actions">
+                                    <a href="{% url 'service_builder:service_detail' service.name %}" class="btn btn-sm btn-outline">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="fas fa-server"></i>
+                            <p>{% trans "No services created yet" %}</p>
+                            <a href="{% url 'service_builder:create_service' %}" class="btn btn-primary">
+                                {% trans "Create Your First Service" %}
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-bolt"></i>
+                        {% trans "Quick Actions" %}
+                    </h3>
+                </div>
+                <div class="card-content">
+                    <div class="action-grid">
+                        <a href="{% url 'service_builder:create_service' %}" class="action-item">
+                            <div class="action-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="action-content">
+                                <h4>{% trans "Create Service" %}</h4>
+                                <p>{% trans "Build a new systemd service" %}</p>
+                            </div>
+                        </a>
+                        <a href="{% url 'service_builder:templates' %}" class="action-item">
+                            <div class="action-icon">
+                                <i class="fas fa-file-code"></i>
+                            </div>
+                            <div class="action-content">
+                                <h4>{% trans "Browse Templates" %}</h4>
+                                <p>{% trans "Use pre-built service templates" %}</p>
+                            </div>
+                        </a>
+                        <a href="{% url 'service_builder:services' %}" class="action-item">
+                            <div class="action-icon">
+                                <i class="fas fa-list"></i>
+                            </div>
+                            <div class="action-content">
+                                <h4>{% trans "Manage Services" %}</h4>
+                                <p>{% trans "View and control existing services" %}</p>
+                            </div>
+                        </a>
+                        <a href="{% url 'service_builder:logs' %}" class="action-item">
+                            <div class="action-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="action-content">
+                                <h4>{% trans "View Logs" %}</h4>
+                                <p>{% trans "Check service operation logs" %}</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Templates -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-file-code"></i>
+                        {% trans "Service Templates" %}
+                    </h3>
+                    <a href="{% url 'service_builder:templates' %}" class="card-action">
+                        {% trans "View All" %}
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="card-content">
+                    {% if templates %}
+                        <div class="template-list">
+                            {% for template in templates %}
+                            <div class="template-item">
+                                <div class="template-info">
+                                    <h4 class="template-name">{{ template.name }}</h4>
+                                    <p class="template-description">{{ template.description|truncatechars:60 }}</p>
+                                    <span class="template-type">{{ template.service_type }}</span>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="fas fa-file-code"></i>
+                            <p>{% trans "No templates available" %}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-clock"></i>
+                        {% trans "Recent Activity" %}
+                    </h3>
+                    <a href="{% url 'service_builder:logs' %}" class="card-action">
+                        {% trans "View All" %}
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="card-content">
+                    {% if recent_logs %}
+                        <div class="activity-list">
+                            {% for log in recent_logs %}
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    {% if log.status == 'success' %}
+                                        <i class="fas fa-check-circle text-success"></i>
+                                    {% elif log.status == 'error' %}
+                                        <i class="fas fa-times-circle text-danger"></i>
+                                    {% else %}
+                                        <i class="fas fa-info-circle text-info"></i>
+                                    {% endif %}
+                                </div>
+                                <div class="activity-content">
+                                    <h4 class="activity-title">{{ log.service_name }} - {{ log.action|title }}</h4>
+                                    <p class="activity-message">{{ log.message|truncatechars:60 }}</p>
+                                    <div class="activity-meta">
+                                        <span class="activity-user">{{ log.user }}</span>
+                                        <span class="activity-time">{{ log.created_at|timesince }} ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="empty-state">
+                            <i class="fas fa-clock"></i>
+                            <p>{% trans "No recent activity" %}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Service Builder JavaScript -->
+    <script src="{% static 'js/service_builder/main.js' %}"></script>
+{% endblock %}

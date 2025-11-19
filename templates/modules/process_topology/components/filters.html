@@ -1,0 +1,59 @@
+<!-- Filters Panel Component -->
+{% load i18n %}
+<div id="topology-controls" class="topology-controls">
+    <div class="panel-header">
+        <div class="panel-title">
+            <i class="fas fa-filter"></i>
+            <span>{% trans "Filters" %}</span>
+        </div>
+        <button type="button" class="panel-close" id="close-filters">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="panel-body">
+        <div class="filter-section">
+            <label for="search-process" class="filter-label">{% trans "Search Process" %}</label>
+            <input type="text" class="filter-input" id="search-process" placeholder="{% trans 'Process name, PID or user...' %}">
+        </div>
+        
+        <div class="filter-section">
+            <label for="focus-pid" class="filter-label">{% trans "Focus on PID" %}</label>
+            <input type="text" class="filter-input" id="focus-pid" placeholder="{% trans 'Enter PID to show only connected processes...' %}">
+            <small class="filter-help">{% trans "Show only processes connected to this PID" %}</small>
+        </div>
+        
+        <div class="filter-section">
+            <label for="process-limit" class="filter-label">{% trans "Maximum Process Count" %}</label>
+            <input type="number" class="filter-input" id="process-limit" value="100" min="10" max="500">
+        </div>
+        
+        
+        <div class="filter-section">
+            <label class="filter-label">{% trans "Process States" %}</label>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="show-running" checked>
+                    <label for="show-running">{% trans "Running" %}</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="show-sleeping" checked>
+                    <label for="show-sleeping">{% trans "Sleeping" %}</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="show-stopped">
+                    <label for="show-stopped">{% trans "Stopped" %}</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="show-zombie">
+                    <label for="show-zombie">{% trans "Zombie" %}</label>
+                </div>
+            </div>
+        </div>
+        
+        <button type="button" class="btn-apply" id="apply-filters">
+            <i class="fas fa-check"></i>
+            {% trans "Apply Filters" %}
+        </button>
+    </div>
+</div>

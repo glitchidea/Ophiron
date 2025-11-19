@@ -1,0 +1,1225 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Ophiron Settings" %}</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/components/header.css' %}">
+    
+    <!-- Settings CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/settings/style.css' %}">
+    
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = {
+            'enabled': '{% trans "Enabled" %}',
+            'disabled': '{% trans "Disabled" %}',
+            'checking': '{% trans "Checking..." %}',
+            'active': '{% trans "Active" %}',
+            'inactive': '{% trans "Inactive" %}',
+            'online': '{% trans "Online" %}',
+            'offline': '{% trans "Offline" %}',
+            'running': '{% trans "Running" %}',
+            'stopped': '{% trans "Stopped" %}',
+            'error': '{% trans "Error" %}',
+            'warning': '{% trans "Warning" %}',
+            'success': '{% trans "Success" %}',
+            'info': '{% trans "Info" %}',
+            // SMTP translations
+            'please_enter_smtp_host': '{% trans "Please enter SMTP host" %}',
+            'please_enter_email_address': '{% trans "Please enter email address" %}',
+            'please_enter_valid_email': '{% trans "Please enter a valid email address" %}',
+            'please_configure_smtp_first': '{% trans "Please configure SMTP settings first (host and email)" %}',
+            'smtp_configuration_saved_successfully': '{% trans "SMTP configuration saved successfully" %}',
+            'failed_to_save': '{% trans "Failed to save" %}',
+            'failed_to_save_smtp_configuration': '{% trans "Failed to save SMTP configuration" %}',
+            'smtp_connection_test_successful': '{% trans "SMTP connection test successful" %}',
+            'smtp_connection_test_failed': '{% trans "SMTP connection test failed" %}',
+            'connection_test_failed': '{% trans "Connection test failed" %}',
+            'failed_to_test_smtp_connection': '{% trans "Failed to test SMTP connection" %}',
+            'error_testing_connection': '{% trans "Error testing connection" %}',
+            'saving': '{% trans "Saving..." %}',
+            'testing': '{% trans "Testing..." %}',
+            'cve_automation_saved_successfully': '{% trans "CVE automation settings saved successfully" %}',
+            'failed_to_save_cve_automation': '{% trans "Failed to save CVE automation settings" %}',
+            'test_completed': '{% trans "Test completed" %}',
+            'test_failed': '{% trans "Test failed" %}',
+            'failed_to_run_cve_automation_test': '{% trans "Failed to run CVE automation test" %}',
+            'never': '{% trans "Never" %}',
+            'not_scheduled': '{% trans "Not scheduled" %}',
+            'applied_settings': '{% trans "Applied {description} settings" %}',
+            'unknown_error': '{% trans "unknown error" %}'
+        };
+    </script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="settings-main">
+            <div class="settings-container">
+                <!-- Page Title -->
+                <div class="settings-header">
+                    <h1 class="settings-title">{% trans "Settings" %}</h1>
+                    <p class="settings-subtitle">{% trans "Manage system settings" %}</p>
+                </div>
+                
+                <!-- Settings Tabs -->
+                <div class="settings-tabs">
+                    <button class="settings-tab active" data-tab="general">
+                        <i class="fas fa-cog"></i>
+                        <span>{% trans "General Settings" %}</span>
+                    </button>
+                    <button class="settings-tab" data-tab="password">
+                        <i class="fas fa-key"></i>
+                        <span>{% trans "Change Password" %}</span>
+                    </button>
+                            <button class="settings-tab" data-tab="security">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>{% trans "Security" %}</span>
+                            </button>
+                            <button class="settings-tab" data-tab="modules">
+                                <i class="fas fa-cubes"></i>
+                                <span>{% trans "Modular Settings" %}</span>
+                            </button>
+                            <button class="settings-tab" data-tab="logs">
+                                <i class="fas fa-file-alt"></i>
+                                <span>{% trans "Logs" %}</span>
+                            </button>
+                            <button class="settings-tab" data-tab="smtp">
+                                <i class="fas fa-envelope"></i>
+                                <span>{% trans "SMTP" %}</span>
+                            </button>
+                            <button class="settings-tab" data-tab="plugins">
+                                <i class="fas fa-puzzle-piece"></i>
+                                <span>{% trans "Plugins" %}</span>
+                            </button>
+                </div>
+                
+                <!-- Settings Content -->
+                <div class="settings-content">
+                    <!-- General Settings -->
+                    <div class="settings-panel active" id="general-panel">
+                        <div class="settings-section">
+                            <h3 class="settings-section-title">{% trans "Profile Image" %}</h3>
+                            <div class="profile-image-section">
+                                <div class="profile-image-container">
+                                    <div class="profile-image-preview" id="profileImagePreview">
+                                        <img id="profileImage" src="{% if user.profile.has_profile_image %}{{ user.profile.profile_image_url }}{% else %}/static/images/demo-avatar.svg{% endif %}" alt="Profile Image">
+                                        <div class="profile-image-overlay">
+                                            <i class="fas fa-camera"></i>
+                                        </div>
+                                    </div>
+                                    <div class="profile-image-actions">
+                                        <button class="btn-secondary" onclick="document.getElementById('profileImageInput').click()">
+                                            <i class="fas fa-upload"></i>
+                                            {% trans "Upload Image" %}
+                                        </button>
+                                        <button class="btn-danger" onclick="removeProfileImage()" id="removeProfileBtn" style="display: none;">
+                                            <i class="fas fa-trash"></i>
+                                            {% trans "Remove" %}
+                                        </button>
+                                        <div class="profile-image-tooltip">
+                                            <i class="fas fa-question-circle tooltip-trigger"></i>
+                                            <div class="tooltip-content">
+                                                <div class="tooltip-arrow"></div>
+                                                <div class="tooltip-body">
+                                                    <p><strong>Supported formats:</strong> JPG, PNG, GIF, WebP</p>
+                                                    <p><strong>Maximum size:</strong> 5MB</p>
+                                                    <p><strong>Recommended size:</strong> 256x256 pixels</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="file" id="profileImageInput" accept="image/*" style="display: none;" onchange="handleProfileImageUpload(this)">
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3 class="settings-section-title">{% trans "General Information" %}</h3>
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label for="username">{% trans "Username" %}</label>
+                                    <input type="text" id="username" value="{{ user.username }}" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">{% trans "Email" %}</label>
+                                    <input type="email" id="email" value="{% if user.profile.email %}{{ user.profile.email }}{% else %}{{ user.email }}{% endif %}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fullname">{% trans "Full Name" %}</label>
+                                    <input type="text" id="fullname" value="{% if user.profile.full_name %}{{ user.profile.full_name }}{% else %}{{ user.first_name }} {{ user.last_name }}{% endif %}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="role">{% trans "Roles & Permissions" %}</label>
+                                    <input type="text" id="role" readonly value="
+{% if user.is_superuser %}Superuser{% endif %}
+{% if user.is_staff %}{% if user.is_superuser %}, {% endif %}Staff{% endif %}
+{% if user.groups.all %}{% if user.is_superuser or user.is_staff %}, {% endif %}{% for g in user.groups.all %}{{ g.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %}
+{% if not user.is_superuser and not user.is_staff and not user.groups.all %}User{% endif %}
+                                    ">
+                                </div>
+                                {% if permission_names %}
+                                <div class="form-group">
+                                    <label>{% trans "Granted Permissions" %}</label>
+                                    <div>
+                                        {% for perm in permission_names %}
+                                            <span class="badge" style="display:inline-block;padding:4px 8px;margin:2px;border-radius:6px;background:#eef; color:#223; font-size:12px;">{{ perm }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3 class="settings-section-title">{% trans "System Preferences" %}</h3>
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label for="language">{% trans "Language" %}</label>
+                                    <select id="language" data-current="{{ user.profile.language|default:'en' }}">
+                                        <option value="en" {% if user.profile.language == 'en' or not user.profile.language %}selected{% endif %}>{% trans "English" %}</option>
+                                        <option value="tr" {% if user.profile.language == 'tr' %}selected{% endif %}>{% trans "Türkçe" %}</option>
+                                        <option value="de" {% if user.profile.language == 'de' %}selected{% endif %}>{% trans "German" %}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="timezone">{% trans "Time Zone" %} <i class="fas fa-question-circle" title="{% trans 'Controls how dates and times are displayed in the UI. It does not change server time or database storage.' %}"></i></label>
+                                    <select id="timezone">
+                                        <option>{% trans "Loading timezones..." %}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Change Password -->
+                    <div class="settings-panel" id="password-panel">
+                        <div class="settings-section">
+                            <h3 class="settings-section-title">{% trans "Change Password" %}</h3>
+                            <div class="settings-form">
+                                <div class="form-group">
+                                    <label for="current-password">{% trans "Current Password" %}</label>
+                                    <input type="password" id="current-password" placeholder="{% trans 'Enter your current password' %}">
+                                </div>
+                                        <div class="form-group">
+                                            <label for="new-password">{% trans "New Password" %}</label>
+                                            <input type="password" id="new-password" placeholder="{% trans 'Enter your new password' %}" onkeyup="checkPasswordStrength()">
+                                            <div class="password-strength-indicator" id="passwordStrengthIndicator" style="display: none;">
+                                                <div class="strength-bar">
+                                                    <div class="strength-fill" id="strengthFill"></div>
+                                                </div>
+                                                <div class="strength-text" id="strengthText"></div>
+                                                <div class="strength-requirements" id="strengthRequirements"></div>
+                                            </div>
+                                        </div>
+                                <div class="form-group">
+                                    <label for="confirm-password">{% trans "Confirm Password" %}</label>
+                                    <input type="password" id="confirm-password" placeholder="{% trans 'Re-enter your new password' %}">
+                                </div>
+                                <button class="btn-primary">{% trans "Update Password" %}</button>
+                            </div>
+                        </div>
+                            </div>
+                            
+                            <!-- Security -->
+                            <div class="settings-panel" id="security-panel">
+                                <div class="settings-section">
+                            <h3 class="settings-section-title">{% trans "Two-Factor Authentication" %}</h3>
+                                    <div class="security-info">
+                                        <div class="security-status" id="securityStatus">
+                                            <div class="status-indicator" id="statusIndicator">
+                                                <i class="fas fa-circle"></i>
+                                            </div>
+                                            <div class="status-text">
+                                                <span class="status-value" id="statusValue">{% trans "Checking..." %}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="security-actions" id="securityActions">
+                                            <button class="btn-primary" id="enable2faBtn" onclick="setup2FA()">
+                                                <i class="fas fa-shield-alt"></i>
+                                                {% trans "Enable" %}
+                                            </button>
+                                            <button class="btn-danger" id="disable2faBtn" onclick="showDisable2FAModal()" style="display: none;">
+                                                <i class="fas fa-times"></i>
+                                                {% trans "Disable" %}
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 2FA Setup Modal -->
+                                    <div class="modal" id="setupModal" style="display: none;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3>{% trans "2FA Setup" %}</h3>
+                                                <button class="modal-close" onclick="closeSetupModal()">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="setup-step" id="setupStep1">
+                                                    <h4>1. {% trans "Download an Authenticator App" %}</h4>
+                                                    <p>{% trans "Download Google Authenticator, Microsoft Authenticator, or a similar app." %}</p>
+                                                    
+                                                    <h4>2. {% trans "Scan the QR Code" %}</h4>
+                                                    <p>{% trans "Open the app on your phone and scan the QR code below:" %}</p>
+                                                    
+                                                    <div class="qr-code-container">
+                                                        <img id="qrCodeImage" src="" alt="{% trans 'QR Code' %}" style="display: none;">
+                                                        <div id="qrCodeLoading" class="loading-spinner">
+                                                            <i class="fas fa-spinner fa-spin"></i>
+                                                            <span>{% trans "Generating QR code..." %}</span>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="manual-setup" id="manualSetup" style="display: none;">
+                                                        <h4>{% trans "Manual Setup" %}</h4>
+                                                        <p>{% trans "If you cannot scan the QR code, enter the following key manually:" %}</p>
+                                                        <div class="secret-key-container">
+                                                            <input type="text" id="secretKey" readonly>
+                                                            <button class="btn-secondary" onclick="copySecretKey()">
+                                                                <i class="fas fa-copy"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <button class="btn-primary" onclick="showVerificationStep()" id="nextStepBtn" style="display: none;">
+                                                        {% trans "Next Step" %}
+                                                    </button>
+                                                </div>
+                                                
+                                                <div class="setup-step" id="setupStep2" style="display: none;">
+                                                    <h4>3. {% trans "Enter Verification Code" %}</h4>
+                                                    <p>{% trans "Enter the 6-digit code from your authenticator app:" %}</p>
+                                                    
+                                                    <div class="verification-input">
+                                                        <input type="text" id="verificationCode" placeholder="123456" maxlength="6">
+                                                        <button class="btn-primary" onclick="verify2FA()">
+                                                            <i class="fas fa-check"></i>
+                                                            {% trans "Verify" %}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="setup-step" id="setupStep3" style="display: none;">
+                                                    <h4>✅ {% trans "2FA Enabled Successfully!" %}</h4>
+                                                    <p>{% trans "Store your backup codes in a safe place. These codes allow access if you lose your phone." %}</p>
+                                                    
+                                                    <div class="backup-codes" id="backupCodes">
+                                                        <h5>{% trans "Backup Codes:" %}</h5>
+                                                        <div class="codes-list" id="codesList"></div>
+                                                        <button class="btn-secondary" onclick="downloadBackupCodes()">
+                                                            <i class="fas fa-download"></i>
+                                                            {% trans "Download Codes" %}
+                                                        </button>
+                                                    </div>
+                                                    
+                                                    <button class="btn-primary" onclick="closeSetupModal()">
+                                                        {% trans "Done" %}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 2FA Disable Modal -->
+                                    <div class="modal" id="disableModal" style="display: none;">
+                                        <div class="modal-content disable-modal">
+                                            <div class="modal-header">
+                                                <div class="modal-title">
+                                                    <i class="fas fa-shield-alt"></i>
+                                                    <h3>{% trans "Disable 2FA" %}</h3>
+                                                </div>
+                                                <button class="modal-close" onclick="closeDisableModal()">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="disable-warning">
+                                                    <div class="warning-icon">
+                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                    </div>
+                                                    <div class="warning-content">
+                                                        <h4>{% trans "Security Notice" %}</h4>
+                                                        <p>{% trans "Disabling 2FA reduces your account security. To proceed, enter your password and your 2FA code." %}</p>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="disable-form">
+                                                    <div class="form-group">
+                                                        <label for="disablePassword">
+                                                            <i class="fas fa-lock"></i>
+                                                            {% trans "Current Password" %}
+                                                        </label>
+                                                        <input type="password" id="disablePassword" placeholder="{% trans 'Enter your password' %}">
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label for="disableToken">
+                                                            <i class="fas fa-key"></i>
+                                                            {% trans "2FA Verification" %}
+                                                        </label>
+                                                        <div class="token-input-container">
+                                                            <input type="text" id="disableToken" placeholder="{% trans '6-digit code or backup code' %}" maxlength="8">
+                                                            <div class="token-type-toggle">
+                                                                <button type="button" class="token-type-btn active" data-type="code">
+                                                                    <i class="fas fa-mobile-alt"></i>
+                                                                    {% trans "Code" %}
+                                                                </button>
+                                                                <button type="button" class="token-type-btn" data-type="backup">
+                                                                    <i class="fas fa-key"></i>
+                                                                    {% trans "Backup" %}
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <small class="form-help">
+                                                            <i class="fas fa-info-circle"></i>
+                                                            {% trans "Enter the 6-digit code from your app or one of your backup codes" %}
+                                                        </small>
+                                                    </div>
+                                                    
+                                                    <div class="disable-actions">
+                                                        <button class="btn-secondary" onclick="closeDisableModal()">
+                                                            <i class="fas fa-times"></i>
+                                                            {% trans "Cancel" %}
+                                                        </button>
+                                                        <button class="btn-danger" onclick="confirmDisable2FA()">
+                                                            <i class="fas fa-shield-alt"></i>
+                                                            {% trans "Disable 2FA" %}
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">{% trans "Security History" %}</h3>
+                                    <div class="security-history">
+                                        <div class="history-item">
+                                            <div class="history-icon">
+                                                <i class="fas fa-key"></i>
+                                            </div>
+                                            <div class="history-content">
+                                                <h4>{% trans "Password Changed" %}</h4>
+                                                <p>{% trans "Last password change: Today" %}</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="history-item">
+                                            <div class="history-icon">
+                                                <i class="fas fa-sign-in-alt"></i>
+                                            </div>
+                                            <div class="history-content">
+                                                <h4>{% trans "Last Sign-in" %}</h4>
+                                                <p>{% trans "Today 14:30" %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="security-actions-grid">
+                                        <a href="{% url 'activity_history' %}" class="security-action-card">
+                                            <div class="action-icon">
+                                                <i class="fas fa-history"></i>
+                                            </div>
+                                            <div class="action-content">
+                                                <h4>{% trans "Account Activity History" %}</h4>
+                                                <p>{% trans "View all your account activities" %}</p>
+                                            </div>
+                                            <div class="action-arrow">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                        </a>
+                                        
+                                        <a href="{% url 'alert_management' %}" class="security-action-card">
+                                            <div class="action-icon">
+                                                <i class="fas fa-exclamation-triangle"></i>
+                                            </div>
+                                            <div class="action-content">
+                                                <h4>{% trans "Alert Management" %}</h4>
+                                                <p>{% trans "Monitor and manage all system alerts" %}</p>
+                                            </div>
+                                            <div class="action-arrow">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                        </a>
+                                        
+                                        <!-- Active Sessions link removed -->
+                                        <a href="#" class="security-action-card" style="display:none;">
+                                            <div class="action-icon">
+                                                <i class="fas fa-desktop"></i>
+                                            </div>
+                                            <div class="action-content">
+                                                <h4>{% trans "Active Sessions" %}</h4>
+                                                <p>{% trans "Manage signed-in devices" %}</p>
+                                            </div>
+                                            <div class="action-arrow">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Modular Settings -->
+                            <div class="settings-panel" id="modules-panel">
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-network-wired"></i>
+                                        {% trans "Process Monitor" %}
+                                    </h3>
+                                    <p class="settings-description">
+                                        {% trans "Background monitoring service. When enabled, Process Monitor will continuously run in the background and cache data for instant access." %}
+                                    </p>
+                                    
+                                    <div class="module-card">
+                                        <div class="module-header">
+                                            <div class="module-info">
+                                            <h4>{% trans "Live Mode (Global)" %}</h4>
+                                            <p>{% trans "Continuously monitor network processes in the background (Shared by all admins)" %}</p>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="processMonitorLiveMode">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="module-settings">
+                                            <div class="setting-item">
+                                                <label for="monitoringIntervalRange">
+                                                    <i class="fas fa-tachometer-alt"></i>
+                                                    {% trans "Monitoring Interval:" %} <strong id="intervalValue">1.0</strong> {% trans "seconds" %}
+                                                </label>
+                                                <input type="range" id="monitoringIntervalRange" 
+                                                       min="0.5" max="10" step="0.5" value="1.0"
+                                                       class="interval-slider">
+                                                <div class="slider-labels">
+                                                    <span>0.5s ({% trans "Very Fast" %})</span>
+                                                    <span>10s ({% trans "Slow" %})</span>
+                                                </div>
+                                                <small class="setting-help">
+                                                    {% trans "Data update frequency when live mode is enabled. Lower = More real-time (higher CPU usage)" %}
+                                                </small>
+                                            </div>
+                                            
+                                            <div class="setting-item">
+                                                <label for="cacheDurationInput">
+                                                    <i class="fas fa-database"></i>
+                                                    {% trans "Cache Duration:" %} <strong id="cacheDurationValue">60</strong> {% trans "seconds" %}
+                                                </label>
+                                                <input type="range" id="cacheDurationInput" 
+                                                       min="30" max="600" step="30" value="60"
+                                                       class="interval-slider">
+                                                <div class="slider-labels">
+                                                    <span>30s ({% trans "Short" %})</span>
+                                                    <span>600s ({% trans "10min - Long" %})</span>
+                                                </div>
+                                                <small class="setting-help">
+                                                    {% trans "How long data stays in cache. Longer = Less database usage" %}
+                                                </small>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="module-status" id="processMonitorStatus">
+                                            <div class="status-row">
+                                                <span class="status-label">
+                                                    <i class="fas fa-circle status-indicator"></i>
+                                                    {% trans "Service Status:" %}
+                                                </span>
+                                                <span class="status-value" id="pmServiceStatus">{% trans "Checking..." %}</span>
+                                            </div>
+                                            <div class="status-row">
+                                                <span class="status-label">
+                                                    <i class="fas fa-database"></i>
+                                                    {% trans "Cache Status:" %}
+                                                </span>
+                                                <span class="status-value" id="pmCacheStatus">-</span>
+                                            </div>
+                                            <div class="status-row">
+                                                <span class="status-label">
+                                                    <i class="fas fa-clock"></i>
+                                                    {% trans "Last Update:" %}
+                                                </span>
+                                                <span class="status-value" id="pmLastUpdate">-</span>
+                                            </div>
+                                            <div class="status-row">
+                                                <span class="status-label">
+                                                    <i class="fas fa-user-shield"></i>
+                                                    {% trans "Last Modified By:" %}
+                                                </span>
+                                                <span class="status-value" id="pmLastModifiedBy">-</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="module-actions">
+                                            <button class="btn-secondary" id="pmForceRefresh">
+                                                <i class="fas fa-sync-alt"></i>
+                                                {% trans "Force Refresh" %}
+                                            </button>
+                                            <button class="btn-primary" id="pmSaveSettings">
+                                                <i class="fas fa-save"></i>
+                                                {% trans "Save Settings" %}
+                                            </button>
+                                            <a href="{% url 'process_monitor:index' %}" class="btn-secondary">
+                                                <i class="fas fa-external-link-alt"></i>
+                                                {% trans "Open Monitor" %}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="settings-info-box">
+                                        <i class="fas fa-info-circle"></i>
+                                        <div>
+                                            <strong>{% trans "Note:" %}</strong> {% trans "When Live Mode is enabled, the system will continuously monitor processes and update the cache. This ensures instant page load when you access Process Monitor, but may increase system resource usage slightly." %}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- System Information Settings -->
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-server"></i>
+                                        {% trans "System Information" %}
+                                    </h3>
+                                    <p class="settings-description">
+                                        {% trans "Background system metrics monitoring. When enabled, System Information will continuously collect hardware and system data for instant dashboard access." %}
+                                    </p>
+                                    
+                                    <div class="module-card">
+                                        <div class="module-header">
+                                            <div class="module-info">
+                                            <h4>{% trans "Live Mode (Global)" %}</h4>
+                                            <p>{% trans "Continuously monitor system metrics in the background (Shared by all admins)" %}</p>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="systemInfoLiveMode">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="module-settings">
+                                            <div class="setting-item">
+                                                <label for="siMonitoringIntervalRange">
+                                                    <i class="fas fa-tachometer-alt"></i>
+                                                    {% trans "Monitoring Interval:" %} <strong id="siIntervalValue">5</strong> {% trans "seconds" %}
+                                                </label>
+                                                <input type="range" id="siMonitoringIntervalRange" 
+                                                       min="1" max="60" step="0.5" value="5"
+                                                       class="interval-slider">
+                                                <div class="slider-labels">
+                                                    <span>1s ({% trans "Fast" %})</span>
+                                                    <span>60s ({% trans "Slow" %})</span>
+                                                </div>
+                                                <small class="setting-help">
+                                                    {% trans "Data collection frequency when live mode is enabled. Lower = More frequent updates" %}
+                                                </small>
+                                            </div>
+                                            
+                                            <div class="setting-item">
+                                                <label for="siCacheDurationInput">
+                                                    <i class="fas fa-database"></i>
+                                                    {% trans "Cache Duration:" %} <strong id="siCacheDurationValue">10</strong> {% trans "seconds" %}
+                                                </label>
+                                                <input type="range" id="siCacheDurationInput" 
+                                                       min="5" max="600" step="5" value="10"
+                                                       class="interval-slider">
+                                                <div class="slider-labels">
+                                                    <span>5s ({% trans "Short" %})</span>
+                                                    <span>600s ({% trans "10min - Long" %})</span>
+                                                </div>
+                                                <small class="setting-help">
+                                                    {% trans "How long data stays in cache. Longer = Less CPU usage" %}
+                                                </small>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="module-status" id="systemInfoStatus">
+                                            <div class="status-row">
+                                                <span class="status-label">
+                                                    <i class="fas fa-circle status-indicator" id="siStatusIndicator"></i>
+                                                    {% trans "Service Status:" %}
+                                                </span>
+                                                <span class="status-value" id="siStatus">{% trans "Checking..." %}</span>
+                                            </div>
+                                            <div class="status-row">
+                                                <span class="status-label">
+                                                    <i class="fas fa-database"></i>
+                                                    {% trans "Cache Status:" %}
+                                                </span>
+                                                <span class="status-value" id="siCacheStatus">-</span>
+                                            </div>
+                                            <div class="status-row">
+                                                <span class="status-label">
+                                                    <i class="fas fa-clock"></i>
+                                                    {% trans "Last Update:" %}
+                                                </span>
+                                                <span class="status-value" id="siLastUpdated">-</span>
+                                            </div>
+                                            <div class="status-row">
+                                                <span class="status-label">
+                                                    <i class="fas fa-user-shield"></i>
+                                                    {% trans "Last Modified By:" %}
+                                                </span>
+                                                <span class="status-value" id="siLastModifiedBy">-</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="module-actions">
+                                            <button class="btn-secondary" id="siForceRefresh">
+                                                <i class="fas fa-sync-alt"></i>
+                                                {% trans "Force Refresh" %}
+                                            </button>
+                                            <button class="btn-primary" id="siSaveSettings">
+                                                <i class="fas fa-save"></i>
+                                                {% trans "Save Settings" %}
+                                            </button>
+                                            <a href="{% url 'system_information:index' %}" class="btn-secondary">
+                                                <i class="fas fa-external-link-alt"></i>
+                                                {% trans "Open Monitor" %}
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="settings-info-box">
+                                        <i class="fas fa-info-circle"></i>
+                                        <div>
+                                            <strong>{% trans "Note:" %}</strong> {% trans "When Live Mode is enabled, the system will continuously collect CPU, memory, disk, and network metrics. This ensures instant dashboard loading with real-time data visualization." %}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Application Logs Settings -->
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-file-alt"></i>
+                                        {% trans "Application Logs" %}
+                                    </h3>
+                                    <p class="settings-description">
+                                        {% trans "Controls live refresh for Application Logs (Own Logs). When enabled, the logs page auto-refreshes using the configured interval." %}
+                                    </p>
+
+                                    <div class="module-card">
+                                        <div class="module-header">
+                                            <div class="module-info">
+                                                <h4>{% trans "Live Mode (Global)" %}</h4>
+                                                <p>{% trans "Auto-refresh logs periodically (shared by all admins)" %}</p>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="appLogsLiveMode">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="module-settings">
+                                            <div class="setting-item">
+                                                <label for="appLogsIntervalRange">
+                                                    <i class="fas fa-clock"></i>
+                                                    {% trans "Refresh Interval:" %} <strong id="appLogsIntervalValue">10</strong> {% trans "seconds" %}
+                                                </label>
+                                                <input type="range" id="appLogsIntervalRange"
+                                                       min="2" max="120" step="1" value="10"
+                                                       class="interval-slider">
+                                                <div class="slider-labels">
+                                                    <span>2s ({% trans "Fast" %})</span>
+                                                    <span>120s ({% trans "Slow" %})</span>
+                                                </div>
+                                                <small class="setting-help">
+                                                    {% trans "How often Own Logs page refreshes when live mode is enabled." %}
+                                                </small>
+                                            </div>
+                                        </div>
+
+                                        <div class="module-actions">
+                                            <button class="btn-primary" id="appLogsSaveSettings">
+                                                <i class="fas fa-save"></i>
+                                                {% trans "Save Settings" %}
+                                            </button>
+                                            <a href="{% url 'system_logs:own_page' %}" class="btn-secondary">
+                                                <i class="fas fa-external-link-alt"></i>
+                                                {% trans "Open Application Logs" %}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Service Monitoring -->
+                                <div class="settings-section">
+                                    <h3 class="settings-section-title">
+                                        <i class="fas fa-server"></i>
+                                        {% trans "Service Monitoring" %}
+                                    </h3>
+                                    <p class="settings-description">
+                                        {% trans "Live monitoring for system services. When enabled, Service Monitoring will continuously update service status in real-time." %}
+                                    </p>
+
+                                    <div class="module-card">
+                                        <div class="module-header">
+                                            <div class="module-info">
+                                                <h4>{% trans "Live Mode (Global)" %}</h4>
+                                                <p>{% trans "Continuously monitor system services in real-time (Shared by all admins)" %}</p>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="serviceMonitoringLiveMode">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="module-settings">
+                                            <div class="setting-item">
+                                                <label for="serviceMonitoringIntervalRange">
+                                                    <i class="fas fa-tachometer-alt"></i>
+                                                    {% trans "Monitoring Interval:" %} <strong id="serviceMonitoringIntervalValue">2.0</strong> {% trans "seconds" %}
+                                                </label>
+                                                <input type="range" id="serviceMonitoringIntervalRange"
+                                                       min="1.0" max="30.0" step="0.5" value="2.0"
+                                                       class="interval-slider">
+                                                <div class="slider-labels">
+                                                    <span>1.0s ({% trans "Fast" %})</span>
+                                                    <span>30.0s ({% trans "Slow" %})</span>
+                                                </div>
+                                                <small class="setting-help">
+                                                    {% trans "How often service status is updated when live mode is enabled." %}
+                                                </small>
+                                            </div>
+                                        </div>
+
+                                        <div class="module-actions">
+                                            <button class="btn-primary" id="serviceMonitoringSaveSettings">
+                                                <i class="fas fa-save"></i>
+                                                {% trans "Save Settings" %}
+                                            </button>
+                                            <a href="{% url 'service_monitoring:index' %}" class="btn-secondary">
+                                                <i class="fas fa-external-link-alt"></i>
+                                                {% trans "Open Service Monitoring" %}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                    <!-- Logs Settings -->
+                    <div class="settings-panel" id="logs-panel">
+                        <div class="settings-section">
+                            <h3 class="settings-section-title">
+                                <i class="fas fa-file-alt"></i>
+                                {% trans "System Logs" %}
+                            </h3>
+                            <p class="settings-description">
+                                {% trans "Enable detailed logging for different system modules. Logs are stored daily in" %} <code>logger/</code> {% trans "directory." %}
+                            </p>
+                            
+                            <!-- Process Monitor Logs -->
+                            <div class="log-settings-row">
+                                <div class="log-settings-left">
+                                    <i class="fas fa-network-wired"></i>
+                                    <span class="log-settings-title">{% trans "Process Monitor Logs" %}</span>
+                                    <i class="fas fa-info-circle info-tooltip" title="{% trans 'Log all Process Monitor operations including API calls, connections, process details, port queries, and errors. Logs are stored daily in logger/process-monitor/ directory (format: process_monitor_YYYY-MM-DD.log). Note: Logging may slightly impact performance.' %}"></i>
+                                </div>
+                                <div class="log-settings-right">
+                                    <span class="log-status-inline">
+                                        <i class="fas fa-circle" id="pmLoggingStatusIcon"></i>
+                                        <span id="pmLoggingStatus">{% trans "Disabled" %}</span>
+                                    </span>
+                                    <span class="log-divider">|</span>
+                                    <span class="log-modified-inline">
+                                        <i class="fas fa-user-shield"></i>
+                                        <span id="pmLoggingModifiedBy">-</span>
+                                    </span>
+                                    <label class="switch switch-inline">
+                                        <input type="checkbox" id="processMonitorLogging">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- Docker Manager Logs -->
+                                <div class="log-settings-row">
+                                    <div class="log-settings-left">
+                                        <i class="fab fa-docker"></i>
+                                        <span class="log-settings-title">{% trans "Docker Manager Logs" %}</span>
+                                        <i class="fas fa-info-circle info-tooltip" title="{% trans 'Log all Docker operations including container start/stop, image pull/push, build operations, exec commands, logs viewing, container inspection, and statistics. Logs are stored in database with detailed operation tracking including user, timestamp, IP address, and operation details. Note: Logging may slightly impact performance.' %}"></i>
+                                    </div>
+                                    <div class="log-settings-right">
+                                        <span class="log-status-inline">
+                                            <i class="fas fa-circle" id="dockerLoggingStatusIcon"></i>
+                                            <span id="dockerLoggingStatus">{% trans "Disabled" %}</span>
+                                        </span>
+                                        <span class="log-divider">|</span>
+                                        <span class="log-modified-inline">
+                                            <i class="fas fa-user-shield"></i>
+                                            <span id="dockerLoggingModifiedBy">-</span>
+                                        </span>
+                                        <label class="switch switch-inline">
+                                            <input type="checkbox" id="dockerManagerLogging">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- System Information Logs -->
+                                <div class="log-settings-row">
+                                    <div class="log-settings-left">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span class="log-settings-title">{% trans "System Information Logs" %}</span>
+                                        <i class="fas fa-info-circle info-tooltip" title="{% trans 'Log all System Information operations including hardware monitoring, system health checks, performance metrics, system scans, update checks, backup operations, and maintenance tasks. Logs are stored in database with detailed operation tracking including user, timestamp, IP address, execution time, and operation details. Note: Logging may slightly impact performance.' %}"></i>
+                                    </div>
+                                    <div class="log-settings-right">
+                                        <span class="log-status-inline">
+                                            <i class="fas fa-circle" id="systemInfoLoggingStatusIcon"></i>
+                                            <span id="systemInfoLoggingStatus">{% trans "Disabled" %}</span>
+                                        </span>
+                                        <span class="log-divider">|</span>
+                                        <span class="log-modified-inline">
+                                            <i class="fas fa-user-shield"></i>
+                                            <span id="systemInfoLoggingModifiedBy">-</span>
+                                        </span>
+                                        <label class="switch switch-inline">
+                                            <input type="checkbox" id="systemInfoLogging">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Service Monitoring Logs -->
+                                <div class="log-settings-row">
+                                    <div class="log-settings-left">
+                                        <i class="fas fa-server"></i>
+                                        <span class="log-settings-title">{% trans "Service Monitoring Logs" %}</span>
+                                        <i class="fas fa-info-circle info-tooltip" title="{% trans 'Log all Service Monitoring operations including service start/stop/restart/enable/disable, service creation/deletion, service status checks, and live mode operations. Logs are stored in database with detailed operation tracking including user, timestamp, IP address, and operation details. Note: Logging may slightly impact performance.' %}"></i>
+                                    </div>
+                                    <div class="log-settings-right">
+                                        <span class="log-status-inline">
+                                            <i class="fas fa-circle" id="serviceMonitoringLoggingStatusIcon"></i>
+                                            <span id="serviceMonitoringLoggingStatus">{% trans "Disabled" %}</span>
+                                        </span>
+                                        <span class="log-divider">|</span>
+                                        <span class="log-modified-inline">
+                                            <i class="fas fa-user-shield"></i>
+                                            <span id="serviceMonitoringLoggingModifiedBy">-</span>
+                                        </span>
+                                        <label class="switch switch-inline">
+                                            <input type="checkbox" id="serviceMonitoringLogging">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- SMTP Settings -->
+                    <div class="settings-panel" id="smtp-panel">
+                        <div class="settings-section">
+                            <h3 class="settings-section-title">
+                                <i class="fas fa-envelope"></i>
+                                {% trans "SMTP Configuration" %}
+                            </h3>
+                            
+                            <!-- SMTP Config Form - Compact Layout -->
+                            <div class="module-card">
+                                <div class="smtp-form-compact">
+                                    <!-- Provider & Host Row -->
+                                    <div class="smtp-row">
+                                        <div class="smtp-field">
+                                            <label for="smtp-provider">{% trans "Provider" %}</label>
+                                            <select id="smtp-provider">
+                                                <option value="custom">{% trans "Custom" %}</option>
+                                                <option value="gmail">{% trans "Gmail" %}</option>
+                                                <option value="outlook">{% trans "Outlook / Hotmail" %}</option>
+                                                <option value="yahoo">{% trans "Yahoo Mail" %}</option>
+                                                <option value="office365">{% trans "Office 365" %}</option>
+                                            </select>
+                                        </div>
+                                        <div class="smtp-field smtp-field-flex">
+                                            <div class="smtp-field-inline">
+                                                <label for="smtp-host">{% trans "Host" %}</label>
+                                                <input type="text" id="smtp-host" placeholder="smtp.gmail.com">
+                                            </div>
+                                            <div class="smtp-field-inline smtp-field-small">
+                                                <label for="smtp-port">{% trans "Port" %}</label>
+                                                <input type="number" id="smtp-port" placeholder="587" value="587">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- TLS/SSL Row -->
+                                    <div class="smtp-row smtp-row-checkboxes">
+                                        <label>
+                                            <input type="checkbox" id="smtp-use-tls" checked>
+                                            <span>{% trans "Use TLS" %}</span>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" id="smtp-use-ssl">
+                                            <span>{% trans "Use SSL" %}</span>
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" id="smtp-is-active">
+                                            <span>{% trans "Enable SMTP" %}</span>
+                                        </label>
+                                    </div>
+                                    
+                                    <!-- Credentials Row -->
+                                    <div class="smtp-row">
+                                        <div class="smtp-field">
+                                            <label for="smtp-username">{% trans "Email Address" %}</label>
+                                            <input type="email" id="smtp-username" placeholder="your-email@gmail.com">
+                                        </div>
+                                        <div class="smtp-field">
+                                            <label for="smtp-password">{% trans "Password" %}</label>
+                                            <input type="password" id="smtp-password" placeholder="{% trans 'Your SMTP password or App Password' %}">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Actions Row -->
+                                    <div class="smtp-row smtp-row-actions">
+                                        <button class="btn-secondary" id="smtp-test-btn">
+                                            <i class="fas fa-vial"></i>
+                                            {% trans "Test Connection" %}
+                                        </button>
+                                        <button class="btn-primary" id="smtp-save-btn">
+                                            <i class="fas fa-save"></i>
+                                            {% trans "Save Configuration" %}
+                                        </button>
+                                    </div>
+                                    
+                                    <div id="smtp-test-result" style="display: none; margin-top: 12px; padding: 8px; border-radius: 5px; font-size: 13px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- CVE Email Automation -->
+                        <div class="settings-section">
+                            <div class="cve-automation-header">
+                                <h3 class="settings-section-title">
+                                    <i class="fas fa-bug"></i>
+                                    {% trans "CVE Email Automation" %}
+                                </h3>
+                                <label class="switch switch-inline">
+                                    <input type="checkbox" id="cve-automation-enabled">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="module-card">
+                                <div class="cve-automation-compact" id="cve-automation-settings">
+                                    <!-- Schedule Row -->
+                                    <div class="cve-row">
+                                        <div class="cve-field">
+                                            <label for="cve-schedule-type">{% trans "Schedule" %}</label>
+                                            <select id="cve-schedule-type">
+                                                <option value="daily">{% trans "Daily" %}</option>
+                                                <option value="weekly">{% trans "Weekly" %}</option>
+                                                <option value="monthly">{% trans "Monthly" %}</option>
+                                                <option value="custom">{% trans "Custom Cron" %}</option>
+                                            </select>
+                                        </div>
+                                        <div class="cve-field" id="cve-schedule-time-item">
+                                            <label for="cve-schedule-time">{% trans "Time" %}</label>
+                                            <input type="time" id="cve-schedule-time" value="06:00">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Days/Cron Row (conditional) -->
+                                    <div class="cve-row" id="cve-schedule-days-item" style="display: none;">
+                                        <div class="cve-field">
+                                            <label for="cve-schedule-days">{% trans "Days (0=Mon, 6=Sun)" %}</label>
+                                            <input type="text" id="cve-schedule-days" placeholder="0,2,4">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="cve-row" id="cve-schedule-cron-item" style="display: none;">
+                                        <div class="cve-field">
+                                            <label for="cve-schedule-cron">{% trans "Cron Expression" %}</label>
+                                            <input type="text" id="cve-schedule-cron" placeholder="0 6 * * *">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Filters Row -->
+                                    <div class="cve-row cve-row-checkboxes">
+                                        <div class="cve-field-inline">
+                                            <label for="cve-min-cves">{% trans "Min CVEs" %}</label>
+                                            <input type="number" id="cve-min-cves" value="0" min="0" style="max-width: 80px;">
+                                        </div>
+                                        <label>
+                                            <input type="checkbox" id="cve-send-always">
+                                            <span>{% trans "Always Send" %}</span>
+                                        </label>
+                                    </div>
+                                    
+                                    <!-- Status Row (inline) -->
+                                    <div class="cve-row cve-row-status" id="cve-automation-status">
+                                        <div class="cve-status-item">
+                                            <span class="cve-status-label">{% trans "Status:" %}</span>
+                                            <span class="cve-status-value" id="cve-automation-status-value">-</span>
+                                        </div>
+                                        <div class="cve-status-item">
+                                            <span class="cve-status-label">{% trans "Last:" %}</span>
+                                            <span class="cve-status-value" id="cve-automation-last-run">-</span>
+                                        </div>
+                                        <div class="cve-status-item">
+                                            <span class="cve-status-label">{% trans "Next:" %}</span>
+                                            <span class="cve-status-value" id="cve-automation-next-run">-</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Actions Row -->
+                                    <div class="cve-row cve-row-actions">
+                                        <button class="btn-secondary" id="cve-automation-test-btn">
+                                            <i class="fas fa-play"></i>
+                                            {% trans "Test Now" %}
+                                        </button>
+                                        <button class="btn-primary" id="cve-automation-save-btn">
+                                            <i class="fas fa-save"></i>
+                                            {% trans "Save" %}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Plugins Panel -->
+                    <div class="settings-panel" id="plugins-panel">
+                        <div class="settings-section">
+                            <h3 class="settings-section-title">
+                                <i class="fas fa-puzzle-piece"></i>
+                                {% trans "Plugin Management" %}
+                            </h3>
+                            <div class="module-card">
+                                <p class="settings-description">
+                                    {% trans "Manage your installed plugins and configure their settings." %}
+                                </p>
+                                <div class="plugin-actions" style="margin-top: 20px;">
+                                    <a href="{% url 'plugins:list' %}" class="btn-primary">
+                                        <i class="fas fa-list"></i>
+                                        {% trans "View All Plugins" %}
+                                    </a>
+                                    <button type="button" class="btn-secondary" id="import-plugin-btn">
+                                        <i class="fas fa-upload"></i>
+                                        {% trans "Add Plugin" %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- Header JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+    
+    <!-- Settings JavaScript -->
+    <script src="{% load static %}{% static 'js/settings/script.js' %}"></script>
+    
+    <!-- Plugin Import Modal -->
+    <div id="plugin-import-modal" class="plugin-import-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>
+                    <i class="fas fa-upload"></i>
+                    {% trans "Import Plugin" %}
+                </h3>
+                <button class="modal-close" id="import-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="import-step" id="import-step-1">
+                    <div class="form-group">
+                        <label for="plugin-folder-input">
+                            <i class="fas fa-folder"></i>
+                            {% trans "Select Plugin Folder" %}
+                        </label>
+                        <div class="folder-select-wrapper">
+                            <input 
+                                type="file" 
+                                id="plugin-folder-input" 
+                                class="form-control"
+                                webkitdirectory
+                                directory
+                                multiple
+                                style="display: none;"
+                            >
+                            <div class="folder-select-display">
+                                <button type="button" class="btn-folder-select" id="select-folder-btn">
+                                    <i class="fas fa-folder-open"></i>
+                                    {% trans "Select Folder" %}
+                                </button>
+                                <span id="selected-folder-name" class="selected-folder-name"></span>
+                            </div>
+                        </div>
+                        <small class="form-text">
+                            {% trans "Click 'Select Folder' to choose the plugin folder from your computer" %}
+                        </small>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-primary" id="validate-plugin-btn" disabled>
+                            <i class="fas fa-check"></i>
+                            {% trans "Validate Plugin" %}
+                        </button>
+                        <button type="button" class="btn-secondary" id="cancel-import-btn">
+                            {% trans "Cancel" %}
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="import-step" id="import-step-2" style="display: none;">
+                    <div id="plugin-preview">
+                        <!-- Plugin preview will be loaded here -->
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-primary" id="confirm-import-btn">
+                            <i class="fas fa-check"></i>
+                            {% trans "Import Plugin" %}
+                        </button>
+                        <button type="button" class="btn-secondary" id="back-to-step1-btn">
+                            <i class="fas fa-arrow-left"></i>
+                            {% trans "Back" %}
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="import-step" id="import-step-3" style="display: none;">
+                    <div id="import-result">
+                        <!-- Import result will be shown here -->
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-primary" id="close-import-modal-btn">
+                            {% trans "Close" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Plugin Import CSS and JS -->
+    <link rel="stylesheet" href="{% static 'css/plugins/import.css' %}">
+    <script src="{% static 'js/plugins/import.js' %}"></script>
+</body>
+</html>
+

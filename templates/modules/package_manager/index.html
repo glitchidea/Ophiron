@@ -1,0 +1,155 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Package Manager" %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% static 'css/components/header.css' %}">
+    
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+    
+    <!-- Package Manager CSS -->
+    <link rel="stylesheet" href="{% static 'css/package_manager/style.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="pkg-main">
+            <!-- Page Header -->
+            <div class="pkg-header">
+                <div class="pkg-header-top">
+                    <div class="pkg-title-section">
+                        <h1>
+                            <i class="fas fa-boxes"></i>
+                            {% trans "Package Manager" %}
+                        </h1>
+                        <p>{% trans "View system updates and installed packages" %}</p>
+                    </div>
+                    <div class="pkg-header-actions">
+                        <button id="refreshBtn" class="btn-primary">
+                            <i class="fas fa-sync-alt"></i>
+                            {% trans "Refresh" %}
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="pkg-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-download"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="statTotalUpdates">-</div>
+                            <div class="stat-label">{% trans "Total Updates" %}</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon active"><i class="fas fa-shield-alt"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="statCritical">-</div>
+                            <div class="stat-label">{% trans "Critical Updates" %}</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-toolbox"></i></div>
+                        <div class="stat-content">
+                            <div class="stat-number" id="statManagers">-</div>
+                            <div class="stat-label">{% trans "Managers" %}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Managers Breakdown -->
+                <div class="pkg-managers" id="managerSummary"></div>
+            </div>
+
+            <!-- Filters -->
+            <div class="pkg-filters">
+                <div class="filter-group">
+                    <label for="managerFilter">{% trans "Manager" %}:</label>
+                    <select id="managerFilter" class="filter-select">
+                        <option value="">{% trans "All" %}</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="searchInput">{% trans "Search" %}:</label>
+                    <input type="text" id="searchInput" class="filter-input" placeholder="{% trans 'Search packages...' %}">
+                </div>
+            </div>
+
+            <!-- Packages Table -->
+            <div class="pkg-content">
+                <div class="pkg-table-container">
+                    <table class="pkg-table" id="pkgTable">
+                        <thead>
+                            <tr>
+                                <th>{% trans "Package" %}</th>
+                                <th>{% trans "Version" %}</th>
+                                <th>{% trans "Manager" %}</th>
+                                <th>{% trans "Actions" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pkgTableBody">
+                            <tr>
+                                <td colspan="4" class="loading-cell">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                    {% trans "Loading..." %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    {% include 'modules/package_manager/detail_modal.html' %}
+    {% include 'modules/package_manager/updates_modal.html' %}
+
+    {% csrf_token %}
+
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = {
+            'no_managers_found': '{% trans "No managers found" %}',
+            'all': '{% trans "All" %}',
+            'update_available': '{% trans "Update available" %}',
+            'details': '{% trans "Details" %}',
+            'no_results_found': '{% trans "No results found" %}',
+            'no_dependencies_found': '{% trans "No dependencies found" %}',
+            'critical': '{% trans "critical" %}',
+            'no_updates_found': '{% trans "No updates found" %}',
+            'loading': '{% trans "Loading..." %}',
+            'manager': '{% trans "Manager" %}',
+            'package': '{% trans "Package" %}',
+            'version': '{% trans "Version" %}',
+            'description': '{% trans "Description" %}',
+            'homepage': '{% trans "Homepage" %}',
+            'license': '{% trans "License" %}',
+            'repository': '{% trans "Repository" %}',
+            'maintainer': '{% trans "Maintainer" %}',
+            'architecture': '{% trans "Architecture" %}'
+        };
+    </script>
+
+    <!-- Header JS -->
+    <script src="{% static 'js/components/header.js' %}"></script>
+    <!-- Package Manager JS -->
+    <script src="{% static 'js/package_manager/main.js' %}"></script>
+</body>
+</html>
+
+

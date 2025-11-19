@@ -1,0 +1,154 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ophiron - {% trans "Account Activity History" %}</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/components/header.css' %}">
+    
+    <!-- Security CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/security/style.css' %}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="security-main">
+            <div class="security-container">
+                <!-- Page Title -->
+                <div class="security-header">
+                    <div class="security-title-section">
+                        <h1 class="security-title">
+                            <i class="fas fa-history"></i>
+                            {% trans "Account Activity History" %}
+                        </h1>
+                        <p class="security-subtitle">{% trans "View all activities that occurred on your account" %}</p>
+                    </div>
+                    <div class="security-actions">
+                        <button class="btn-primary" onclick="exportActivity()">
+                            <i class="fas fa-download"></i>
+                            {% trans "Export" %}
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Activity Filters -->
+                <div class="activity-filters">
+                    <div class="filter-group">
+                        <label for="activityType">{% trans "Activity Type" %}</label>
+                        <select id="activityType">
+                            <option value="">{% trans "All" %}</option>
+                            <option value="login">{% trans "Login" %}</option>
+                            <option value="logout">{% trans "Logout" %}</option>
+                            <option value="password_change">{% trans "Password Change" %}</option>
+                            <option value="2fa_enable">{% trans "2FA Enable" %}</option>
+                            <option value="2fa_disable">{% trans "2FA Disable" %}</option>
+                            <option value="2fa_verify">{% trans "2FA Verify" %}</option>
+                            <option value="profile_update">{% trans "Profile Update" %}</option>
+                            <option value="profile_image_upload">{% trans "Profile Image Upload" %}</option>
+                            <option value="profile_image_remove">{% trans "Profile Image Remove" %}</option>
+                            <option value="email_change">{% trans "Email Change" %}</option>
+                            <option value="name_change">{% trans "Name Change" %}</option>
+                            <option value="language_change">{% trans "Language Change" %}</option>
+                            <option value="timezone_change">{% trans "Timezone Change" %}</option>
+                            <option value="api_key_regenerate">{% trans "API Key Regenerate" %}</option>
+                            <option value="failed_login">{% trans "Failed Login" %}</option>
+                            <option value="security_event">{% trans "Security Event" %}</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="dateRange">{% trans "Date Range" %}</label>
+                        <select id="dateRange">
+                            <option value="7">{% trans "Last 7 Days" %}</option>
+                            <option value="30" selected>{% trans "Last 30 Days" %}</option>
+                            <option value="90">{% trans "Last 3 Months" %}</option>
+                            <option value="365">{% trans "Last 1 Year" %}</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="statusFilter">{% trans "Status" %}</label>
+                        <select id="statusFilter">
+                            <option value="">{% trans "All" %}</option>
+                            <option value="success">{% trans "Successful" %}</option>
+                            <option value="failed">{% trans "Failed" %}</option>
+                            <option value="warning">{% trans "Warning" %}</option>
+                            <option value="info">{% trans "Info" %}</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Activity List -->
+                <div class="activity-list" id="activityList">
+                    <!-- Loading indicator -->
+                    <div class="loading-indicator" id="loadingIndicator" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>{% trans "Loading activities..." %}</p>
+                    </div>
+                    
+                    <!-- Empty state -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <i class="fas fa-history"></i>
+                        <h3>{% trans "No activity yet" %}</h3>
+                        <p>{% trans "There are no recorded activities in your account yet." %}</p>
+                    </div>
+                    
+                    <!-- Activities will be loaded here dynamically -->
+                </div>
+                
+                <!-- Load More -->
+                <div class="load-more-section" id="loadMoreSection" style="display: none;">
+                    <button class="btn-secondary load-more-btn" onclick="loadMoreActivity()">
+                        <i class="fas fa-plus"></i>
+                        {% trans "Load More" %}
+                    </button>
+                </div>
+                
+                <!-- Pagination Info -->
+                <div class="pagination-info" id="paginationInfo" style="display: none;">
+                    <span id="paginationText"></span>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- CSRF Token -->
+    {% csrf_token %}
+    
+    <!-- Header JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+    
+    <!-- JavaScript Translations -->
+    <script>
+        window.jsTranslations = {
+            'successful': '{% trans "Successful" %}',
+            'failed': '{% trans "Failed" %}',
+            'warning': '{% trans "Warning" %}',
+            'info': '{% trans "Info" %}',
+            'unknown': '{% trans "Unknown" %}',
+            'no_activities_found': '{% trans "No activities found with the selected filters" %}',
+            'error_loading_activities': '{% trans "An error occurred while loading activities" %}',
+            'refreshing_activity': '{% trans "Refreshing activity history..." %}',
+            'exporting_activity': '{% trans "Exporting activity history..." %}',
+            'export_success': '{% trans "Activity history exported successfully" %}',
+            'export_error': '{% trans "An error occurred during export" %}',
+            'page': '{% trans "Page" %}',
+            'total': '{% trans "Total" %}',
+            'activities': '{% trans "activities" %}'
+        };
+    </script>
+    
+    <!-- Security JavaScript -->
+    <script src="{% load static %}{% static 'js/security/activity.js' %}"></script>
+</body>
+</html>

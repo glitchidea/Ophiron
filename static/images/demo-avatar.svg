@@ -1,0 +1,21 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="64" cy="64" r="64" fill="#e2e8f0"/>
+  
+  <!-- Head -->
+  <circle cx="64" cy="48" r="20" fill="#4a5568"/>
+  
+  <!-- Body -->
+  <ellipse cx="64" cy="90" rx="28" ry="35" fill="#4a5568"/>
+  
+  <!-- Eyes -->
+  <circle cx="58" cy="42" r="3" fill="#ffffff"/>
+  <circle cx="70" cy="42" r="3" fill="#ffffff"/>
+  
+  <!-- Eye pupils -->
+  <circle cx="58" cy="42" r="1.5" fill="#1a202c"/>
+  <circle cx="70" cy="42" r="1.5" fill="#1a202c"/>
+  
+  <!-- Smile -->
+  <path d="M 55 50 Q 64 58 73 50" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>

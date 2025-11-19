@@ -1,0 +1,546 @@
+/* Plugin Import Modal Styles */
+
+.plugin-import-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    animation: fadeIn 0.2s ease;
+}
+
+.plugin-import-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.plugin-import-modal .modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+.plugin-import-modal .modal-container {
+    position: relative;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 90%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 10001;
+    animation: slideUp 0.3s ease;
+    overflow: hidden;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.plugin-import-modal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px;
+    border-bottom: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.plugin-import-modal .modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a202c;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.plugin-import-modal .modal-header h3 i {
+    color: #ff6b6b;
+    font-size: 18px;
+}
+
+.plugin-import-modal .modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.plugin-import-modal .modal-close:hover {
+    background: #f3f4f6;
+    color: #1a202c;
+}
+
+.plugin-import-modal .modal-body {
+    padding: 28px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.plugin-import-modal .import-step {
+    animation: fadeIn 0.3s ease;
+}
+
+.plugin-import-modal .form-group {
+    margin-bottom: 24px;
+}
+
+.plugin-import-modal .form-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #1a202c;
+    font-size: 14px;
+}
+
+.plugin-import-modal .form-group label i {
+    color: #ff6b6b;
+}
+
+.plugin-import-modal .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1a202c;
+    transition: all 0.2s;
+    background: #ffffff;
+}
+
+.plugin-import-modal .form-control:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+/* Folder Select Styles */
+.folder-select-wrapper {
+    position: relative;
+}
+
+.folder-select-display {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-folder-select {
+    padding: 12px 24px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-folder-select:hover {
+    background: #ee5a52;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.btn-folder-select:active {
+    transform: translateY(0);
+}
+
+.selected-folder-name {
+    flex: 1;
+    padding: 12px 16px;
+    background: #f8f9fa;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1a202c;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.selected-folder-name:focus-within {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.selected-folder-name:empty::before {
+    content: 'No folder selected';
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.plugin-import-modal .form-text {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.plugin-import-modal .form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.plugin-import-modal .btn-primary,
+.plugin-import-modal .btn-secondary {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+}
+
+.plugin-import-modal .btn-primary {
+    background: #ff6b6b;
+    color: white;
+}
+
+.plugin-import-modal .btn-primary:hover {
+    background: #ee5a52;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.plugin-import-modal .btn-secondary {
+    background: #ffffff;
+    color: #718096;
+    border: 2px solid #e2e8f0;
+}
+
+.plugin-import-modal .btn-secondary:hover {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+    background: #ffffff;
+}
+
+/* Plugin Preview */
+.plugin-preview {
+    background: #f8f9fa;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.plugin-preview-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.plugin-preview-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff6b6b;
+    color: white;
+    border-radius: 12px;
+    font-size: 24px;
+}
+
+.plugin-preview-info h4 {
+    margin: 0 0 4px 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a202c;
+}
+
+.plugin-preview-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.plugin-preview-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.plugin-preview-badge.success {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.plugin-preview-badge.warning {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.plugin-preview-badge.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.plugin-preview-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.preview-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.preview-detail-label {
+    font-size: 12px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.preview-detail-value {
+    font-size: 14px;
+    color: #1a202c;
+    font-weight: 500;
+}
+
+.plugin-preview-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.feature-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #1a202c;
+}
+
+.feature-badge i {
+    color: #10b981;
+}
+
+.plugin-preview-warning {
+    margin-top: 20px;
+    padding: 16px;
+    background: #fef3c7;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    color: #92400e;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.plugin-preview-warning i {
+    color: #f59e0b;
+    font-size: 18px;
+}
+
+.plugin-preview-error {
+    margin-top: 20px;
+    padding: 16px;
+    background: #fee2e2;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    color: #991b1b;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.plugin-preview-error i {
+    color: #ef4444;
+    font-size: 18px;
+}
+
+/* Loading State */
+.import-loading {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6b7280;
+}
+
+.import-loading i {
+    font-size: 48px;
+    color: #d1d5db;
+    margin-bottom: 16px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Success/Error Messages */
+.import-result {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.import-result.success {
+    color: #065f46;
+}
+
+.import-result.error {
+    color: #991b1b;
+}
+
+.import-result i {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.import-result.success i {
+    color: #10b981;
+}
+
+.import-result.error i {
+    color: #ef4444;
+}
+
+.import-result h3 {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.import-result p {
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+/* Plugin Actions */
+.plugin-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.plugin-actions .btn-primary,
+.plugin-actions .btn-secondary {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    border: none;
+}
+
+.plugin-actions .btn-primary {
+    background: #ff6b6b;
+    color: white;
+}
+
+.plugin-actions .btn-primary:hover {
+    background: #ee5a52;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.plugin-actions .btn-secondary {
+    background: #ffffff;
+    color: #718096;
+    border: 2px solid #e2e8f0;
+}
+
+.plugin-actions .btn-secondary:hover {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+    background: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .plugin-import-modal .modal-container {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .plugin-import-modal .modal-header,
+    .plugin-import-modal .modal-body {
+        padding: 20px;
+    }
+    
+    .plugin-import-modal .form-actions {
+        flex-direction: column;
+    }
+    
+    .plugin-import-modal .form-actions button {
+        width: 100%;
+    }
+    
+    .plugin-preview-details {
+        grid-template-columns: 1fr;
+    }
+}
+

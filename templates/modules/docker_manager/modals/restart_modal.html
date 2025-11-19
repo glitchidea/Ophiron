@@ -1,0 +1,30 @@
+{% load i18n %}
+<!-- Restart Container Modal -->
+<div id="restartModal" class="action-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="modal-icon restart">
+                <i class="fas fa-redo"></i>
+            </div>
+            <h3 id="restartModalTitle">{% trans "Restart Container" %}</h3>
+            <span class="close" onclick="closeRestartModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <p id="restartModalMessage">{% trans "Are you sure you want to restart this container?" %}</p>
+            <div class="container-info">
+                <div class="info-item">
+                    <strong id="restartContainerIdLabel">{% trans "Container ID" %}:</strong>
+                    <span id="restartContainerId"></span>
+                </div>
+                <div class="info-item">
+                    <strong id="restartContainerNameLabel">{% trans "Container Name" %}:</strong>
+                    <span id="restartContainerName"></span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeRestartModal()" id="restartCancelBtn">{% trans "Cancel" %}</button>
+            <button class="btn btn-info" onclick="confirmRestartContainer()" id="restartConfirmBtn">{% trans "Restart Container" %}</button>
+        </div>
+    </div>
+</div>

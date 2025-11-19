@@ -1,0 +1,108 @@
+<!-- Remove Image Popup -->
+<div class="modal-overlay" id="removeModal">
+    <div class="modal-content remove-modal">
+        <div class="modal-header">
+            <h3>
+                <i class="fas fa-trash"></i>
+                Remove Image
+            </h3>
+            <button class="close-btn" onclick="closeRemoveModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="remove-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>This action cannot be undone!</span>
+            </div>
+            
+            <div class="selected-image-info">
+                <div class="image-preview">
+                    <div class="image-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="image-details">
+                        <div class="image-name" id="removeImageName">Image Name</div>
+                        <div class="image-id" id="removeImageId">Image ID</div>
+                        <div class="image-size" id="removeImageSize">Size</div>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="removeForm">
+                <div class="form-group">
+                    <label for="removeOptions">Remove Options:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="removeForce" name="removeOptions" value="force">
+                            <span class="checkmark"></span>
+                            Force removal (remove even if used by containers)
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="removeNoPrune" name="removeOptions" value="no-prune">
+                            <span class="checkmark"></span>
+                            Don't delete untagged parent images
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="removeReason">Reason for removal (optional):</label>
+                    <select id="removeReason">
+                        <option value="">Select a reason...</option>
+                        <option value="no-longer-needed">No longer needed</option>
+                        <option value="outdated">Outdated version</option>
+                        <option value="security">Security concerns</option>
+                        <option value="cleanup">System cleanup</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="customReasonGroup" style="display: none;">
+                    <label for="customReason">Custom reason:</label>
+                    <input type="text" id="customReason" placeholder="Enter custom reason...">
+                </div>
+                
+                <div class="form-group">
+                    <label for="removeConfirmation">Type the image name to confirm:</label>
+                    <input type="text" id="removeConfirmation" placeholder="Type image name here..." required>
+                    <small class="form-help">This helps prevent accidental deletions</small>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closeRemoveModal()">Cancel</button>
+            <button type="button" class="btn btn-danger" onclick="confirmRemoveImage()" id="removeConfirmBtn" disabled>
+                <i class="fas fa-trash"></i>
+                Remove Image
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Remove Progress Modal -->
+<div class="modal-overlay" id="removeProgressModal">
+    <div class="modal-content progress-modal">
+        <div class="modal-header">
+            <h3>
+                <i class="fas fa-trash fa-spin"></i>
+                Removing Image
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="removeProgress"></div>
+                </div>
+                <div class="progress-text" id="removeProgressText">Preparing removal...</div>
+            </div>
+            <div class="remove-logs" id="removeLogs">
+                <div class="log-line">Starting removal process...</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" onclick="cancelRemove()">
+                <i class="fas fa-times"></i>
+                Cancel Removal
+            </button>
+        </div>
+    </div>
+</div>

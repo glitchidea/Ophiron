@@ -1,0 +1,117 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Templates' %} - {% trans 'Service Builder' %}{% endblock %}
+
+{% block extra_css %}
+    <!-- Service Builder CSS -->
+    <link href="{% static 'css/service_builder/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/service_builder/components/cards.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="service-builder-container">
+    <!-- Header Section -->
+    <div class="service-builder-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1 class="service-builder-title">
+                    <i class="fas fa-file-code"></i>
+                    {% trans "Service Templates" %}
+                </h1>
+                <p class="service-builder-subtitle">
+                    {% trans "Pre-built service templates for common applications" %}
+                </p>
+            </div>
+            <div class="header-actions">
+                <a href="{% url 'service_builder:create_service' %}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    {% trans "Create Custom Service" %}
+                </a>
+                <a href="{% url 'service_builder:index' %}" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i>
+                    {% trans "Back to Dashboard" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates Grid -->
+    <div class="service-builder-content">
+        {% if templates %}
+            <div class="templates-grid">
+                {% for template in templates %}
+                <div class="template-card">
+                    <div class="template-header">
+                        <div class="template-icon">
+                            {% if template.service_type == 'web' %}
+                                <i class="fas fa-globe"></i>
+                            {% elif template.service_type == 'background' %}
+                                <i class="fas fa-tasks"></i>
+                            {% else %}
+                                <i class="fas fa-terminal"></i>
+                            {% endif %}
+                        </div>
+                        <div class="template-info">
+                            <h3 class="template-name">{{ template.name }}</h3>
+                            <span class="template-type">{{ template.service_type|title }}</span>
+                        </div>
+                    </div>
+                    <div class="template-content">
+                        <p class="template-description">{{ template.description|truncatechars:120 }}</p>
+                        <div class="template-actions">
+                            <button class="btn btn-primary" onclick="useTemplate('{{ template.id }}')">
+                                <i class="fas fa-download"></i>
+                                {% trans "Use Template" %}
+                            </button>
+                            <button class="btn btn-outline" onclick="viewTemplate('{{ template.id }}')">
+                                <i class="fas fa-eye"></i>
+                                {% trans "View Details" %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <i class="fas fa-file-code"></i>
+                <h3>{% trans "No Templates Available" %}</h3>
+                <p>{% trans "No service templates have been created yet. Create a custom service to get started." %}</p>
+                <a href="{% url 'service_builder:create_service' %}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    {% trans "Create Custom Service" %}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Template Details Modal -->
+<div class="modal fade" id="templateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans "Template Details" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="templateContent">
+                    <!-- Template content will be loaded here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" data-bs-dismiss="modal">{% trans "Close" %}</button>
+                <button type="button" class="btn btn-primary" id="useTemplateBtn">{% trans "Use Template" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Service Builder JavaScript -->
+    <script src="{% static 'js/service_builder/main.js' %}"></script>
+    <script src="{% static 'js/service_builder/templates.js' %}"></script>
+{% endblock %}

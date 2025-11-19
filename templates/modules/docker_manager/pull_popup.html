@@ -1,0 +1,116 @@
+{% load i18n %}
+<!-- Pull Image Popup -->
+<div class="modal-overlay" id="pullModal">
+    <div class="modal-content pull-modal">
+        <div class="modal-header">
+            <h3>
+                <i class="fas fa-download"></i>
+                {% trans "Pull Image" %}
+            </h3>
+            <button class="close-btn" onclick="closePullModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="pullForm">
+                <div class="form-group">
+                    <label for="pullImageName">{% trans "Image Name" %}:</label>
+                    <input type="text" id="pullImageName" placeholder="{% trans 'e.g., nginx:latest' %}" required>
+                    <small class="form-help">{% trans "Docker Hub image name and tag" %}</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pullRegistry">{% trans "Registry" %}:</label>
+                    <select id="pullRegistry">
+                        <option value="docker.io">{% trans "Docker Hub (docker.io)" %}</option>
+                        <option value="ghcr.io">{% trans "GitHub Container Registry" %}</option>
+                        <option value="quay.io">{% trans "Quay.io" %}</option>
+                        <option value="custom">{% trans "Custom Registry" %}</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="customRegistryGroup" style="display: none;">
+                    <label for="customRegistry">{% trans "Custom Registry URL" %}:</label>
+                    <input type="text" id="customRegistry" placeholder="{% trans 'e.g., registry.example.com' %}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pullAuth">{% trans "Authentication" %}:</label>
+                    <div class="auth-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="pullUseAuth">
+                            <span class="checkmark"></span>
+                            {% trans "Use authentication" %}
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="auth-fields" id="authFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="pullUsername">{% trans "Username" %}:</label>
+                        <input type="text" id="pullUsername" placeholder="{% trans 'Registry username' %}">
+                    </div>
+                    <div class="form-group">
+                        <label for="pullPassword">{% trans "Password/Token" %}:</label>
+                        <input type="password" id="pullPassword" placeholder="{% trans 'Registry password or token' %}">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="pullOptions">{% trans "Pull Options" %}:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="pullAllTags" name="pullOptions" value="all-tags">
+                            <span class="checkmark"></span>
+                            {% trans "Pull all tags" %}
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="pullQuiet" name="pullOptions" value="quiet">
+                            <span class="checkmark"></span>
+                            {% trans "Quiet mode" %}
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="pullDisableContentTrust" name="pullOptions" value="disable-content-trust">
+                            <span class="checkmark"></span>
+                            {% trans "Disable content trust" %}
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="closePullModal()">{% trans "Cancel" %}</button>
+            <button type="button" class="btn btn-primary" onclick="startPull()">
+                <i class="fas fa-download"></i>
+                {% trans "Start Pull" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Pull Progress Modal -->
+<div class="modal-overlay" id="pullProgressModal">
+    <div class="modal-content progress-modal">
+        <div class="modal-header">
+            <h3>
+                <i class="fas fa-download fa-spin"></i>
+                {% trans "Pulling Image" %}
+            </h3>
+        </div>
+        <div class="modal-body">
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="pullProgress"></div>
+                </div>
+                <div class="progress-text" id="pullProgressText">{% trans "Preparing pull..." %}</div>
+            </div>
+            <div class="pull-logs" id="pullLogs">
+                <div class="log-line">{% trans "Starting pull process..." %}</div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" onclick="cancelPull()">
+                <i class="fas fa-times"></i>
+                {% trans "Cancel Pull" %}
+            </button>
+        </div>
+    </div>
+</div>

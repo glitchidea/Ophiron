@@ -1,0 +1,404 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Docker Manager" %} - Ophiron</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/main.css' %}">
+    
+    <!-- Header CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/components/header.css' %}">
+    
+    <!-- Docker Manager CSS -->
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/main.css' %}">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/images.css' %}">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/popups.css' %}">
+    <link rel="stylesheet" href="{% load static %}{% static 'css/docker_manager/purge_modal.css' %}">
+    
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Component -->
+        {% include 'components/header.html' %}
+        
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="docker-manager">
+                <!-- Header -->
+                <div class="docker-header">
+                    <div class="header-left">
+                        <h1 class="docker-title">{% trans "Docker Manager" %}</h1>
+                        <span class="feedback-link">{% trans "Give feedback" %}</span>
+                    </div>
+                </div>
+
+                <!-- Docker Navigation -->
+                <div class="docker-nav">
+                    <div class="docker-nav-container">
+                        <a href="{% url 'docker_manager:index' %}" class="docker-nav-item">
+                            <i class="fas fa-cube"></i>
+                            <span>{% trans "Containers" %}</span>
+                        </a>
+                        <a href="{% url 'docker_manager:images' %}" class="docker-nav-item active">
+                            <i class="fas fa-images"></i>
+                            <span>Images</span>
+                        </a>
+                        <a href="{% url 'docker_manager:volumes' %}" class="docker-nav-item">
+                            <i class="fas fa-database"></i>
+                            <span>{% trans "Volumes" %}</span>
+                        </a>
+                        <a href="{% url 'docker_manager:hubs' %}" class="docker-nav-item">
+                            <i class="fas fa-cube"></i>
+                            <span>{% trans "Hubs" %}</span>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Search and Filter -->
+                <div class="search-filter">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="{% trans 'Search images by name or tag...' %}" id="imageSearch">
+                    </div>
+                    <div class="filter-container">
+                        <label class="filter-toggle">
+                            <input type="checkbox" id="danglingOnly">
+                            <span class="toggle-slider"></span>
+                            {% trans "Show only dangling images" %}
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Images Table -->
+                <div class="images-table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>Images</h3>
+                            <span class="items-count">{% trans "Showing" %} {{ images|length }} {% trans "items" %}</span>
+                        </div>
+                        <div class="table-actions">
+                            <button class="action-btn pull" onclick="pullImage()">
+                                <i class="fas fa-download"></i>
+                                Pull
+                            </button>
+                            <button class="action-btn build" onclick="showBuildModal()">
+                                <i class="fas fa-hammer"></i>
+                                Build
+                            </button>
+                            <button class="action-btn git-build" onclick="showGitBuildModal()">
+                                <i class="fas fa-code-branch"></i>
+                                Git Build
+                            </button>
+                            <button class="action-btn prune" onclick="showPurgeModal()">
+                                <i class="fas fa-broom"></i>
+                                {% trans "Prune" %}
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="images-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="name-col">Name</th>
+                                    <th class="id-col">Image ID</th>
+                                    <th class="tag-col">Tag</th>
+                                    <th class="size-col">Size</th>
+                                    <th class="created-col">Created</th>
+                                </tr>
+                            </thead>
+                            <tbody id="imagesTableBody">
+                                {% for image in images %}
+                                <tr data-image-id="{{ image.id }}" class="image-row">
+                                    <td class="name-col">
+                                        <div class="image-name-cell">
+                                            {% if image.has_containers %}
+                                            <button class="expand-btn" onclick="toggleImageContainers('{{ image.id }}')">
+                                                <i class="fas fa-chevron-down"></i>
+                                            </button>
+                                            {% endif %}
+                                            <div class="status-indicator running"></div>
+                                            <a href="{% url 'docker_manager:image_detail' image.id %}" class="image-name">{{ image.name }}</a>
+                                        </div>
+                                    </td>
+                                    <td class="id-col">
+                                        <span class="image-id">{{ image.id }}</span>
+                                    </td>
+                                    <td class="tag-col">
+                                        <span class="image-tag">{{ image.tag }}</span>
+                                    </td>
+                                    <td class="size-col">
+                                        <span class="image-size">{{ image.size }}</span>
+                                    </td>
+                                    <td class="created-col">
+                                        <span class="image-created">{{ image.created }}</span>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Container rows for this image -->
+                                {% if image.has_containers %}
+                                    {% for container in image.containers %}
+                                    <tr class="container-row" data-parent-image="{{ image.id }}" style="display: none;">
+                                        <td class="name-col">
+                                            <div class="container-name-cell">
+                                                <div class="status-indicator running"></div>
+                                                <span class="container-name">{{ container.name }}</span>
+                                            </div>
+                                        </td>
+                                        <td class="id-col">
+                                            <span class="container-id">{{ container.id }}</span>
+                                        </td>
+                                        <td class="tag-col">
+                                            <span class="container-image">{{ container.image_name|default:"N/A" }}</span>
+                                        </td>
+                                        <td class="size-col">
+                                            <span class="container-size">{{ container.size|default:"N/A" }}</span>
+                                        </td>
+                                        <td class="created-col">
+                                            <span class="container-created">{{ container.created|default:"N/A" }}</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                {% endif %}
+                                {% empty %}
+                                <tr>
+                                    <td colspan="5" style="text-align: center; padding: 40px; color: #718096;">
+                                        {% if docker_running %}
+                                            No images found
+                                        {% else %}
+                                            Docker is not running
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- CSRF Token -->
+    {% csrf_token %}
+
+    <!-- Build Modal -->
+    <div class="modal" id="buildModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{% trans "Create New Build" %}</h3>
+                <button class="modal-close" onclick="hideBuildModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="buildForm">
+                    <div class="form-group">
+                        <label for="dockerfilePath">{% trans "Dockerfile Path" %}</label>
+                        <input type="text" id="dockerfilePath" name="dockerfile_path" class="form-control" 
+                               placeholder="/path/to/Dockerfile" required>
+                        <small class="form-text">{% trans "Absolute path to the directory containing Dockerfile" %}</small>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="imageName">{% trans "Image Name" %}</label>
+                            <input type="text" id="imageName" name="image_name" class="form-control" 
+                                   placeholder="my-app" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="imageTag">{% trans "Tag" %}</label>
+                            <input type="text" id="imageTag" name="tag" class="form-control" 
+                                   placeholder="latest" value="latest">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="buildArgs">{% trans "Build Arguments (JSON)" %}</label>
+                        <textarea id="buildArgs" name="build_args" class="form-control" rows="3" 
+                                  placeholder='{"NODE_ENV": "production", "PORT": "3000"}'></textarea>
+                        <small class="form-text">{% trans "Optional build arguments in JSON format" %}</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="noCache" name="no_cache">
+                            <span class="checkmark"></span>
+                            {% trans "No Cache" %}
+                        </label>
+                        <small class="form-text">{% trans "Build without using cache" %}</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideBuildModal()">{% trans "Cancel" %}</button>
+                <button class="btn btn-primary" onclick="startBuild()">
+                    <i class="fas fa-play"></i>
+                    {% trans "Start Build" %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Git Build Modal -->
+    <div class="modal" id="gitBuildModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{% trans "Build from Git Repository" %}</h3>
+                <button class="modal-close" onclick="hideGitBuildModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="gitBuildForm">
+                    <div class="form-group">
+                        <label for="gitUrl">{% trans "Git Repository URL" %}</label>
+                        <input type="url" id="gitUrl" name="git_url" class="form-control" 
+                               placeholder="https://github.com/user/repo.git" required>
+                        <small class="form-text">{% trans "URL of the Git repository containing Dockerfile" %}</small>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gitImageName">{% trans "Image Name" %}</label>
+                            <input type="text" id="gitImageName" name="image_name" class="form-control" 
+                                   placeholder="my-app" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gitImageTag">{% trans "Tag" %}</label>
+                            <input type="text" id="gitImageTag" name="tag" class="form-control" 
+                                   placeholder="latest" value="latest">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dockerfilePath">{% trans "Dockerfile Path" %}</label>
+                        <input type="text" id="gitDockerfilePath" name="dockerfile_path" class="form-control" 
+                               placeholder="Dockerfile" value="Dockerfile">
+                        <small class="form-text">{% trans "Path to Dockerfile within the repository" %}</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gitBuildArgs">{% trans "Build Arguments (JSON)" %}</label>
+                        <textarea id="gitBuildArgs" name="build_args" class="form-control" rows="3" 
+                                  placeholder='{"NODE_ENV": "production", "PORT": "3000"}'></textarea>
+                        <small class="form-text">{% trans "Optional build arguments in JSON format" %}</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideGitBuildModal()">{% trans "Cancel" %}</button>
+                <button class="btn btn-primary" onclick="startGitBuild()">
+                    <i class="fas fa-code-branch"></i>
+                    {% trans "Build from Git" %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Build Progress Modal -->
+    <div class="modal" id="buildProgressModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{% trans "Building Image" %}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="build-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="buildProgressFill"></div>
+                    </div>
+                    <div class="progress-text" id="buildProgressText">{% trans "Preparing build..." %}</div>
+                </div>
+                <div class="build-logs">
+                    <pre id="buildProgressLogs" class="progress-logs"></pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="cancelBuild()" id="cancelBuildBtn">{% trans "Cancel" %}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Logs Modal -->
+    <div id="imageLogsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{% trans "Image Logs" %}</h3>
+                <button class="modal-close" onclick="hideImageLogs()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="logs-container">
+                    <pre id="imageLogsContent" class="logs-content"></pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideImageLogs()">{% trans "Close" %}</button>
+                <button class="btn btn-primary" onclick="refreshImageLogs()">
+                    <i class="fas fa-refresh"></i>
+                    {% trans "Refresh" %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Inspect Modal -->
+    <div id="imageInspectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{% trans "Image Inspect" %}</h3>
+                <button class="modal-close" onclick="hideImageInspect()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="inspect-container">
+                    <pre id="imageInspectContent" class="inspect-content"></pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideImageInspect()">{% trans "Close" %}</button>
+                <button class="btn btn-primary" onclick="copyInspectData()">
+                    <i class="fas fa-copy"></i>
+                    {% trans "Copy" %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image History Modal -->
+    <div id="imageHistoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>{% trans "Image History" %}</h3>
+                <button class="modal-close" onclick="hideImageHistory()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="history-container">
+                    <pre id="imageHistoryContent" class="history-content"></pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideImageHistory()">{% trans "Close" %}</button>
+                <button class="btn btn-primary" onclick="copyHistoryData()">
+                    <i class="fas fa-copy"></i>
+                    {% trans "Copy" %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Modals -->
+    {% include 'modules/docker_manager/modals/purge_modal.html' %}
+
+    <!-- JavaScript -->
+    <script src="{% load static %}{% static 'js/components/header.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/main.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/images.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/popups.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/purge_modal.js' %}"></script>
+</body>
+</html>

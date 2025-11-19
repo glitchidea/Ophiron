@@ -1,0 +1,31 @@
+{% load i18n %}
+<div id="updatesModal" class="modal" style="display:none;">
+  <div class="modal-content large">
+    <div class="modal-header">
+      <h3>{% trans "Upgradeable Packages" %}</h3>
+      <button class="modal-close" onclick="closeModal('updatesModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="updates-filter-bar">
+        <select id="updatesManagerFilter" class="filter-select"></select>
+      </div>
+      <div class="table-wrapper">
+        <table class="pkg-table">
+          <thead>
+            <tr>
+              <th>{% trans "Package" %}</th>
+              <th>{% trans "Current" %}</th>
+              <th>{% trans "New" %}</th>
+              <th>{% trans "Manager" %}</th>
+              <th>{% trans "Critical" %}</th>
+            </tr>
+          </thead>
+          <tbody id="updatesTbody">
+            <tr><td colspan="5" class="loading-cell"><i class="fas fa-spinner fa-spin"></i> {% trans "Loading..." %}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
