@@ -1,13 +1,5 @@
 # Security Policy
 
-## Supported Versions
-
-The following versions of Ophiron currently receive security updates:
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 1.x     | :white_check_mark: |
-| 0.x     | :x:                |
 
 ## Reporting a Vulnerability
 
