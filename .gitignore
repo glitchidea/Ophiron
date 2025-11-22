@@ -25,6 +25,10 @@ __pycache__/
 *.pyo
 *.log
 
+# Django migrations (ignore all migration files except __init__.py)
+**/migrations/*.py
+!**/migrations/__init__.py
+
 # Media files (user uploads)
 media/profiles/*
 !media/profiles/.gitkeep

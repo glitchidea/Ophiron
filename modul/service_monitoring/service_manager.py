@@ -4,6 +4,7 @@ import platform
 import re
 import json
 import shutil
+import shlex
 from datetime import datetime
 from typing import Dict, List, Tuple, Optional
 import logging
@@ -41,11 +42,28 @@ class ServiceManager:
         return 'unknown'
     
     def _run_command(self, command: str, timeout: int = 30) -> Tuple[bool, str, str]:
-        """Safe command execution"""
+        """
+        Safe command execution - prevents shell injection
+        Uses shlex.split() to safely parse command string and shell=False for security
+        """
         try:
+            # Parse command string safely to prevent shell injection
+            # shlex.split() properly handles quoted arguments and escapes special characters
+            command_list = shlex.split(command)
+            
+            # Find full path to executable to prevent PATH hijacking
+            executable = shutil.which(command_list[0])
+            if not executable:
+                logger.warning(f"Executable not found in PATH: {command_list[0]}")
+                return False, "", f"Executable not found: {command_list[0]}"
+            
+            # Replace first element with full path
+            command_list[0] = executable
+            
+            # Run with shell=False for security - prevents shell injection
             result = subprocess.run(
-                command,
-                shell=True,
+                command_list,
+                shell=False,  # Critical: shell=False prevents injection attacks
                 text=True,
                 capture_output=True,
                 timeout=timeout,
@@ -54,7 +72,12 @@ class ServiceManager:
             return result.returncode == 0, result.stdout.strip(), result.stderr.strip()
         except subprocess.TimeoutExpired:
             return False, "", "Command timed out"
+        except ValueError as e:
+            # Invalid command format
+            logger.error(f"Invalid command format: {command} - {e}")
+            return False, "", f"Invalid command format: {str(e)}"
         except Exception as e:
+            logger.error(f"Command execution error: {command} - {e}")
             return False, "", str(e)
     
     def _detect_service_category(self, name: str, description: str = "") -> str:
@@ -254,10 +277,20 @@ class ServiceManager:
             self.control_service(name, 'stop')
             self.control_service(name, 'disable')
             
-            # Servis dosyasını bul ve sil
-            success, unit_file, _ = self._run_command(f"systemctl show -p FragmentPath {name} | cut -d= -f2")
+            # Servis dosyasını bul ve sil (pipe kullanmadan güvenli şekilde)
+            success, unit_output, _ = self._run_command(f"systemctl show -p FragmentPath {name}")
             
-            if not success or not unit_file:
+            if not success or not unit_output:
+                return False, f"Servis dosyası bulunamadı: {name}"
+            
+            # Parse output: FragmentPath=/path/to/file.service
+            unit_file = None
+            for line in unit_output.split('\n'):
+                if line.startswith('FragmentPath='):
+                    unit_file = line.split('=', 1)[1].strip()
+                    break
+            
+            if not unit_file:
                 return False, f"Servis dosyası bulunamadı: {name}"
             
             # Dosyayı sil

@@ -25,12 +25,15 @@ try:
         # Attempt atomic rename; if cross-device fails, fallback to copy
         try:
             os.replace(_LEGACY_FILE, _NEW_FILE)
-        except Exception:
+        except (OSError, IOError, PermissionError):
             with open(_LEGACY_FILE, 'rb') as src, open(_NEW_FILE, 'ab') as dst:
                 dst.write(src.read())
             # keep legacy file to avoid breaking external processes
-except Exception:
-    pass
+except (OSError, IOError, PermissionError) as e:
+    # Log migration error if logger is available, otherwise fail silently
+    # This is initialization code, so logger may not be ready yet
+    import sys
+    print(f"Warning: Could not migrate legacy log file: {e}", file=sys.stderr)
 
 # Logger configuration
 def setup_security_logger():
@@ -216,7 +219,8 @@ def get_recent_logs(hours: int = 24) -> list:
                         log_time = datetime.strptime(log_entry['timestamp'], '%Y-%m-%d %H:%M:%S')
                         if log_time.timestamp() >= cutoff_time:
                             logs.append(log_entry)
-                    except:
+                    except (json.JSONDecodeError, ValueError, KeyError) as e:
+                        # Skip malformed log entries
                         continue
         
         return logs

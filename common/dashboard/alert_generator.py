@@ -6,6 +6,8 @@ Mevcut API'leri kullanarak gerçek sistem alertleri üretir
 import requests
 import json
 import logging
+import subprocess  # nosec B404 - Used with safe, static arguments only
+import shutil
 from django.conf import settings
 from django.utils import timezone
 from .models import SystemAlert, SystemService
@@ -93,7 +95,8 @@ class RealAlertGenerator:
             # Load average (Linux only)
             try:
                 load_avg = os.getloadavg()[0]
-            except:
+            except (AttributeError, OSError):
+                # getloadavg not available on Windows or other systems
                 load_avg = 0.0
             
             # Temperature (Linux only)
@@ -103,8 +106,9 @@ class RealAlertGenerator:
                     with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
                         temp = int(f.read().strip()) / 1000
                         temperature = round(temp, 1)
-            except:
-                pass
+            except (IOError, OSError, ValueError) as e:
+                # Temperature sensor not available or invalid data
+                temperature = None
             
             return {
                 'success': True,
@@ -141,15 +145,27 @@ class RealAlertGenerator:
     def _get_docker_containers(self):
         """Docker container bilgilerini doğrudan alır"""
         try:
-            import subprocess
-            import json
-            
             containers = []
             
-            # Docker ps komutu
-            result = subprocess.run(
-                ['docker', 'ps', '-a', '--format', 'json'],
-                capture_output=True, text=True, timeout=10
+            # Find full path to docker executable to prevent PATH hijacking
+            docker_path = shutil.which('docker')
+            if not docker_path:
+                logger.warning("Docker executable not found in PATH")
+                return {
+                    'success': False,
+                    'containers': [],
+                    'error': 'Docker not found'
+                }
+            
+            # Docker ps komutu - Security: Using full path and list format (not shell) with static arguments
+            # Full path prevents PATH hijacking, arguments are static and not user-controlled
+            result = subprocess.run(  # nosec B603 - Safe: full path, static args, shell=False
+                [docker_path, 'ps', '-a', '--format', 'json'],
+                capture_output=True,
+                text=True,
+                timeout=10,
+                shell=False,  # Explicitly set to False for security
+                check=False   # We check returncode manually
             )
             
             if result.returncode == 0:

@@ -20,5 +20,6 @@ urlpatterns = [
     path('api/alerts/statistics/', views.get_alert_statistics, name='alert_statistics'),
     path('api/activities/', views.get_activities, name='activities'),
     path('api/data/', views.get_dashboard_data, name='data'),
+    path('api/redis-celery-status/', views.get_redis_celery_status, name='redis_celery_status'),
     path('api/smtp-status/', views.get_smtp_status, name='smtp_status'),
 ]

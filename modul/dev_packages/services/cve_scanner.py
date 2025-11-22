@@ -5,8 +5,7 @@ Supports batch queries with rate limiting (50 packages per request)
 import json
 import re
 import time
-import urllib.request
-import urllib.parse
+import requests
 from typing import List, Dict, Any, Optional
 from django.core.cache import cache
 
@@ -130,86 +129,88 @@ def query_batch(packages: List[Dict[str, str]]) -> Dict[str, List[Dict[str, Any]
                 results[pkg_id] = vulns
             continue
         
-        # Make API request
+        # Make API request using requests library for better security
         try:
-            req = urllib.request.Request(
+            response = requests.post(
                 OSV_BATCH_ENDPOINT,
-                data=json.dumps(request_data).encode('utf-8'),
+                json=request_data,
                 headers={'Content-Type': 'application/json'},
-                method='POST'
+                timeout=30
             )
             
-            with urllib.request.urlopen(req, timeout=30) as response:
-                response_data = json.loads(response.read().decode('utf-8'))
-                
-                # Process results
-                batch_results = response_data.get('results', [])
-                for idx, result in enumerate(batch_results):
-                    query_idx = batch_start + idx
-                    if query_idx in package_map:
-                        pkg_id = package_map[query_idx]
-                        vulns = result.get('vulns', [])
-                        
-                        # Format vulnerabilities
-                        formatted_vulns = []
-                        for vuln in vulns:
-                            severity_info = _extract_severity(vuln)
-                            # Handle None values properly
-                            summary = vuln.get('summary') or ''
-                            details = vuln.get('details') or ''
-                            formatted_vuln = {
-                                'id': vuln.get('id', ''),
-                                'summary': summary,
-                                'details': details,
-                                'aliases': vuln.get('aliases', []),
-                                'severity': severity_info.get('severity', 'UNKNOWN'),
-                                'cvss_score': severity_info.get('cvss_score'),
-                                'cvss_vector': severity_info.get('cvss_vector'),
-                                'modified': vuln.get('modified', ''),
-                                'published': vuln.get('published', ''),
-                                'references': vuln.get('references', []),
-                            }
-                            formatted_vulns.append(formatted_vuln)
-                        
-                        results[pkg_id] = formatted_vulns
-                
-                # Cache the batch result
-                batch_cache_key = f"osv_batch_{hash(json.dumps(request_data, sort_keys=True))}"
-                batch_results_dict = {}
-                for idx, result in enumerate(batch_results):
-                    query_idx = batch_start + idx
-                    if query_idx in package_map:
-                        pkg_id = package_map[query_idx]
-                        vulns = result.get('vulns', [])
-                        formatted_vulns = []
-                        for vuln in vulns:
-                            severity_info = _extract_severity(vuln)
-                            # Handle None values properly
-                            summary = vuln.get('summary') or ''
-                            details = vuln.get('details') or ''
-                            formatted_vuln = {
-                                'id': vuln.get('id', ''),
-                                'summary': summary,
-                                'details': details,
-                                'aliases': vuln.get('aliases', []),
-                                'severity': severity_info.get('severity', 'UNKNOWN'),
-                                'cvss_score': severity_info.get('cvss_score'),
-                                'cvss_vector': severity_info.get('cvss_vector'),
-                                'modified': vuln.get('modified', ''),
-                                'published': vuln.get('published', ''),
-                                'references': vuln.get('references', []),
-                            }
-                            formatted_vulns.append(formatted_vuln)
-                        batch_results_dict[pkg_id] = formatted_vulns
-                
-                cache.set(batch_cache_key, batch_results_dict, timeout=CACHE_TIMEOUT)
+            # Raise exception for bad status codes
+            response.raise_for_status()
+            
+            response_data = response.json()
+            
+            # Process results
+            batch_results = response_data.get('results', [])
+            for idx, result in enumerate(batch_results):
+                query_idx = batch_start + idx
+                if query_idx in package_map:
+                    pkg_id = package_map[query_idx]
+                    vulns = result.get('vulns', [])
+                    
+                    # Format vulnerabilities
+                    formatted_vulns = []
+                    for vuln in vulns:
+                        severity_info = _extract_severity(vuln)
+                        # Handle None values properly
+                        summary = vuln.get('summary') or ''
+                        details = vuln.get('details') or ''
+                        formatted_vuln = {
+                            'id': vuln.get('id', ''),
+                            'summary': summary,
+                            'details': details,
+                            'aliases': vuln.get('aliases', []),
+                            'severity': severity_info.get('severity', 'UNKNOWN'),
+                            'cvss_score': severity_info.get('cvss_score'),
+                            'cvss_vector': severity_info.get('cvss_vector'),
+                            'modified': vuln.get('modified', ''),
+                            'published': vuln.get('published', ''),
+                            'references': vuln.get('references', []),
+                        }
+                        formatted_vulns.append(formatted_vuln)
+                    
+                    results[pkg_id] = formatted_vulns
+            
+            # Cache the batch result
+            batch_cache_key = f"osv_batch_{hash(json.dumps(request_data, sort_keys=True))}"
+            batch_results_dict = {}
+            for idx, result in enumerate(batch_results):
+                query_idx = batch_start + idx
+                if query_idx in package_map:
+                    pkg_id = package_map[query_idx]
+                    vulns = result.get('vulns', [])
+                    formatted_vulns = []
+                    for vuln in vulns:
+                        severity_info = _extract_severity(vuln)
+                        # Handle None values properly
+                        summary = vuln.get('summary') or ''
+                        details = vuln.get('details') or ''
+                        formatted_vuln = {
+                            'id': vuln.get('id', ''),
+                            'summary': summary,
+                            'details': details,
+                            'aliases': vuln.get('aliases', []),
+                            'severity': severity_info.get('severity', 'UNKNOWN'),
+                            'cvss_score': severity_info.get('cvss_score'),
+                            'cvss_vector': severity_info.get('cvss_vector'),
+                            'modified': vuln.get('modified', ''),
+                            'published': vuln.get('published', ''),
+                            'references': vuln.get('references', []),
+                        }
+                        formatted_vulns.append(formatted_vuln)
+                    batch_results_dict[pkg_id] = formatted_vulns
+            
+            cache.set(batch_cache_key, batch_results_dict, timeout=CACHE_TIMEOUT)
         
-        except urllib.error.HTTPError as e:
+        except requests.exceptions.HTTPError as e:
             # Log error but continue with other batches
-            print(f"OSV API HTTP error: {e.code} - {e.reason}")
+            print(f"OSV API HTTP error: {e.response.status_code} - {e.response.reason}")
             continue
-        except urllib.error.URLError as e:
-            print(f"OSV API URL error: {e.reason}")
+        except requests.exceptions.RequestException as e:
+            print(f"OSV API request error: {str(e)}")
             continue
         except Exception as e:
             print(f"OSV API error: {str(e)}")

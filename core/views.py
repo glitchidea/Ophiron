@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from common.timezone.utils import get_user_timezone, set_user_timezone, format_dt
 import json
 import sys
@@ -18,14 +20,22 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from common.error_log.error_log import log_login_attempt, log_security_event
 # Rate limiter removed per request; no IP-based checks
 
-def validate_password_strength(password):
-    """Strong password policy validation"""
+def validate_password_strength(password, user=None):
+    """
+    Strong password policy validation using Django's built-in validators.
+    This function wraps Django's password_validation.validate_password() to maintain
+    compatibility with existing code while ensuring proper security validation.
+    """
     errors = []
     
-    # Minimum length
-    if len(password) < 8:
-        errors.append('Password must be at least 8 characters long')
+    try:
+        # Use Django's built-in password validation
+        validate_password(password, user=user)
+    except ValidationError as e:
+        # Convert Django's validation errors to list of strings
+        errors.extend(e.messages)
     
+    # Additional custom validations beyond Django's defaults
     # Uppercase check
     if not re.search(r'[A-Z]', password):
         errors.append('Password must contain at least 1 uppercase letter')
@@ -42,15 +52,6 @@ def validate_password_strength(password):
     if not re.search(r'[!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?]', password):
         errors.append('Password must contain at least 1 special character (!@#$%^&* etc.)')
     
-    # Common passwords check
-    common_passwords = [
-        'password', '123456', '123456789', 'qwerty', 'abc123', 
-        'password123', 'admin', 'letmein', 'welcome', 'monkey',
-        '1234567890', 'password1', 'qwerty123', 'dragon', 'master'
-    ]
-    if password.lower() in common_passwords:
-        errors.append('Commonly used passwords are not secure')
-    
     # Repeating characters check
     if re.search(r'(.)\1{2,}', password):
         errors.append('Password should not contain repeated characters (aaa, 111, etc.)')
@@ -64,6 +65,7 @@ def validate_password_strength(password):
     for sequence in keyboard_sequences:
         if sequence in password_lower or sequence[::-1] in password_lower:
             errors.append('Keyboard sequence passwords are not secure')
+            break
     
     return errors
 
@@ -404,17 +406,18 @@ def password_change_view(request):
             if new_password != confirm_password:
                 return JsonResponse({'success': False, 'errors': ['New passwords do not match']})
             
-            # Strong password policy check
-            password_errors = validate_password_strength(new_password)
-            if password_errors:
-                return JsonResponse({'success': False, 'errors': password_errors})
-            
-            # Check current password
+            # Check current password first
             user = authenticate(username=request.user.username, password=current_password)
             if not user:
                 return JsonResponse({'success': False, 'errors': ['Current password is incorrect']})
             
-            # Change password
+            # Strong password policy check with Django's built-in validators
+            # Pass the user object for better validation (e.g., similarity checks)
+            password_errors = validate_password_strength(new_password, user=request.user)
+            if password_errors:
+                return JsonResponse({'success': False, 'errors': password_errors})
+            
+            # Change password - now validated with Django's password_validation
             request.user.set_password(new_password)
             request.user.save()
             

@@ -114,7 +114,7 @@ class UserActivity(models.Model):
         ('info', 'Info'),
     ]
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activities')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activities', null=True, blank=True, verbose_name="User")
     activity_type = models.CharField(max_length=50, choices=ACTIVITY_TYPES, verbose_name="Activity Type")
     title = models.CharField(max_length=200, verbose_name="Title")
     description = models.TextField(verbose_name="Description")
@@ -135,29 +135,20 @@ class UserActivity(models.Model):
         ]
     
     def __str__(self):
-        return f"{self.user.username} - {self.get_activity_type_display()} - {self.title}"
+        username = self.user.username if self.user else "System"
+        return f"{username} - {self.get_activity_type_display()} - {self.title}"
     
     @classmethod
     def log_activity(cls, user, activity_type, title, description, status='success', 
                     request=None, metadata=None, **kwargs):
-        """Log activity"""
-        # If user is None, save as system activity
-        if user is None:
-            # Create a special user for system activity or reuse an existing one
-            from django.contrib.auth.models import User
-            try:
-                system_user = User.objects.get(username='system')
-            except User.DoesNotExist:
-                # Create if system user does not exist
-                system_user = User.objects.create_user(
-                    username='system',
-                    email='system@ophiron.com',
-                    password='system_password_never_used'
-                )
-            user = system_user
+        """
+        Log activity
         
+        Security: user can be None for system activities. We do NOT auto-create users
+        to prevent security vulnerabilities. If user is None, activity is saved with user=None.
+        """
         activity_data = {
-            'user': user,
+            'user': user,  # Can be None for system activities
             'activity_type': activity_type,
             'title': title,
             'description': description,

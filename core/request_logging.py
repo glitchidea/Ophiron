@@ -14,11 +14,16 @@ os.makedirs(LOG_DIR, exist_ok=True)
 
 
 def get_client_ip(request: HttpRequest) -> str:
+    """
+    Get client IP address from request.
+    Returns 'unknown' if IP cannot be determined (instead of '0.0.0.0' for security).
+    """
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         # Use first IP in X-Forwarded-For
         return x_forwarded_for.split(',')[0].strip()
-    return request.META.get('REMOTE_ADDR', '0.0.0.0')
+    # Use REMOTE_ADDR if available, otherwise return 'unknown' (not '0.0.0.0' for security)
+    return request.META.get('REMOTE_ADDR', 'unknown')
 
 
 def should_skip_logging(request: HttpRequest, response: Optional[HttpResponse]) -> bool:

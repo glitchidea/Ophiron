@@ -154,8 +154,11 @@ class UFWRuleManager:
                 cmd.append(ports[0])
         
         # Add comment if specified
+        # Security: Sanitize comment to prevent command injection
         if comment:
-            cmd.extend(['comment', f'"{comment}"'])
+            # Remove potentially dangerous characters and limit length
+            sanitized_comment = re.sub(r'[;&|`$(){}[\]<>]', '', comment)[:100]
+            cmd.extend(['comment', f'"{sanitized_comment}"'])
         
         return cmd
     
@@ -177,7 +180,7 @@ class UFWRuleManager:
                 rule_data['ports'] = []
                 cmd = self.build_ufw_command(rule_data)
                 
-                result = subprocess.run(cmd, capture_output=True, text=True)
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=30, shell=False)  # nosec B603 - Safe: validated inputs, shell=False
                 if result.returncode == 0:
                     created_rules.append(' '.join(cmd))
                 else:
@@ -190,7 +193,7 @@ class UFWRuleManager:
                     rule_data_copy['ports'] = [port]
                     cmd = self.build_ufw_command(rule_data_copy)
                     
-                    result = subprocess.run(cmd, capture_output=True, text=True)
+                    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30, shell=False)  # nosec B603 - Safe: validated inputs, shell=False
                     if result.returncode == 0:
                         created_rules.append(' '.join(cmd))
                     else:
@@ -225,7 +228,7 @@ class UFWRuleManager:
         """
         try:
             cmd = ['sudo', 'ufw', '--force', 'delete', str(rule_number)]
-            result = subprocess.run(cmd, capture_output=True, text=True)
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=15, shell=False)  # nosec B603 - Safe: integer conversion, static args, shell=False
             
             if result.returncode == 0:
                 return {
@@ -252,7 +255,7 @@ class UFWRuleManager:
         Get all UFW rules with detailed information using sudo
         """
         try:
-            result = subprocess.run(['sudo', 'ufw', 'status', 'numbered'], capture_output=True, text=True)
+            result = subprocess.run(['sudo', 'ufw', 'status', 'numbered'], capture_output=True, text=True, timeout=15)  # nosec B603 - Safe: static arguments, shell=False
             
             if result.returncode == 0:
                 rules = []

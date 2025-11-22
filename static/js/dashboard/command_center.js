@@ -27,6 +27,7 @@ class CommandCenter {
         this.loadAlerts();
         this.loadActivities();
         this.loadLiveControl();
+        this.loadRedisCeleryStatus();
         this.loadSMTPStatus();
         
         // Set up periodic updates
@@ -424,6 +425,79 @@ class CommandCenter {
         }
     }
     
+    async loadRedisCeleryStatus() {
+        try {
+            const response = await fetch('/dashboard-api/api/redis-celery-status/', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-CSRFToken': this.getCSRFToken()
+                },
+                credentials: 'same-origin'
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                this.updateRedisCeleryStatus(result.redis, result.celery);
+            }
+        } catch (error) {
+            console.error('Error loading Redis/Celery status:', error);
+            this.updateRedisCeleryStatus(null, null);
+        }
+    }
+    
+    updateRedisCeleryStatus(redis, celery) {
+        const redisStatusValue = document.getElementById('redisStatusValue');
+        const redisHostValue = document.getElementById('redisHostValue');
+        const celeryStatusValue = document.getElementById('celeryStatusValue');
+        const celeryWorkersValue = document.getElementById('celeryWorkersValue');
+        
+        if (!redisStatusValue || !redisHostValue || !celeryStatusValue || !celeryWorkersValue) {
+            return;
+        }
+        
+        // Update Redis Status
+        if (redis) {
+            if (redis.connected) {
+                redisStatusValue.innerHTML = '<span style="color: #48bb78;"><i class="fas fa-check-circle"></i> Connected</span>';
+            } else {
+                redisStatusValue.innerHTML = `<span style="color: #e53e3e;"><i class="fas fa-times-circle"></i> Disconnected</span>`;
+            }
+            
+            // Update Redis Host
+            if (redis.host && redis.port) {
+                redisHostValue.textContent = `${redis.host}:${redis.port}`;
+            } else {
+                redisHostValue.textContent = '--';
+            }
+        } else {
+            redisStatusValue.innerHTML = '<span style="color: #e53e3e;"><i class="fas fa-times-circle"></i> Not Available</span>';
+            redisHostValue.textContent = '--';
+        }
+        
+        // Update Celery Status
+        if (celery) {
+            if (celery.connected && celery.workers_active > 0) {
+                celeryStatusValue.innerHTML = '<span style="color: #48bb78;"><i class="fas fa-check-circle"></i> Active</span>';
+                celeryWorkersValue.textContent = celery.workers_active;
+            } else if (celery.connected) {
+                celeryStatusValue.innerHTML = '<span style="color: #ed8936;"><i class="fas fa-exclamation-triangle"></i> No Workers</span>';
+                celeryWorkersValue.textContent = '0';
+            } else {
+                celeryStatusValue.innerHTML = '<span style="color: #e53e3e;"><i class="fas fa-times-circle"></i> Disconnected</span>';
+                celeryWorkersValue.textContent = '0';
+            }
+        } else {
+            celeryStatusValue.innerHTML = '<span style="color: #e53e3e;"><i class="fas fa-times-circle"></i> Not Available</span>';
+            celeryWorkersValue.textContent = '--';
+        }
+    }
+    
     async loadSMTPStatus() {
         try {
             const response = await fetch('/dashboard-api/api/smtp-status/', {
@@ -525,6 +599,7 @@ class CommandCenter {
             this.loadAlerts();
             this.loadActivities();
             this.loadLiveControl();
+            this.loadRedisCeleryStatus();
             this.loadSMTPStatus();
         }, this.updateInterval);
     }

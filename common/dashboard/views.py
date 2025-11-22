@@ -9,11 +9,12 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.utils import timezone
 from django.core.cache import cache
-import subprocess
+import subprocess  # nosec B404 - Used with safe, static arguments only
 import psutil
 import os
 import json
 import logging
+import shutil
 from datetime import datetime, timedelta
 
 from .models import SystemService, SystemAlert, SystemActivity, SystemMetrics, DashboardSettings
@@ -76,7 +77,8 @@ def get_system_metrics(request):
         # Load average (Linux only)
         try:
             load_avg = os.getloadavg()[0]
-        except:
+        except (AttributeError, OSError):
+            # getloadavg not available on Windows or other systems
             load_avg = 0.0
         
         # Temperature (Linux only)
@@ -86,8 +88,9 @@ def get_system_metrics(request):
                 with open('/sys/class/thermal/thermal_zone0/temp', 'r') as f:
                     temp = int(f.read().strip()) / 1000
                     temperature = round(temp, 1)
-        except:
-            pass
+        except (IOError, OSError, ValueError) as e:
+            # Temperature sensor not available or invalid data
+            temperature = None
         
         # Metrics'i veritabanına kaydet
         SystemMetrics.objects.create(
@@ -173,10 +176,24 @@ def get_docker_containers(request):
         containers = []
         
         try:
-            # Docker ps komutu
-            result = subprocess.run(
-                ['docker', 'ps', '-a', '--format', 'json'],
-                capture_output=True, text=True, timeout=10
+            # Find full path to docker executable to prevent PATH hijacking
+            docker_path = shutil.which('docker')
+            if not docker_path:
+                logger.warning("Docker executable not found in PATH")
+                return JsonResponse({
+                    'success': False,
+                    'containers': [],
+                    'error': 'Docker not found'
+                })
+            
+            # Docker ps komutu - Security: Using full path and list format (not shell) with static arguments
+            result = subprocess.run(  # nosec B603, B607 - Safe: full path, static args, shell=False
+                [docker_path, 'ps', '-a', '--format', 'json'],
+                capture_output=True,
+                text=True,
+                timeout=10,
+                shell=False,  # Explicitly set to False for security
+                check=False   # We check returncode manually
             )
             
             if result.returncode == 0:
@@ -427,9 +444,9 @@ def get_dashboard_data(request):
             metrics_response = get_system_metrics(request)
             if metrics_response.status_code == 200:
                 data['system_metrics'] = json.loads(metrics_response.content)
-        except:
-            pass
-        
+        except (AttributeError, json.JSONDecodeError, Exception) as e:
+            # API call failed or invalid response - continue without metrics
+            logger.debug(f"Failed to get system metrics: {e}")
         
         # Docker containers
         try:
@@ -437,8 +454,9 @@ def get_dashboard_data(request):
             if containers_response.status_code == 200:
                 containers_data = json.loads(containers_response.content)
                 data['containers'] = containers_data.get('containers', [])
-        except:
-            pass
+        except (AttributeError, json.JSONDecodeError, Exception) as e:
+            # API call failed or invalid response - continue without containers
+            logger.debug(f"Failed to get docker containers: {e}")
         
         # Alerts
         try:
@@ -446,8 +464,9 @@ def get_dashboard_data(request):
             if alerts_response.status_code == 200:
                 alerts_data = json.loads(alerts_response.content)
                 data['alerts'] = alerts_data.get('alerts', [])
-        except:
-            pass
+        except (AttributeError, json.JSONDecodeError, Exception) as e:
+            # API call failed or invalid response - continue without alerts
+            logger.debug(f"Failed to get alerts: {e}")
         
         # Activities
         try:
@@ -455,8 +474,9 @@ def get_dashboard_data(request):
             if activities_response.status_code == 200:
                 activities_data = json.loads(activities_response.content)
                 data['activities'] = activities_data.get('activities', [])
-        except:
-            pass
+        except (AttributeError, json.JSONDecodeError, Exception) as e:
+            # API call failed or invalid response - continue without activities
+            logger.debug(f"Failed to get activities: {e}")
         
         # Cache'e kaydet (5 saniye)
         cache.set('dashboard_data', data, 5)
@@ -465,6 +485,92 @@ def get_dashboard_data(request):
         
     except Exception as e:
         logger.error(f"Error getting dashboard data: {e}")
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        }, status=500)
+
+
+@login_required
+@require_http_methods(["GET"])
+def get_redis_celery_status(request):
+    """Get Redis and Celery connection status"""
+    try:
+        redis_status = {
+            'connected': False,
+            'host': 'localhost',
+            'port': 6379,
+            'error': None
+        }
+        
+        celery_status = {
+            'connected': False,
+            'workers_active': 0,
+            'error': None
+        }
+        
+        # Check Redis connection
+        try:
+            import redis
+            from django.conf import settings
+            
+            # Try to connect to Redis
+            redis_client = redis.Redis(
+                host='localhost',
+                port=6379,
+                db=0,
+                socket_connect_timeout=2,
+                socket_timeout=2
+            )
+            
+            # Test connection with ping
+            redis_client.ping()
+            redis_status['connected'] = True
+            redis_status['host'] = 'localhost'
+            redis_status['port'] = 6379
+            
+        except redis.ConnectionError as e:
+            redis_status['connected'] = False
+            redis_status['error'] = 'Connection failed'
+            logger.debug(f"Redis connection error: {e}")
+        except ImportError:
+            redis_status['connected'] = False
+            redis_status['error'] = 'Redis library not available'
+        except Exception as e:
+            redis_status['connected'] = False
+            redis_status['error'] = str(e)
+            logger.debug(f"Redis check error: {e}")
+        
+        # Check Celery connection
+        try:
+            from celery import current_app
+            from celery.result import AsyncResult
+            
+            # Get active workers
+            inspect = current_app.control.inspect()
+            active_workers = inspect.active()
+            
+            if active_workers:
+                celery_status['connected'] = True
+                celery_status['workers_active'] = len(active_workers)
+            else:
+                # Try to check if Celery is configured
+                celery_status['connected'] = False
+                celery_status['error'] = 'No active workers'
+                
+        except Exception as e:
+            celery_status['connected'] = False
+            celery_status['error'] = str(e)
+            logger.debug(f"Celery check error: {e}")
+        
+        return JsonResponse({
+            'success': True,
+            'redis': redis_status,
+            'celery': celery_status
+        })
+        
+    except Exception as e:
+        logger.error(f"Error getting Redis/Celery status: {e}", exc_info=True)
         return JsonResponse({
             'success': False,
             'error': str(e)

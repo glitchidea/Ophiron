@@ -23,7 +23,7 @@ def ufw_status_api(request):
     """UFW durum API'si"""
     try:
         # UFW durumunu kontrol et - sudo ile
-        result = subprocess.run(['sudo', 'ufw', 'status'], capture_output=True, text=True, timeout=10)
+        result = subprocess.run(['sudo', 'ufw', 'status'], capture_output=True, text=True, timeout=10, shell=False)  # nosec B603 - Safe: static arguments, shell=False
         
         if result.returncode == 0:
             # UFW aktif - output'ta "Status: active" kontrolü yap
@@ -69,7 +69,7 @@ def ufw_rules_api(request):
     """UFW kuralları API'si"""
     try:
         # UFW kurallarını listele - sudo ile
-        result = subprocess.run(['sudo', 'ufw', 'status', 'numbered'], capture_output=True, text=True, timeout=15)
+        result = subprocess.run(['sudo', 'ufw', 'status', 'numbered'], capture_output=True, text=True, timeout=15, shell=False)  # nosec B603 - Safe: static arguments, shell=False
         
         if result.returncode == 0:
             return JsonResponse({
@@ -104,9 +104,9 @@ def ufw_toggle_api(request):
         action = data.get('action', 'enable')
         
         if action == 'enable':
-            result = subprocess.run(['sudo', 'ufw', 'enable'], capture_output=True, text=True, timeout=10)
+            result = subprocess.run(['sudo', 'ufw', 'enable'], capture_output=True, text=True, timeout=10, shell=False)  # nosec B603 - Safe: static arguments, shell=False
         else:
-            result = subprocess.run(['sudo', 'ufw', 'disable'], capture_output=True, text=True, timeout=10)
+            result = subprocess.run(['sudo', 'ufw', 'disable'], capture_output=True, text=True, timeout=10, shell=False)  # nosec B603 - Safe: static arguments, shell=False
         
         if result.returncode == 0:
             return JsonResponse({
@@ -165,7 +165,7 @@ def iptables_chain_api(request):
     try:
         # Tüm chain'leri listele
         result = subprocess.run(['iptables', '-L', '-n', '-v'], 
-                              capture_output=True, text=True, timeout=15)
+                              capture_output=True, text=True, timeout=15, shell=False)  # nosec B603 - Safe: static arguments, shell=False
         
         if result.returncode == 0:
             return JsonResponse({
@@ -299,7 +299,7 @@ def firewalld_status_api(request):
         # firewalld durumunu kontrol et - sudo ile (UFW ve iptables gibi)
         # Not: firewall-cmd --state komutu firewalld çalışmıyorsa exit code 252 döndürür
         # ama komut çalıştırılabiliyorsa firewalld yüklü demektir
-        result = subprocess.run(['sudo', 'firewall-cmd', '--state'], capture_output=True, text=True, timeout=10)
+        result = subprocess.run(['sudo', 'firewall-cmd', '--state'], capture_output=True, text=True, timeout=10, shell=False)  # nosec B603 - Safe: static arguments, shell=False
         
         # Komut çalıştırılabildi (FileNotFoundError yok) - firewalld yüklü demektir
         output = result.stdout.strip().lower() if result.stdout else ''
@@ -370,10 +370,10 @@ def firewalld_rules_api(request):
             })
         
         # Runtime kuralları (geçici + kalıcı) - sudo ile
-        result_runtime = subprocess.run(['sudo', 'firewall-cmd', '--list-all'], capture_output=True, text=True, timeout=15)
+        result_runtime = subprocess.run(['sudo', 'firewall-cmd', '--list-all'], capture_output=True, text=True, timeout=15, shell=False)  # nosec B603 - Safe: static arguments, shell=False
         
         # Kalıcı kuralları - sudo ile
-        result_permanent = subprocess.run(['sudo', 'firewall-cmd', '--permanent', '--list-all'], capture_output=True, text=True, timeout=15)
+        result_permanent = subprocess.run(['sudo', 'firewall-cmd', '--permanent', '--list-all'], capture_output=True, text=True, timeout=15, shell=False)  # nosec B603 - Safe: static arguments, shell=False
         
         # Sudo hatası kontrolü
         stderr_runtime = result_runtime.stderr.strip().lower() if result_runtime.stderr else ''
@@ -442,9 +442,9 @@ def firewalld_toggle_api(request):
         
         # systemctl ile firewalld servisini yönet (tüm modern Linux dağıtımlarında çalışır)
         if action == 'enable':
-            result = subprocess.run(['sudo', 'systemctl', 'start', 'firewalld'], capture_output=True, text=True, timeout=10)
+            result = subprocess.run(['sudo', 'systemctl', 'start', 'firewalld'], capture_output=True, text=True, timeout=10, shell=False)  # nosec B603 - Safe: static arguments, shell=False
         else:
-            result = subprocess.run(['sudo', 'systemctl', 'stop', 'firewalld'], capture_output=True, text=True, timeout=10)
+            result = subprocess.run(['sudo', 'systemctl', 'stop', 'firewalld'], capture_output=True, text=True, timeout=10, shell=False)  # nosec B603 - Safe: static arguments, shell=False
         
         if result.returncode == 0:
             return JsonResponse({
