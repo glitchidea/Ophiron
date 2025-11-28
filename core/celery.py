@@ -59,6 +59,11 @@ app.conf.beat_schedule = {
         'task': 'process_monitor.cleanup_expired_cache',
         'schedule': crontab(minute='*/30'),
     },
+    # SMTP automations (check every minute)
+    'enqueue-email-automations': {
+        'task': 'smtp.enqueue_due_automations',
+        'schedule': 60.0,
+    },
 }
 
 # Dinamik schedule için custom scheduler kullan

@@ -91,9 +91,9 @@ def find_cves_for_package(package_name: str, package_version: str, tracker_data:
                         break
             
             # Add CVE if version matches or status is open
-            if version_matched or status == 'open':
+            if status == 'open':
                 fixed_version = release_data.get('fixed_version', '')
-                urgency = release_data.get('urgency', 'unknown')
+                urgency = release_data.get('urgency', 'not yet assigned')
                 
                 cves.append({
                     'CVE': cve_id,

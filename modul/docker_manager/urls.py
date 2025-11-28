@@ -38,6 +38,7 @@ urlpatterns = [
     path('api/container/<str:container_id>/logs/', views.container_logs, name='container_logs'),
     path('api/container/<str:container_id>/inspect/', views.container_inspect, name='container_inspect'),
     path('api/container/<str:container_id>/mounts/', views.container_mounts, name='container_mounts'),
+    path('api/container/<str:container_id>/cve/scan/', views.container_cve_scan, name='container_cve_scan'),
     
     
     path('api/container/<str:container_id>/files/', views.container_files, name='container_files'),

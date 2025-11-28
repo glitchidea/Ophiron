@@ -13,8 +13,8 @@ from django.utils import timezone
 from django.core.mail import get_connection
 from django.core.mail.backends.smtp import EmailBackend
 from .models import SMTPConfig, EmailAutomation, EmailLog
-from .automations.cve_email import CVEEmailAutomation
 from .utils import encrypt_password, decrypt_password
+from .services import automation_runner
 
 logger = logging.getLogger(__name__)
 
@@ -279,6 +279,7 @@ def get_automations(request):
                 'is_enabled': automation.is_enabled,
                 'schedule_type': automation.schedule_type,
                 'schedule_time': automation.schedule_time.strftime('%H:%M') if automation.schedule_time else None,
+                'timezone': automation.timezone,
                 'schedule_days': automation.schedule_days,
                 'schedule_cron': automation.schedule_cron,
                 'recipients': automation.recipients,
@@ -319,6 +320,7 @@ def get_automation(request, automation_id):
                 'is_enabled': automation.is_enabled,
                 'schedule_type': automation.schedule_type,
                 'schedule_time': automation.schedule_time.strftime('%H:%M') if automation.schedule_time else None,
+                'timezone': automation.timezone,
                 'schedule_days': automation.schedule_days,
                 'schedule_cron': automation.schedule_cron,
                 'recipients': automation.recipients,
@@ -377,12 +379,14 @@ def save_automation(request):
         
         automation.schedule_days = data.get('schedule_days', automation.schedule_days)
         automation.schedule_cron = data.get('schedule_cron', automation.schedule_cron)
+        automation.timezone = data.get('timezone', automation.timezone or 'UTC')
         # Recipients are now automatic - keep empty array
         automation.recipients = []  # Will be set automatically from user's email
         automation.config = data.get('config', automation.config or {})
         automation.last_modified_by = request.user
         
         automation.save()
+        automation.update_next_run()
         
         return JsonResponse({
             'success': True,
@@ -431,21 +435,14 @@ def run_automation(request, automation_id):
     try:
         automation = EmailAutomation.objects.get(pk=automation_id)
         
-        if automation.automation_type == 'cve':
-            handler = CVEEmailAutomation(automation)
-            result = handler.run()
-            
-            return JsonResponse({
-                'success': result['success'],
-                'message': result['message'],
-                'cves_found': result.get('cves_found', 0),
-                'emails_sent': result.get('emails_sent', 0)
-            })
-        else:
-            return JsonResponse({
-                'success': False,
-                'error': f'Automation type {automation.automation_type} not yet implemented'
-            }, status=400)
+        result = automation_runner.run_automation_sync(automation.id, force=True)
+        
+        return JsonResponse({
+            'success': result['success'],
+            'message': result.get('message'),
+            'cves_found': result.get('cves_found', 0),
+            'emails_sent': result.get('emails_sent', 0)
+        })
         
     except EmailAutomation.DoesNotExist:
         return JsonResponse({

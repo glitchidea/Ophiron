@@ -84,6 +84,9 @@ function loadTab(tabName) {
         case 'stats':
             loadStats();
             break;
+        case 'cve':
+            loadCve();
+            break;
     }
 }
 
@@ -292,4 +295,12 @@ function loadFiles() {
 
 function loadStats() {
     // stats.js tarafından override edilecek
+}
+
+function loadCve() {
+    // cve.js tarafından override edilecek
+}
+
+function loadCveScan() {
+    // cve.js tarafından override edilecek
 }

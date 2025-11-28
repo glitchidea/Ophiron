@@ -99,6 +99,10 @@
                             <i class="fas fa-chart-bar"></i>
                             {% trans "Stats" %}
                         </button>
+                        <button class="nav-tab" data-tab="cve">
+                            <i class="fas fa-shield-alt"></i>
+                            {% trans "CVE Scan" %}
+                        </button>
                     </div>
                 </div>
 
@@ -191,6 +195,24 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- CVE Tab -->
+                    <div class="tab-content" id="cve-content">
+                        <div class="cve-container">
+                            <div class="cve-header">
+                                <button class="control-btn" onclick="loadCveScan()">
+                                    <i class="fas fa-search"></i>
+                                    {% trans "Scan for CVEs" %}
+                                </button>
+                            </div>
+                            <div class="cve-summary" id="cveSummary">
+                                {% trans "No CVE scan has been run yet." %}
+                            </div>
+                            <div class="cve-results" id="cveResults">
+                                <!-- CVE results will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -206,11 +228,15 @@
             'Loading inspect data...': '{% trans "Loading inspect data..." %}',
             'Loading mount information...': '{% trans "Loading mount information..." %}',
             'Loading files...': '{% trans "Loading files..." %}',
+            'Loading CVE data...': '{% trans "Loading CVE data..." %}',
             'No logs available': '{% trans "No logs available" %}',
             'No inspect data available': '{% trans "No inspect data available" %}',
             'No mount information available': '{% trans "No mount information available" %}',
             'No files available': '{% trans "No files available" %}',
             'No stats available': '{% trans "No stats available" %}',
+            'No CVE scan has been run yet.': '{% trans "No CVE scan has been run yet." %}',
+            'No vulnerabilities found': '{% trans "No vulnerabilities found" %}',
+            'Scan for CVEs': '{% trans "Scan for CVEs" %}',
             'Error': '{% trans "Error" %}',
             'Container ID not found': '{% trans "Container ID not found" %}',
             'Stop container': '{% trans "Stop container" %}',
@@ -250,6 +276,7 @@
     <script src="{% load static %}{% static 'js/docker_manager/tabs/mounts_simple.js' %}"></script>
     <script src="{% load static %}{% static 'js/docker_manager/tabs/files_simple.js' %}"></script>
     <script src="{% load static %}{% static 'js/docker_manager/tabs/stats.js' %}"></script>
+    <script src="{% load static %}{% static 'js/docker_manager/tabs/cve.js' %}"></script>
 
 </body>
 </html>

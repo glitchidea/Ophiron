@@ -43,6 +43,7 @@ from .docker_mounts import get_container_mounts, get_mount_info
 from .docker_terminal import connect_container_terminal, execute_container_command
 from .docker_files import get_container_files, get_file_content
 from .docker_stats import get_container_stats, get_container_processes
+from . import docker_cve_scanner
 
 
 def get_docker_client():
@@ -488,6 +489,26 @@ def container_stats(request, container_id):
     """Container istatistikleri"""
     result = get_container_stats(container_id)
     return JsonResponse(result)
+
+
+def container_cve_scan(request, container_id):
+    """Container içindeki paketler için CVE taraması yap"""
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)
+
+    try:
+        scan_result = docker_cve_scanner.scan_container_cves(container_id)
+        status = 200 if scan_result.get("success") else 400
+        return JsonResponse(scan_result, status=status)
+    except Exception as exc:
+        logger.error(f"Container CVE scan error for {container_id}: {exc}", exc_info=True)
+        return JsonResponse(
+            {
+                'success': False,
+                'error': str(exc),
+            },
+            status=500,
+        )
 
 def format_bytes(bytes_val):
     """Bytes'ı okunabilir formata çevir"""

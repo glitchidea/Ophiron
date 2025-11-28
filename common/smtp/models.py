@@ -84,6 +84,11 @@ class EmailAutomation(models.Model):
         default='06:00',
         help_text="Time to run (HH:MM format, e.g., 06:00 for 6 AM)"
     )
+    timezone = models.CharField(
+        max_length=64,
+        default='UTC',
+        help_text="IANA timezone identifier (e.g., Europe/Istanbul)"
+    )
     schedule_days = models.CharField(
         max_length=50,
         blank=True,
@@ -144,18 +149,32 @@ class EmailAutomation(models.Model):
     
     def get_schedule_description(self):
         """Get human-readable schedule description"""
+        tz_label = f" ({self.timezone})" if self.timezone else ''
         if self.schedule_type == 'daily':
-            return f"Daily at {self.schedule_time.strftime('%H:%M')}"
+            return f"Daily at {self.schedule_time.strftime('%H:%M')}{tz_label}"
         elif self.schedule_type == 'weekly':
             days = self.schedule_days or "0"
             day_names = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
             day_list = [day_names[int(d)] for d in days.split(',') if d.isdigit()]
-            return f"Weekly on {', '.join(day_list)} at {self.schedule_time.strftime('%H:%M')}"
+            return f"Weekly on {', '.join(day_list)} at {self.schedule_time.strftime('%H:%M')}{tz_label}"
         elif self.schedule_type == 'monthly':
-            return f"Monthly on day {self.schedule_days} at {self.schedule_time.strftime('%H:%M')}"
+            return f"Monthly on day {self.schedule_days} at {self.schedule_time.strftime('%H:%M')}{tz_label}"
         elif self.schedule_type == 'custom':
-            return f"Custom cron: {self.schedule_cron}"
+            return f"Custom cron: {self.schedule_cron}{tz_label}"
         return "Not scheduled"
+
+    def compute_next_run(self, reference=None):
+        """Calculate the next runtime for this automation."""
+        from .scheduler import calculate_next_run  # Local import to avoid circular dependency
+        return calculate_next_run(self, reference=reference)
+
+    def update_next_run(self, reference=None, commit=True):
+        """Recompute and optionally persist next_run_at."""
+        next_run = self.compute_next_run(reference=reference)
+        self.next_run_at = next_run
+        if commit:
+            self.save(update_fields=['next_run_at'])
+        return next_run
 
 
 class EmailLog(models.Model):
