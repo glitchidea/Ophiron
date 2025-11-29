@@ -43,18 +43,10 @@ class CommandCenter {
     loadProfileImage() {
         // Load profile image in Command Center badge
         const profileImage = document.getElementById('commandCenterProfileImage');
-        const userIcon = document.getElementById('commandCenterUserIcon');
         const profileBadge = document.querySelector('.command-center-profile-badge');
         
-        if (profileImage && userIcon) {
-            // Check if image is not the default avatar
-            if (profileImage.src && !profileImage.src.includes('demo-avatar.svg')) {
-                profileImage.classList.add('show');
-                userIcon.style.display = 'none';
-            } else {
-                userIcon.style.display = 'block';
-            }
-        }
+        // Image is always shown (either user's profile image or default avatar)
+        // No icon needed, just like in settings page
         
         // Make profile badge clickable to open user dropdown
         if (profileBadge) {

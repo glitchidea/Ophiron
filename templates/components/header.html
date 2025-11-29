@@ -19,8 +19,7 @@
         <div class="dashboard-user-dropdown">
             <button class="dashboard-user-trigger" id="userDropdownTrigger">
                 <div class="dashboard-user-avatar" id="headerUserAvatar">
-                    <img id="headerProfileImage" src="{% if user.profile.has_profile_image %}{{ user.profile.profile_image_url }}{% else %}{% static 'images/demo-avatar.svg' %}{% endif %}" alt="{{ user.username }}" style="display: none;">
-                    <i class="fas fa-user" id="headerUserIcon"></i>
+                    <img id="headerProfileImage" src="{% if user.profile.has_profile_image %}{{ user.profile.profile_image_url }}{% else %}{% static 'images/demo-avatar.svg' %}{% endif %}" alt="{{ user.username }}">
                 </div>
                 <div class="dashboard-user-details">
                     <span class="dashboard-username">{{ user.username }}</span>
@@ -34,7 +33,6 @@
                 <div class="dropdown-profile-header">
                     <div class="dropdown-profile-avatar">
                         <img id="dropdownProfileImage" src="{% if user.profile.has_profile_image %}{{ user.profile.profile_image_url }}{% else %}{% static 'images/demo-avatar.svg' %}{% endif %}" alt="{{ user.username }}">
-                        <i class="fas fa-user" id="dropdownUserIcon"></i>
                     </div>
                     <div class="dropdown-profile-info">
                         <div class="dropdown-profile-name">{{ user.username }}</div>

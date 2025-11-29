@@ -63,31 +63,8 @@ function closeDropdown() {
 }
 
 function loadHeaderProfileImage() {
-    // Profile image is already loaded in the template
-    // Only adjust visibility
-    const profileImage = document.getElementById('headerProfileImage');
-    const userIcon = document.getElementById('headerUserIcon');
-    
-    if (profileImage && userIcon) {
-        // Check if image is not the default avatar
-        if (profileImage.src && !profileImage.src.includes('demo-avatar.svg')) {
-        profileImage.style.display = 'block';
-        userIcon.style.display = 'none';
-        }
-    }
-    
-    // Also load dropdown profile image
-    const dropdownProfileImage = document.getElementById('dropdownProfileImage');
-    const dropdownUserIcon = document.getElementById('dropdownUserIcon');
-    
-    if (dropdownProfileImage && dropdownUserIcon) {
-        // Check if image is not the default avatar
-        if (dropdownProfileImage.src && !dropdownProfileImage.src.includes('demo-avatar.svg')) {
-            dropdownProfileImage.classList.add('show');
-            dropdownUserIcon.style.display = 'none';
-        } else {
-            dropdownUserIcon.style.display = 'block';
-        }
-    }
+    // Profile images are always shown (either user's profile image or default avatar)
+    // No icon needed, just like in settings page
+    // Images are already loaded in the template with correct src
 }
 

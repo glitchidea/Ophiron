@@ -255,20 +255,7 @@ Header component için özel stiller
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    display: none;
-}
-
-.dropdown-profile-avatar img.show {
     display: block;
-}
-
-.dropdown-profile-avatar i {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #ffffff;
-    font-size: 24px;
 }
 
 .dropdown-profile-info {
@@ -311,13 +298,7 @@ Header component için özel stiller
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-}
-
-.dashboard-user-avatar i {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: block;
 }
 
 .dashboard-user-details {
