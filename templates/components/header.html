@@ -30,6 +30,18 @@
             </button>
             
             <div class="dashboard-user-dropdown-menu" id="userDropdownMenu">
+                <!-- Profile Image Header in Dropdown -->
+                <div class="dropdown-profile-header">
+                    <div class="dropdown-profile-avatar">
+                        <img id="dropdownProfileImage" src="{% if user.profile.has_profile_image %}{{ user.profile.profile_image_url }}{% else %}{% static 'images/demo-avatar.svg' %}{% endif %}" alt="{{ user.username }}">
+                        <i class="fas fa-user" id="dropdownUserIcon"></i>
+                    </div>
+                    <div class="dropdown-profile-info">
+                        <div class="dropdown-profile-name">{{ user.username }}</div>
+                        <div class="dropdown-profile-role">{% trans "Admin" %}</div>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
                 <a href="{% url 'settings' %}" class="dropdown-item">
                     <i class="fas fa-cog"></i>
                     <span>{% trans "General Settings" %}</span>

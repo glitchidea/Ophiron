@@ -222,10 +222,18 @@ def get_docker_containers(request):
         running = len([c for c in containers if c['status'] == 'running'])
         stopped = len([c for c in containers if c['status'] == 'exited'])
         
+        # Running container'lara öncelik ver: önce running, sonra diğerleri
+        def sort_containers(container):
+            status = container.get('status', '').lower()
+            # Running container'lar önce gelsin (0), diğerleri sonra (1)
+            return (0 if status == 'running' else 1, container.get('name', ''))
+        
+        containers_sorted = sorted(containers, key=sort_containers)
+        
         data = {
             'success': True,
             'timestamp': timezone.now().isoformat(),
-            'containers': containers,
+            'containers': containers_sorted,
             'total': len(containers),
             'running': running,
             'stopped': stopped

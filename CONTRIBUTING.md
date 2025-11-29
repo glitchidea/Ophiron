@@ -358,7 +358,7 @@ If applicable, add screenshots to help explain your problem.
 **Environment:**
 - OS: [e.g., Ubuntu 22.04]
 - Python Version: [e.g., 3.11.2]
-- Ophiron Version: [e.g., 1.0.0]
+- Ophiron Version: [e.g., 1.1.0]
 - Browser: [e.g., Firefox 120]
 
 **Additional Context**

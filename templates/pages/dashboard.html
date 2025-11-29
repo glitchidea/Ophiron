@@ -55,9 +55,19 @@
                     <span class="status-dot" id="systemStatusDot"></span>
                     <span class="status-text" id="systemStatusText">{% trans "SYSTEM STATUS: CHECKING..." %}</span>
                 </div>
+                <div class="status-header-right">
                 <div class="last-update">
                     <i class="fas fa-sync-alt"></i>
                     <span id="lastUpdate">{% trans "Last Check: --" %}</span>
+                    </div>
+                    <!-- Profile Badge -->
+                    <div class="command-center-profile-badge" title="{{ user.username }}">
+                        <div class="profile-badge-avatar">
+                            {% load static %}
+                            <img id="commandCenterProfileImage" src="{% if user.profile.has_profile_image %}{{ user.profile.profile_image_url }}{% else %}{% static 'images/demo-avatar.svg' %}{% endif %}" alt="{{ user.username }}">
+                            <i class="fas fa-user" id="commandCenterUserIcon"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
             

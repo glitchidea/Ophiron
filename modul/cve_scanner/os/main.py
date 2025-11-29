@@ -2,7 +2,7 @@ import os
 from typing import Literal, Optional
 
 
-def detect_os() -> Optional[Literal["arch", "fedora", "debian", "ubuntu"]]:
+def detect_os() -> Optional[Literal["arch", "fedora", "debian", "ubuntu", "suse"]]:
     os_release = "/etc/os-release"
     try:
         if os.path.exists(os_release):
@@ -20,13 +20,16 @@ def detect_os() -> Optional[Literal["arch", "fedora", "debian", "ubuntu"]]:
                 # Check for Debian
                 if "id=debian" in content or "debian" in content:
                     return "debian"
+                # Check for SUSE / openSUSE
+                if "id=opensuse" in content or "opensuse" in content or "suse" in content:
+                    return "suse"
     except Exception:
         pass
     return None
 
 
 def get_handler():
-    from . import arch, fedora, debian, ubuntu
+    from . import arch, fedora, debian, ubuntu, suse
 
     current = detect_os()
     if current == "arch":
@@ -37,6 +40,8 @@ def get_handler():
         return ubuntu
     elif current == "debian":
         return debian
+    elif current == "suse":
+        return suse
     return None
 
 

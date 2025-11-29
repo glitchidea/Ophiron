@@ -1,4 +1,4 @@
-// CVE Tab - Container içi CVE taraması
+// CVE Tab - In-container CVE scanning
 
 // Ensure jsTranslations is available
 if (typeof window.jsTranslations === 'undefined') {
@@ -6,7 +6,7 @@ if (typeof window.jsTranslations === 'undefined') {
 }
 
 function loadCve() {
-    // Sekme açıldığında henüz tarama yapılmadıysa sadece mevcut özet kalsın
+    // Show i18n-compatible message when tab is opened if scan hasn't been run yet
     const summaryEl = document.getElementById('cveSummary');
     const resultsEl = document.getElementById('cveResults');
 
@@ -15,7 +15,22 @@ function loadCve() {
         return;
     }
 
-    // İlk açılışta herhangi bir şey yapmaya gerek yok; kullanıcı butona basınca tarama başlatılacak
+    // If scan hasn't been run yet (only contains text, no HTML), show i18n-compatible message
+    // Message from template may be translated by Django {% trans %}, but if still in English
+    // translate using window.jsTranslations from JavaScript
+    if (summaryEl.children.length === 0) {
+        // Only contains text, scan hasn't been run yet
+        const currentText = summaryEl.textContent.trim();
+        const translatedMessage = window.jsTranslations['No CVE scan has been run yet.'];
+        
+        // If translation exists in window.jsTranslations and message is in English, translate
+        if (translatedMessage && translatedMessage !== 'No CVE scan has been run yet.') {
+            // If message is in English (Django didn't translate), translate from JavaScript
+            if (currentText === 'No CVE scan has been run yet.') {
+                summaryEl.textContent = translatedMessage;
+            }
+        }
+    }
 }
 
 function loadCveScan() {
@@ -31,7 +46,7 @@ function loadCveScan() {
     summaryEl.textContent = loadingMsg;
     resultsEl.innerHTML = '';
 
-    // Container ID'yi mevcut global değişkenden veya URL'den al
+    // Get container ID from current global variable or URL
     let containerId = typeof currentContainerId !== 'undefined' && currentContainerId
         ? currentContainerId
         : null;
@@ -78,16 +93,65 @@ function renderCveSummary(data, summaryEl) {
     const totalMatched = data.total_matched || 0;
     const totalAdvisories = data.total_advisories || 0;
     const matches = data.matched || [];
+    const warning = data.warning || null; // Backward compatibility
+    // For SUSE containers: Backend shell check may not be reliable
+    // Therefore always show warning for SUSE containers (even if shell is available)
+    // Because CVE scanning without shell may produce incomplete/incorrect results
+    const shellAvailable = data.shell_available !== undefined ? data.shell_available : true;
+    
+    // Debug: Check shell status for SUSE containers
+    if (osType === 'suse') {
+        console.log('SUSE Container CVE Scan Debug:', {
+            osType: osType,
+            shellAvailable: shellAvailable,
+            shellAvailableType: typeof shellAvailable,
+            shellAvailableValue: data.shell_available,
+            shellAvailableUndefined: data.shell_available === undefined,
+            totalMatched: totalMatched,
+            data: data
+        });
+    }
 
-    if (totalMatched === 0) {
-        const msg = window.jsTranslations['No vulnerabilities found'] || 'No vulnerabilities found';
+    // For SUSE containers: Show warning when CVE is found
+    // Backend shell check may not be reliable, so always show warning
+    // CVE scanning without shell may produce incomplete/incorrect results
+    if (osType === 'suse' && totalMatched > 0) {
+        const warningMsg = window.jsTranslations['Warning'] || 'Warning';
+        const warningText = window.jsTranslations['SUSE_SHELL_WARNING_MESSAGE'] || 
+                           window.jsTranslations['SUSE Shell Warning Message'] || 
+                           '⚠️ Shell access is not available. SUSE/openSUSE containers require shell access for CVE scanning. Scanning without shell may produce incomplete or incorrect results. Please run the container with shell access or use alternative methods.';
+        
+        // CVE found, show warning as a separate section
+        const warningHtml = `
+            <div style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; margin-bottom: 12px;">
+                <i class="fas fa-exclamation-triangle" style="color: #ffc107; font-size: 24px; margin-top: 2px;"></i>
+                <div style="flex: 1;">
+                    <strong style="color: #856404; font-size: 16px; display: block; margin-bottom: 8px;">${warningMsg}</strong>
+                    <div style="font-size: 14px; color: #856404; line-height: 1.5;">
+                        ${escapeHtml(warningText)}
+                    </div>
+                    <div style="font-size: 13px; color: #856404; margin-top: 8px; padding-top: 8px; border-top: 1px solid #ffc107;">
+                        ${window.jsTranslations['OS'] || 'OS'}: <strong>${osType}</strong> | ${window.jsTranslations['Scanned packages'] || 'Scanned packages'}: <strong>${totalInstalled}</strong>
+                    </div>
+                </div>
+            </div>
+        `;
+        // Add warning to summary, then show normal results
+        summaryEl.innerHTML = warningHtml;
+        // Continue rendering normal results (don't return)
+    } else if (warning) {
+        // Backward compatibility: If old warning message exists (as string)
+        const warningMsg = window.jsTranslations['Warning'] || 'Warning';
         summaryEl.innerHTML = `
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <i class="fas fa-check-circle" style="color: #28a745; font-size: 20px;"></i>
-                <div>
-                    <strong style="color: #28a745;">${msg}</strong>
-                    <div style="font-size: 13px; color: #718096; margin-top: 4px;">
-                        OS: <strong>${osType}</strong> | Scanned packages: <strong>${totalInstalled}</strong>
+            <div style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; margin-bottom: 12px;">
+                <i class="fas fa-exclamation-triangle" style="color: #ffc107; font-size: 24px; margin-top: 2px;"></i>
+                <div style="flex: 1;">
+                    <strong style="color: #856404; font-size: 16px; display: block; margin-bottom: 8px;">${warningMsg}</strong>
+                    <div style="font-size: 14px; color: #856404; line-height: 1.5;">
+                        ${escapeHtml(warning)}
+                    </div>
+                    <div style="font-size: 13px; color: #856404; margin-top: 8px; padding-top: 8px; border-top: 1px solid #ffc107;">
+                        ${window.jsTranslations['OS'] || 'OS'}: <strong>${osType}</strong> | ${window.jsTranslations['Scanned packages'] || 'Scanned packages'}: <strong>${totalInstalled}</strong>
                     </div>
                 </div>
             </div>
@@ -95,14 +159,69 @@ function renderCveSummary(data, summaryEl) {
         return;
     }
 
-    // Paket bazında say
+    if (totalMatched === 0) {
+        const msg = window.jsTranslations['No vulnerabilities found'] || 'No vulnerabilities found';
+        const osLabel = window.jsTranslations['OS'] || 'OS';
+        const scannedPackagesLabel = window.jsTranslations['Scanned packages'] || 'Scanned packages';
+        
+        // For SUSE containers: Always show warning
+        // Backend shell check may not be reliable, so always show warning
+        if (osType === 'suse') {
+            // CVE scanning without shell in SUSE containers may produce incomplete results
+            // In this case we should warn the user
+            const warningMsg = window.jsTranslations['Warning'] || 'Warning';
+            const suseWarningMsg = window.jsTranslations['SUSE_SHELL_WARNING_MESSAGE'] || 
+                window.jsTranslations['SUSE Shell Warning Message'] || 
+                window.jsTranslations['SUSE Shell Warning'] || 
+                '⚠️ Shell access is not available. SUSE/openSUSE containers require shell access for CVE scanning. Scanning without shell may produce incomplete or incorrect results. Please run the container with shell access or use alternative methods.';
+            
+            summaryEl.innerHTML = `
+                <div style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; margin-bottom: 12px;">
+                    <i class="fas fa-exclamation-triangle" style="color: #ffc107; font-size: 24px; margin-top: 2px;"></i>
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <i class="fas fa-check-circle" style="color: #28a745; font-size: 20px;"></i>
+                            <strong style="color: #28a745; font-size: 16px;">${msg}</strong>
+                        </div>
+                        <div style="font-size: 13px; color: #718096; margin-bottom: 12px;">
+                            ${osLabel}: <strong>${osType}</strong> | ${scannedPackagesLabel}: <strong>${totalInstalled}</strong>
+                        </div>
+                        <div style="padding-top: 12px; border-top: 1px solid #ffc107; margin-top: 12px;">
+                            <strong style="color: #856404; font-size: 14px; display: block; margin-bottom: 6px;">
+                                <i class="fas fa-exclamation-triangle" style="margin-right: 6px;"></i>${warningMsg}
+                            </strong>
+                            <div style="font-size: 13px; color: #856404; line-height: 1.5;">
+                                ${escapeHtml(suseWarningMsg)}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+        
+        summaryEl.innerHTML = `
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <i class="fas fa-check-circle" style="color: #28a745; font-size: 20px;"></i>
+                <div>
+                    <strong style="color: #28a745;">${msg}</strong>
+                    <div style="font-size: 13px; color: #718096; margin-top: 4px;">
+                        ${osLabel}: <strong>${osType}</strong> | ${scannedPackagesLabel}: <strong>${totalInstalled}</strong>
+                    </div>
+                </div>
+            </div>
+        `;
+        return;
+    }
+
+    // Count by package
     const packageSet = new Set();
     matches.forEach(m => {
         if (m.package) packageSet.add(m.package);
     });
     const affectedPackages = packageSet.size;
 
-    // Severity dağılımı
+    // Severity distribution
     const severityCounts = { critical: 0, high: 0, medium: 0, low: 0, unknown: 0 };
     matches.forEach(m => {
         const s = (m.severity || 'unknown').toLowerCase();
@@ -127,13 +246,42 @@ function renderCveSummary(data, summaryEl) {
         severityBadges.push(`<span style="background: #28a745; color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">LOW: ${severityCounts.low}</span>`);
     }
 
-    summaryEl.innerHTML = `
+    // If shell is not available in SUSE containers and CVE is found, add warning above CVE results
+    let warningHtml = '';
+    if (osType === 'suse' && !shellAvailable) {
+        const warningMsg = window.jsTranslations['Warning'] || 'Warning';
+        const warningText = window.jsTranslations['SUSE_SHELL_WARNING_MESSAGE'] || 
+                           window.jsTranslations['SUSE Shell Warning Message'] || 
+                           '⚠️ Shell access is not available. SUSE/openSUSE containers require shell access for CVE scanning. Scanning without shell may produce incomplete or incorrect results. Please run the container with shell access or use alternative methods.';
+        
+        warningHtml = `
+            <div style="display: flex; align-items: flex-start; gap: 12px; padding: 16px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; margin-bottom: 12px;">
+                <i class="fas fa-exclamation-triangle" style="color: #ffc107; font-size: 24px; margin-top: 2px;"></i>
+                <div style="flex: 1;">
+                    <strong style="color: #856404; font-size: 16px; display: block; margin-bottom: 8px;">${warningMsg}</strong>
+                    <div style="font-size: 14px; color: #856404; line-height: 1.5;">
+                        ${escapeHtml(warningText)}
+                    </div>
+                    <div style="font-size: 13px; color: #856404; margin-top: 8px; padding-top: 8px; border-top: 1px solid #ffc107;">
+                        ${window.jsTranslations['OS'] || 'OS'}: <strong>${osType}</strong> | ${window.jsTranslations['Scanned packages'] || 'Scanned packages'}: <strong>${totalInstalled}</strong>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    // i18n-compatible CVE count message
+    const cveFoundMsg = totalMatched === 1 
+        ? `${totalMatched} ${window.jsTranslations['CVE found'] || 'CVE found'}`
+        : `${totalMatched} ${window.jsTranslations['CVEs found'] || 'CVEs found'}`;
+    
+    summaryEl.innerHTML = warningHtml + `
         <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
             <i class="fas fa-exclamation-triangle" style="color: #dc3545; font-size: 24px;"></i>
             <div style="flex: 1;">
-                <strong style="color: #dc3545; font-size: 16px;">${totalMatched} CVE${totalMatched > 1 ? 's' : ''} found</strong>
+                <strong style="color: #dc3545; font-size: 16px;">${cveFoundMsg}</strong>
                 <div style="font-size: 13px; color: #718096; margin-top: 4px;">
-                    OS: <strong>${osType}</strong> | Affected packages: <strong>${affectedPackages}</strong> / ${totalInstalled} | Unique advisories: <strong>${totalAdvisories}</strong>
+                    ${window.jsTranslations['OS'] || 'OS'}: <strong>${osType}</strong> | ${window.jsTranslations['Affected packages'] || 'Affected packages'}: <strong>${affectedPackages}</strong> / ${totalInstalled} | ${window.jsTranslations['Unique advisories'] || 'Unique advisories'}: <strong>${totalAdvisories}</strong>
                 </div>
             </div>
         </div>
@@ -147,7 +295,7 @@ function renderCveResults(matches, resultsEl) {
         return;
     }
 
-    // Paket bazında grupla
+    // Group by package
     const byPackage = {};
     matches.forEach(match => {
         const pkgName = match.package || 'unknown';
@@ -162,13 +310,13 @@ function renderCveResults(matches, resultsEl) {
 
     let html = '<div class="cve-list">';
 
-    // Paketleri alfabetik sırala
+    // Sort packages alphabetically
     Object.keys(byPackage).sort().forEach(pkgName => {
         const group = byPackage[pkgName];
         const installed = escapeHtml(group.installed_version || '');
         const count = group.items.length;
 
-        // En kritik seviyesi bul
+        // Find the most critical severity level
         const severitiesOrder = ['critical', 'high', 'medium', 'low', 'unknown'];
         let maxSeverity = '';
         group.items.forEach(m => {
@@ -199,7 +347,7 @@ function renderCveResults(matches, resultsEl) {
                         </div>
                         <div class="cve-package-meta">
                             <span class="cve-version-info">v${installed}</span>
-                            <span class="cve-count-badge">${count} CVE${count > 1 ? 's' : ''}</span>
+                            <span class="cve-count-badge">${count} ${count === 1 ? (window.jsTranslations['CVE'] || 'CVE') : (window.jsTranslations['CVEs'] || 'CVEs')}</span>
                         </div>
                     </div>
                     <div class="cve-package-toggle">
@@ -227,8 +375,8 @@ function renderCveResults(matches, resultsEl) {
                         </div>
                     </div>
                     <div class="cve-entry-details">
-                        ${affected ? `<div class="cve-detail-item"><span class="cve-detail-label">Affected:</span> <span class="cve-detail-value">${affected}</span></div>` : ''}
-                        ${fixed ? `<div class="cve-detail-item"><span class="cve-detail-label">Fixed:</span> <span class="cve-detail-value fixed-version">${fixed}</span></div>` : ''}
+                        ${affected ? `<div class="cve-detail-item"><span class="cve-detail-label">${window.jsTranslations['Affected:'] || 'Affected:'}</span> <span class="cve-detail-value">${affected}</span></div>` : ''}
+                        ${fixed ? `<div class="cve-detail-item"><span class="cve-detail-label">${window.jsTranslations['Fixed:'] || 'Fixed:'}</span> <span class="cve-detail-value fixed-version">${fixed}</span></div>` : ''}
                         ${description ? `<div class="cve-description">${description}</div>` : ''}
                     </div>
                 </div>

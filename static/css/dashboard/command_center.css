@@ -134,6 +134,12 @@ Modern IT/DevOps Dashboard Styling
     letter-spacing: 0.5px;
 }
 
+.status-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .last-update {
     display: flex;
     align-items: center;
@@ -144,6 +150,53 @@ Modern IT/DevOps Dashboard Styling
 
 .last-update i {
     animation: spin 2s linear infinite;
+}
+
+/* ===== COMMAND CENTER PROFILE BADGE ===== */
+.command-center-profile-badge {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.command-center-profile-badge:hover {
+    transform: scale(1.05);
+}
+
+.profile-badge-avatar {
+    width: 40px;
+    height: 40px;
+    background: #4a5568;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #718096;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.profile-badge-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none;
+}
+
+.profile-badge-avatar img.show {
+    display: block;
+}
+
+.profile-badge-avatar i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 18px;
 }
 
 /* ===== SYSTEM METRICS BAR ===== */

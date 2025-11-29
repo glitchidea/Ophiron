@@ -223,45 +223,7 @@
 
     <!-- JavaScript Translations -->
     <script>
-        window.jsTranslations = {
-            'Loading logs...': '{% trans "Loading logs..." %}',
-            'Loading inspect data...': '{% trans "Loading inspect data..." %}',
-            'Loading mount information...': '{% trans "Loading mount information..." %}',
-            'Loading files...': '{% trans "Loading files..." %}',
-            'Loading CVE data...': '{% trans "Loading CVE data..." %}',
-            'No logs available': '{% trans "No logs available" %}',
-            'No inspect data available': '{% trans "No inspect data available" %}',
-            'No mount information available': '{% trans "No mount information available" %}',
-            'No files available': '{% trans "No files available" %}',
-            'No stats available': '{% trans "No stats available" %}',
-            'No CVE scan has been run yet.': '{% trans "No CVE scan has been run yet." %}',
-            'No vulnerabilities found': '{% trans "No vulnerabilities found" %}',
-            'Scan for CVEs': '{% trans "Scan for CVEs" %}',
-            'Error': '{% trans "Error" %}',
-            'Container ID not found': '{% trans "Container ID not found" %}',
-            'Stop container': '{% trans "Stop container" %}',
-            'Stopping container': '{% trans "Stopping container" %}',
-            'Container stopped': '{% trans "Container stopped" %}',
-            'Starting container': '{% trans "Starting container" %}',
-            'Container started': '{% trans "Container started" %}',
-            'Restart container': '{% trans "Restart container" %}',
-            'Restarting container': '{% trans "Restarting container" %}',
-            'Container restarted': '{% trans "Container restarted" %}',
-            'Delete container': '{% trans "Delete container" %}',
-            'This action cannot be undone': '{% trans "This action cannot be undone" %}',
-            'Deleting container': '{% trans "Deleting container" %}',
-            'Container deleted': '{% trans "Container deleted" %}',
-            'Copied to clipboard': '{% trans "Copied to clipboard" %}',
-            'Failed to copy': '{% trans "Failed to copy" %}',
-            'Back': '{% trans "Back" %}',
-            'Up': '{% trans "Up" %}',
-            'Copy': '{% trans "Copy" %}',
-            'Refresh': '{% trans "Refresh" %}',
-            'CPU Usage': '{% trans "CPU Usage" %}',
-            'Memory Usage': '{% trans "Memory Usage" %}',
-            'Network I/O': '{% trans "Network I/O" %}',
-            'Block I/O': '{% trans "Block I/O" %}'
-        };
+        window.jsTranslations = JSON.parse('{{ js_translations|escapejs }}');
     </script>
 
     <!-- Header JavaScript -->

@@ -151,20 +151,25 @@ Header component için özel stiller
     background: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    min-width: 200px;
-    padding: 8px 0;
+    min-width: 240px;
+    padding: 0;
     margin-top: 8px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.2s ease;
     z-index: 1000;
+    overflow: hidden;
 }
 
 .dashboard-user-dropdown-menu.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+}
+
+.dashboard-user-dropdown-menu .dropdown-item:first-of-type {
+    margin-top: 0;
 }
 
 .dropdown-arrow {
@@ -187,6 +192,7 @@ Header component için özel stiller
     font-size: 14px;
     font-weight: 500;
     transition: all 0.2s ease;
+    margin-top: 0;
 }
 
 .dropdown-item:hover {
@@ -218,6 +224,72 @@ Header component için özel stiller
     height: 1px;
     background: #e2e8f0;
     margin: 8px 0;
+}
+
+/* ===== DROPDOWN PROFILE HEADER ===== */
+.dropdown-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.dropdown-profile-avatar {
+    width: 56px;
+    height: 56px;
+    background: #4a5568;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid #718096;
+}
+
+.dropdown-profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none;
+}
+
+.dropdown-profile-avatar img.show {
+    display: block;
+}
+
+.dropdown-profile-avatar i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 24px;
+}
+
+.dropdown-profile-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.dropdown-profile-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-profile-role {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
 }
 
 .dashboard-user-avatar {

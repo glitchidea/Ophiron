@@ -29,6 +29,7 @@ class CommandCenter {
         this.loadLiveControl();
         this.loadRedisCeleryStatus();
         this.loadSMTPStatus();
+        this.loadProfileImage();
         
         // Set up periodic updates
         this.setupPeriodicUpdates();
@@ -37,6 +38,33 @@ class CommandCenter {
         this.setupEventListeners();
         
         console.log('✅ Command Center initialized successfully');
+    }
+    
+    loadProfileImage() {
+        // Load profile image in Command Center badge
+        const profileImage = document.getElementById('commandCenterProfileImage');
+        const userIcon = document.getElementById('commandCenterUserIcon');
+        const profileBadge = document.querySelector('.command-center-profile-badge');
+        
+        if (profileImage && userIcon) {
+            // Check if image is not the default avatar
+            if (profileImage.src && !profileImage.src.includes('demo-avatar.svg')) {
+                profileImage.classList.add('show');
+                userIcon.style.display = 'none';
+            } else {
+                userIcon.style.display = 'block';
+            }
+        }
+        
+        // Make profile badge clickable to open user dropdown
+        if (profileBadge) {
+            profileBadge.addEventListener('click', function() {
+                const userDropdownTrigger = document.getElementById('userDropdownTrigger');
+                if (userDropdownTrigger) {
+                    userDropdownTrigger.click();
+                }
+            });
+        }
     }
     
     
@@ -249,10 +277,21 @@ class CommandCenter {
         document.getElementById('dockerStopped').textContent = stopped;
         document.getElementById('dockerTotal').textContent = total;
         
-        // Update docker list
+        // Running container'lara öncelik ver: önce running, sonra diğerleri
+        const sortedContainers = [...this.containers].sort((a, b) => {
+            const aRunning = a.status === 'running' ? 0 : 1;
+            const bRunning = b.status === 'running' ? 0 : 1;
+            if (aRunning !== bRunning) {
+                return aRunning - bRunning; // Running önce gelsin
+            }
+            // Aynı status'teyse isme göre sırala
+            return (a.name || a.id || '').localeCompare(b.name || b.id || '');
+        });
+        
+        // Update docker list - ilk 5'i göster (running öncelikli)
         const dockerList = document.getElementById('dockerList');
         if (dockerList) {
-            dockerList.innerHTML = this.containers.slice(0, 5).map(container => `
+            dockerList.innerHTML = sortedContainers.slice(0, 5).map(container => `
                 <div class="docker-item">
                     <div class="status-indicator ${container.status === 'running' ? 'running' : 'stopped'}"></div>
                     <div class="container-name">${container.name || container.id}</div>

@@ -200,12 +200,69 @@ def containers(request):
 
 def container_detail(request, container_id):
     """Container detay sayfası"""
+    # JavaScript translations for CVE and other UI elements
+    js_translations = {
+        'Loading logs...': _('Loading logs...'),
+        'Loading inspect data...': _('Loading inspect data...'),
+        'Loading mount information...': _('Loading mount information...'),
+        'Loading files...': _('Loading files...'),
+        'Loading CVE data...': _('Loading CVE data...'),
+        'No logs available': _('No logs available'),
+        'No inspect data available': _('No inspect data available'),
+        'No mount information available': _('No mount information available'),
+        'No files available': _('No files available'),
+        'No stats available': _('No stats available'),
+        'No CVE scan has been run yet.': _('No CVE scan has been run yet.'),
+        'No vulnerabilities found': _('No vulnerabilities found'),
+        'Scan for CVEs': _('Scan for CVEs'),
+        'Error': _('Error'),
+        'Warning': _('Warning'),
+        'SUSE Shell Warning': _('SUSE Shell Warning'),
+        'SUSE Shell Warning Message': _('SUSE/openSUSE container\'larında shell erişimi yoksa CVE taraması eksik veya hatalı sonuçlar verebilir. Lütfen container\'ı shell erişimi ile çalıştırın.'),
+        'SUSE_SHELL_WARNING_MESSAGE': _('⚠️ Shell erişimi bulunmuyor. SUSE/openSUSE container\'larında CVE taraması shell erişimi gerektirir. Shell olmadan yapılan tarama eksik veya hatalı sonuçlar verebilir. Lütfen container\'ı shell erişimi ile çalıştırın veya alternatif yöntemler kullanın.'),
+        'OS': _('OS'),
+        'Scanned packages': _('Scanned packages'),
+        'Affected packages': _('Affected packages'),
+        'Unique advisories': _('Unique advisories'),
+        'Container ID not found': _('Container ID not found'),
+        'Stop container': _('Stop container'),
+        'Stopping container': _('Stopping container'),
+        'Container stopped': _('Container stopped'),
+        'Starting container': _('Starting container'),
+        'Container started': _('Container started'),
+        'Restart container': _('Restart container'),
+        'Restarting container': _('Restarting container'),
+        'Container restarted': _('Container restarted'),
+        'Delete container': _('Delete container'),
+        'This action cannot be undone': _('This action cannot be undone'),
+        'Deleting container': _('Deleting container'),
+        'Container deleted': _('Container deleted'),
+        'Copied to clipboard': _('Copied to clipboard'),
+        'Failed to copy': _('Failed to copy'),
+        'Back': _('Back'),
+        'Up': _('Up'),
+        'Copy': _('Copy'),
+        'Refresh': _('Refresh'),
+        'CPU Usage': _('CPU Usage'),
+        'Memory Usage': _('Memory Usage'),
+        'Network I/O': _('Network I/O'),
+        'Block I/O': _('Block I/O'),
+        'CVE found': _('CVE found'),
+        'CVEs found': _('CVEs found'),
+        'CVE': _('CVE'),
+        'CVEs': _('CVEs'),
+        'found': _('found'),
+        'Affected:': _('Affected:'),
+        'Fixed:': _('Fixed:'),
+    }
+    
     try:
         client = get_docker_client()
         if not client:
             return render(request, 'modules/docker_manager/container_detail.html', {
                 'container': None,
-                'docker_running': False
+                'docker_running': False,
+                'js_translations': json.dumps(js_translations)
             })
         
         # Container bilgilerini al
@@ -225,14 +282,16 @@ def container_detail(request, container_id):
         
         return render(request, 'modules/docker_manager/container_detail.html', {
             'container': container_info,
-            'docker_running': True
+            'docker_running': True,
+            'js_translations': json.dumps(js_translations)
         })
         
     except Exception as e:
         return render(request, 'modules/docker_manager/container_detail.html', {
             'container': None,
             'docker_running': False,
-            'error': str(e)
+            'error': str(e),
+            'js_translations': json.dumps(js_translations)
         })
 
 def images(request):
@@ -494,7 +553,7 @@ def container_stats(request, container_id):
 def container_cve_scan(request, container_id):
     """Container içindeki paketler için CVE taraması yap"""
     if request.method != 'POST':
-        return JsonResponse({'success': False, 'error': 'Invalid request method'}, status=405)
+        return JsonResponse({'success': False, 'error': str(_('Invalid request method'))}, status=405)
 
     try:
         scan_result = docker_cve_scanner.scan_container_cves(container_id)
@@ -505,7 +564,7 @@ def container_cve_scan(request, container_id):
         return JsonResponse(
             {
                 'success': False,
-                'error': str(exc),
+                'error': str(_('An error occurred during CVE scan: %(error)s')) % {'error': str(exc)},
             },
             status=500,
         )
